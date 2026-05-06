@@ -27,7 +27,7 @@ namespace Formulaire_principal
                     try
                     {
                         // Chaîne de connexion à votre base de données
-                        string chaine = @"Data Source = ..\..\Stargate.db";
+                        string chaine = @"Data Source = ..\..\DataBase\Stargate.db";
                         connec = new SQLiteConnection(chaine);
                         connec.Open();
                     }
