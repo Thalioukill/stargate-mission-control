@@ -11,8 +11,8 @@ namespace Formulaire_principal
     public class MesDatas
     {
         private static DataSet dsGlobal = new DataSet();
-     
-        public static DataSet DsGlobal { get {  return MesDatas.dsGlobal; } }
+
+        public static DataSet DsGlobal { get { return MesDatas.dsGlobal; } }
 
     }
 }

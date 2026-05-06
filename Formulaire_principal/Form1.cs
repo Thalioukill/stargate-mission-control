@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using BCrypt.Net;
 
 namespace Formulaire_principal
 {
@@ -15,6 +17,12 @@ namespace Formulaire_principal
         public Form1()
         {
             InitializeComponent();
+            SQLiteConnection co = Connexion.Connec;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
