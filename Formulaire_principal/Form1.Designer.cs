@@ -37,20 +37,20 @@
             // btnPlanetes
             // 
             this.btnPlanetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlanetes.Location = new System.Drawing.Point(929, 537);
+            this.btnPlanetes.Location = new System.Drawing.Point(946, 537);
             this.btnPlanetes.Name = "btnPlanetes";
-            this.btnPlanetes.Size = new System.Drawing.Size(148, 54);
+            this.btnPlanetes.Size = new System.Drawing.Size(191, 66);
             this.btnPlanetes.TabIndex = 0;
-            this.btnPlanetes.Text = "Planète";
+            this.btnPlanetes.Text = "Planètes";
             this.btnPlanetes.UseVisualStyleBackColor = true;
             this.btnPlanetes.Click += new System.EventHandler(this.btnPlanetes_Click);
             // 
             // btnMission
             // 
             this.btnMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMission.Location = new System.Drawing.Point(379, 537);
+            this.btnMission.Location = new System.Drawing.Point(380, 537);
             this.btnMission.Name = "btnMission";
-            this.btnMission.Size = new System.Drawing.Size(181, 66);
+            this.btnMission.Size = new System.Drawing.Size(191, 66);
             this.btnMission.TabIndex = 1;
             this.btnMission.Text = "Nouvelle Mission";
             this.btnMission.UseVisualStyleBackColor = true;
@@ -59,9 +59,9 @@
             // btnAliens
             // 
             this.btnAliens.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAliens.Location = new System.Drawing.Point(670, 537);
+            this.btnAliens.Location = new System.Drawing.Point(668, 537);
             this.btnAliens.Name = "btnAliens";
-            this.btnAliens.Size = new System.Drawing.Size(148, 54);
+            this.btnAliens.Size = new System.Drawing.Size(191, 66);
             this.btnAliens.TabIndex = 3;
             this.btnAliens.Text = "Aliens";
             this.btnAliens.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@
             // btnTableauDeBord
             // 
             this.btnTableauDeBord.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTableauDeBord.Location = new System.Drawing.Point(116, 537);
+            this.btnTableauDeBord.Location = new System.Drawing.Point(90, 537);
             this.btnTableauDeBord.Name = "btnTableauDeBord";
             this.btnTableauDeBord.Size = new System.Drawing.Size(191, 66);
             this.btnTableauDeBord.TabIndex = 2;
