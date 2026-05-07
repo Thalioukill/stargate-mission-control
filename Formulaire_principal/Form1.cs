@@ -28,7 +28,7 @@ namespace Formulaire_principal
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /* Vérification de la connection : 
+            
              
             String requete = $@"SELECT COUNT(*) from Mission";
 
@@ -37,7 +37,7 @@ namespace Formulaire_principal
             int nbMission = Convert.ToInt32(cmd.ExecuteScalar());
             MessageBox.Show("il y a " + nbMission.ToString() + "clients");
 
-            */
+            
 
             // On rempli le DataSet ds avec toutes les Tables de la base Stargate.ds
             // ATTENTION POUR L'AJOUT DES MISSIONS IL FAUT BIEN RECREER LES CLE ETRANGERES ET PRIMAIRES
@@ -79,7 +79,26 @@ namespace Formulaire_principal
         private void btnMission_Click(object sender, EventArgs e)
         {
             FrmLogin flog = new FrmLogin();
-            DialogResult dr = flog.ShowDialog();
+            DialogResult drLog = flog.ShowDialog();
+
+            if (drLog == DialogResult.OK)
+            {
+                FrmMission fm = new FrmMission();
+                DialogResult drMiss = fm.ShowDialog();
+                if (drMiss == DialogResult.OK)
+                {
+                    MessageBox.Show("Mission créée");
+                }
+                if (drMiss == DialogResult.OK)
+                {
+                    MessageBox.Show("Echec de la création de la mission");
+                }
+            }
+
+            if (drLog == DialogResult.Cancel)
+            {
+                MessageBox.Show("Opération annulée");
+            }
         }
 
         private void btnTableauDeBord_Click(object sender, EventArgs e)
