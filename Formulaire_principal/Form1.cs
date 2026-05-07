@@ -28,6 +28,8 @@ namespace Formulaire_principal
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            grpTbd.Visible = false;
+
             /* Vérification de la connection : 
              
             String requete = $@"SELECT COUNT(*) from Mission";
