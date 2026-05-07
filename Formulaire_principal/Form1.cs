@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Formulaire_principal
 {
-    public partial class Form1 : Form
+    public partial class FrmAccueil : Form
     {
         private SQLiteConnection co = Connexion.Connec;
 
@@ -21,7 +21,7 @@ namespace Formulaire_principal
 
         private DataSet ds = MesDatas.DsGlobal;
 
-        public Form1()
+        public FrmAccueil()
         {
             InitializeComponent();
         }
@@ -62,6 +62,30 @@ namespace Formulaire_principal
             }
             MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
 
+        }
+
+        private void btnPlanetes_Click(object sender, EventArgs e)
+        {
+            FrmPlanetes fp = new FrmPlanetes();
+            DialogResult dr = fp.ShowDialog();
+        }
+
+        private void btnAliens_Click(object sender, EventArgs e)
+        {
+            FrmAliens fa = new FrmAliens();
+            DialogResult dr = fa.ShowDialog();
+        }
+
+        private void btnMission_Click(object sender, EventArgs e)
+        {
+            FrmLogin flog = new FrmLogin();
+            DialogResult dr = flog.ShowDialog();
+        }
+
+        private void btnTableauDeBord_Click(object sender, EventArgs e)
+        {
+            FrmTableauDeBord ftdb = new FrmTableauDeBord();
+            DialogResult dr = ftdb.ShowDialog();
         }
     }
 }
