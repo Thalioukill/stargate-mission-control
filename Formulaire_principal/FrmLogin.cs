@@ -14,13 +14,50 @@ namespace Formulaire_principal
 {
     public partial class FrmLogin : Form
     {
+        private SQLiteConnection co = Connexion.Connec;
+
+        //instanciation du DataSet
+
+        private DataSet ds = MesDatas.DsGlobal;
         public FrmLogin()
         {
             InitializeComponent();
+            btnOeil.BackgroundImage = Image.FromFile("../../Images/oeil.png");
+            //Pour que l'image occupe tout le bouton
+            btnOeil.BackgroundImageLayout = ImageLayout.Stretch;
             txtMdp.UseSystemPasswordChar = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                //Pour supprimer le jeu Login/mdp actuel :
+                //string sqlDelete = "DELETE FROM Admin WHERE login = 'demo'";
+                //SQLiteCommand cmdDelete = new SQLiteCommand(sqlDelete, co);
+                //cmdDelete.ExecuteNonQuery();
+
+                string sql = "SELECT COUNT(*) FROM Admin";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                int nb = Convert.ToInt32(cmd.ExecuteScalar());
+
+                if (nb == 1)
+                {
+                    string sql2 = "INSERT INTO Admin (login,mdp) VALUES ('demo','$2y$10$/EXwxuogBbQQb7q.MkdCK.UrHOhv77hr8CR7DH6n5//vkQFRpnvv2')";
+
+                    SQLiteCommand cmd2 = new SQLiteCommand(sql2, co);
+
+                    cmd2.ExecuteNonQuery();
+                }
+            }
+            catch(SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
         {
             try
             {
@@ -41,6 +78,7 @@ namespace Formulaire_principal
                     else
                     {
                         MessageBox.Show("Accès refusé", "Authentification");
+                        txtMdp.Text = "";
                     }
                 }
             }
@@ -49,6 +87,18 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
         }
-        //Il faut créer un enregistrement avec notre login et mot de passe;
+
+        private void btnOeil_Click(object sender, EventArgs e)
+        {
+            if(txtMdp.UseSystemPasswordChar)
+            {
+                txtMdp.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtMdp.UseSystemPasswordChar = true;
+            }
+
+        }
     }
 }
