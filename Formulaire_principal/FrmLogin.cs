@@ -74,6 +74,7 @@ namespace Formulaire_principal
                     if (valide)
                     {
                         MessageBox.Show("Accès autorisé", "Authentification");
+                        this.DialogResult = DialogResult.OK;
                     }
                     else
                     {
@@ -99,6 +100,23 @@ namespace Formulaire_principal
                 txtMdp.UseSystemPasswordChar = true;
             }
 
+        }
+
+        private void txtLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Si on appuie sur la touche entrée ...
+            if(e.KeyChar == 13)
+            {
+                txtMdp.Focus();
+            }
+        }
+
+        private void txtMdp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnValider_Click(sender, e);
+            }
         }
     }
 }

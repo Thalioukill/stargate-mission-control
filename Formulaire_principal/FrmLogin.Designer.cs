@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.grpAuthentification = new System.Windows.Forms.GroupBox();
+            this.btnOeil = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnValider = new System.Windows.Forms.Button();
             this.txtMdp = new System.Windows.Forms.TextBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLog = new System.Windows.Forms.Label();
-            this.btnOeil = new System.Windows.Forms.Button();
             this.grpAuthentification.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,15 @@
             this.grpAuthentification.TabIndex = 0;
             this.grpAuthentification.TabStop = false;
             this.grpAuthentification.Text = "Authentification";
+            // 
+            // btnOeil
+            // 
+            this.btnOeil.Location = new System.Drawing.Point(761, 206);
+            this.btnOeil.Name = "btnOeil";
+            this.btnOeil.Size = new System.Drawing.Size(81, 61);
+            this.btnOeil.TabIndex = 6;
+            this.btnOeil.UseVisualStyleBackColor = true;
+            this.btnOeil.Click += new System.EventHandler(this.btnOeil_Click);
             // 
             // label2
             // 
@@ -82,6 +91,7 @@
             this.txtMdp.Name = "txtMdp";
             this.txtMdp.Size = new System.Drawing.Size(445, 31);
             this.txtMdp.TabIndex = 3;
+            this.txtMdp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMdp_KeyPress);
             // 
             // txtLogin
             // 
@@ -89,6 +99,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(445, 31);
             this.txtLogin.TabIndex = 2;
+            this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogin_KeyPress);
             // 
             // label1
             // 
@@ -107,15 +118,6 @@
             this.lblLog.Size = new System.Drawing.Size(65, 25);
             this.lblLog.TabIndex = 0;
             this.lblLog.Text = "Login";
-            // 
-            // btnOeil
-            // 
-            this.btnOeil.Location = new System.Drawing.Point(761, 206);
-            this.btnOeil.Name = "btnOeil";
-            this.btnOeil.Size = new System.Drawing.Size(81, 61);
-            this.btnOeil.TabIndex = 6;
-            this.btnOeil.UseVisualStyleBackColor = true;
-            this.btnOeil.Click += new System.EventHandler(this.btnOeil_Click);
             // 
             // FrmLogin
             // 
