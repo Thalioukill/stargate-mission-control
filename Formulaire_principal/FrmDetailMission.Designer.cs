@@ -34,6 +34,7 @@
             this.lblDateRetour = new System.Windows.Forms.Label();
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblSoldeApresDepenses = new System.Windows.Forms.Label();
+            this.flpEquipage = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,11 +91,19 @@
             this.lblSoldeApresDepenses.TabIndex = 6;
             this.lblSoldeApresDepenses.Text = "Solde après dépenses : ";
             // 
+            // flpEquipage
+            // 
+            this.flpEquipage.Location = new System.Drawing.Point(25, 434);
+            this.flpEquipage.Name = "flpEquipage";
+            this.flpEquipage.Size = new System.Drawing.Size(938, 195);
+            this.flpEquipage.TabIndex = 7;
+            // 
             // FrmDetailMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 692);
+            this.Controls.Add(this.flpEquipage);
             this.Controls.Add(this.lblSoldeApresDepenses);
             this.Controls.Add(this.lblBudget);
             this.Controls.Add(this.lblDateRetour);
@@ -118,5 +127,6 @@
         private System.Windows.Forms.Label lblDateRetour;
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Label lblSoldeApresDepenses;
+        private System.Windows.Forms.FlowLayoutPanel flpEquipage;
     }
 }

@@ -152,12 +152,8 @@ namespace Formulaire_principal
         // La méthode qui reçoit la délégation du clic
         private void OuvrirDetailMission(object sender, EventArgs e)
         {
-            // On récupère le bouton cliqué et son Tag (l'ID de la mission)
-            Button btn = (Button)sender;
-            string idMission = btn.Tag.ToString();
-
             // ouverture d'un formulaire enfant avec constructeur surchargé pour les détails de la mission
-            FrmDetailMission fdm = new FrmDetailMission(idMission);
+            FrmDetailMission fdm = new FrmDetailMission(this.planete, this.numero);
             DialogResult dr = fdm.ShowDialog();
         }
 
@@ -210,14 +206,15 @@ namespace Formulaire_principal
                     while (dr.Read()) // Parcours de toutes les missions
                     {
                         // Récupération des données
-                        string nom = dr["nomPlanete"] + dr["numero"].ToString();
+                        string nom = dr["nomPlanete"] 
+                        string numero = dr["numero"].ToString();
                         string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
                         string chef = dr["prenom"]+ " " + dr["nom"];
                         string budget = dr["budget"].ToString();
                         string image = dr["nomPlanete"] + ".jpg";
 
                         // Instanciation du User Control
-                        UserControl_Missions uc = new UserControl_Missions(nom, date, chef, budget, image);
+                        UserControl_Missions uc = new UserControl_Missions(nom, numero, date, chef, budget, image);
 
                         // délégué 
                         uc.afficheur = OuvrirDetailMission;

@@ -13,15 +13,20 @@ namespace Formulaire_principal
     public delegate void afficherMission(object sender, EventArgs e);
 
     [ToolboxBitmap(typeof(afficherMission), "UserControl_Missions.jpg")]
+
+    // Variables pour stocker la clé primaire double de Mission
+    private string planete;
+    private int numero;
+
     public partial class UserControl_Missions : UserControl
     {
         // instance du délgate accessible depuis le formulaire parent
         public afficherMission afficheur;
 
-        public UserControl_Missions(string nomMission, string date, string chefMission, string budget, string nomImage)
+        public UserControl_Missions(string nomMission, string numeroMission, string date, string chefMission, string budget, string nomImage)
         {
             InitializeComponent();
-            this.lblNomMission.Text += nomMission;
+            this.lblNomMission.Text += nomPlanete+numeroMission;
             this.lblDate.Text += date;
             this.lblChefMission.Text += chefMission;
             this.lblBudget.Text += budget;
@@ -31,8 +36,9 @@ namespace Formulaire_principal
                 picMission.Image = Image.FromFile("../../Images/Missions/"+nomImage);
             }
 
-            // On stocke l'ID dans le Tag du bouton Consulter
-            this.btnDetails.Tag = nomMission;
+            // On stocke ls informations propres à la mission
+            this.planete = nomPlanete;
+            this.numero = numeroMission;
         }
 
         public UserControl_Missions()

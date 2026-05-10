@@ -19,27 +19,31 @@ namespace Formulaire_principal
 
         private DataSet ds = MesDatas.DsGlobal;
 
+        private string idPlanete;
+        private int idNumero;
+
         private string idMission;
         public FrmDetailMission()
         {
             InitializeComponent();
         }
-        public FrmDetailMission(string idRecu)
+        public FrmDetailMission(string laPlanete, string leNumero)
         {
             InitializeComponent();
-            this.idMission = idRecu;
+            this.idPlanete = laPlanete;
+            this.idNumero = leNumero;
 
             // Création d'une vue sur la table "Composer" (qui lie membres et missions)
             DataView dvEquipage = new DataView(mesDatas.dsStargate.Tables["Composer"]);
 
             // Application du filtre local
-            dvEquipage.RowFilter = $"nomPlanete = '{idRecu.Substring(0, idRecu.size()-1)}' AND numeroMission = {idRecu.Substring(idRecu.size() - 1), 1}";
+            dvEquipage.RowFilter = $"nomPlanete = '{laPlanete}' AND numeroMission = {leNumero}";
 
-            // 3. Parcours de la vue filtrée pour afficher les User Controls
+            //parcours de la vue filtrée pour afficher les User Controls
             foreach (DataRowView ligne in dvEquipage)
             {
-                // On récupère le matricule du membre dans la ligne de la vue
-                string matricule = ligne["matriculeMembre"].ToString();
+                // On récupère le matricule du membre de la mission en cours dans la ligne de la vue
+                string matricule = ligne["matricule"].ToString();
 
                 // On va chercher les détails du membre (nom, grade...) dans la table Membre du DataSet
                 DataRow rMembre = mesDatas.dsStargate.Tables["Membre"].Rows.Find(matricule);
@@ -48,21 +52,18 @@ namespace Formulaire_principal
                 {
                     string nomComplet = rMembre["prenom"] + " " + rMembre["nom"];
 
-                    // Logique Grade vs Spécialité (vu précédemment)
-                    string infoSup = rMembre["grade"].ToString();
-                    if (string.IsNullOrEmpty(infoSup)) infoSup = rMembre["Specialite"].ToString();
+                    // Grade OU Spécialité 
+                    string grade_specialite = rMembre["grade"].ToString();
 
-                    // Est-ce le chef ? (On compare avec le matriculeChef de la mission)
-                    bool estChef = (matricule == this.idChefMission);
-
+                    if (string.IsNullOrEmpty(grade_specialite)) {
+                        grade_specialite = rMembre["Specialite"].ToString();
+                    }
                     // Création de l'UC avec la couleur si chef
-                    UserControl_Membre uc = new UserControl_Membre(nomComplet, infoSup, rMembre["photo"].ToString(), estChef);
+                    UserControl_MembresMission uc = new UserControl_MembresMission(nomComplet, infoSup, rMembre["photo"].ToString(), estChef);
+
                     flpEquipage.Controls.Add(uc);
                 }
             }
-
-
-
         }
 
         private void FrmDetailMission_Load(object sender, EventArgs e)

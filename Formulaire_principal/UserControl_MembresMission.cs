@@ -19,11 +19,11 @@ namespace Formulaire_principal
             InitializeComponent();
         }
 
-        public UserControl_MembresMission(string nom, string prenom, string image)
+        public UserControl_MembresMission(string nomComplet, string grade_specialite, string image, bool estChef)
         {
             InitializeComponent();
             this.lblnom.Text += nom;
-            this.lblPn.Text += prenom;
+            this.lblPn.Text += grade_specialite;
 
             if (image != string.Empty)
             {
