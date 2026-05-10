@@ -29,52 +29,98 @@
         private void InitializeComponent()
         {
             this.picMission = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.lblNomMission = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblChefMission = new System.Windows.Forms.Label();
+            this.lblBudget = new System.Windows.Forms.Label();
+            this.btnDetails = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
             this.SuspendLayout();
             // 
             // picMission
             // 
-            this.picMission.Location = new System.Drawing.Point(22, 25);
+            this.picMission.Location = new System.Drawing.Point(29, 21);
             this.picMission.Name = "picMission";
-            this.picMission.Size = new System.Drawing.Size(122, 75);
+            this.picMission.Size = new System.Drawing.Size(153, 154);
             this.picMission.TabIndex = 1;
             this.picMission.TabStop = false;
             // 
-            // textBox1
+            // lblNomMission
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(208, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 2;
+            this.lblNomMission.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.ForeColor = System.Drawing.Color.Blue;
+            this.lblNomMission.Location = new System.Drawing.Point(213, 44);
+            this.lblNomMission.Name = "lblNomMission";
+            this.lblNomMission.Size = new System.Drawing.Size(217, 25);
+            this.lblNomMission.TabIndex = 2;
+            this.lblNomMission.Text = "Mission : ";
             // 
-            // maskedTextBox1
+            // lblDate
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(208, 64);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 22);
-            this.maskedTextBox1.TabIndex = 3;
+            this.lblDate.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.Color.Blue;
+            this.lblDate.Location = new System.Drawing.Point(473, 44);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(293, 44);
+            this.lblDate.TabIndex = 3;
+            this.lblDate.Text = "Dates : ";
+            // 
+            // lblChefMission
+            // 
+            this.lblChefMission.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChefMission.ForeColor = System.Drawing.Color.Blue;
+            this.lblChefMission.Location = new System.Drawing.Point(213, 101);
+            this.lblChefMission.Name = "lblChefMission";
+            this.lblChefMission.Size = new System.Drawing.Size(194, 49);
+            this.lblChefMission.TabIndex = 4;
+            this.lblChefMission.Text = "Chef de Mission : ";
+            // 
+            // lblBudget
+            // 
+            this.lblBudget.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudget.ForeColor = System.Drawing.Color.Blue;
+            this.lblBudget.Location = new System.Drawing.Point(473, 101);
+            this.lblBudget.Name = "lblBudget";
+            this.lblBudget.Size = new System.Drawing.Size(225, 24);
+            this.lblBudget.TabIndex = 5;
+            this.lblBudget.Text = "Budget : ";
+            // 
+            // btnDetails
+            // 
+            this.btnDetails.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetails.ForeColor = System.Drawing.Color.Blue;
+            this.btnDetails.Location = new System.Drawing.Point(597, 152);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(145, 23);
+            this.btnDetails.TabIndex = 6;
+            this.btnDetails.Text = "Consulter";
+            this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
             // UserControl_Missions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnDetails);
+            this.Controls.Add(this.lblBudget);
+            this.Controls.Add(this.lblChefMission);
+            this.Controls.Add(this.lblDate);
+            this.Controls.Add(this.lblNomMission);
             this.Controls.Add(this.picMission);
             this.Name = "UserControl_Missions";
-            this.Size = new System.Drawing.Size(704, 150);
+            this.Size = new System.Drawing.Size(782, 205);
+            this.Load += new System.EventHandler(this.UserControl_Missions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.PictureBox picMission;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label lblNomMission;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblChefMission;
+        private System.Windows.Forms.Label lblBudget;
+        private System.Windows.Forms.Button btnDetails;
     }
 }

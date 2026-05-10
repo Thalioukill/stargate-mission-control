@@ -28,7 +28,8 @@ namespace Formulaire_principal
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            grpTbd.Visible = false;
+            plMissions.Visible = false;
+            //flpMissions.Visible = false;
 
             /* Vérification de la connection : 
              
@@ -64,6 +65,9 @@ namespace Formulaire_principal
             }
             MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
 
+            // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant
+
+
         }
 
         private void btnPlanetes_Click(object sender, EventArgs e)
@@ -86,8 +90,98 @@ namespace Formulaire_principal
 
         private void btnTableauDeBord_Click(object sender, EventArgs e)
         {
-            FrmTableauDeBord ftdb = new FrmTableauDeBord();
-            DialogResult dr = ftdb.ShowDialog();
+            plMissions.Visible = true;
+            ActualiserAffichage();
+            
+        }
+
+        // La méthode qui reçoit la délégation du clic
+        private void OuvrirDetailMission(object sender, EventArgs e)
+        {
+            // On récupère le bouton cliqué et son Tag (l'ID de la mission)
+            Button btn = (Button)sender;
+            string idMission = btn.Tag.ToString();
+
+            // ouverture d'un formulaire enfant avec constructeur surchargé pour les détails de la mission
+            FrmDetailMission fdm = new FrmDetailMission(idMission);
+            DialogResult dr = fdm.ShowDialog();
+        }
+
+        public void ActualiserAffichage()
+        {
+            string condition = " WHERE 1=1"; // astuce pour ajouter des AND facilement
+
+            // filtre status de la mission dans la groupBox
+            if (rdbPasse.Checked) condition += " AND dateRetour < date('now')";
+            else if (rdbEnCours.Checked) condition += " AND dateDepart <= date('now') AND dateRetour >= date('now')";
+            else if (rdbAVenir.Checked) condition += " AND dateDepart > date('now')";
+
+            // Filtre chef
+            if (cboChefMission.SelectedIndex != -1)
+            {
+                condition += " AND matriculeChef = '" + cboChefMission.SelectedValue + "'"; // On utilise le champ mémorisé
+            }
+
+            // Filtre Planète 
+            if (cboPlanete.SelectedIndex != -1)
+            {
+                condition += " AND nomPlanete = '" + cboPlanete.Text + "'";
+            }
+
+            string requeteFinale = "SELECT * FROM Mission" + condition + " ORDER BY dateDepart DESC";
+
+            try
+            {
+                SQLiteCommand cmdRechercheMissions = new SQLiteCommand(requeteFinale, this.co);
+                SQLiteDataReader dr = cmdRechercheMissions.ExecuteReader();
+
+                flpMissions.Controls.Clear();
+
+                while (dr.Read()) // Parcours de toutes les missions
+                {
+                    // Récupération des données
+                    string nom = dr["nomPlanete"] + dr["numero"].ToString();
+                    string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
+                    string chef = dr["matriculeChef"].ToString();
+                    string budget = dr["budget"].ToString();
+                    string image = dr["nomPlanete"] + ".jpg";
+
+                    // Instanciation du User Control
+                    UserControl_Missions uc = new UserControl_Missions(nom, date, chef, budget, image);
+
+                    // délégué 
+                    uc.afficheur = OuvrirDetailMission;
+
+                    // ajout au conteneur (FlowLayoutPanel)
+                    flpMissions.Controls.Add(uc);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRAZ_Click(object sender, EventArgs e)
+        {
+            cboChefMission.SelectedIndex = -1;
+            cboPlanete.SelectedIndex = -1;
+            ActualiserAffichage(); // On recharge tout
+        }
+
+        private void rdbPasse_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualiserAffichage();
+        }
+
+        private void rdbEnCours_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualiserAffichage();
+        }
+
+        private void rdbAVenir_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualiserAffichage();
         }
     }
 }

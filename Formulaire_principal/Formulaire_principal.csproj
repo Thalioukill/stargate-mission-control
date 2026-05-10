@@ -79,15 +79,21 @@
     <Compile Include="FrmPlanetes.Designer.cs">
       <DependentUpon>FrmPlanetes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTableauDeBord.cs">
+    <Compile Include="FrmDetailMission.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTableauDeBord.Designer.cs">
-      <DependentUpon>FrmTableauDeBord.cs</DependentUpon>
+    <Compile Include="FrmDetailMission.Designer.cs">
+      <DependentUpon>FrmDetailMission.cs</DependentUpon>
     </Compile>
     <Compile Include="mesDatas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControl_MembresMission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_MembresMission.Designer.cs">
+      <DependentUpon>UserControl_MembresMission.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_Missions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetailMission.resx">
+      <DependentUpon>FrmDetailMission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,6 +115,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControl_MembresMission.resx">
+      <DependentUpon>UserControl_MembresMission.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Missions.resx">
       <DependentUpon>UserControl_Missions.cs</DependentUpon>
     </EmbeddedResource>

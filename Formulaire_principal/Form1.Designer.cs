@@ -32,26 +32,39 @@
             this.btnMission = new System.Windows.Forms.Button();
             this.btnAliens = new System.Windows.Forms.Button();
             this.btnTableauDeBord = new System.Windows.Forms.Button();
-            this.grpTbd = new System.Windows.Forms.GroupBox();
+            this.flpMissions = new System.Windows.Forms.FlowLayoutPanel();
+            this.plMissions = new System.Windows.Forms.Panel();
+            this.grpFiltres = new System.Windows.Forms.GroupBox();
+            this.lblPlanete = new System.Windows.Forms.Label();
+            this.cboPlanete = new System.Windows.Forms.ComboBox();
+            this.btnRAZ = new System.Windows.Forms.Button();
+            this.cboChefMission = new System.Windows.Forms.ComboBox();
+            this.lblChefMission = new System.Windows.Forms.Label();
+            this.rdbAVenir = new System.Windows.Forms.RadioButton();
+            this.rdbEnCours = new System.Windows.Forms.RadioButton();
+            this.rdbPasse = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.plMissions.SuspendLayout();
+            this.grpFiltres.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPlanetes
             // 
             this.btnPlanetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlanetes.Location = new System.Drawing.Point(771, 636);
-            this.btnPlanetes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPlanetes.Location = new System.Drawing.Point(802, 702);
+            this.btnPlanetes.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlanetes.Name = "btnPlanetes";
             this.btnPlanetes.Size = new System.Drawing.Size(100, 39);
             this.btnPlanetes.TabIndex = 0;
-            this.btnPlanetes.Text = "Planète";
+            this.btnPlanetes.Text = "Planètes";
             this.btnPlanetes.UseVisualStyleBackColor = true;
             this.btnPlanetes.Click += new System.EventHandler(this.btnPlanetes_Click);
             // 
             // btnMission
             // 
             this.btnMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMission.Location = new System.Drawing.Point(336, 636);
-            this.btnMission.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMission.Location = new System.Drawing.Point(333, 702);
+            this.btnMission.Margin = new System.Windows.Forms.Padding(4);
             this.btnMission.Name = "btnMission";
             this.btnMission.Size = new System.Drawing.Size(144, 39);
             this.btnMission.TabIndex = 1;
@@ -62,8 +75,8 @@
             // btnAliens
             // 
             this.btnAliens.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAliens.Location = new System.Drawing.Point(570, 636);
-            this.btnAliens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAliens.Location = new System.Drawing.Point(586, 702);
+            this.btnAliens.Margin = new System.Windows.Forms.Padding(4);
             this.btnAliens.Name = "btnAliens";
             this.btnAliens.Size = new System.Drawing.Size(100, 39);
             this.btnAliens.TabIndex = 3;
@@ -74,8 +87,8 @@
             // btnTableauDeBord
             // 
             this.btnTableauDeBord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTableauDeBord.Location = new System.Drawing.Point(81, 636);
-            this.btnTableauDeBord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTableauDeBord.Location = new System.Drawing.Point(78, 702);
+            this.btnTableauDeBord.Margin = new System.Windows.Forms.Padding(4);
             this.btnTableauDeBord.Name = "btnTableauDeBord";
             this.btnTableauDeBord.Size = new System.Drawing.Size(158, 39);
             this.btnTableauDeBord.TabIndex = 2;
@@ -83,23 +96,136 @@
             this.btnTableauDeBord.UseVisualStyleBackColor = true;
             this.btnTableauDeBord.Click += new System.EventHandler(this.btnTableauDeBord_Click);
             // 
-            // grpTbd
+            // flpMissions
             // 
-            this.grpTbd.Location = new System.Drawing.Point(80, 71);
-            this.grpTbd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpTbd.Name = "grpTbd";
-            this.grpTbd.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpTbd.Size = new System.Drawing.Size(944, 533);
-            this.grpTbd.TabIndex = 4;
-            this.grpTbd.TabStop = false;
-            this.grpTbd.Text = "Missions";
+            this.flpMissions.AutoScroll = true;
+            this.flpMissions.Location = new System.Drawing.Point(21, 152);
+            this.flpMissions.Name = "flpMissions";
+            this.flpMissions.Size = new System.Drawing.Size(1026, 427);
+            this.flpMissions.TabIndex = 4;
+            // 
+            // plMissions
+            // 
+            this.plMissions.Controls.Add(this.grpFiltres);
+            this.plMissions.Controls.Add(this.flpMissions);
+            this.plMissions.Location = new System.Drawing.Point(26, 28);
+            this.plMissions.Name = "plMissions";
+            this.plMissions.Size = new System.Drawing.Size(1072, 637);
+            this.plMissions.TabIndex = 0;
+            // 
+            // grpFiltres
+            // 
+            this.grpFiltres.Controls.Add(this.lblPlanete);
+            this.grpFiltres.Controls.Add(this.cboPlanete);
+            this.grpFiltres.Controls.Add(this.btnRAZ);
+            this.grpFiltres.Controls.Add(this.cboChefMission);
+            this.grpFiltres.Controls.Add(this.lblChefMission);
+            this.grpFiltres.Controls.Add(this.rdbAVenir);
+            this.grpFiltres.Controls.Add(this.rdbEnCours);
+            this.grpFiltres.Controls.Add(this.rdbPasse);
+            this.grpFiltres.Controls.Add(this.label1);
+            this.grpFiltres.Location = new System.Drawing.Point(21, 22);
+            this.grpFiltres.Name = "grpFiltres";
+            this.grpFiltres.Size = new System.Drawing.Size(1026, 113);
+            this.grpFiltres.TabIndex = 5;
+            this.grpFiltres.TabStop = false;
+            this.grpFiltres.Text = "Filtres";
+            // 
+            // lblPlanete
+            // 
+            this.lblPlanete.AutoSize = true;
+            this.lblPlanete.Location = new System.Drawing.Point(349, 65);
+            this.lblPlanete.Name = "lblPlanete";
+            this.lblPlanete.Size = new System.Drawing.Size(59, 16);
+            this.lblPlanete.TabIndex = 8;
+            this.lblPlanete.Text = "Planète :";
+            // 
+            // cboPlanete
+            // 
+            this.cboPlanete.FormattingEnabled = true;
+            this.cboPlanete.Location = new System.Drawing.Point(480, 65);
+            this.cboPlanete.Name = "cboPlanete";
+            this.cboPlanete.Size = new System.Drawing.Size(190, 24);
+            this.cboPlanete.TabIndex = 7;
+            // 
+            // btnRAZ
+            // 
+            this.btnRAZ.Location = new System.Drawing.Point(929, 35);
+            this.btnRAZ.Name = "btnRAZ";
+            this.btnRAZ.Size = new System.Drawing.Size(75, 23);
+            this.btnRAZ.TabIndex = 6;
+            this.btnRAZ.Text = "Reset";
+            this.btnRAZ.UseVisualStyleBackColor = true;
+            this.btnRAZ.Click += new System.EventHandler(this.btnRAZ_Click);
+            // 
+            // cboChefMission
+            // 
+            this.cboChefMission.FormattingEnabled = true;
+            this.cboChefMission.Location = new System.Drawing.Point(480, 35);
+            this.cboChefMission.Name = "cboChefMission";
+            this.cboChefMission.Size = new System.Drawing.Size(190, 24);
+            this.cboChefMission.TabIndex = 5;
+            // 
+            // lblChefMission
+            // 
+            this.lblChefMission.AutoSize = true;
+            this.lblChefMission.Location = new System.Drawing.Point(346, 35);
+            this.lblChefMission.Name = "lblChefMission";
+            this.lblChefMission.Size = new System.Drawing.Size(108, 16);
+            this.lblChefMission.TabIndex = 4;
+            this.lblChefMission.Text = "Chef de mission :";
+            // 
+            // rdbAVenir
+            // 
+            this.rdbAVenir.AutoSize = true;
+            this.rdbAVenir.Location = new System.Drawing.Point(161, 83);
+            this.rdbAVenir.Name = "rdbAVenir";
+            this.rdbAVenir.Size = new System.Drawing.Size(69, 20);
+            this.rdbAVenir.TabIndex = 3;
+            this.rdbAVenir.TabStop = true;
+            this.rdbAVenir.Text = "À venir";
+            this.rdbAVenir.UseVisualStyleBackColor = true;
+            this.rdbAVenir.CheckedChanged += new System.EventHandler(this.rdbAVenir_CheckedChanged);
+            // 
+            // rdbEnCours
+            // 
+            this.rdbEnCours.AutoSize = true;
+            this.rdbEnCours.Location = new System.Drawing.Point(161, 57);
+            this.rdbEnCours.Name = "rdbEnCours";
+            this.rdbEnCours.Size = new System.Drawing.Size(80, 20);
+            this.rdbEnCours.TabIndex = 2;
+            this.rdbEnCours.TabStop = true;
+            this.rdbEnCours.Text = "En cours";
+            this.rdbEnCours.UseVisualStyleBackColor = true;
+            this.rdbEnCours.CheckedChanged += new System.EventHandler(this.rdbEnCours_CheckedChanged);
+            // 
+            // rdbPasse
+            // 
+            this.rdbPasse.AutoSize = true;
+            this.rdbPasse.Location = new System.Drawing.Point(161, 31);
+            this.rdbPasse.Name = "rdbPasse";
+            this.rdbPasse.Size = new System.Drawing.Size(82, 20);
+            this.rdbPasse.TabIndex = 1;
+            this.rdbPasse.TabStop = true;
+            this.rdbPasse.Text = "Passées";
+            this.rdbPasse.UseVisualStyleBackColor = true;
+            this.rdbPasse.CheckedChanged += new System.EventHandler(this.rdbPasse_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Statut des missions : ";
             // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 774);
-            this.Controls.Add(this.grpTbd);
+            this.Controls.Add(this.plMissions);
             this.Controls.Add(this.btnAliens);
             this.Controls.Add(this.btnTableauDeBord);
             this.Controls.Add(this.btnMission);
@@ -109,6 +235,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accueil Stargate";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.plMissions.ResumeLayout(false);
+            this.grpFiltres.ResumeLayout(false);
+            this.grpFiltres.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -119,7 +248,18 @@
         private System.Windows.Forms.Button btnMission;
         private System.Windows.Forms.Button btnAliens;
         private System.Windows.Forms.Button btnTableauDeBord;
-        private System.Windows.Forms.GroupBox grpTbd;
+        private System.Windows.Forms.FlowLayoutPanel flpMissions;
+        private System.Windows.Forms.Panel plMissions;
+        private System.Windows.Forms.GroupBox grpFiltres;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboChefMission;
+        private System.Windows.Forms.Label lblChefMission;
+        private System.Windows.Forms.RadioButton rdbAVenir;
+        private System.Windows.Forms.RadioButton rdbEnCours;
+        private System.Windows.Forms.RadioButton rdbPasse;
+        private System.Windows.Forms.Label lblPlanete;
+        private System.Windows.Forms.ComboBox cboPlanete;
+        private System.Windows.Forms.Button btnRAZ;
     }
 }
 
