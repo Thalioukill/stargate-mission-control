@@ -22,6 +22,11 @@ namespace Formulaire_principal
         {
             InitializeComponent();
             cboChef.Enabled = false;
+            txtfeuilleRoute.Enabled = false;
+            dtpDepart.Enabled = false;
+            dtpRetour.Enabled = false;
+            btnValidMission.Enabled = false;
+
         }
 
         private void FrmMission_Load(object sender, EventArgs e)
@@ -88,7 +93,8 @@ namespace Formulaire_principal
                 {
                     numMiss = 1;
                 }
-                lblNomMission.Text = $"Nom de mission: {nomPlanete}     -  {numMiss.ToString()}";
+                lblNomMission.Text = $"Nom de mission: {nomPlanete}     -";
+                lblNum.Text = numMiss.ToString();
             }
             catch (SQLiteException err)
             {
@@ -100,11 +106,55 @@ namespace Formulaire_principal
         {
             cboPlanete.Enabled = false;
             btnValidPlanete.Enabled = false;
-            lblChoix.ForeColor = SystemColors.ControlDark;
-            lblNomMission.ForeColor = SystemColors.ControlDark;
-            lblChef.ForeColor = SystemColors.ControlText;
+            
+            foreach (Control c in pnl.Controls)
+            {
+                if (c is Label lbl)
+                {
+                    lbl.ForeColor = SystemColors.ControlText;
+                }
+
+            }
+               
+            
             cboChef.Enabled = true;
+            txtfeuilleRoute.Enabled = true;
+            dtpDepart.Enabled = true;
+            dtpRetour.Enabled = true;
+            btnValidMission.Enabled = true;
             cboChef.Focus();
+        }
+
+        private void btnValidMission_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = @"INSERT INTO Mission 
+                              (nomPlanete, numero, nbMembreRequis, dateDepart, dateRetour, matriculeChef, feuilleDeRoute, objectifDatabaz, budget)
+                              VALUES (@nomPlanete, @numero, @nbMembres, @dateDepart, @dateRetour, @matriculeChef, @feuilleRoute, @objDataBaz, @budget)";
+
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+
+                cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
+                cmd.Parameters.AddWithValue("@numero", lblNum.Text);
+                cmd.Parameters.AddWithValue("@nbMembres", txtnbMembres.Text);
+                cmd.Parameters.AddWithValue("@dateDepart", dtpDepart.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@dateRetour", dtpRetour.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@matriculeChef", cboChef.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@feuilleRoute", txtfeuilleRoute.Text);
+                cmd.Parameters.AddWithValue("@objDataBaz", txtobjDataBaz.Text);
+                cmd.Parameters.AddWithValue("@budget", txtBudget.Text);
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Mission ajoutée !");
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+                MessageBox.Show("Echec de l'ajout !");
+            }
+
+
         }
     }
 }
