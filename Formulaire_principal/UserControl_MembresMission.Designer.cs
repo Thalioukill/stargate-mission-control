@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.picMembre = new System.Windows.Forms.PictureBox();
-            this.lblnom = new System.Windows.Forms.Label();
+            this.lblNom = new System.Windows.Forms.Label();
             this.lblSpecialite_Grade = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).BeginInit();
             this.SuspendLayout();
@@ -39,16 +39,17 @@
             this.picMembre.Location = new System.Drawing.Point(24, 25);
             this.picMembre.Name = "picMembre";
             this.picMembre.Size = new System.Drawing.Size(148, 129);
+            this.picMembre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMembre.TabIndex = 0;
             this.picMembre.TabStop = false;
             // 
-            // lblnom
+            // lblNom
             // 
-            this.lblnom.Location = new System.Drawing.Point(24, 173);
-            this.lblnom.Name = "lblnom";
-            this.lblnom.Size = new System.Drawing.Size(148, 23);
-            this.lblnom.TabIndex = 1;
-            this.lblnom.Text = "Nom : ";
+            this.lblNom.Location = new System.Drawing.Point(24, 173);
+            this.lblNom.Name = "lblNom";
+            this.lblNom.Size = new System.Drawing.Size(148, 23);
+            this.lblNom.TabIndex = 1;
+            this.lblNom.Text = "Nom : ";
             // 
             // lblSpecialite_Grade
             // 
@@ -63,7 +64,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblSpecialite_Grade);
-            this.Controls.Add(this.lblnom);
+            this.Controls.Add(this.lblNom);
             this.Controls.Add(this.picMembre);
             this.Name = "UserControl_MembresMission";
             this.Size = new System.Drawing.Size(196, 251);
@@ -77,7 +78,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox picMembre;
-        private System.Windows.Forms.Label lblnom;
+        private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Label lblSpecialite_Grade;
     }
 }

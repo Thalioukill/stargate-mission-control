@@ -18,7 +18,6 @@ namespace Formulaire_principal
         private SQLiteConnection co = Connexion.Connec;
 
         //instanciation du DataSet
-
         private DataSet ds = MesDatas.DsGlobal;
 
         public FrmAccueil()
@@ -66,7 +65,45 @@ namespace Formulaire_principal
             }
             MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
 
-            // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant
+            // CREER les clés PRIAMIRES dans le DataSet (pour Mission notemment)
+
+            // CléS primaireS de la table Mission
+            //On récupère la table Mission dans le DataSet
+            DataTable dtMission = MesDatas.DsGlobal.Tables["Mission"];
+
+            // On crée un tableau de DataColumn contenant les deux colonnes de la clé primaire
+            DataColumn[] cles = new DataColumn[2];
+            cles[0] = dtMission.Columns["nomPlanete"];
+            cles[1] = dtMission.Columns["numero"];
+
+            //on affecte ce tableau à la propriété PrimaryKey de la table
+            dtMission.PrimaryKey = cles;
+
+
+            //clé primaire de Membre 
+            DataColumn clePrimMembre = ds.Tables["Membre"].Columns["matricule"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Membre"].PrimaryKey = new DataColumn[] { clePrimMembre };
+
+
+            //Clé primaire de Militaire
+            DataColumn clePrimMilitaire = ds.Tables["Militaire"].Columns["matriculeMembre"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Militaire"].PrimaryKey = new DataColumn[] { clePrimMilitaire };
+
+
+
+            //Clé primaire de Civil
+            DataColumn clePrimCivil = ds.Tables["Civil"].Columns["matriculeMembre"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Civil"].PrimaryKey = new DataColumn[] { clePrimCivil };
+
+
+
+            // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant)
 
             // ComboBox pour les chefs de mission
             string remplirCboChef = $"SELECT DISTINCT Membre.matricule, Membre.nom || ' ' || Membre.prenom AS nomComplet FROM Mission INNER JOIN Membre ON Mission.matriculeChef = Membre.matricule ORDER BY Membre.nom ASC";
@@ -152,8 +189,16 @@ namespace Formulaire_principal
         // La méthode qui reçoit la délégation du clic
         private void OuvrirDetailMission(object sender, EventArgs e)
         {
+            // On cast le sender générique en votre type d'UC
+            UserControl_Missions ucClique = (UserControl_Missions)sender;
+
+            //on récupère la planète et le numéro directement depuis l'UC cliqué
+            string planete = ucClique.Planete;
+            string numero = ucClique.Numero;
+            string matricule = ucClique.Matricule;
+
             // ouverture d'un formulaire enfant avec constructeur surchargé pour les détails de la mission
-            FrmDetailMission fdm = new FrmDetailMission(this.planete, this.numero);
+            FrmDetailMission fdm = new FrmDetailMission(planete, numero, matricule);
             DialogResult dr = fdm.ShowDialog();
         }
 
@@ -206,15 +251,16 @@ namespace Formulaire_principal
                     while (dr.Read()) // Parcours de toutes les missions
                     {
                         // Récupération des données
-                        string nom = dr["nomPlanete"] 
+                        string nom = dr["nomPlanete"].ToString();
                         string numero = dr["numero"].ToString();
                         string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
                         string chef = dr["prenom"]+ " " + dr["nom"];
+                        string matriculeChef = dr["matriculeChef"].ToString();
                         string budget = dr["budget"].ToString();
                         string image = dr["nomPlanete"] + ".jpg";
 
                         // Instanciation du User Control
-                        UserControl_Missions uc = new UserControl_Missions(nom, numero, date, chef, budget, image);
+                        UserControl_Missions uc = new UserControl_Missions(nom, numero, date, chef, matriculeChef, budget, image);
 
                         // délégué 
                         uc.afficheur = OuvrirDetailMission;

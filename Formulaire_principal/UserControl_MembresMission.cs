@@ -22,13 +22,19 @@ namespace Formulaire_principal
         public UserControl_MembresMission(string nomComplet, string grade_specialite, string image, bool estChef)
         {
             InitializeComponent();
-            this.lblnom.Text += nom;
-            this.lblPn.Text += grade_specialite;
+            this.lblNom.Text += nomComplet;
+            this.lblSpecialite_Grade.Text += grade_specialite;
 
             if (image != string.Empty)
             {
-                picMembre.Image = Image.FromFile("../../Images/Membres_Mission/" + image);
+                picMembre.Image = Image.FromFile("../../Images/Membres_Mission/" + image +".jpg");
 
+            }
+
+            if (estChef)
+            {
+                this.BackColor = Color.LightGreen;
+                this.lblNom.Font = new Font(this.lblNom.Font, FontStyle.Bold);
             }
 
         }

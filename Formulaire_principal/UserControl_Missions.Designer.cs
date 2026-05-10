@@ -42,6 +42,7 @@
             this.picMission.Location = new System.Drawing.Point(29, 21);
             this.picMission.Name = "picMission";
             this.picMission.Size = new System.Drawing.Size(153, 154);
+            this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMission.TabIndex = 1;
             this.picMission.TabStop = false;
             // 
