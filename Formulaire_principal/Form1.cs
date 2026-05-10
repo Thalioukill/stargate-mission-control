@@ -29,7 +29,8 @@ namespace Formulaire_principal
         private void Form1_Load(object sender, EventArgs e)
         {
             plMissions.Visible = false;
-            //flpMissions.Visible = false;
+            flpMissions.Visible = false;
+            grpFiltres.Visible = false;
 
             /* Vérification de la connection : 
              
@@ -67,7 +68,58 @@ namespace Formulaire_principal
 
             // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant
 
+            // ComboBox pour les chefs de mission
+            string remplirCboChef = $"SELECT DISTINCT Membre.matricule, Membre.nom || ' ' || Membre.prenom AS nomComplet FROM Mission INNER JOIN Membre ON Mission.matriculeChef = Membre.matricule ORDER BY Membre.nom ASC";
 
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(remplirCboChef, this.co);
+
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                cboChefMission.DataSource = dt;
+                cboChefMission.ValueMember = "matricule";
+                cboChefMission.DisplayMember = "nomComplet";
+
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            cboChefMission.SelectedIndex = -1;
+
+
+            // ComboBox pour les noms de planetes
+            string remplirCboPlanete = $"SELECT nomPlanete FROM Mission ORDER BY nomPlanete";
+
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(remplirCboPlanete, this.co);
+
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                cboPlanete.DataSource = dt;
+                cboPlanete.ValueMember = "nomPlanete";
+
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            cboPlanete.SelectedIndex = -1;
+
+            //on affiche le budget maximum 
+            string remplirBudgetMax = $@"SELECT MAX(CAST (budget as integer)) FROM Mission";
+
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(remplirBudgetMax, this.co);
+                lblBd.Text += cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
         }
 
         private void btnPlanetes_Click(object sender, EventArgs e)
@@ -91,6 +143,8 @@ namespace Formulaire_principal
         private void btnTableauDeBord_Click(object sender, EventArgs e)
         {
             plMissions.Visible = true;
+            flpMissions.Visible = true;
+            grpFiltres.Visible = true;  
             ActualiserAffichage();
             
         }
@@ -109,12 +163,21 @@ namespace Formulaire_principal
 
         public void ActualiserAffichage()
         {
+            // On vide systématiquement avant de recalculer
+            flpMissions.Controls.Clear();
+
             string condition = " WHERE 1=1"; // astuce pour ajouter des AND facilement
 
             // filtre status de la mission dans la groupBox
-            if (rdbPasse.Checked) condition += " AND dateRetour < date('now')";
-            else if (rdbEnCours.Checked) condition += " AND dateDepart <= date('now') AND dateRetour >= date('now')";
-            else if (rdbAVenir.Checked) condition += " AND dateDepart > date('now')";
+            if (rdbPasse.Checked) { 
+                condition += " AND dateRetour < date('now')"; 
+            }
+            else if (rdbEnCours.Checked) { 
+                condition += " AND dateDepart <= date('now') AND dateRetour >= date('now')"; 
+            }
+            else if (rdbAVenir.Checked) { 
+                condition += " AND dateDepart > date('now')"; 
+            }
 
             // Filtre chef
             if (cboChefMission.SelectedIndex != -1)
@@ -128,32 +191,44 @@ namespace Formulaire_principal
                 condition += " AND nomPlanete = '" + cboPlanete.Text + "'";
             }
 
-            string requeteFinale = "SELECT * FROM Mission" + condition + " ORDER BY dateDepart DESC";
+            // filtre budget
+            if (!string.IsNullOrEmpty(txtBudgetMax.Text))
+            {
+                condition += " AND budget <= '"+txtBudgetMax.Text+"'";
+            }
+
+            // inner join entre Mission et membre pour ne pas avoir plusieurs fois le meme nom et prénom de chef de mission
+            string requeteFinale = "SELECT Mission.*, Membre.nom, Membre.prenom FROM Mission INNER JOIN Membre ON Mission.matriculeChef = Membre.matricule " + condition + " ORDER BY Mission.dateDepart DESC";
 
             try
             {
                 SQLiteCommand cmdRechercheMissions = new SQLiteCommand(requeteFinale, this.co);
                 SQLiteDataReader dr = cmdRechercheMissions.ExecuteReader();
 
-                flpMissions.Controls.Clear();
-
-                while (dr.Read()) // Parcours de toutes les missions
+                if (dr.HasRows)
                 {
-                    // Récupération des données
-                    string nom = dr["nomPlanete"] + dr["numero"].ToString();
-                    string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
-                    string chef = dr["matriculeChef"].ToString();
-                    string budget = dr["budget"].ToString();
-                    string image = dr["nomPlanete"] + ".jpg";
+                    while (dr.Read()) // Parcours de toutes les missions
+                    {
+                        // Récupération des données
+                        string nom = dr["nomPlanete"] + dr["numero"].ToString();
+                        string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
+                        string chef = dr["prenom"]+ " " + dr["nom"];
+                        string budget = dr["budget"].ToString();
+                        string image = dr["nomPlanete"] + ".jpg";
 
-                    // Instanciation du User Control
-                    UserControl_Missions uc = new UserControl_Missions(nom, date, chef, budget, image);
+                        // Instanciation du User Control
+                        UserControl_Missions uc = new UserControl_Missions(nom, date, chef, budget, image);
 
-                    // délégué 
-                    uc.afficheur = OuvrirDetailMission;
+                        // délégué 
+                        uc.afficheur = OuvrirDetailMission;
 
-                    // ajout au conteneur (FlowLayoutPanel)
-                    flpMissions.Controls.Add(uc);
+                        // ajout au conteneur (FlowLayoutPanel)
+                        flpMissions.Controls.Add(uc);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Aucune mission ne correspond à vos critères.");
                 }
             }
             catch (Exception ex)
@@ -164,22 +239,27 @@ namespace Formulaire_principal
 
         private void btnRAZ_Click(object sender, EventArgs e)
         {
+            rdbPasse.Checked = false;
+            rdbEnCours.Checked = false;
+            rdbAVenir.Checked = false;
             cboChefMission.SelectedIndex = -1;
             cboPlanete.SelectedIndex = -1;
+            txtBudgetMax.Text = string.Empty;
+            lblBd.Text = "Budget maximum : ";
+
             ActualiserAffichage(); // On recharge tout
         }
 
-        private void rdbPasse_CheckedChanged(object sender, EventArgs e)
+        private void txtBudgetMax_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ActualiserAffichage();
+            e.Handled = true;
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
         }
 
-        private void rdbEnCours_CheckedChanged(object sender, EventArgs e)
-        {
-            ActualiserAffichage();
-        }
-
-        private void rdbAVenir_CheckedChanged(object sender, EventArgs e)
+        private void btnRecherche_Click(object sender, EventArgs e)
         {
             ActualiserAffichage();
         }

@@ -91,7 +91,7 @@
             this.btnDetails.ForeColor = System.Drawing.Color.Blue;
             this.btnDetails.Location = new System.Drawing.Point(597, 152);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(145, 23);
+            this.btnDetails.Size = new System.Drawing.Size(145, 37);
             this.btnDetails.TabIndex = 6;
             this.btnDetails.Text = "Consulter";
             this.btnDetails.UseVisualStyleBackColor = true;

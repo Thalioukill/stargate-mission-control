@@ -30,7 +30,7 @@
         {
             this.picMembre = new System.Windows.Forms.PictureBox();
             this.lblnom = new System.Windows.Forms.Label();
-            this.lblPn = new System.Windows.Forms.Label();
+            this.lblSpecialite_Grade = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,19 +50,19 @@
             this.lblnom.TabIndex = 1;
             this.lblnom.Text = "Nom : ";
             // 
-            // lblPn
+            // lblSpecialite_Grade
             // 
-            this.lblPn.Location = new System.Drawing.Point(24, 202);
-            this.lblPn.Name = "lblPn";
-            this.lblPn.Size = new System.Drawing.Size(148, 36);
-            this.lblPn.TabIndex = 2;
-            this.lblPn.Text = "Prénom : ";
+            this.lblSpecialite_Grade.AutoSize = true;
+            this.lblSpecialite_Grade.Location = new System.Drawing.Point(24, 209);
+            this.lblSpecialite_Grade.Name = "lblSpecialite_Grade";
+            this.lblSpecialite_Grade.Size = new System.Drawing.Size(0, 16);
+            this.lblSpecialite_Grade.TabIndex = 2;
             // 
             // UserControl_MembresMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblPn);
+            this.Controls.Add(this.lblSpecialite_Grade);
             this.Controls.Add(this.lblnom);
             this.Controls.Add(this.picMembre);
             this.Name = "UserControl_MembresMission";
@@ -70,6 +70,7 @@
             this.Load += new System.EventHandler(this.UserControl_MembresMission_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -77,6 +78,6 @@
 
         private System.Windows.Forms.PictureBox picMembre;
         private System.Windows.Forms.Label lblnom;
-        private System.Windows.Forms.Label lblPn;
+        private System.Windows.Forms.Label lblSpecialite_Grade;
     }
 }

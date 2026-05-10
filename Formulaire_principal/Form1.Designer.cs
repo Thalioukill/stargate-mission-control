@@ -35,6 +35,7 @@
             this.flpMissions = new System.Windows.Forms.FlowLayoutPanel();
             this.plMissions = new System.Windows.Forms.Panel();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
+            this.lblBd = new System.Windows.Forms.Label();
             this.lblPlanete = new System.Windows.Forms.Label();
             this.cboPlanete = new System.Windows.Forms.ComboBox();
             this.btnRAZ = new System.Windows.Forms.Button();
@@ -44,6 +45,8 @@
             this.rdbEnCours = new System.Windows.Forms.RadioButton();
             this.rdbPasse = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnRecherche = new System.Windows.Forms.Button();
+            this.txtBudgetMax = new System.Windows.Forms.TextBox();
             this.plMissions.SuspendLayout();
             this.grpFiltres.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +118,9 @@
             // 
             // grpFiltres
             // 
+            this.grpFiltres.Controls.Add(this.btnRecherche);
+            this.grpFiltres.Controls.Add(this.lblBd);
+            this.grpFiltres.Controls.Add(this.txtBudgetMax);
             this.grpFiltres.Controls.Add(this.lblPlanete);
             this.grpFiltres.Controls.Add(this.cboPlanete);
             this.grpFiltres.Controls.Add(this.btnRAZ);
@@ -131,10 +137,19 @@
             this.grpFiltres.TabStop = false;
             this.grpFiltres.Text = "Filtres";
             // 
+            // lblBd
+            // 
+            this.lblBd.AutoSize = true;
+            this.lblBd.Location = new System.Drawing.Point(646, 31);
+            this.lblBd.Name = "lblBd";
+            this.lblBd.Size = new System.Drawing.Size(116, 16);
+            this.lblBd.TabIndex = 11;
+            this.lblBd.Text = "Budget maximum :";
+            // 
             // lblPlanete
             // 
             this.lblPlanete.AutoSize = true;
-            this.lblPlanete.Location = new System.Drawing.Point(349, 65);
+            this.lblPlanete.Location = new System.Drawing.Point(286, 61);
             this.lblPlanete.Name = "lblPlanete";
             this.lblPlanete.Size = new System.Drawing.Size(59, 16);
             this.lblPlanete.TabIndex = 8;
@@ -143,16 +158,16 @@
             // cboPlanete
             // 
             this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(480, 65);
+            this.cboPlanete.Location = new System.Drawing.Point(417, 61);
             this.cboPlanete.Name = "cboPlanete";
             this.cboPlanete.Size = new System.Drawing.Size(190, 24);
             this.cboPlanete.TabIndex = 7;
             // 
             // btnRAZ
             // 
-            this.btnRAZ.Location = new System.Drawing.Point(929, 35);
+            this.btnRAZ.Location = new System.Drawing.Point(944, 76);
             this.btnRAZ.Name = "btnRAZ";
-            this.btnRAZ.Size = new System.Drawing.Size(75, 23);
+            this.btnRAZ.Size = new System.Drawing.Size(63, 23);
             this.btnRAZ.TabIndex = 6;
             this.btnRAZ.Text = "Reset";
             this.btnRAZ.UseVisualStyleBackColor = true;
@@ -161,7 +176,7 @@
             // cboChefMission
             // 
             this.cboChefMission.FormattingEnabled = true;
-            this.cboChefMission.Location = new System.Drawing.Point(480, 35);
+            this.cboChefMission.Location = new System.Drawing.Point(417, 31);
             this.cboChefMission.Name = "cboChefMission";
             this.cboChefMission.Size = new System.Drawing.Size(190, 24);
             this.cboChefMission.TabIndex = 5;
@@ -169,7 +184,7 @@
             // lblChefMission
             // 
             this.lblChefMission.AutoSize = true;
-            this.lblChefMission.Location = new System.Drawing.Point(346, 35);
+            this.lblChefMission.Location = new System.Drawing.Point(283, 31);
             this.lblChefMission.Name = "lblChefMission";
             this.lblChefMission.Size = new System.Drawing.Size(108, 16);
             this.lblChefMission.TabIndex = 4;
@@ -185,7 +200,6 @@
             this.rdbAVenir.TabStop = true;
             this.rdbAVenir.Text = "À venir";
             this.rdbAVenir.UseVisualStyleBackColor = true;
-            this.rdbAVenir.CheckedChanged += new System.EventHandler(this.rdbAVenir_CheckedChanged);
             // 
             // rdbEnCours
             // 
@@ -197,7 +211,6 @@
             this.rdbEnCours.TabStop = true;
             this.rdbEnCours.Text = "En cours";
             this.rdbEnCours.UseVisualStyleBackColor = true;
-            this.rdbEnCours.CheckedChanged += new System.EventHandler(this.rdbEnCours_CheckedChanged);
             // 
             // rdbPasse
             // 
@@ -209,7 +222,6 @@
             this.rdbPasse.TabStop = true;
             this.rdbPasse.Text = "Passées";
             this.rdbPasse.UseVisualStyleBackColor = true;
-            this.rdbPasse.CheckedChanged += new System.EventHandler(this.rdbPasse_CheckedChanged);
             // 
             // label1
             // 
@@ -219,6 +231,24 @@
             this.label1.Size = new System.Drawing.Size(131, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Statut des missions : ";
+            // 
+            // btnRecherche
+            // 
+            this.btnRecherche.Location = new System.Drawing.Point(905, 31);
+            this.btnRecherche.Name = "btnRecherche";
+            this.btnRecherche.Size = new System.Drawing.Size(102, 23);
+            this.btnRecherche.TabIndex = 12;
+            this.btnRecherche.Text = "Rechercher";
+            this.btnRecherche.UseVisualStyleBackColor = true;
+            this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
+            // 
+            // txtBudgetMax
+            // 
+            this.txtBudgetMax.Location = new System.Drawing.Point(649, 57);
+            this.txtBudgetMax.Name = "txtBudgetMax";
+            this.txtBudgetMax.Size = new System.Drawing.Size(151, 22);
+            this.txtBudgetMax.TabIndex = 9;
+            this.txtBudgetMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudgetMax_KeyPress);
             // 
             // FrmAccueil
             // 
@@ -260,6 +290,9 @@
         private System.Windows.Forms.Label lblPlanete;
         private System.Windows.Forms.ComboBox cboPlanete;
         private System.Windows.Forms.Button btnRAZ;
+        private System.Windows.Forms.Label lblBd;
+        private System.Windows.Forms.Button btnRecherche;
+        private System.Windows.Forms.TextBox txtBudgetMax;
     }
 }
 
