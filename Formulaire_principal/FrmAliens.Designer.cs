@@ -47,6 +47,9 @@
             this.picAlliees = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.grpFiltresEnnemis = new System.Windows.Forms.GroupBox();
+            this.btnAgressivité = new System.Windows.Forms.Button();
+            this.btnTypeArme = new System.Windows.Forms.Button();
+            this.btnReinitialiserCouleurEnnemis = new System.Windows.Forms.Button();
             this.btnReinitialiserEnnemis = new System.Windows.Forms.Button();
             this.cboAgressivite = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,11 +61,8 @@
             this.cboCouleurEnnemis = new System.Windows.Forms.ComboBox();
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.grpAlliees = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnReinitialiserCouleurEnnemis = new System.Windows.Forms.Button();
-            this.btnTypeArme = new System.Windows.Forms.Button();
-            this.btnAgressivité = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flp2 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFiltresAlliees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAlliees)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -225,7 +225,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.panel2);
+            this.groupBox3.Controls.Add(this.flp2);
             this.groupBox3.Location = new System.Drawing.Point(446, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(440, 364);
@@ -255,6 +255,36 @@
             this.grpFiltresEnnemis.TabIndex = 2;
             this.grpFiltresEnnemis.TabStop = false;
             this.grpFiltresEnnemis.Text = "Filtres";
+            // 
+            // btnAgressivité
+            // 
+            this.btnAgressivité.Location = new System.Drawing.Point(195, 175);
+            this.btnAgressivité.Name = "btnAgressivité";
+            this.btnAgressivité.Size = new System.Drawing.Size(193, 34);
+            this.btnAgressivité.TabIndex = 15;
+            this.btnAgressivité.Text = "Réinitialiser agressivité";
+            this.btnAgressivité.UseVisualStyleBackColor = true;
+            this.btnAgressivité.Click += new System.EventHandler(this.btnAgressivité_Click);
+            // 
+            // btnTypeArme
+            // 
+            this.btnTypeArme.Location = new System.Drawing.Point(195, 123);
+            this.btnTypeArme.Name = "btnTypeArme";
+            this.btnTypeArme.Size = new System.Drawing.Size(193, 34);
+            this.btnTypeArme.TabIndex = 14;
+            this.btnTypeArme.Text = "Réinitialiser type arme";
+            this.btnTypeArme.UseVisualStyleBackColor = true;
+            this.btnTypeArme.Click += new System.EventHandler(this.btnTypeArme_Click);
+            // 
+            // btnReinitialiserCouleurEnnemis
+            // 
+            this.btnReinitialiserCouleurEnnemis.Location = new System.Drawing.Point(195, 76);
+            this.btnReinitialiserCouleurEnnemis.Name = "btnReinitialiserCouleurEnnemis";
+            this.btnReinitialiserCouleurEnnemis.Size = new System.Drawing.Size(193, 34);
+            this.btnReinitialiserCouleurEnnemis.TabIndex = 14;
+            this.btnReinitialiserCouleurEnnemis.Text = "Réinitialiser couleur";
+            this.btnReinitialiserCouleurEnnemis.UseVisualStyleBackColor = true;
+            this.btnReinitialiserCouleurEnnemis.Click += new System.EventHandler(this.btnReinitialiserCouleurEnnemis_Click);
             // 
             // btnReinitialiserEnnemis
             // 
@@ -345,7 +375,7 @@
             // 
             // grpAlliees
             // 
-            this.grpAlliees.Controls.Add(this.panel1);
+            this.grpAlliees.Controls.Add(this.flp1);
             this.grpAlliees.Location = new System.Drawing.Point(12, 12);
             this.grpAlliees.Name = "grpAlliees";
             this.grpAlliees.Size = new System.Drawing.Size(428, 364);
@@ -353,59 +383,31 @@
             this.grpAlliees.TabStop = false;
             this.grpAlliees.Text = "Informations sur les races alliées";
             // 
-            // panel1
+            // flp1
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(422, 342);
-            this.panel1.TabIndex = 0;
+            this.flp1.AutoScroll = true;
+            this.flp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp1.Location = new System.Drawing.Point(3, 19);
+            this.flp1.Name = "flp1";
+            this.flp1.Size = new System.Drawing.Size(422, 342);
+            this.flp1.TabIndex = 0;
             // 
-            // btnReinitialiserCouleurEnnemis
+            // flp2
             // 
-            this.btnReinitialiserCouleurEnnemis.Location = new System.Drawing.Point(195, 76);
-            this.btnReinitialiserCouleurEnnemis.Name = "btnReinitialiserCouleurEnnemis";
-            this.btnReinitialiserCouleurEnnemis.Size = new System.Drawing.Size(193, 34);
-            this.btnReinitialiserCouleurEnnemis.TabIndex = 14;
-            this.btnReinitialiserCouleurEnnemis.Text = "Réinitialiser couleur";
-            this.btnReinitialiserCouleurEnnemis.UseVisualStyleBackColor = true;
-            this.btnReinitialiserCouleurEnnemis.Click += new System.EventHandler(this.btnReinitialiserCouleurEnnemis_Click);
-            // 
-            // btnTypeArme
-            // 
-            this.btnTypeArme.Location = new System.Drawing.Point(195, 123);
-            this.btnTypeArme.Name = "btnTypeArme";
-            this.btnTypeArme.Size = new System.Drawing.Size(193, 34);
-            this.btnTypeArme.TabIndex = 14;
-            this.btnTypeArme.Text = "Réinitialiser type arme";
-            this.btnTypeArme.UseVisualStyleBackColor = true;
-            this.btnTypeArme.Click += new System.EventHandler(this.btnTypeArme_Click);
-            // 
-            // btnAgressivité
-            // 
-            this.btnAgressivité.Location = new System.Drawing.Point(195, 175);
-            this.btnAgressivité.Name = "btnAgressivité";
-            this.btnAgressivité.Size = new System.Drawing.Size(193, 34);
-            this.btnAgressivité.TabIndex = 15;
-            this.btnAgressivité.Text = "Réinitialiser agressivité";
-            this.btnAgressivité.UseVisualStyleBackColor = true;
-            this.btnAgressivité.Click += new System.EventHandler(this.btnAgressivité_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 19);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(434, 342);
-            this.panel2.TabIndex = 0;
+            this.flp2.AutoScroll = true;
+            this.flp2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp2.Location = new System.Drawing.Point(3, 19);
+            this.flp2.Name = "flp2";
+            this.flp2.Size = new System.Drawing.Size(434, 342);
+            this.flp2.TabIndex = 0;
             // 
             // FrmAliens
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(899, 603);
+            this.ClientSize = new System.Drawing.Size(894, 607);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grpAlliees);
             this.Controls.Add(this.grpFiltresEnnemis);
@@ -455,12 +457,12 @@
         private System.Windows.Forms.Label lblNomAlliees;
         private System.Windows.Forms.Label lblCouleurAlliees;
         private System.Windows.Forms.GroupBox grpAlliees;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnReinitialiserBienveillance;
         private System.Windows.Forms.Button btnReinitialiserCouleurAlliees;
         private System.Windows.Forms.Button btnAgressivité;
         private System.Windows.Forms.Button btnTypeArme;
         private System.Windows.Forms.Button btnReinitialiserCouleurEnnemis;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flp1;
+        private System.Windows.Forms.FlowLayoutPanel flp2;
     }
 }

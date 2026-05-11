@@ -28,7 +28,7 @@ namespace Formulaire_principal
 
         private void chargerAliensAlliees()
         {
-            panel1.Controls.Clear();
+            flp1.Controls.Clear();
             try
             {
                 string sql = "SELECT count(*) FROM Allie";
@@ -37,15 +37,6 @@ namespace Formulaire_principal
                 sql = "SELECT min(idEspece) FROM Allie";
                 cmd = new SQLiteCommand(sql, this.co);
                 int idMin = Convert.ToInt32(cmd.ExecuteScalar());
-                int xpicture = 6;
-                int ypicture = 23;
-                int xlabel = 3;
-                int ynom = 97;
-                int ybienveillance = 114;
-                int ycouleur = 131;
-                int yplanete = 148;
-                int yinstrument = 163;
-                int nbAffiches = 0;
                 for (int i = idMin; i <= idMin + nbAlliees; i++)
                 {
                     sql = $@"SELECT e.nom, a.degreBienveillance, e.couleur, GROUP_CONCAT(h.nomPlanete, '/') as Planetes, a.instrumentMusique
@@ -59,81 +50,24 @@ namespace Formulaire_principal
 
                     if (dr.Read())
                     {
-                        PictureBox picAlliees = new PictureBox();
-                        picAlliees.Location = new System.Drawing.Point(xpicture, ypicture);
-                        picAlliees.Name = "picAlliees";
-                        picAlliees.Size = new System.Drawing.Size(107, 71);
-                        picAlliees.TabIndex = 0;
-                        picAlliees.TabStop = false;
-                        picAlliees.Image = Image.FromFile("C:\\Users\\yanno\\Pictures\\Screenshots\\Capture d'écran 2026-01-28 101236.png");
-                        panel1.Controls.Add(picAlliees);
+                        string nomAlien = dr["nom"].ToString();
+                        string bienveillance = dr["degreBienveillance"].ToString();
+                        string couleur = dr["couleur"].ToString();
+                        string planete;
 
-                        Label lblNomAlliees = new Label();
-                        lblNomAlliees.AutoSize = true;
-                        lblNomAlliees.Location = new System.Drawing.Point(xlabel, ynom);
-                        lblNomAlliees.Name = "lblNomAlliees";
-                        lblNomAlliees.Size = new System.Drawing.Size(65, 17);
-                        lblNomAlliees.TabIndex = 1;
-                        lblNomAlliees.Text = dr["nom"].ToString();
-                        panel1.Controls.Add(lblNomAlliees);
-
-                        Label lblBienveillance = new Label();
-                        lblBienveillance.AutoSize = true;
-                        lblBienveillance.Location = new System.Drawing.Point(xlabel, ybienveillance);
-                        lblBienveillance.Name = "lblBienveillance";
-                        lblBienveillance.Size = new System.Drawing.Size(103, 17);
-                        lblBienveillance.TabIndex = 2;
-                        lblBienveillance.Text = "Bienveillance : " + dr["degreBienveillance"].ToString();
-                        panel1.Controls.Add(lblBienveillance);
-
-                        Label lblCouleurAlliees = new Label();
-                        lblCouleurAlliees.AutoSize = true;
-                        lblCouleurAlliees.Location = new System.Drawing.Point(xlabel, ycouleur);
-                        lblCouleurAlliees.Name = "lblCouleurAlliees";
-                        lblCouleurAlliees.Size = new System.Drawing.Size(57, 17);
-                        lblCouleurAlliees.TabIndex = 5;
-                        lblCouleurAlliees.Text = dr["couleur"].ToString();
-                        panel1.Controls.Add(lblCouleurAlliees);
-
-                        Label lblPlaneteAlliees = new Label();
-                        lblPlaneteAlliees.AutoSize = true;
-                        lblPlaneteAlliees.Location = new System.Drawing.Point(xlabel, yplanete);
-                        lblPlaneteAlliees.Name = "lblPlaneteAlliees";
-                        lblPlaneteAlliees.Size = new System.Drawing.Size(56, 17);
-                        lblPlaneteAlliees.TabIndex = 3;
-                        if(dr["Planetes"] == DBNull.Value)
+                        if (dr["Planetes"] == DBNull.Value)
                         {
-                            lblPlaneteAlliees.Text = "Origine inconnue";
+                            planete = "Origine inconnue";
                         }
-                        else 
+                        else
                         {
-                            lblPlaneteAlliees.Text = dr["Planetes"].ToString();
+                            planete = dr["Planetes"].ToString();
                         }
-                        panel1.Controls.Add(lblPlaneteAlliees);
+                        string instrument = dr["instrumentMusique"].ToString();
+                        string image = dr["nom"] + ".jpg";
 
-                        Label lblInstrument = new Label();
-                        lblInstrument.AutoSize = true;
-                        lblInstrument.Location = new System.Drawing.Point(xlabel, yinstrument);
-                        lblInstrument.Name = "lblInstrument";
-                        lblInstrument.Size = new System.Drawing.Size(74, 17);
-                        lblInstrument.TabIndex = 4;
-                        lblInstrument.Text = dr["instrumentMusique"].ToString();
-                        panel1.Controls.Add(lblInstrument);
-
-                        nbAffiches++;
-                        xpicture = xpicture + 150;
-                        xlabel = xlabel + 150;
-                        if (nbAffiches % 3 == 0)
-                        {
-                            xpicture = 6;
-                            xlabel = 3;
-                            ypicture = ypicture + 200;
-                            ynom = ynom + 200;
-                            ybienveillance = ybienveillance + 200;
-                            ycouleur = ycouleur + 200;
-                            yplanete = yplanete + 200;
-                            yinstrument = yinstrument + 200;
-                        }
+                        InfoAliensAlliees info = new InfoAliensAlliees(nomAlien, bienveillance, couleur, planete, instrument, image);
+                        flp1.Controls.Add(info);
                     }
                     dr.Close();
                 }
@@ -146,7 +80,7 @@ namespace Formulaire_principal
 
         private void chargerAliensEnnemis()
         {
-            panel2.Controls.Clear();
+            flp2.Controls.Clear();
             try
             {
                 string sql = "SELECT count(*) FROM Ennemi";
@@ -155,15 +89,6 @@ namespace Formulaire_principal
                 sql = "SELECT min(idEspece) FROM Ennemi";
                 cmd = new SQLiteCommand(sql, this.co);
                 int idMin = Convert.ToInt32(cmd.ExecuteScalar());
-                int xpicture = 6;
-                int ypicture = 23;
-                int xlabel = 3;
-                int ynom = 97;
-                int yagressivite = 114;
-                int ycouleur = 131;
-                int yplanete = 148;
-                int ytypeArme = 163;
-                int nbAffiches = 0;
                 for (int i = idMin; i <= idMin + nbEnnemis; i++)
                 {
                     sql = $@"SELECT e.nom, en.degreAgressivite, e.couleur, GROUP_CONCAT(h.nomPlanete, '/') as Planetes, en.typeArme
@@ -176,81 +101,24 @@ namespace Formulaire_principal
                     SQLiteDataReader dr = cmd2.ExecuteReader();
                     if (dr.Read())
                     {
-                        PictureBox picEnnemis = new PictureBox();
-                        picEnnemis.Location = new System.Drawing.Point(xpicture, ypicture);
-                        picEnnemis.Name = "picEnnemis";
-                        picEnnemis.Size = new System.Drawing.Size(107, 71);
-                        picEnnemis.TabIndex = 0;
-                        picEnnemis.TabStop = false;
-                        picEnnemis.Image = Image.FromFile("C:\\Users\\yanno\\Pictures\\Screenshots\\Capture d'écran 2026-01-28 101236.png");
-                        panel2.Controls.Add(picEnnemis);
+                        string nomAlien = dr["nom"].ToString();
+                        string bienveillance = dr["degreAgressivite"].ToString();
+                        string couleur = dr["couleur"].ToString();
+                        string planete;
 
-                        Label lblNomEnnemis = new Label();
-                        lblNomEnnemis.AutoSize = true;
-                        lblNomEnnemis.Location = new System.Drawing.Point(xlabel, ynom);
-                        lblNomEnnemis.Name = "lblNomEnnemis";
-                        lblNomEnnemis.Size = new System.Drawing.Size(100, 23);
-                        lblNomEnnemis.TabIndex = 1;
-                        lblNomEnnemis.Text = dr["nom"].ToString();
-                        panel2.Controls.Add(lblNomEnnemis);
-
-                        Label lblAgressivite = new Label();
-                        lblAgressivite.AutoSize = true;
-                        lblAgressivite.Location = new System.Drawing.Point(xlabel, yagressivite);
-                        lblAgressivite.Name = "lblAgressivite";
-                        lblAgressivite.Size = new System.Drawing.Size(103, 17);
-                        lblAgressivite.TabIndex = 2;
-                        lblAgressivite.Text = "Agressivité : " + dr["degreAgressivite"].ToString();
-                        panel2.Controls.Add(lblAgressivite);
-
-                        Label lblCouleurEnnemis = new Label();
-                        lblCouleurEnnemis.AutoSize = true;
-                        lblCouleurEnnemis.Location = new System.Drawing.Point(xlabel, ycouleur);
-                        lblCouleurEnnemis.Name = "lblCouleurEnnemis";
-                        lblCouleurEnnemis.Size = new System.Drawing.Size(57, 17);
-                        lblCouleurEnnemis.TabIndex = 5;
-                        lblCouleurEnnemis.Text = dr["couleur"].ToString();
-                        panel2.Controls.Add(lblCouleurEnnemis);
-
-                        Label lblPlaneteEnnemis = new Label();
-                        lblPlaneteEnnemis.AutoSize = true;
-                        lblPlaneteEnnemis.Location = new System.Drawing.Point(xlabel, yplanete);
-                        lblPlaneteEnnemis.Name = "lblPlaneteEnnemis";
-                        lblPlaneteEnnemis.Size = new System.Drawing.Size(56, 17);
-                        lblPlaneteEnnemis.TabIndex = 3;
                         if (dr["Planetes"] == DBNull.Value)
                         {
-                            lblPlaneteEnnemis.Text = "Origine inconnue";
+                            planete = "Origine inconnue";
                         }
                         else
                         {
-                            lblPlaneteEnnemis.Text = dr["Planetes"].ToString();
+                            planete = dr["Planetes"].ToString();
                         }
-                        panel2.Controls.Add(lblPlaneteEnnemis);
-                        
-                        Label lblTypeArme = new Label();
-                        lblTypeArme.AutoSize = true;
-                        lblTypeArme.Location = new System.Drawing.Point(xlabel, ytypeArme);
-                        lblTypeArme.Name = "lblTypeArme";
-                        lblTypeArme.Size = new System.Drawing.Size(74, 17);
-                        lblTypeArme.TabIndex = 4;
-                        lblTypeArme.Text = dr["typeArme"].ToString();
-                        panel2.Controls.Add(lblTypeArme);
+                        string instrument = dr["typeArme"].ToString();
+                        string image = dr["nom"] + ".jpg";
 
-                        nbAffiches++;
-                        xpicture = xpicture + 150;
-                        xlabel = xlabel + 150;
-                        if (nbAffiches % 3 == 0)
-                        {
-                            xpicture = 6;
-                            xlabel = 3;
-                            ypicture = ypicture + 200;
-                            ynom = ynom + 200;
-                            yagressivite = yagressivite + 200;
-                            ycouleur = ycouleur + 200;
-                            yplanete = yplanete + 200;
-                            ytypeArme = ytypeArme + 200;
-                        }
+                        InfoAliensEnnemis info = new InfoAliensEnnemis(nomAlien, bienveillance, couleur, planete, instrument, image);
+                        flp2.Controls.Add(info);
                     }
                     dr.Close();
                 }

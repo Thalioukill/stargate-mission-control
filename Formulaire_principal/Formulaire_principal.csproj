@@ -85,6 +85,18 @@
     <Compile Include="FrmTableauDeBord.Designer.cs">
       <DependentUpon>FrmTableauDeBord.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoAlien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoAlien.Designer.cs">
+      <DependentUpon>InfoAlien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoAliensEnnemis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoAliensEnnemis.Designer.cs">
+      <DependentUpon>InfoAliensEnnemis.cs</DependentUpon>
+    </Compile>
     <Compile Include="mesDatas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +108,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPlanetes.resx">
       <DependentUpon>FrmPlanetes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoAlien.resx">
+      <DependentUpon>InfoAlien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoAliensEnnemis.resx">
+      <DependentUpon>InfoAliensEnnemis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
