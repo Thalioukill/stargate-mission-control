@@ -85,11 +85,23 @@
     <Compile Include="FrmTableauDeBord.Designer.cs">
       <DependentUpon>FrmTableauDeBord.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoPlanete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoPlanete.Designer.cs">
+      <DependentUpon>InfoPlanete.cs</DependentUpon>
+    </Compile>
     <Compile Include="mesDatas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPlanetes.resx">
+      <DependentUpon>FrmPlanetes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoPlanete.resx">
+      <DependentUpon>InfoPlanete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
