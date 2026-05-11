@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picPlanete = new System.Windows.Forms.PictureBox();
             this.lblNom = new System.Windows.Forms.Label();
             this.lblTemperature = new System.Windows.Forms.Label();
             this.lblGravite = new System.Windows.Forms.Label();
@@ -36,16 +36,16 @@
             this.lblEspeces = new System.Windows.Forms.Label();
             this.lblPourcentage = new System.Windows.Forms.Label();
             this.lblMission = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlanete)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picPlanete
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(161, 138);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.picPlanete.Location = new System.Drawing.Point(3, 3);
+            this.picPlanete.Name = "picPlanete";
+            this.picPlanete.Size = new System.Drawing.Size(161, 138);
+            this.picPlanete.TabIndex = 0;
+            this.picPlanete.TabStop = false;
             // 
             // lblNom
             // 
@@ -128,11 +128,11 @@
             this.Controls.Add(this.lblGravite);
             this.Controls.Add(this.lblTemperature);
             this.Controls.Add(this.lblNom);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picPlanete);
             this.Name = "InfoPlanete";
-            this.Size = new System.Drawing.Size(237, 270);
+            this.Size = new System.Drawing.Size(275, 270);
             this.Load += new System.EventHandler(this.InfoPlanete_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlanete)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,7 +140,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picPlanete;
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Label lblTemperature;
         private System.Windows.Forms.Label lblGravite;
