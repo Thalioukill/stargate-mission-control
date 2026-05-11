@@ -70,7 +70,38 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(err.Message);
             }
-            
+
+            try
+            {
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - Civil : ' || ci.Specialite) 
+                            AS nomComplet, me.matricule FROM Membre me
+                            JOIN Civil ci ON
+                            me.matricule = ci.matriculeMembre
+                            WHERE me.matricule LIKE 'C%'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                
+                string sql2 = @"SELECT (me.nom || ' ' || me.prenom || ' - Militaire : ' || mi.grade) 
+                            AS nomComplet, me.matricule FROM Membre me
+                            JOIN Militaire mi ON
+                            me.matricule = mi.matriculeMembre
+                            WHERE me.matricule LIKE 'M%'";
+                SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
+                DataTable dtMilitaires = new DataTable();
+                da2.Fill(dtMilitaires);
+
+                dt.Merge(dtMilitaires);
+                cboMembres.DataSource = dt;
+                cboMembres.DisplayMember = "nomComplet";
+                cboMembres.ValueMember = "matricule";
+
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
         }
 
         private void cboPlanete_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,6 +192,7 @@ namespace Formulaire_principal
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
+                    lstbPartis.Items.Add(cboChef.Text);
                     Reset();
 
                 }
