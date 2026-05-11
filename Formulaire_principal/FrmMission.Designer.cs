@@ -55,23 +55,22 @@
             this.cboPlanete = new System.Windows.Forms.ComboBox();
             this.lblChoix = new System.Windows.Forms.Label();
             this.grpPrecisions = new System.Windows.Forms.GroupBox();
-            this.lblAffect = new System.Windows.Forms.Label();
-            this.lblreste = new System.Windows.Forms.Label();
-            this.cboMembres = new System.Windows.Forms.ComboBox();
-            this.btnAddMembre = new System.Windows.Forms.Button();
-            this.btnvalidMembres = new System.Windows.Forms.Button();
-            this.lstbPartis = new System.Windows.Forms.ListBox();
-            this.lblnomMembre = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lstbMembres = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.btnValidObj = new System.Windows.Forms.Button();
             this.btnAddCapture = new System.Windows.Forms.Button();
+            this.btnValidObj = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnRefaire = new System.Windows.Forms.Button();
+            this.lstbMembres = new System.Windows.Forms.ListBox();
+            this.lblnomMembre = new System.Windows.Forms.Label();
+            this.lstbPartis = new System.Windows.Forms.ListBox();
+            this.btnvalidMembres = new System.Windows.Forms.Button();
+            this.btnAddMembre = new System.Windows.Forms.Button();
+            this.cboMembres = new System.Windows.Forms.ComboBox();
+            this.lblreste = new System.Windows.Forms.Label();
+            this.lblAffect = new System.Windows.Forms.Label();
             this.grpNouvelleMission.SuspendLayout();
             this.pnl.SuspendLayout();
             this.grpPrecisions.SuspendLayout();
@@ -358,9 +357,8 @@
             this.grpPrecisions.Controls.Add(this.comboBox2);
             this.grpPrecisions.Controls.Add(this.label3);
             this.grpPrecisions.Controls.Add(this.label2);
-            this.grpPrecisions.Controls.Add(this.button1);
+            this.grpPrecisions.Controls.Add(this.btnRefaire);
             this.grpPrecisions.Controls.Add(this.lstbMembres);
-            this.grpPrecisions.Controls.Add(this.label1);
             this.grpPrecisions.Controls.Add(this.lblnomMembre);
             this.grpPrecisions.Controls.Add(this.lstbPartis);
             this.grpPrecisions.Controls.Add(this.btnvalidMembres);
@@ -375,136 +373,14 @@
             this.grpPrecisions.TabStop = false;
             this.grpPrecisions.Text = "Précisions sur la mission créée";
             // 
-            // lblAffect
+            // btnAddCapture
             // 
-            this.lblAffect.AutoSize = true;
-            this.lblAffect.Location = new System.Drawing.Point(56, 72);
-            this.lblAffect.Name = "lblAffect";
-            this.lblAffect.Size = new System.Drawing.Size(455, 25);
-            this.lblAffect.TabIndex = 6;
-            this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
-            // 
-            // lblreste
-            // 
-            this.lblreste.AutoSize = true;
-            this.lblreste.Location = new System.Drawing.Point(528, 72);
-            this.lblreste.Name = "lblreste";
-            this.lblreste.Size = new System.Drawing.Size(18, 25);
-            this.lblreste.TabIndex = 7;
-            this.lblreste.Text = ".";
-            // 
-            // cboMembres
-            // 
-            this.cboMembres.FormattingEnabled = true;
-            this.cboMembres.Location = new System.Drawing.Point(61, 141);
-            this.cboMembres.Name = "cboMembres";
-            this.cboMembres.Size = new System.Drawing.Size(702, 33);
-            this.cboMembres.TabIndex = 8;
-            // 
-            // btnAddMembre
-            // 
-            this.btnAddMembre.Location = new System.Drawing.Point(810, 132);
-            this.btnAddMembre.Name = "btnAddMembre";
-            this.btnAddMembre.Size = new System.Drawing.Size(179, 49);
-            this.btnAddMembre.TabIndex = 9;
-            this.btnAddMembre.Text = "Ajouter";
-            this.btnAddMembre.UseVisualStyleBackColor = true;
-            // 
-            // btnvalidMembres
-            // 
-            this.btnvalidMembres.Location = new System.Drawing.Point(789, 791);
-            this.btnvalidMembres.Name = "btnvalidMembres";
-            this.btnvalidMembres.Size = new System.Drawing.Size(200, 55);
-            this.btnvalidMembres.TabIndex = 11;
-            this.btnvalidMembres.Text = "Valider membres";
-            this.btnvalidMembres.UseVisualStyleBackColor = true;
-            // 
-            // lstbPartis
-            // 
-            this.lstbPartis.FormattingEnabled = true;
-            this.lstbPartis.ItemHeight = 25;
-            this.lstbPartis.Location = new System.Drawing.Point(61, 249);
-            this.lstbPartis.Name = "lstbPartis";
-            this.lstbPartis.Size = new System.Drawing.Size(928, 179);
-            this.lstbPartis.TabIndex = 12;
-            // 
-            // lblnomMembre
-            // 
-            this.lblnomMembre.AutoSize = true;
-            this.lblnomMembre.Location = new System.Drawing.Point(56, 205);
-            this.lblnomMembre.Name = "lblnomMembre";
-            this.lblnomMembre.Size = new System.Drawing.Size(56, 25);
-            this.lblnomMembre.TabIndex = 13;
-            this.lblnomMembre.Text = "Nom";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(563, 205);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(309, 25);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "est déjà parti en mission avec :";
-            // 
-            // lstbMembres
-            // 
-            this.lstbMembres.FormattingEnabled = true;
-            this.lstbMembres.ItemHeight = 25;
-            this.lstbMembres.Location = new System.Drawing.Point(61, 592);
-            this.lstbMembres.Name = "lstbMembres";
-            this.lstbMembres.Size = new System.Drawing.Size(928, 179);
-            this.lstbMembres.TabIndex = 15;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(717, 443);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(272, 55);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Refaire la même équipe";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 550);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 25);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Mes membres :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(56, 930);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(235, 25);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "5 - Objectifs de capture";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(61, 987);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(518, 33);
-            this.comboBox2.TabIndex = 19;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(627, 987);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(85, 31);
-            this.numericUpDown1.TabIndex = 21;
-            // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 25;
-            this.listBox3.Location = new System.Drawing.Point(61, 1053);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(651, 154);
-            this.listBox3.TabIndex = 22;
+            this.btnAddCapture.Location = new System.Drawing.Point(810, 987);
+            this.btnAddCapture.Name = "btnAddCapture";
+            this.btnAddCapture.Size = new System.Drawing.Size(179, 49);
+            this.btnAddCapture.TabIndex = 24;
+            this.btnAddCapture.Text = "Ajouter";
+            this.btnAddCapture.UseVisualStyleBackColor = true;
             // 
             // btnValidObj
             // 
@@ -515,14 +391,131 @@
             this.btnValidObj.Text = "Valider Objectifs";
             this.btnValidObj.UseVisualStyleBackColor = true;
             // 
-            // btnAddCapture
+            // listBox3
             // 
-            this.btnAddCapture.Location = new System.Drawing.Point(810, 987);
-            this.btnAddCapture.Name = "btnAddCapture";
-            this.btnAddCapture.Size = new System.Drawing.Size(179, 49);
-            this.btnAddCapture.TabIndex = 24;
-            this.btnAddCapture.Text = "Ajouter";
-            this.btnAddCapture.UseVisualStyleBackColor = true;
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 25;
+            this.listBox3.Location = new System.Drawing.Point(61, 1053);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(651, 154);
+            this.listBox3.TabIndex = 22;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(627, 987);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(85, 31);
+            this.numericUpDown1.TabIndex = 21;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(61, 987);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(518, 33);
+            this.comboBox2.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(56, 930);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(235, 25);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "5 - Objectifs de capture";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(56, 550);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(235, 25);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Les membres affectés :";
+            // 
+            // btnRefaire
+            // 
+            this.btnRefaire.Location = new System.Drawing.Point(717, 443);
+            this.btnRefaire.Name = "btnRefaire";
+            this.btnRefaire.Size = new System.Drawing.Size(272, 55);
+            this.btnRefaire.TabIndex = 16;
+            this.btnRefaire.Text = "Refaire la même équipe";
+            this.btnRefaire.UseVisualStyleBackColor = true;
+            this.btnRefaire.Click += new System.EventHandler(this.btnRefaire_Click);
+            // 
+            // lstbMembres
+            // 
+            this.lstbMembres.FormattingEnabled = true;
+            this.lstbMembres.ItemHeight = 25;
+            this.lstbMembres.Location = new System.Drawing.Point(61, 592);
+            this.lstbMembres.Name = "lstbMembres";
+            this.lstbMembres.Size = new System.Drawing.Size(928, 179);
+            this.lstbMembres.TabIndex = 15;
+            // 
+            // lblnomMembre
+            // 
+            this.lblnomMembre.AutoSize = true;
+            this.lblnomMembre.Location = new System.Drawing.Point(56, 205);
+            this.lblnomMembre.Name = "lblnomMembre";
+            this.lblnomMembre.Size = new System.Drawing.Size(56, 25);
+            this.lblnomMembre.TabIndex = 13;
+            this.lblnomMembre.Text = "Nom";
+            // 
+            // lstbPartis
+            // 
+            this.lstbPartis.FormattingEnabled = true;
+            this.lstbPartis.ItemHeight = 25;
+            this.lstbPartis.Location = new System.Drawing.Point(61, 249);
+            this.lstbPartis.Name = "lstbPartis";
+            this.lstbPartis.Size = new System.Drawing.Size(928, 179);
+            this.lstbPartis.TabIndex = 12;
+            // 
+            // btnvalidMembres
+            // 
+            this.btnvalidMembres.Location = new System.Drawing.Point(789, 791);
+            this.btnvalidMembres.Name = "btnvalidMembres";
+            this.btnvalidMembres.Size = new System.Drawing.Size(200, 55);
+            this.btnvalidMembres.TabIndex = 11;
+            this.btnvalidMembres.Text = "Valider membres";
+            this.btnvalidMembres.UseVisualStyleBackColor = true;
+            // 
+            // btnAddMembre
+            // 
+            this.btnAddMembre.Location = new System.Drawing.Point(810, 132);
+            this.btnAddMembre.Name = "btnAddMembre";
+            this.btnAddMembre.Size = new System.Drawing.Size(179, 49);
+            this.btnAddMembre.TabIndex = 9;
+            this.btnAddMembre.Text = "Ajouter";
+            this.btnAddMembre.UseVisualStyleBackColor = true;
+            this.btnAddMembre.Click += new System.EventHandler(this.btnAddMembre_Click);
+            // 
+            // cboMembres
+            // 
+            this.cboMembres.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMembres.FormattingEnabled = true;
+            this.cboMembres.Location = new System.Drawing.Point(61, 141);
+            this.cboMembres.Name = "cboMembres";
+            this.cboMembres.Size = new System.Drawing.Size(702, 33);
+            this.cboMembres.TabIndex = 8;
+            this.cboMembres.SelectedIndexChanged += new System.EventHandler(this.cboMembres_SelectedIndexChanged);
+            // 
+            // lblreste
+            // 
+            this.lblreste.AutoSize = true;
+            this.lblreste.Location = new System.Drawing.Point(528, 72);
+            this.lblreste.Name = "lblreste";
+            this.lblreste.Size = new System.Drawing.Size(18, 25);
+            this.lblreste.TabIndex = 7;
+            this.lblreste.Text = ".";
+            // 
+            // lblAffect
+            // 
+            this.lblAffect.AutoSize = true;
+            this.lblAffect.Location = new System.Drawing.Point(56, 72);
+            this.lblAffect.Name = "lblAffect";
+            this.lblAffect.Size = new System.Drawing.Size(455, 25);
+            this.lblAffect.TabIndex = 6;
+            this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
             // FrmMission
             // 
@@ -533,6 +526,7 @@
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
             this.Name = "FrmMission";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Création d\'une nouvelle mission";
             this.Load += new System.EventHandler(this.FrmMission_Load);
             this.grpNouvelleMission.ResumeLayout(false);
@@ -581,9 +575,8 @@
         private System.Windows.Forms.Button btnvalidMembres;
         private System.Windows.Forms.Button btnAddMembre;
         private System.Windows.Forms.ComboBox cboMembres;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefaire;
         private System.Windows.Forms.ListBox lstbMembres;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblnomMembre;
         private System.Windows.Forms.ListBox lstbPartis;
         private System.Windows.Forms.ComboBox comboBox2;

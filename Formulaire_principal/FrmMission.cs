@@ -73,7 +73,7 @@ namespace Formulaire_principal
 
             try
             {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - Civil : ' || ci.Specialite) 
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' : Civil - ' || ci.Specialite) 
                             AS nomComplet, me.matricule FROM Membre me
                             JOIN Civil ci ON
                             me.matricule = ci.matriculeMembre
@@ -82,7 +82,7 @@ namespace Formulaire_principal
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 
-                string sql2 = @"SELECT (me.nom || ' ' || me.prenom || ' - Militaire : ' || mi.grade) 
+                string sql2 = @"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
                             AS nomComplet, me.matricule FROM Membre me
                             JOIN Militaire mi ON
                             me.matricule = mi.matriculeMembre
@@ -138,6 +138,7 @@ namespace Formulaire_principal
             cboPlanete.Enabled = false;
             btnValidPlanete.Enabled = false;
             lblChoix.ForeColor = SystemColors.ControlDark;
+            lblNomMission.ForeColor = SystemColors.ControlDark;
             
             foreach (Control c in pnl.Controls)
             {
@@ -162,13 +163,14 @@ namespace Formulaire_principal
 
         private void btnValidMission_Click(object sender, EventArgs e)
         {
-            if (dtpDepart.Value > dtpRetour.Value || dtpRetour.Value < dtpDepart.Value)
+            if (dtpDepart.Value > dtpRetour.Value)
             {
                 MessageBox.Show("La date de départ ne peut pas être après la date de retour, et la date de retour ne peut pas être avant la date de départ !");
-                if (txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
-                {
-                    MessageBox.Show("Veuillez remplir tous les champs pour insérer une mission.");
-                }
+                
+            }
+            else if(txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
+            {
+                MessageBox.Show("Veuillez remplir tous les champs pour insérer une mission.");
             }
             else
             {
@@ -192,8 +194,23 @@ namespace Formulaire_principal
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
-                    lstbPartis.Items.Add(cboChef.Text);
-                    Reset();
+                    lstbMembres.Items.Add(cboChef.Text);
+                    cboMembres.Focus();
+                    cboChef.Enabled = false;
+                    dtpDepart.Enabled = false;
+                    dtpRetour.Enabled = false;
+                    txtfeuilleRoute.Enabled = false;
+                    txtBudget.Enabled = false;
+                    txtnbMembres.Enabled = false;
+                    txtobjDataBaz.Enabled = false;
+                    btnValidMission.Enabled = false;
+
+                    foreach (Control c in pnl.Controls)
+                    {
+                        if (c is Label lbl)
+                            lbl.ForeColor = SystemColors.ControlDark;
+                    }
+                    //Reset();
 
                 }
                 catch (SQLiteException err)
@@ -295,5 +312,91 @@ namespace Formulaire_principal
             cboPlanete.Focus();
         }
 
+        private void cboMembres_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstbPartis.Items.Clear();
+            string texteDecoup = cboMembres.Text;
+            int deuxpt = texteDecoup.IndexOf(':');
+            if (deuxpt != -1)
+                lblnomMembre.Text = texteDecoup.Substring(0, deuxpt -1) + " est déjà parti(e) en mission avec :";
+            else
+                lblnomMembre.Text = texteDecoup + " est déjà parti(e) en mission avec :";
+
+            try
+            {
+                string sql = @"SELECT co.matriculeMembre FROM Composer co
+                            WHERE (co.numeroMission, co.nomPlanete) IN
+                            (SELECT co2.numeroMission, co2.nomPlanete FROM Composer co2 
+                             WHERE co2.matriculeMembre = @matricule)
+                            AND co.matriculeMembre != @matricule";
+
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@matricule",cboMembres.SelectedValue.ToString());
+
+                SQLiteDataReader dr = cmd.ExecuteReader();
+
+                if(dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+
+                        string matricule = dr[0].ToString();
+
+                        //cboMembres.DataSource est une table
+                        DataTable dt = (DataTable)cboMembres.DataSource;
+                        //J'utilise un filtre pour garder les lignes de la table voulues
+                        DataRow[] rows = dt.Select($"matricule = '{matricule}'");
+
+                        if (rows.Length > 0)
+                        {
+                            lstbPartis.Items.Add(rows[0]["nomComplet"].ToString());
+                        }
+                    }
+                }
+            }
+            catch(SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            
+        }
+
+        private void btnAddMembre_Click(object sender, EventArgs e)
+        {
+            if(!lstbMembres.Items.Contains(cboMembres.Text))
+            {
+                lstbMembres.Items.Add(cboMembres.Text);
+            }
+            else
+            {
+                MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
+            }
+            
+        }
+
+        private void btnRefaire_Click(object sender, EventArgs e)
+        {
+            if (!lstbMembres.Items.Contains(cboMembres.Text))
+            {
+                lstbMembres.Items.Add(cboMembres.Text);
+            }
+            else
+            {
+                MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
+            }
+            foreach (string i in lstbPartis.Items)
+            {
+                if (!lstbMembres.Items.Contains(i))
+                {
+                    lstbMembres.Items.Add(i);
+                }
+                else
+                {
+                    MessageBox.Show($"{i} déjà présent dans la liste !");
+                }
+                
+            }
+        }
     }
 }
