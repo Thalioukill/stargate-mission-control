@@ -29,10 +29,7 @@
         private void InitializeComponent()
         {
             this.grpNouvelleMission = new System.Windows.Forms.GroupBox();
-            this.lblNomMission = new System.Windows.Forms.Label();
-            this.btnValidPlanete = new System.Windows.Forms.Button();
-            this.cboPlanete = new System.Windows.Forms.ComboBox();
-            this.lblChoix = new System.Windows.Forms.Label();
+            this.lblNum = new System.Windows.Forms.Label();
             this.pnl = new System.Windows.Forms.Panel();
             this.btnValidMission = new System.Windows.Forms.Button();
             this.lblEuros = new System.Windows.Forms.Label();
@@ -53,7 +50,10 @@
             this.lblParam = new System.Windows.Forms.Label();
             this.lblChef = new System.Windows.Forms.Label();
             this.cboChef = new System.Windows.Forms.ComboBox();
-            this.lblNum = new System.Windows.Forms.Label();
+            this.lblNomMission = new System.Windows.Forms.Label();
+            this.btnValidPlanete = new System.Windows.Forms.Button();
+            this.cboPlanete = new System.Windows.Forms.ComboBox();
+            this.lblChoix = new System.Windows.Forms.Label();
             this.grpNouvelleMission.SuspendLayout();
             this.pnl.SuspendLayout();
             this.SuspendLayout();
@@ -74,44 +74,15 @@
             this.grpNouvelleMission.TabStop = false;
             this.grpNouvelleMission.Text = "Nouvelle mission";
             // 
-            // lblNomMission
+            // lblNum
             // 
-            this.lblNomMission.AutoSize = true;
-            this.lblNomMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomMission.Location = new System.Drawing.Point(63, 154);
-            this.lblNomMission.Name = "lblNomMission";
-            this.lblNomMission.Size = new System.Drawing.Size(124, 42);
-            this.lblNomMission.TabIndex = 3;
-            this.lblNomMission.Text = "label1";
-            // 
-            // btnValidPlanete
-            // 
-            this.btnValidPlanete.Location = new System.Drawing.Point(803, 49);
-            this.btnValidPlanete.Name = "btnValidPlanete";
-            this.btnValidPlanete.Size = new System.Drawing.Size(179, 61);
-            this.btnValidPlanete.TabIndex = 2;
-            this.btnValidPlanete.Text = "Valider planète";
-            this.btnValidPlanete.UseVisualStyleBackColor = true;
-            this.btnValidPlanete.Click += new System.EventHandler(this.btnValidPlanete_Click);
-            // 
-            // cboPlanete
-            // 
-            this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(366, 64);
-            this.cboPlanete.Name = "cboPlanete";
-            this.cboPlanete.Size = new System.Drawing.Size(352, 33);
-            this.cboPlanete.TabIndex = 1;
-            this.cboPlanete.SelectedIndexChanged += new System.EventHandler(this.cboPlanete_SelectedIndexChanged);
-            // 
-            // lblChoix
-            // 
-            this.lblChoix.AutoSize = true;
-            this.lblChoix.Location = new System.Drawing.Point(59, 69);
-            this.lblChoix.Name = "lblChoix";
-            this.lblChoix.Size = new System.Drawing.Size(228, 25);
-            this.lblChoix.TabIndex = 0;
-            this.lblChoix.Text = "1 - Choix de la planète";
+            this.lblNum.AutoSize = true;
+            this.lblNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNum.Location = new System.Drawing.Point(796, 154);
+            this.lblNum.Name = "lblNum";
+            this.lblNum.Size = new System.Drawing.Size(124, 42);
+            this.lblNum.TabIndex = 5;
+            this.lblNum.Text = "label1";
             // 
             // pnl
             // 
@@ -165,6 +136,7 @@
             this.txtBudget.Name = "txtBudget";
             this.txtBudget.Size = new System.Drawing.Size(62, 31);
             this.txtBudget.TabIndex = 39;
+            this.txtBudget.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudget_KeyPress);
             // 
             // lblBudget
             // 
@@ -192,6 +164,7 @@
             this.txtobjDataBaz.Name = "txtobjDataBaz";
             this.txtobjDataBaz.Size = new System.Drawing.Size(62, 31);
             this.txtobjDataBaz.TabIndex = 36;
+            this.txtobjDataBaz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtobjDataBaz_KeyPress);
             // 
             // lblobjDataBaz
             // 
@@ -219,6 +192,7 @@
             this.txtnbMembres.Name = "txtnbMembres";
             this.txtnbMembres.Size = new System.Drawing.Size(62, 31);
             this.txtnbMembres.TabIndex = 33;
+            this.txtnbMembres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnbMembres_KeyPress);
             // 
             // lblnbMembres
             // 
@@ -256,6 +230,7 @@
             this.dtpRetour.Name = "dtpRetour";
             this.dtpRetour.Size = new System.Drawing.Size(220, 31);
             this.dtpRetour.TabIndex = 29;
+            
             // 
             // dtpDepart
             // 
@@ -265,6 +240,7 @@
             this.dtpDepart.Name = "dtpDepart";
             this.dtpDepart.Size = new System.Drawing.Size(220, 31);
             this.dtpDepart.TabIndex = 28;
+            
             // 
             // lbldateRetour
             // 
@@ -314,16 +290,47 @@
             this.cboChef.Name = "cboChef";
             this.cboChef.Size = new System.Drawing.Size(450, 33);
             this.cboChef.TabIndex = 23;
+            
             // 
-            // lblNum
+            // lblNomMission
             // 
-            this.lblNum.AutoSize = true;
-            this.lblNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNum.Location = new System.Drawing.Point(796, 154);
-            this.lblNum.Name = "lblNum";
-            this.lblNum.Size = new System.Drawing.Size(124, 42);
-            this.lblNum.TabIndex = 5;
-            this.lblNum.Text = "label1";
+            this.lblNomMission.AutoSize = true;
+            this.lblNomMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.Location = new System.Drawing.Point(63, 154);
+            this.lblNomMission.Name = "lblNomMission";
+            this.lblNomMission.Size = new System.Drawing.Size(124, 42);
+            this.lblNomMission.TabIndex = 3;
+            this.lblNomMission.Text = "label1";
+            // 
+            // btnValidPlanete
+            // 
+            this.btnValidPlanete.Location = new System.Drawing.Point(803, 49);
+            this.btnValidPlanete.Name = "btnValidPlanete";
+            this.btnValidPlanete.Size = new System.Drawing.Size(179, 61);
+            this.btnValidPlanete.TabIndex = 2;
+            this.btnValidPlanete.Text = "Valider planète";
+            this.btnValidPlanete.UseVisualStyleBackColor = true;
+            this.btnValidPlanete.Click += new System.EventHandler(this.btnValidPlanete_Click);
+            // 
+            // cboPlanete
+            // 
+            this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPlanete.FormattingEnabled = true;
+            this.cboPlanete.Location = new System.Drawing.Point(366, 64);
+            this.cboPlanete.Name = "cboPlanete";
+            this.cboPlanete.Size = new System.Drawing.Size(352, 33);
+            this.cboPlanete.TabIndex = 1;
+            this.cboPlanete.SelectedIndexChanged += new System.EventHandler(this.cboPlanete_SelectedIndexChanged);
+            this.cboPlanete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboPlanete_KeyPress);
+            // 
+            // lblChoix
+            // 
+            this.lblChoix.AutoSize = true;
+            this.lblChoix.Location = new System.Drawing.Point(59, 69);
+            this.lblChoix.Name = "lblChoix";
+            this.lblChoix.Size = new System.Drawing.Size(228, 25);
+            this.lblChoix.TabIndex = 0;
+            this.lblChoix.Text = "1 - Choix de la planète";
             // 
             // FrmMission
             // 

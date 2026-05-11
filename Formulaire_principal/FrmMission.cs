@@ -106,6 +106,7 @@ namespace Formulaire_principal
         {
             cboPlanete.Enabled = false;
             btnValidPlanete.Enabled = false;
+            lblChoix.ForeColor = SystemColors.ControlDark;
             
             foreach (Control c in pnl.Controls)
             {
@@ -127,34 +128,133 @@ namespace Formulaire_principal
 
         private void btnValidMission_Click(object sender, EventArgs e)
         {
-            try
+            if (txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
             {
-                string sql = @"INSERT INTO Mission 
+                MessageBox.Show("Veuillez remplir tous les champs pour insérer une mission.");
+            }
+            else
+            {
+                try
+                {
+                    string sql = @"INSERT INTO Mission 
                               (nomPlanete, numero, nbMembreRequis, dateDepart, dateRetour, matriculeChef, feuilleDeRoute, objectifDatabaz, budget)
                               VALUES (@nomPlanete, @numero, @nbMembres, @dateDepart, @dateRetour, @matriculeChef, @feuilleRoute, @objDataBaz, @budget)";
 
-                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
 
-                cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
-                cmd.Parameters.AddWithValue("@numero", lblNum.Text);
-                cmd.Parameters.AddWithValue("@nbMembres", txtnbMembres.Text);
-                cmd.Parameters.AddWithValue("@dateDepart", dtpDepart.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@dateRetour", dtpRetour.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@matriculeChef", cboChef.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@feuilleRoute", txtfeuilleRoute.Text);
-                cmd.Parameters.AddWithValue("@objDataBaz", txtobjDataBaz.Text);
-                cmd.Parameters.AddWithValue("@budget", txtBudget.Text);
+                    cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
+                    cmd.Parameters.AddWithValue("@numero", lblNum.Text);
+                    cmd.Parameters.AddWithValue("@nbMembres", txtnbMembres.Text);
+                    cmd.Parameters.AddWithValue("@dateDepart", dtpDepart.Value.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@dateRetour", dtpRetour.Value.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@matriculeChef", cboChef.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@feuilleRoute", txtfeuilleRoute.Text);
+                    cmd.Parameters.AddWithValue("@objDataBaz", txtobjDataBaz.Text);
+                    cmd.Parameters.AddWithValue("@budget", txtBudget.Text);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Mission ajoutée !");
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Mission ajoutée !");
+                    Reset();
+
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                    MessageBox.Show("Echec de l'ajout !");
+                }
             }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-                MessageBox.Show("Echec de l'ajout !");
-            }
-
-
         }
+
+        private void txtnbMembres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled=false;
+            }
+            if (e.KeyChar == 13)
+            {
+                txtobjDataBaz.Focus();
+            }
+        }
+
+        private void txtobjDataBaz_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == 13)
+            {
+                txtBudget.Focus();
+            }
+        }
+
+        private void txtBudget_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == 13)
+            {
+                btnValidMission_Click(sender, e);
+            }
+        }
+
+        private void cboPlanete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Si on appuie sur la touche entrée ...
+            if (e.KeyChar == 13)
+            {
+                btnValidPlanete_Click(sender, e);
+            }
+        }
+
+        private void Reset()
+        {
+            cboPlanete.SelectedIndex = -1;
+            cboChef.SelectedIndex = -1;
+
+            txtfeuilleRoute.Clear();
+            txtobjDataBaz.Clear();
+            txtnbMembres.Clear();
+            txtBudget.Clear();
+
+            dtpDepart.Value = DateTime.Now;
+            dtpRetour.Value = DateTime.Now;
+
+            cboPlanete.Enabled = true;
+            btnValidPlanete.Enabled = true;
+
+            cboChef.Enabled = false;
+            dtpDepart.Enabled = false;
+            dtpRetour.Enabled = false;
+            txtfeuilleRoute.Enabled = false;
+            txtBudget.Enabled = false;
+            txtnbMembres.Enabled = false;
+            txtobjDataBaz.Enabled = false;
+            btnValidMission.Enabled = false;
+
+            foreach (Control c in pnl.Controls)
+            {
+                if (c is Label lbl)
+                    lbl.ForeColor = SystemColors.ControlDark;
+            }
+            lblChoix.ForeColor = SystemColors.ControlText;
+            cboPlanete.Focus();
+        }
+
     }
 }
