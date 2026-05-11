@@ -120,6 +120,9 @@ namespace Formulaire_principal
             
             cboChef.Enabled = true;
             txtfeuilleRoute.Enabled = true;
+            txtBudget.Enabled = true;
+            txtnbMembres.Enabled = true;
+            txtobjDataBaz.Enabled = true;
             dtpDepart.Enabled = true;
             dtpRetour.Enabled = true;
             btnValidMission.Enabled = true;
@@ -128,9 +131,13 @@ namespace Formulaire_principal
 
         private void btnValidMission_Click(object sender, EventArgs e)
         {
-            if (txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
+            if (dtpDepart.Value > dtpRetour.Value || dtpRetour.Value < dtpDepart.Value)
             {
-                MessageBox.Show("Veuillez remplir tous les champs pour insérer une mission.");
+                MessageBox.Show("La date de départ ne peut pas être après la date de retour, et la date de retour ne peut pas être avant la date de départ !");
+                if (txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
+                {
+                    MessageBox.Show("Veuillez remplir tous les champs pour insérer une mission.");
+                }
             }
             else
             {
