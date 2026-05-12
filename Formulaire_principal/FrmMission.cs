@@ -26,7 +26,41 @@ namespace Formulaire_principal
             dtpDepart.Enabled = false;
             dtpRetour.Enabled = false;
             btnValidMission.Enabled = false;
-
+            foreach(Control c in pnl2.Controls)
+            {
+                if(c is Button btn)
+                {
+                    btn.Enabled = false;
+                }
+                if (c is ListBox lst)
+                {
+                    lst.Enabled = false;
+                }
+                if (c is ComboBox cbo)
+                {
+                    cbo.Enabled = false;
+                }
+            }
+            foreach(Control c in pnl3.Controls)
+            {
+                if(c is Button btn)
+                {
+                    btn.Enabled = false;
+                }
+                if(c is ComboBox cbo)
+                {
+                    cbo.Enabled = false;
+                }
+                if(c is NumericUpDown nud)
+                {
+                    nud.Enabled = false;
+                }
+                if(c is ListBox lst)
+                {
+                    lst.Enabled = false;
+                }
+            }
+            
         }
 
         private void FrmMission_Load(object sender, EventArgs e)
@@ -53,9 +87,8 @@ namespace Formulaire_principal
 
             try
             {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
-                            AS nomComplet, (me.nom || ' ' || me.prenom || ' - ' || mi.grade)
-                            AS nomPasComplet, me.matricule FROM Membre me
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
+                            AS nomComplet, me.matricule FROM Membre me
                             JOIN Militaire mi ON
                             me.matricule = mi.matriculeMembre
                             WHERE me.matricule LIKE 'M%'";
@@ -63,7 +96,7 @@ namespace Formulaire_principal
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 cboChef.DataSource = dt;
-                cboChef.DisplayMember = "nomPasComplet";
+                cboChef.DisplayMember = "nomComplet";
                 cboChef.ValueMember = "matricule";
             }
             catch(SQLiteException err)
@@ -71,36 +104,6 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
 
-            try
-            {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' : Civil - ' || ci.Specialite) 
-                            AS nomComplet, me.matricule FROM Membre me
-                            JOIN Civil ci ON
-                            me.matricule = ci.matriculeMembre
-                            WHERE me.matricule LIKE 'C%'";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                
-                string sql2 = @"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
-                            AS nomComplet, me.matricule FROM Membre me
-                            JOIN Militaire mi ON
-                            me.matricule = mi.matriculeMembre
-                            WHERE me.matricule LIKE 'M%'";
-                SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
-                DataTable dtMilitaires = new DataTable();
-                da2.Fill(dtMilitaires);
-
-                dt.Merge(dtMilitaires);
-                cboMembres.DataSource = dt;
-                cboMembres.DisplayMember = "nomComplet";
-                cboMembres.ValueMember = "matricule";
-
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
 
         }
 
@@ -139,6 +142,7 @@ namespace Formulaire_principal
             btnValidPlanete.Enabled = false;
             lblChoix.ForeColor = SystemColors.ControlDark;
             lblNomMission.ForeColor = SystemColors.ControlDark;
+            lblNum.ForeColor = SystemColors.ControlDark;
             
             foreach (Control c in pnl.Controls)
             {
@@ -213,8 +217,9 @@ namespace Formulaire_principal
                             lbl.ForeColor = SystemColors.ControlDark;
                     }
                     lblreste.Text = (int.Parse(txtnbMembres.Text)-1).ToString();
-                    //Reset();
+                    RemplirCboMembres();
                     cboMembres_SelectedIndexChanged(sender, e);
+                    PartieQuatreVisible();
 
                 }
                 catch (SQLiteException err)
@@ -399,7 +404,7 @@ namespace Formulaire_principal
             
             int reste = int.Parse(lblreste.Text);
 
-            if (reste > 0)
+            if (reste >= lstbPartis.Items.Count)
             {
                 lstbMembres.Items.Clear();
                 foreach (string i in lstbPartis.Items)
@@ -467,14 +472,13 @@ namespace Formulaire_principal
                 }
             }
             MessageBox.Show("Membres ajoutés !");
-
-
+            PartieCinqueVisible();
 
         }
 
         private void btnAddSelect_Click(object sender, EventArgs e)
         {
-            
+            bool tousajoutes = false;
             if (lstbPartis.SelectedItem == null)
             {
                 MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-dessus.");
@@ -484,16 +488,28 @@ namespace Formulaire_principal
             {
                 foreach (string elt in lstbPartis.SelectedItems)
                 {
-                    if(!lstbMembres.Items.Contains(elt))
+                    int reste = int.Parse(lblreste.Text);
+                    if (reste > 0)
                     {
-                        lstbMembres.Items.Add(elt);
+                        if (!lstbMembres.Items.Contains(elt))
+                        {
+                            reste -= 1;
+                            lblreste.Text = reste.ToString();
+                            lstbMembres.Items.Add(elt);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"{elt} déjà présent dans la liste !");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show($"{elt} déjà présent dans la liste !");
-                    }
-                    
-                    
+                        tousajoutes = true;
+                    } 
+                }
+                if(tousajoutes)
+                {
+                    MessageBox.Show("Tous les membres ont déjà été ajoutés !");
                 }
             }
         }
@@ -510,17 +526,146 @@ namespace Formulaire_principal
             {
                 foreach (string elt in lstbMembres.SelectedItems)
                 {
-                    if(elt != cboChef.Text)
+                    
+                    if (elt != cboChef.Text)
                     {
                         remove.Add(elt);
                     }         
                 }
                 foreach(string elt2 in remove)
                 {
+                    int reste = int.Parse(lblreste.Text);
+                    reste += 1;
+                    lblreste.Text = reste.ToString();
                     lstbMembres.Items.Remove(elt2);
                 }
             }
             
+        }
+
+        private void RemplirCboMembres()
+        {
+            try
+            {
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' : Civil - ' || ci.Specialite) 
+                            AS nomComplet, me.matricule FROM Membre me
+                            JOIN Civil ci ON
+                            me.matricule = ci.matriculeMembre
+                            WHERE me.matricule LIKE 'C%'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                string sql2 = $@"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
+                            AS nomComplet, me.matricule FROM Membre me
+                            JOIN Militaire mi ON
+                            me.matricule = mi.matriculeMembre
+                            WHERE me.matricule != '{cboChef.SelectedValue.ToString()}' AND me.matricule LIKE 'M%'";
+                SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
+                DataTable dtMilitaires = new DataTable();
+                da2.Fill(dtMilitaires);
+
+                dt.Merge(dtMilitaires);
+                cboMembres.DataSource = dt;
+                cboMembres.DisplayMember = "nomComplet";
+                cboMembres.ValueMember = "matricule";
+
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void PartieQuatreVisible()
+        {
+            foreach (Control c in pnl2.Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.Enabled = true;
+                }
+                if(c is ComboBox cbo)
+                {
+                    cbo.Enabled = true;
+                }
+                if (c is Label lbl)
+                {
+                    lbl.ForeColor = SystemColors.ControlText;
+                }
+                if(c is ListBox lst)
+                {
+                    lst.Enabled = true;
+                }
+                    
+            }
+            foreach(Control c in pnl.Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.Enabled = false;
+                }
+                if (c is Label lbl)
+                {
+                    lbl.ForeColor = SystemColors.ControlDark;
+                }
+                if(c is TextBox txt)
+                {
+                    txt.Enabled = false;
+                }
+                if(c is DateTimePicker dtp)
+                {
+                    dtp.Enabled = false;
+                }
+            }
+        }
+
+        private void PartieCinqueVisible()
+        {
+            foreach (Control c in pnl3.Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.Enabled = true;
+                }
+                if (c is ComboBox cbo)
+                {
+                    cbo.Enabled = true;
+                }
+                if (c is NumericUpDown nud)
+                {
+                    nud.Enabled = true;
+                }
+                if (c is ListBox lst)
+                {
+                    lst.Enabled = true;
+                }
+                if (c is Label lbl)
+                {
+                    lbl.ForeColor = SystemColors.ControlText;
+                }
+            }
+            foreach (Control c in pnl2.Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.Enabled = false;
+                }
+                if (c is ComboBox cbo)
+                {
+                    cbo.Enabled = false;
+                }
+                if (c is Label lbl)
+                {
+                    lbl.ForeColor = SystemColors.ControlDark;
+                }
+                if (c is ListBox lst)
+                {
+                    lst.SelectedIndex = -1;
+                    lst.Enabled = false;
+                }
+
+            }
         }
     }
 }
