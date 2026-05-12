@@ -23,7 +23,7 @@ namespace Formulaire_principal
         {
             InitializeComponent();
             this.lblNom.Text += nomComplet;
-            this.lblSpecialite_Grade.Text += grade_specialite;
+            this.lbl.Text += grade_specialite;
 
             if (image != string.Empty)
             {
@@ -43,5 +43,7 @@ namespace Formulaire_principal
         {
 
         }
+
+
     }
 }

@@ -36,6 +36,11 @@
             this.flpEquipage = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateRetour = new System.Windows.Forms.Label();
             this.rtbFeuilleDeRoute = new System.Windows.Forms.RichTextBox();
+            this.lblMembres = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnJournal = new System.Windows.Forms.Button();
+            this.flpObjectifCaptures = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblObjectifCapture = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,9 +91,10 @@
             // 
             // flpEquipage
             // 
-            this.flpEquipage.Location = new System.Drawing.Point(25, 434);
+            this.flpEquipage.AutoScroll = true;
+            this.flpEquipage.Location = new System.Drawing.Point(25, 461);
             this.flpEquipage.Name = "flpEquipage";
-            this.flpEquipage.Size = new System.Drawing.Size(955, 195);
+            this.flpEquipage.Size = new System.Drawing.Size(955, 280);
             this.flpEquipage.TabIndex = 7;
             // 
             // lblDateRetour
@@ -104,15 +110,66 @@
             // 
             this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(25, 230);
             this.rtbFeuilleDeRoute.Name = "rtbFeuilleDeRoute";
+            this.rtbFeuilleDeRoute.ReadOnly = true;
             this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(955, 184);
             this.rtbFeuilleDeRoute.TabIndex = 8;
             this.rtbFeuilleDeRoute.Text = "";
+            // 
+            // lblMembres
+            // 
+            this.lblMembres.AutoSize = true;
+            this.lblMembres.Location = new System.Drawing.Point(25, 439);
+            this.lblMembres.Name = "lblMembres";
+            this.lblMembres.Size = new System.Drawing.Size(159, 16);
+            this.lblMembres.TabIndex = 9;
+            this.lblMembres.Text = "Membres de l\'équipage : ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 208);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 16);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Feuille de route :";
+            // 
+            // btnJournal
+            // 
+            this.btnJournal.Location = new System.Drawing.Point(835, 1023);
+            this.btnJournal.Name = "btnJournal";
+            this.btnJournal.Size = new System.Drawing.Size(144, 39);
+            this.btnJournal.TabIndex = 12;
+            this.btnJournal.Text = "Accès Journal";
+            this.btnJournal.UseVisualStyleBackColor = true;
+            // 
+            // flpObjectifCaptures
+            // 
+            this.flpObjectifCaptures.AutoScroll = true;
+            this.flpObjectifCaptures.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpObjectifCaptures.Location = new System.Drawing.Point(25, 798);
+            this.flpObjectifCaptures.Name = "flpObjectifCaptures";
+            this.flpObjectifCaptures.Size = new System.Drawing.Size(954, 200);
+            this.flpObjectifCaptures.TabIndex = 13;
+            // 
+            // lblObjectifCapture
+            // 
+            this.lblObjectifCapture.AutoSize = true;
+            this.lblObjectifCapture.Location = new System.Drawing.Point(22, 779);
+            this.lblObjectifCapture.Name = "lblObjectifCapture";
+            this.lblObjectifCapture.Size = new System.Drawing.Size(135, 16);
+            this.lblObjectifCapture.TabIndex = 0;
+            this.lblObjectifCapture.Text = "Objectif de captures : ";
             // 
             // FrmDetailMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 810);
+            this.ClientSize = new System.Drawing.Size(1012, 1074);
+            this.Controls.Add(this.lblObjectifCapture);
+            this.Controls.Add(this.flpObjectifCaptures);
+            this.Controls.Add(this.btnJournal);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblMembres);
             this.Controls.Add(this.rtbFeuilleDeRoute);
             this.Controls.Add(this.flpEquipage);
             this.Controls.Add(this.lblSoldeApresDepenses);
@@ -140,5 +197,10 @@
         private System.Windows.Forms.FlowLayoutPanel flpEquipage;
         private System.Windows.Forms.Label lblDateRetour;
         private System.Windows.Forms.RichTextBox rtbFeuilleDeRoute;
+        private System.Windows.Forms.Label lblMembres;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnJournal;
+        private System.Windows.Forms.FlowLayoutPanel flpObjectifCaptures;
+        private System.Windows.Forms.Label lblObjectifCapture;
     }
 }

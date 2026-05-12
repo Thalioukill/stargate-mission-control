@@ -31,12 +31,13 @@
             this.picMembre = new System.Windows.Forms.PictureBox();
             this.lblNom = new System.Windows.Forms.Label();
             this.lblSpecialite_Grade = new System.Windows.Forms.Label();
+            this.lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).BeginInit();
             this.SuspendLayout();
             // 
             // picMembre
             // 
-            this.picMembre.Location = new System.Drawing.Point(24, 25);
+            this.picMembre.Location = new System.Drawing.Point(13, 26);
             this.picMembre.Name = "picMembre";
             this.picMembre.Size = new System.Drawing.Size(148, 129);
             this.picMembre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -53,21 +54,29 @@
             // 
             // lblSpecialite_Grade
             // 
-            this.lblSpecialite_Grade.AutoSize = true;
-            this.lblSpecialite_Grade.Location = new System.Drawing.Point(24, 209);
+            this.lblSpecialite_Grade.Location = new System.Drawing.Point(0, 0);
             this.lblSpecialite_Grade.Name = "lblSpecialite_Grade";
-            this.lblSpecialite_Grade.Size = new System.Drawing.Size(0, 16);
-            this.lblSpecialite_Grade.TabIndex = 2;
+            this.lblSpecialite_Grade.Size = new System.Drawing.Size(100, 23);
+            this.lblSpecialite_Grade.TabIndex = 4;
+            // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Location = new System.Drawing.Point(24, 209);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(0, 16);
+            this.lbl.TabIndex = 3;
             // 
             // UserControl_MembresMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lbl);
             this.Controls.Add(this.lblSpecialite_Grade);
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.picMembre);
             this.Name = "UserControl_MembresMission";
-            this.Size = new System.Drawing.Size(196, 251);
+            this.Size = new System.Drawing.Size(172, 260);
             this.Load += new System.EventHandler(this.UserControl_MembresMission_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).EndInit();
             this.ResumeLayout(false);
@@ -80,5 +89,6 @@
         private System.Windows.Forms.PictureBox picMembre;
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Label lblSpecialite_Grade;
+        private System.Windows.Forms.Label lbl;
     }
 }

@@ -39,7 +39,7 @@
             // 
             // picMission
             // 
-            this.picMission.Location = new System.Drawing.Point(29, 21);
+            this.picMission.Location = new System.Drawing.Point(30, 17);
             this.picMission.Name = "picMission";
             this.picMission.Size = new System.Drawing.Size(153, 154);
             this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -50,7 +50,7 @@
             // 
             this.lblNomMission.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomMission.ForeColor = System.Drawing.Color.Blue;
-            this.lblNomMission.Location = new System.Drawing.Point(213, 44);
+            this.lblNomMission.Location = new System.Drawing.Point(214, 40);
             this.lblNomMission.Name = "lblNomMission";
             this.lblNomMission.Size = new System.Drawing.Size(217, 25);
             this.lblNomMission.TabIndex = 2;
@@ -60,7 +60,7 @@
             // 
             this.lblDate.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.Blue;
-            this.lblDate.Location = new System.Drawing.Point(473, 44);
+            this.lblDate.Location = new System.Drawing.Point(474, 40);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(293, 44);
             this.lblDate.TabIndex = 3;
@@ -70,7 +70,7 @@
             // 
             this.lblChefMission.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChefMission.ForeColor = System.Drawing.Color.Blue;
-            this.lblChefMission.Location = new System.Drawing.Point(213, 101);
+            this.lblChefMission.Location = new System.Drawing.Point(214, 97);
             this.lblChefMission.Name = "lblChefMission";
             this.lblChefMission.Size = new System.Drawing.Size(194, 49);
             this.lblChefMission.TabIndex = 4;
@@ -80,7 +80,7 @@
             // 
             this.lblBudget.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBudget.ForeColor = System.Drawing.Color.Blue;
-            this.lblBudget.Location = new System.Drawing.Point(473, 101);
+            this.lblBudget.Location = new System.Drawing.Point(474, 97);
             this.lblBudget.Name = "lblBudget";
             this.lblBudget.Size = new System.Drawing.Size(225, 24);
             this.lblBudget.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             this.btnDetails.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDetails.ForeColor = System.Drawing.Color.Blue;
-            this.btnDetails.Location = new System.Drawing.Point(597, 152);
+            this.btnDetails.Location = new System.Drawing.Point(598, 148);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(145, 37);
             this.btnDetails.TabIndex = 6;

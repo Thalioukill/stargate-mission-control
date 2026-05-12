@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Formulaire_principal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,6 @@ namespace Formulaire_principal
 
         private string idPlanete;
         private string idNumero;
-        private string image;
         private string idChefMission;
 
         public FrmDetailMission()
@@ -31,12 +31,14 @@ namespace Formulaire_principal
         public FrmDetailMission(string laPlanete, string leNumero, string matricule)
         {
             InitializeComponent();
+
             this.idPlanete = laPlanete;
             this.idNumero = leNumero;
             this.idChefMission = matricule;
 
             AfficherDetailsMission();
             AfficherEquipage();
+            AfficherObjectifs();
 
             /*
             // Création d'une vue sur la table "Composer" (qui lie membres et missions)
@@ -75,28 +77,43 @@ namespace Formulaire_principal
 
         private void AfficherDetailsMission()
         {
-            // Récupération des infos de la mission dans le DataSet
-            DataRow rMission = MesDatas.DsGlobal.Tables["Mission"].Rows.Find(new object[] { idPlanete, idNumero });
-
-            if (rMission != null)
+            try
             {
-                this.lblNomMission.Text += idPlanete + idNumero;
-                this.lblDateDepart.Text = $"Du {rMission["dateDepart"]} au {rMission["dateRetour"]}";
-                this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString();
-                //this.idChefMission = rMission["matriculeChef"].ToString();
+                // Récupération des infos de la mission dans le DataSet
+                /*
+                string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
+                DataRow rMission = MesDatas.DsGlobal.Tables["Composer"].Select(filtre);
+                */
 
-                // Calcul du budget (Budget initial - Somme des dépenses) 
-                double budgetInitial = Convert.ToDouble(rMission["budget"]);
+                DataRow rMission = MesDatas.DsGlobal.Tables["Mission"].Rows.Find(new object[] { idPlanete, idNumero });
 
-                // On filtre les dépenses de cette mission dans la table locale
-                DataRow[] depenses = MesDatas.DsGlobal.Tables["Depense"].Select($"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
-                double totalDepenses = 0;
+                if (rMission != null)
+                {
+                    this.lblNomMission.Text += idPlanete + idNumero;
+                    this.lblDateDepart.Text += rMission["dateDepart"].ToString();
+                    this.lblDateRetour.Text += rMission["dateRetour"].ToString();
+                    this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString();
+                    this.picMission.Image = Image.FromFile("../../Images/Missions/" + idPlanete + ".jpg");
 
-                foreach (DataRow d in depenses) { 
-                    totalDepenses += Convert.ToDouble(d["montant"]); 
+                    // Calcul du budget (Budget initial - Somme des dépenses) 
+                    double budgetInitial = Convert.ToDouble(rMission["budget"]);
+
+                    // On filtre les dépenses de cette mission dans la table locale
+                    DataRow[] depenses = ds.Tables["Depense"].Select($"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
+                    double totalDepenses = 0;
+
+                    foreach (DataRow d in depenses)
+                    {
+                        totalDepenses += Convert.ToDouble(d["montant"]);
+                    }
+
+                    this.lblBudget.Text += $"{budgetInitial}€";
+                    this.lblSoldeApresDepenses.Text += budgetInitial - totalDepenses+ "€";
                 }
-
-                this.lblBudget.Text += $"Initial : {budgetInitial}€ | Solde : {budgetInitial - totalDepenses}€";
+            }
+            catch (SQLiteException e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -106,47 +123,91 @@ namespace Formulaire_principal
 
             //On filtre les membres de CETTE mission dans la table de jointure "Composer"
             string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
-            DataRow[] lignesEquipage = MesDatas.DsGlobal.Tables["Composer"].Select(filtre);
+            DataRow[] lignesEquipage = ds.Tables["Composer"].Select(filtre);
 
             foreach (DataRow ligne in lignesEquipage)
             {
                 string matricule = ligne["matriculeMembre"].ToString();
+                string grade_specialite = "Inconnu";
+                string image = "";
+                string nomComplet = "";
 
-                // on récupère l'identité dans "Membre" (nécessite matricule en clé primaire)
-                DataRow rMembre = MesDatas.DsGlobal.Tables["Membre"].Rows.Find(matricule);
+                // RÉCUPÉRATION DIRECTE SELON LE PRÉFIXE
+                // On regarde le premier caractère (indice 0)
 
-                if (rMembre != null)
+                char prefixe = matricule[0];
+
+                if (prefixe == 'M') // C'est un Militaire
                 {
-                    string nomComplet = rMembre["prenom"] + " " + rMembre["nom"];
-                    string grade_specialite = "";
-
-                    // Recherche du Grade (Militaire) ou de la Spécialité (Civil)
-                    DataRow rMilitaire = MesDatas.DsGlobal.Tables["Militaire"].Rows.Find(matricule);
-                    if (rMilitaire != null)
+                    DataRow[] res = ds.Tables["Militaire"].Select($"matriculeMembre = '{matricule}'");
+                    if (res.Length > 0)
                     {
-                        grade_specialite = "Grade : "+rMilitaire["grade"].ToString();
-                        this.image = "Militaire";
+                        grade_specialite = "Grade : " + res[0]["grade"].ToString();
+                        image = "Militaire";
                     }
-                    else
-                    {
-                        DataRow rCivil = MesDatas.DsGlobal.Tables["Civil"].Rows.Find(matricule);
-
-                        if (rCivil != null) {
-                            grade_specialite = "Spécialité : "+rCivil["Specialite"].ToString();
-                            this.image = "Civil";
-                        }
-                    }
-
-                    // on vérifie si c'est le chef pour la mise en vert
-                    bool estChef = (matricule == this.idChefMission);
-
-                    // Instanciation de l'UC
-                    UserControl_MembresMission uc = new UserControl_MembresMission(nomComplet, grade_specialite, this.image, estChef);
-                    flpEquipage.Controls.Add(uc);
                 }
+                else if (prefixe == 'C') // C'est un Civil
+                {
+                    DataRow[] res = ds.Tables["Civil"].Select($"matriculeMembre = '{matricule}'");
+                    if (res.Length > 0)
+                    {
+                        grade_specialite = "Spécialité : " + res[0]["Specialite"].ToString();
+                        image = "Civil";
+                    }
+                }
+
+                // Récupération du reste (Nom, Prénom, Photo) dans la table Membre
+                DataRow[] tabInfosBase = ds.Tables["Membre"].Select($"matricule = '{matricule}'");
+
+                if (tabInfosBase.Length > 0)
+                {
+                    nomComplet = tabInfosBase[0]["prenom"] + " " + tabInfosBase[0]["nom"];
+
+                }
+                // 5. On vérifie si c'est le chef 
+                bool estChef = (matricule == this.idChefMission);
+
+                // 6. Instanciation de l'UC avec les bonnes variables
+                UserControl_MembresMission uc = new UserControl_MembresMission(nomComplet, grade_specialite, image, estChef);
+                flpEquipage.Controls.Add(uc);
             }
         }
 
+        private void AfficherObjectifs()
+        {
+            // On vide d'abord le panel pour éviter les doublons si on rafraîchit l'affichage
+            flpObjectifCaptures.Controls.Clear();
+
+            string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
+            DataRow[] lignesEspeceEnnemie = ds.Tables["Capturer"].Select(filtre);
+
+            foreach (DataRow ligne in lignesEspeceEnnemie)
+            {
+                string idEspeceEnnemi = ligne["idEspeceEnnemi"].ToString();
+                string captures = ligne["nombre"].ToString();
+
+                // On cherche le nom de l'espèce dans la table Espece
+                DataRow[] tabInfosEnnemi = ds.Tables["Espece"].Select($"id = '{idEspeceEnnemi}'");
+
+                if (tabInfosEnnemi.Length > 0)
+                {
+                    //Création de l'instance du Label
+                    Label lbl = new Label();
+
+                    // Configuration du texte (On utilise l'instance 'lbl' et non la classe 'Label')
+                    lbl.Text = tabInfosEnnemi[0]["nom"].ToString() + " --> " + captures + " prise(s)";
+
+                    // réglages ergonomiques importants
+                    lbl.AutoSize = true; // Pour que le label s'adapte à la longueur du texte
+                    lbl.Margin = new Padding(5); // Pour aérer l'affichage dans le panel
+                    lbl.Font = new Font(lbl.Font, FontStyle.Bold); // Optionnel : mettre en gras
+
+                    //AJOUT AU PANEL (On ajoute l'objet 'lbl', pas une chaîne de caractères)
+                    flpObjectifCaptures.Controls.Add(lbl);
+                }
+            }
+
+        }
         private void FrmDetailMission_Load(object sender, EventArgs e)
         {
 
