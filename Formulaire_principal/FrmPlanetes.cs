@@ -106,18 +106,153 @@ namespace Formulaire_principal
             }
         }
 
+        private void chargerEspeces()
+        {
+            try
+            {
+                string sql = "SELECT nom FROM Espece";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                SQLiteDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string nom = dr["nom"].ToString();
+                    CheckboxEspeces checkbox = new CheckboxEspeces(nom);
+                    flp2.Controls.Add(checkbox);
+                }
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
         private void FrmPlanetes_Load(object sender, EventArgs e)
         {
             charger_planetes();
-            string sql = "SELECT nom FROM Espece";
-            SQLiteCommand cmd = new SQLiteCommand(sql, co);
-            SQLiteDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            chargerEspeces();
+        }
+
+        private void txtMinTemp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if(e.KeyChar == '-' && txtMinTemp.Text.Length == 0)
             {
-                string nom = dr["nom"].ToString();
-                CheckboxEspeces checkbox = new CheckboxEspeces(nom);
-                flp2.Controls.Add(checkbox);
+                e.Handled = false;
             }
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void txtMaxTemp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (e.KeyChar == '-' && txtMinTemp.Text.Length == 0)
+            {
+                e.Handled = false;
+            }
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void txtMinGrav_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (e.KeyChar == '-' && txtMinTemp.Text.Length == 0)
+            {
+                e.Handled = false;
+            }
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void txtMaxGrav_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (e.KeyChar == '-' && txtMinTemp.Text.Length == 0)
+            {
+                e.Handled = false;
+            }
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void btnReinitialiserDataBaz_Click(object sender, EventArgs e)
+        {
+            rdbSans.Checked = false;
+            rdbAvec.Checked = false;
+        }
+
+        private void btnReinitialiserEspeces_Click(object sender, EventArgs e)
+        {
+            flp2.Controls.Clear();
+            chargerEspeces();
+        }
+
+        private void txtMinMission_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void txtMaxMission_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void btnRechercher_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txtMinGrav.Text) > Convert.ToInt32(txtMaxGrav.Text))
+            {
+                MessageBox.Show("Le minimum ne peut pas être supérieur au maximum (Gravité)");
+                txtMinGrav.Focus();
+            }
+            if (Convert.ToInt32(txtMinTemp.Text) > Convert.ToInt32(txtMaxTemp.Text))
+            {
+                MessageBox.Show("Le minimum ne peut pas être supérieur au maximum (Température)");
+                txtMinTemp.Focus();
+            }
+            if (Convert.ToInt32(txtMinMission.Text) > Convert.ToInt32(txtMaxMission.Text))
+            {
+                MessageBox.Show("Le minimum ne peut pas être supérieur au maximum (Mission)");
+                txtMinMission.Focus();
+            }
+            else 
+            {
+                charger_planetes();
+            }
+        }
+
+        private void btnReinitialiser_Click(object sender, EventArgs e)
+        {
+            rdbSans.Checked = false;
+            rdbAvec.Checked = false;
+            txtMinTemp.Text = "";
+            txtMaxTemp.Text = "";
+            txtMinGrav.Text = "";
+            txtMaxGrav.Text = "";
+            txtMinMission.Text = "";
+            txtMaxMission.Text = "";
+            flp2.Controls.Clear();
+            chargerEspeces();
+            txtNom.Text = "";
         }
     }
 }
