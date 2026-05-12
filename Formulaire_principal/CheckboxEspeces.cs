@@ -20,7 +20,7 @@ namespace Formulaire_principal
         public CheckboxEspeces(string nom)
         {
             InitializeComponent();
-            this.checkBox1.Text = nom;
+            this.chkEspece.Text = nom;
         }
 
         private void CheckboxEspeces_Load(object sender, EventArgs e)

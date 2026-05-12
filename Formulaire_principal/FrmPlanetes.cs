@@ -27,11 +27,59 @@ namespace Formulaire_principal
         {
             try
             {
+                flp1.Controls.Clear();
+                string txt = "";
+                if (txtMinTemp.Text != "")
+                {
+                    txt += $" AND p.temperature >= {txtMinTemp.Text}";
+                }
+                if (txtMaxTemp.Text != "")
+                {
+                    txt += $" AND p.temperature <= {txtMaxTemp.Text}";
+                }
+                if (txtMinGrav.Text != "")
+                {
+                    txt += $" AND p.gravite >= {txtMinGrav.Text}";
+                }
+                if (txtMaxGrav.Text != "")
+                {
+                    txt += $" AND p.gravite <= {txtMaxGrav.Text}";
+                }
+                string txtEspece = "";
+                for (int i = 0; i < flp2.Controls.Count; i++)
+                {
+                    if (flp2.Controls[i] is CheckboxEspeces userCtrl)
+                    {
+                        CheckBox cb = userCtrl.Controls["chkEspece"] as CheckBox;
+
+                        if (cb != null && cb.Checked)
+                        {
+                            if(txtEspece == "")
+                            {
+                                txtEspece += $" AND Especes LIKE '%{cb.Text}%'";
+                            }
+                            else
+                            {
+                                txtEspece += $" OR Especes LIKE '%{cb.Text}%'";
+                            }
+                        }
+                    }
+                }
+                if (rdbSans.Checked)
+                {
+                    txt += " AND p.dataBazON = 0";
+                }
+                else if (rdbAvec.Checked)
+                {
+                    txt += " AND p.dataBazON = 1";
+                }
                 string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, GROUP_CONCAT(e.nom, '/') as Especes, GROUP_CONCAT(h.pourcentage, '/') as Pourcentages
                             FROM Planete p
                             LEFT JOIN Habiter h ON h.nomPlanete = p.nom
                             LEFT JOIN Espece e ON e.id = h.idEspece
-                            GROUP BY p.nom";
+                            WHERE p.nom LIKE '%{txtNom.Text}%'{txt}
+                            GROUP BY p.nom
+                            HAVING 1=1{txtEspece}";
                 SQLiteCommand cmd2 = new SQLiteCommand(sql2, co);
                 SQLiteDataReader dr2 = cmd2.ExecuteReader();
                 while (dr2.Read())
@@ -96,8 +144,25 @@ namespace Formulaire_principal
                            missions = Convert.ToInt32(dr["nbMissions"]).ToString();
                         }
                     }
-                    InfoPlanete info = new InfoPlanete(nom, temperature, gravite, dataBazON, especes, pourcentages, missions);
-                    flp1.Controls.Add(info);
+                    int filtreMin = 0;
+                    if (!string.IsNullOrWhiteSpace(txtMinMission.Text))
+                    {
+                        int.TryParse(txtMinMission.Text, out filtreMin);
+                    }
+
+                    int filtreMax = int.MaxValue;
+                    if (!string.IsNullOrWhiteSpace(txtMaxMission.Text))
+                    {
+                        int.TryParse(txtMaxMission.Text, out filtreMax);
+                    }
+
+                    int.TryParse(missions, out int nbMissionsActuelles);
+
+                    if (nbMissionsActuelles >= filtreMin && nbMissionsActuelles <= filtreMax)
+                    {
+                        InfoPlanete info = new InfoPlanete(nom, temperature, gravite, dataBazON, especes, pourcentages, missions);
+                        flp1.Controls.Add(info);
+                    }
                 }
             }
             catch (SQLiteException err)
@@ -167,6 +232,19 @@ namespace Formulaire_principal
             {
                 e.Handled = false;
             }
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                if (txtMinGrav.Text.Contains(".") || txtMinGrav.Text.Length == 0 || (txtMinGrav.Text.Length == 1 && txtMinGrav.Text == "-"))
+                {
+                    e.KeyChar = '.';
+                    e.Handled = true;
+                }
+                else
+                {
+                    e.KeyChar = '.';
+                    e.Handled = false;
+                }
+            }
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
@@ -177,9 +255,22 @@ namespace Formulaire_principal
         {
             e.Handled = true;
 
-            if (e.KeyChar == '-' && txtMinTemp.Text.Length == 0)
+            if (e.KeyChar == '-' && txtMaxTemp.Text.Length == 0)
             {
                 e.Handled = false;
+            }
+            if (e.KeyChar == ',' || e.KeyChar == '.')
+            {
+                if (txtMaxGrav.Text.Contains(".") || txtMaxGrav.Text.Length == 0 || (txtMaxGrav.Text.Length == 1 && txtMaxGrav.Text == "-"))
+                {
+                    e.KeyChar = '.';
+                    e.Handled = true;
+                }
+                else 
+                {
+                    e.KeyChar = '.';
+                    e.Handled = false;
+                }
             }
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
@@ -191,6 +282,7 @@ namespace Formulaire_principal
         {
             rdbSans.Checked = false;
             rdbAvec.Checked = false;
+            charger_planetes();
         }
 
         private void btnReinitialiserEspeces_Click(object sender, EventArgs e)
@@ -219,25 +311,34 @@ namespace Formulaire_principal
 
         private void btnRechercher_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtMinGrav.Text) > Convert.ToInt32(txtMaxGrav.Text))
+            if (int.TryParse(txtMinGrav.Text, out int minG) && int.TryParse(txtMaxGrav.Text, out int maxG))
             {
-                MessageBox.Show("Le minimum ne peut pas être supérieur au maximum (Gravité)");
-                txtMinGrav.Focus();
+                if (minG > maxG)
+                {
+                    MessageBox.Show("max > min impossible");
+                    txtMinGrav.Focus();
+                    return;
+                }
             }
-            if (Convert.ToInt32(txtMinTemp.Text) > Convert.ToInt32(txtMaxTemp.Text))
+            if (int.TryParse(txtMinTemp.Text, out int minT) && int.TryParse(txtMaxTemp.Text, out int maxT))
             {
-                MessageBox.Show("Le minimum ne peut pas être supérieur au maximum (Température)");
-                txtMinTemp.Focus();
+                if (minT > maxT)
+                {
+                    MessageBox.Show("max > min impossible");
+                    txtMinTemp.Focus();
+                    return;
+                }
             }
-            if (Convert.ToInt32(txtMinMission.Text) > Convert.ToInt32(txtMaxMission.Text))
+            if (int.TryParse(txtMinMission.Text, out int minM) && int.TryParse(txtMaxMission.Text, out int maxM))
             {
-                MessageBox.Show("Le minimum ne peut pas être supérieur au maximum (Mission)");
-                txtMinMission.Focus();
+                if (minM > maxM)
+                {
+                    MessageBox.Show("max > min impossible");
+                    txtMinMission.Focus();
+                    return;
+                }
             }
-            else 
-            {
-                charger_planetes();
-            }
+            charger_planetes();
         }
 
         private void btnReinitialiser_Click(object sender, EventArgs e)
@@ -253,6 +354,7 @@ namespace Formulaire_principal
             flp2.Controls.Clear();
             chargerEspeces();
             txtNom.Text = "";
+            charger_planetes();
         }
     }
 }
