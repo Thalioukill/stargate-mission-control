@@ -11,8 +11,21 @@ using System.Windows.Forms;
 
 namespace Formulaire_principal
 {
+    public class ListItem
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
     public partial class FrmMission : Form
     {
+        //DEMANDER AU PROF : ligne 456 meilleur moyen ou non ?
+        private SQLiteTransaction trans;
+
         private SQLiteConnection co = Connexion.Connec;
 
         //instanciation du DataSet
@@ -472,6 +485,7 @@ namespace Formulaire_principal
                 }
             }
             MessageBox.Show("Membres ajoutés !");
+            RemplirCboCapture();
             PartieCinqueVisible();
 
         }
@@ -577,6 +591,26 @@ namespace Formulaire_principal
             }
         }
 
+        private void RemplirCboCapture()
+        {
+            try
+            {
+                string sql = @"SELECT (nom || ' - ' || couleur) AS nomComplet, 
+                                id FROM Espece";
+
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cboCapture.DataSource = dt;
+                cboCapture.DisplayMember = "nomComplet";
+                cboCapture.ValueMember = "id";
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
         private void PartieQuatreVisible()
         {
             foreach (Control c in pnl2.Controls)
@@ -666,6 +700,61 @@ namespace Formulaire_principal
                 }
 
             }
+        }
+
+        private void btnAddCapture_Click(object sender, EventArgs e)
+        {
+            List<int> values = new List<int>();
+            string texte = cboCapture.Text + "--> objectif de capture : " + nud1.Value.ToString();
+            ListItem li = new ListItem { Name = texte, Value = int.Parse(cboCapture.SelectedValue.ToString()) };
+            for (int i = 0; i < lstbCapture.Items.Count; i++)
+            {
+                values.Add(((ListItem)lstbCapture.Items[i]).Value);
+            }
+            if (!values.Contains(li.Value))
+            {
+                lstbCapture.Items.Add(li);
+            }
+            else
+            {
+                MessageBox.Show("Espèce déjà présente dans la liste !");
+            }
+            
+        }
+
+        private void btnValidObj_Click(object sender, EventArgs e)
+        {
+            this.trans = co.BeginTransaction();
+
+            try
+            {
+                for (int i = 0; i < lstbCapture.Items.Count; i++)
+                {
+                    int id = ((ListItem)lstbCapture.Items[i]).Value;
+
+                    string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
+                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
+
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+
+                    cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
+                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", id);
+                    cmd.Parameters.AddWithValue("@nombre", int.Parse(nud1.Value.ToString()));
+
+                    cmd.ExecuteNonQuery();
+                    
+                }
+                trans.Commit();
+                MessageBox.Show("Objectifs de capture enregistrés !");
+                MessageBox.Show("Tout est bon de notre côté, tous les détails de votre mission ont été validés !");
+            }
+            catch (SQLiteException err)
+            {
+                trans.Rollback();
+                MessageBox.Show(err.Message);
+            }
+
         }
     }
 }

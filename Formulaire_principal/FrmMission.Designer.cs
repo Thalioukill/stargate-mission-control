@@ -59,9 +59,9 @@
             this.btnAddSelect = new System.Windows.Forms.Button();
             this.btnAddCapture = new System.Windows.Forms.Button();
             this.btnValidObj = new System.Windows.Forms.Button();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.lstbCapture = new System.Windows.Forms.ListBox();
             this.nud1 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboCapture = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnRefaire = new System.Windows.Forms.Button();
@@ -393,6 +393,7 @@
             this.btnAddCapture.TabIndex = 24;
             this.btnAddCapture.Text = "Ajouter";
             this.btnAddCapture.UseVisualStyleBackColor = true;
+            this.btnAddCapture.Click += new System.EventHandler(this.btnAddCapture_Click);
             // 
             // btnValidObj
             // 
@@ -402,15 +403,16 @@
             this.btnValidObj.TabIndex = 23;
             this.btnValidObj.Text = "Valider Objectifs";
             this.btnValidObj.UseVisualStyleBackColor = true;
+            this.btnValidObj.Click += new System.EventHandler(this.btnValidObj_Click);
             // 
-            // listBox3
+            // lstbCapture
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 25;
-            this.listBox3.Location = new System.Drawing.Point(38, 142);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(651, 154);
-            this.listBox3.TabIndex = 22;
+            this.lstbCapture.FormattingEnabled = true;
+            this.lstbCapture.ItemHeight = 25;
+            this.lstbCapture.Location = new System.Drawing.Point(38, 142);
+            this.lstbCapture.Name = "lstbCapture";
+            this.lstbCapture.Size = new System.Drawing.Size(651, 154);
+            this.lstbCapture.TabIndex = 22;
             // 
             // nud1
             // 
@@ -419,13 +421,13 @@
             this.nud1.Size = new System.Drawing.Size(85, 31);
             this.nud1.TabIndex = 21;
             // 
-            // comboBox2
+            // cboCapture
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(38, 76);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(518, 33);
-            this.comboBox2.TabIndex = 19;
+            this.cboCapture.FormattingEnabled = true;
+            this.cboCapture.Location = new System.Drawing.Point(38, 76);
+            this.cboCapture.Name = "cboCapture";
+            this.cboCapture.Size = new System.Drawing.Size(518, 33);
+            this.cboCapture.TabIndex = 19;
             // 
             // label3
             // 
@@ -560,9 +562,9 @@
             // 
             this.pnl3.Controls.Add(this.btnAddCapture);
             this.pnl3.Controls.Add(this.btnValidObj);
-            this.pnl3.Controls.Add(this.listBox3);
+            this.pnl3.Controls.Add(this.lstbCapture);
             this.pnl3.Controls.Add(this.nud1);
-            this.pnl3.Controls.Add(this.comboBox2);
+            this.pnl3.Controls.Add(this.cboCapture);
             this.pnl3.Controls.Add(this.label3);
             this.pnl3.Location = new System.Drawing.Point(23, 911);
             this.pnl3.Name = "pnl3";
@@ -635,12 +637,12 @@
         private System.Windows.Forms.ListBox lstbMembres;
         private System.Windows.Forms.Label lblnomMembre;
         private System.Windows.Forms.ListBox lstbPartis;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboCapture;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nud1;
         private System.Windows.Forms.Button btnValidObj;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox lstbCapture;
         private System.Windows.Forms.Button btnAddCapture;
         private System.Windows.Forms.Button btnAddSelect;
         private System.Windows.Forms.Button btnSuppSelect;
