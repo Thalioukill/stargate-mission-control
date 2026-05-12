@@ -53,8 +53,9 @@ namespace Formulaire_principal
 
             try
             {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
-                            AS nomComplet, me.matricule FROM Membre me
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
+                            AS nomComplet, (me.nom || ' ' || me.prenom || ' - ' || mi.grade)
+                            AS nomPasComplet, me.matricule FROM Membre me
                             JOIN Militaire mi ON
                             me.matricule = mi.matriculeMembre
                             WHERE me.matricule LIKE 'M%'";
@@ -62,9 +63,8 @@ namespace Formulaire_principal
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 cboChef.DataSource = dt;
-                cboChef.DisplayMember = "nomComplet";
+                cboChef.DisplayMember = "nomPasComplet";
                 cboChef.ValueMember = "matricule";
-
             }
             catch(SQLiteException err)
             {
@@ -163,8 +163,9 @@ namespace Formulaire_principal
 
         private void btnValidMission_Click(object sender, EventArgs e)
         {
-            if (dtpDepart.Value > dtpRetour.Value)
+            if (dtpDepart.Value.Date.CompareTo(dtpRetour.Value.Date) > 0)
             {
+                
                 MessageBox.Show("La date de départ ne peut pas être après la date de retour, et la date de retour ne peut pas être avant la date de départ !");
                 
             }
@@ -194,6 +195,7 @@ namespace Formulaire_principal
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
+
                     lstbMembres.Items.Add(cboChef.Text);
                     cboMembres.Focus();
                     cboChef.Enabled = false;
@@ -210,7 +212,9 @@ namespace Formulaire_principal
                         if (c is Label lbl)
                             lbl.ForeColor = SystemColors.ControlDark;
                     }
+                    lblreste.Text = (int.Parse(txtnbMembres.Text)-1).ToString();
                     //Reset();
+                    cboMembres_SelectedIndexChanged(sender, e);
 
                 }
                 catch (SQLiteException err)
@@ -318,13 +322,16 @@ namespace Formulaire_principal
             string texteDecoup = cboMembres.Text;
             int deuxpt = texteDecoup.IndexOf(':');
             if (deuxpt != -1)
-                lblnomMembre.Text = texteDecoup.Substring(0, deuxpt -1) + " est déjà parti(e) en mission avec :";
+            {
+                lblnomMembre.Text = texteDecoup.Substring(0, deuxpt - 1) + " est déjà parti(e) en mission avec :";
+            }
             else
+            {
                 lblnomMembre.Text = texteDecoup + " est déjà parti(e) en mission avec :";
-
+            }
             try
             {
-                string sql = @"SELECT co.matriculeMembre FROM Composer co
+                string sql = @"SELECT DISTINCT co.matriculeMembre FROM Composer co
                             WHERE (co.numeroMission, co.nomPlanete) IN
                             (SELECT co2.numeroMission, co2.nomPlanete FROM Composer co2 
                              WHERE co2.matriculeMembre = @matricule)
@@ -359,44 +366,161 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
 
-            
         }
 
         private void btnAddMembre_Click(object sender, EventArgs e)
         {
-            if(!lstbMembres.Items.Contains(cboMembres.Text))
+            int reste = int.Parse(lblreste.Text);
+            if (reste > 0)
             {
-                lstbMembres.Items.Add(cboMembres.Text);
+                
+                if (!lstbMembres.Items.Contains(cboMembres.Text))
+                {
+                    reste -= 1;
+                    lblreste.Text = reste.ToString();
+                    lstbMembres.Items.Add(cboMembres.Text);
+                }
+                else
+                {
+                    MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
+                }
             }
             else
             {
-                MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
+                MessageBox.Show("Tous les membres ont déjà été ajoutés !");
+                
             }
             
         }
 
         private void btnRefaire_Click(object sender, EventArgs e)
         {
-            if (!lstbMembres.Items.Contains(cboMembres.Text))
+            
+            
+            int reste = int.Parse(lblreste.Text);
+
+            if (reste > 0)
             {
-                lstbMembres.Items.Add(cboMembres.Text);
+                lstbMembres.Items.Clear();
+                foreach (string i in lstbPartis.Items)
+                {
+                    
+                    reste -= 1;
+                    lblreste.Text = reste.ToString();
+                    lstbMembres.Items.Add(i);
+                    
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Impossible de refaire la même équipe (trop de membres) !");
+            }
+        }
+
+        private void btnvalidMembres_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
+                            (@nomPlanete, @numeroMission, @matriculeMembre)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
+                cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                cmd.Parameters.AddWithValue("matriculeMembre", cboChef.SelectedValue.ToString());
+                cmd.ExecuteNonQuery();
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            for (int i = 1; i < lstbMembres.Items.Count; i++)
+            {
+                try
+                {
+                    string matricule = "";
+
+                    string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
+                            (@nomPlanete, @numeroMission, @matriculeMembre)";
+
+                    
+
+                    DataTable dt = (DataTable)cboMembres.DataSource;
+                    DataRow[] rows = dt.Select($"nomComplet = '{lstbMembres.Items[i]}'");
+
+                    
+                    if (rows.Length > 0)
+                    {
+                        matricule = rows[0]["matricule"].ToString();
+                    }
+
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
+                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                    cmd.Parameters.AddWithValue("matriculeMembre", matricule);
+                    cmd.ExecuteNonQuery();
+                }
+                catch(SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+            MessageBox.Show("Membres ajoutés !");
+
+
+
+        }
+
+        private void btnAddSelect_Click(object sender, EventArgs e)
+        {
+            
+            if (lstbPartis.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-dessus.");
+
             }
             else
             {
-                MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
+                foreach (string elt in lstbPartis.SelectedItems)
+                {
+                    if(!lstbMembres.Items.Contains(elt))
+                    {
+                        lstbMembres.Items.Add(elt);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{elt} déjà présent dans la liste !");
+                    }
+                    
+                    
+                }
             }
-            foreach (string i in lstbPartis.Items)
+        }
+
+        private void btnSuppSelect_Click(object sender, EventArgs e)
+        {
+            List<string> remove = new List<string>();
+            if (lstbMembres.SelectedItem == null)
             {
-                if (!lstbMembres.Items.Contains(i))
-                {
-                    lstbMembres.Items.Add(i);
-                }
-                else
-                {
-                    MessageBox.Show($"{i} déjà présent dans la liste !");
-                }
-                
+                MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-dessus.");
+
             }
+            else
+            {
+                foreach (string elt in lstbMembres.SelectedItems)
+                {
+                    if(elt != cboChef.Text)
+                    {
+                        remove.Add(elt);
+                    }         
+                }
+                foreach(string elt2 in remove)
+                {
+                    lstbMembres.Items.Remove(elt2);
+                }
+            }
+            
         }
     }
 }

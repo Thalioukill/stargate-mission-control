@@ -55,6 +55,7 @@
             this.cboPlanete = new System.Windows.Forms.ComboBox();
             this.lblChoix = new System.Windows.Forms.Label();
             this.grpPrecisions = new System.Windows.Forms.GroupBox();
+            this.btnAddSelect = new System.Windows.Forms.Button();
             this.btnAddCapture = new System.Windows.Forms.Button();
             this.btnValidObj = new System.Windows.Forms.Button();
             this.listBox3 = new System.Windows.Forms.ListBox();
@@ -71,6 +72,7 @@
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
+            this.btnSuppSelect = new System.Windows.Forms.Button();
             this.grpNouvelleMission.SuspendLayout();
             this.pnl.SuspendLayout();
             this.grpPrecisions.SuspendLayout();
@@ -350,6 +352,8 @@
             // 
             // grpPrecisions
             // 
+            this.grpPrecisions.Controls.Add(this.btnSuppSelect);
+            this.grpPrecisions.Controls.Add(this.btnAddSelect);
             this.grpPrecisions.Controls.Add(this.btnAddCapture);
             this.grpPrecisions.Controls.Add(this.btnValidObj);
             this.grpPrecisions.Controls.Add(this.listBox3);
@@ -368,10 +372,20 @@
             this.grpPrecisions.Controls.Add(this.lblAffect);
             this.grpPrecisions.Location = new System.Drawing.Point(1109, 24);
             this.grpPrecisions.Name = "grpPrecisions";
-            this.grpPrecisions.Size = new System.Drawing.Size(1059, 1256);
+            this.grpPrecisions.Size = new System.Drawing.Size(1094, 1256);
             this.grpPrecisions.TabIndex = 1;
             this.grpPrecisions.TabStop = false;
             this.grpPrecisions.Text = "Précisions sur la mission créée";
+            // 
+            // btnAddSelect
+            // 
+            this.btnAddSelect.Location = new System.Drawing.Point(414, 442);
+            this.btnAddSelect.Name = "btnAddSelect";
+            this.btnAddSelect.Size = new System.Drawing.Size(272, 55);
+            this.btnAddSelect.TabIndex = 25;
+            this.btnAddSelect.Text = "Ajouter la sélection";
+            this.btnAddSelect.UseVisualStyleBackColor = true;
+            this.btnAddSelect.Click += new System.EventHandler(this.btnAddSelect_Click);
             // 
             // btnAddCapture
             // 
@@ -449,6 +463,7 @@
             this.lstbMembres.ItemHeight = 25;
             this.lstbMembres.Location = new System.Drawing.Point(61, 592);
             this.lstbMembres.Name = "lstbMembres";
+            this.lstbMembres.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstbMembres.Size = new System.Drawing.Size(928, 179);
             this.lstbMembres.TabIndex = 15;
             // 
@@ -467,6 +482,7 @@
             this.lstbPartis.ItemHeight = 25;
             this.lstbPartis.Location = new System.Drawing.Point(61, 249);
             this.lstbPartis.Name = "lstbPartis";
+            this.lstbPartis.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstbPartis.Size = new System.Drawing.Size(928, 179);
             this.lstbPartis.TabIndex = 12;
             // 
@@ -478,6 +494,7 @@
             this.btnvalidMembres.TabIndex = 11;
             this.btnvalidMembres.Text = "Valider membres";
             this.btnvalidMembres.UseVisualStyleBackColor = true;
+            this.btnvalidMembres.Click += new System.EventHandler(this.btnvalidMembres_Click);
             // 
             // btnAddMembre
             // 
@@ -517,12 +534,22 @@
             this.lblAffect.TabIndex = 6;
             this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
+            // btnSuppSelect
+            // 
+            this.btnSuppSelect.Location = new System.Drawing.Point(491, 791);
+            this.btnSuppSelect.Name = "btnSuppSelect";
+            this.btnSuppSelect.Size = new System.Drawing.Size(272, 55);
+            this.btnSuppSelect.TabIndex = 26;
+            this.btnSuppSelect.Text = "Supprimer la sélection";
+            this.btnSuppSelect.UseVisualStyleBackColor = true;
+            this.btnSuppSelect.Click += new System.EventHandler(this.btnSuppSelect_Click);
+            // 
             // FrmMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2193, 1292);
+            this.ClientSize = new System.Drawing.Size(2238, 1292);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
             this.Name = "FrmMission";
@@ -586,5 +613,7 @@
         private System.Windows.Forms.Button btnValidObj;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Button btnAddCapture;
+        private System.Windows.Forms.Button btnAddSelect;
+        private System.Windows.Forms.Button btnSuppSelect;
     }
 }
