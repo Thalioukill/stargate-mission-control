@@ -54,10 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckboxEspeces.cs" />
-    <Compile Include="CheckboxEspeces.Designer.cs">
-      <DependentUpon>CheckboxEspeces.cs</DependentUpon>
-    </Compile>
     <Compile Include="Connexion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -89,16 +85,21 @@
     <Compile Include="FrmTableauDeBord.Designer.cs">
       <DependentUpon>FrmTableauDeBord.cs</DependentUpon>
     </Compile>
-    <Compile Include="InfoPlanete.cs" />
-    <Compile Include="InfoPlanete.Designer.cs">
-      <DependentUpon>InfoPlanete.cs</DependentUpon>
+    <Compile Include="InfoAlien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoAlien.Designer.cs">
+      <DependentUpon>InfoAlien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoAliensEnnemis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoAliensEnnemis.Designer.cs">
+      <DependentUpon>InfoAliensEnnemis.cs</DependentUpon>
     </Compile>
     <Compile Include="mesDatas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CheckboxEspeces.resx">
-      <DependentUpon>CheckboxEspeces.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,8 +109,11 @@
     <EmbeddedResource Include="FrmPlanetes.resx">
       <DependentUpon>FrmPlanetes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InfoPlanete.resx">
-      <DependentUpon>InfoPlanete.cs</DependentUpon>
+    <EmbeddedResource Include="InfoAlien.resx">
+      <DependentUpon>InfoAlien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoAliensEnnemis.resx">
+      <DependentUpon>InfoAliensEnnemis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

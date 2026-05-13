@@ -31,6 +31,7 @@ namespace Formulaire_principal
                 string path = "../../Images/Aliens/" + nomalien;
                 if (System.IO.File.Exists(path))
                 {
+                    picAlliees.SizeMode = PictureBoxSizeMode.Zoom;
                     picAlliees.Image = Image.FromFile(path);
                 }
                 else
