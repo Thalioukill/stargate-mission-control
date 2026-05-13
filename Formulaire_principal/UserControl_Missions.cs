@@ -24,13 +24,14 @@ namespace Formulaire_principal
         // instance du délgate accessible depuis le formulaire parent
         public afficherMission afficheur;
 
-        public UserControl_Missions(string nomPlanete, string numeroMission, string date, string chef, string matriculeChef, string budget, string nomImage)
+        public UserControl_Missions(string nomPlanete, string numeroMission, string date, string nbJours, string chef, string matriculeChef, string budget, string nomImage)
         {
             InitializeComponent();
             this.lblNomMission.Text += nomPlanete+numeroMission;
             this.lblDate.Text += date;
             this.lblChefMission.Text += chef;
             this.lblBudget.Text += budget;
+            this.lblNbJours.Text += nbJours;
 
             if (nomImage != string.Empty)
             {
@@ -79,6 +80,5 @@ namespace Formulaire_principal
                 this.afficheur(this, e); // on déclenche la fonction avec le UserControl lui-meme
             }
         }
-
     }
 }

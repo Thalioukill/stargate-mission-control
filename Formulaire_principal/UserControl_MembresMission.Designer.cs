@@ -37,18 +37,18 @@
             // 
             // picMembre
             // 
-            this.picMembre.Location = new System.Drawing.Point(13, 26);
+            this.picMembre.Location = new System.Drawing.Point(16, 26);
             this.picMembre.Name = "picMembre";
-            this.picMembre.Size = new System.Drawing.Size(148, 129);
+            this.picMembre.Size = new System.Drawing.Size(159, 129);
             this.picMembre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMembre.TabIndex = 0;
             this.picMembre.TabStop = false;
             // 
             // lblNom
             // 
-            this.lblNom.Location = new System.Drawing.Point(24, 173);
+            this.lblNom.Location = new System.Drawing.Point(13, 175);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(148, 23);
+            this.lblNom.Size = new System.Drawing.Size(162, 23);
             this.lblNom.TabIndex = 1;
             this.lblNom.Text = "Nom : ";
             // 
@@ -62,7 +62,7 @@
             // lbl
             // 
             this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(24, 209);
+            this.lbl.Location = new System.Drawing.Point(13, 209);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(0, 16);
             this.lbl.TabIndex = 3;
@@ -76,7 +76,7 @@
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.picMembre);
             this.Name = "UserControl_MembresMission";
-            this.Size = new System.Drawing.Size(172, 260);
+            this.Size = new System.Drawing.Size(191, 260);
             this.Load += new System.EventHandler(this.UserControl_MembresMission_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).EndInit();
             this.ResumeLayout(false);

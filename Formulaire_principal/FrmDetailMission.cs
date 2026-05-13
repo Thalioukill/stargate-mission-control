@@ -194,23 +194,54 @@ namespace Formulaire_principal
                     //Création de l'instance du Label
                     Label lbl = new Label();
 
-                    // Configuration du texte (On utilise l'instance 'lbl' et non la classe 'Label')
+                    // on récupère le nom de la couleur pour ensuite afficher le label en couleur
+                    string nomCouleur = tabInfosEnnemi[0]["couleur"].ToString(); // Ex: "Gris"
+
                     lbl.Text = tabInfosEnnemi[0]["nom"].ToString() + " --> " + captures + " prise(s)";
 
-                    // réglages ergonomiques importants
+
                     lbl.AutoSize = true; // Pour que le label s'adapte à la longueur du texte
                     lbl.Margin = new Padding(5); // Pour aérer l'affichage dans le panel
-                    lbl.Font = new Font(lbl.Font, FontStyle.Bold); // Optionnel : mettre en gras
+                    lbl.Font = new Font(lbl.Font, FontStyle.Bold);
 
-                    //AJOUT AU PANEL (On ajoute l'objet 'lbl', pas une chaîne de caractères)
+                    // attribution de la couleur grâce à une méthode de conversion
+                    lbl.ForeColor = ConvertirNomCouleur(nomCouleur);
+
+                    //AJOUT AU PANEL
                     flpObjectifCaptures.Controls.Add(lbl);
+
                 }
             }
 
         }
+
+        // Méthode pour mapper les couleurs du projet Stargate
+        private Color ConvertirNomCouleur(string couleurFr)
+        {
+            // On utilise un switch pour faire correspondre le texte DB et la couleur C#
+            switch (couleurFr.ToLower())
+            {
+                case "gris": return Color.Gray;
+                case "pourpre": return Color.Purple;
+                case "orange": return Color.Orange;
+                case "rose": return Color.Pink;
+                case "violet": return Color.Violet;
+                case "marron": return Color.SaddleBrown;
+                case "vert": return Color.Green;
+                case "bleu": return Color.Blue;
+                default: return Color.Black; // Couleur par défaut si non trouvé
+            }
+        }
+
         private void FrmDetailMission_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnJournal_Click(object sender, EventArgs e)
+        {
+            FrmJournalDeBord fjdb = new FrmJournalDeBord(this.idPlanete, this.idNumero);
+            DialogResult dr = fjdb.ShowDialog();
         }
     }
 }

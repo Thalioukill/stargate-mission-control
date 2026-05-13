@@ -28,7 +28,6 @@ namespace Formulaire_principal
             if (image != string.Empty)
             {
                 picMembre.Image = Image.FromFile("../../Images/Membres_Mission/" + image +".jpg");
-
             }
 
             if (estChef)

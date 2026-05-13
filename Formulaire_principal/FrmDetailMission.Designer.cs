@@ -135,12 +135,13 @@
             // 
             // btnJournal
             // 
-            this.btnJournal.Location = new System.Drawing.Point(835, 1023);
+            this.btnJournal.Location = new System.Drawing.Point(716, 798);
             this.btnJournal.Name = "btnJournal";
             this.btnJournal.Size = new System.Drawing.Size(144, 39);
             this.btnJournal.TabIndex = 12;
             this.btnJournal.Text = "Accès Journal";
             this.btnJournal.UseVisualStyleBackColor = true;
+            this.btnJournal.Click += new System.EventHandler(this.btnJournal_Click);
             // 
             // flpObjectifCaptures
             // 
@@ -148,7 +149,7 @@
             this.flpObjectifCaptures.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpObjectifCaptures.Location = new System.Drawing.Point(25, 798);
             this.flpObjectifCaptures.Name = "flpObjectifCaptures";
-            this.flpObjectifCaptures.Size = new System.Drawing.Size(954, 200);
+            this.flpObjectifCaptures.Size = new System.Drawing.Size(494, 274);
             this.flpObjectifCaptures.TabIndex = 13;
             // 
             // lblObjectifCapture
@@ -164,7 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 1074);
+            this.ClientSize = new System.Drawing.Size(1960, 1175);
             this.Controls.Add(this.lblObjectifCapture);
             this.Controls.Add(this.flpObjectifCaptures);
             this.Controls.Add(this.btnJournal);

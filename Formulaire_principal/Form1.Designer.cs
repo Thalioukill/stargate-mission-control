@@ -35,7 +35,9 @@
             this.flpMissions = new System.Windows.Forms.FlowLayoutPanel();
             this.plMissions = new System.Windows.Forms.Panel();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
+            this.btnRecherche = new System.Windows.Forms.Button();
             this.lblBd = new System.Windows.Forms.Label();
+            this.txtBudgetMax = new System.Windows.Forms.TextBox();
             this.lblPlanete = new System.Windows.Forms.Label();
             this.cboPlanete = new System.Windows.Forms.ComboBox();
             this.btnRAZ = new System.Windows.Forms.Button();
@@ -45,8 +47,6 @@
             this.rdbEnCours = new System.Windows.Forms.RadioButton();
             this.rdbPasse = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRecherche = new System.Windows.Forms.Button();
-            this.txtBudgetMax = new System.Windows.Forms.TextBox();
             this.plMissions.SuspendLayout();
             this.grpFiltres.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             // btnPlanetes
             // 
             this.btnPlanetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlanetes.Location = new System.Drawing.Point(802, 702);
+            this.btnPlanetes.Location = new System.Drawing.Point(1160, 794);
             this.btnPlanetes.Margin = new System.Windows.Forms.Padding(4);
             this.btnPlanetes.Name = "btnPlanetes";
             this.btnPlanetes.Size = new System.Drawing.Size(100, 39);
@@ -66,7 +66,7 @@
             // btnMission
             // 
             this.btnMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMission.Location = new System.Drawing.Point(333, 702);
+            this.btnMission.Location = new System.Drawing.Point(390, 794);
             this.btnMission.Margin = new System.Windows.Forms.Padding(4);
             this.btnMission.Name = "btnMission";
             this.btnMission.Size = new System.Drawing.Size(144, 39);
@@ -78,7 +78,7 @@
             // btnAliens
             // 
             this.btnAliens.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAliens.Location = new System.Drawing.Point(586, 702);
+            this.btnAliens.Location = new System.Drawing.Point(729, 794);
             this.btnAliens.Margin = new System.Windows.Forms.Padding(4);
             this.btnAliens.Name = "btnAliens";
             this.btnAliens.Size = new System.Drawing.Size(100, 39);
@@ -90,7 +90,7 @@
             // btnTableauDeBord
             // 
             this.btnTableauDeBord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTableauDeBord.Location = new System.Drawing.Point(78, 702);
+            this.btnTableauDeBord.Location = new System.Drawing.Point(47, 794);
             this.btnTableauDeBord.Margin = new System.Windows.Forms.Padding(4);
             this.btnTableauDeBord.Name = "btnTableauDeBord";
             this.btnTableauDeBord.Size = new System.Drawing.Size(158, 39);
@@ -104,7 +104,7 @@
             this.flpMissions.AutoScroll = true;
             this.flpMissions.Location = new System.Drawing.Point(21, 152);
             this.flpMissions.Name = "flpMissions";
-            this.flpMissions.Size = new System.Drawing.Size(1026, 427);
+            this.flpMissions.Size = new System.Drawing.Size(1489, 557);
             this.flpMissions.TabIndex = 4;
             // 
             // plMissions
@@ -113,7 +113,7 @@
             this.plMissions.Controls.Add(this.flpMissions);
             this.plMissions.Location = new System.Drawing.Point(26, 28);
             this.plMissions.Name = "plMissions";
-            this.plMissions.Size = new System.Drawing.Size(1072, 637);
+            this.plMissions.Size = new System.Drawing.Size(1544, 733);
             this.plMissions.TabIndex = 0;
             // 
             // grpFiltres
@@ -132,10 +132,20 @@
             this.grpFiltres.Controls.Add(this.label1);
             this.grpFiltres.Location = new System.Drawing.Point(21, 22);
             this.grpFiltres.Name = "grpFiltres";
-            this.grpFiltres.Size = new System.Drawing.Size(1026, 113);
+            this.grpFiltres.Size = new System.Drawing.Size(1489, 113);
             this.grpFiltres.TabIndex = 5;
             this.grpFiltres.TabStop = false;
             this.grpFiltres.Text = "Filtres";
+            // 
+            // btnRecherche
+            // 
+            this.btnRecherche.Location = new System.Drawing.Point(905, 31);
+            this.btnRecherche.Name = "btnRecherche";
+            this.btnRecherche.Size = new System.Drawing.Size(102, 23);
+            this.btnRecherche.TabIndex = 12;
+            this.btnRecherche.Text = "Rechercher";
+            this.btnRecherche.UseVisualStyleBackColor = true;
+            this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
             // 
             // lblBd
             // 
@@ -145,6 +155,14 @@
             this.lblBd.Size = new System.Drawing.Size(116, 16);
             this.lblBd.TabIndex = 11;
             this.lblBd.Text = "Budget maximum :";
+            // 
+            // txtBudgetMax
+            // 
+            this.txtBudgetMax.Location = new System.Drawing.Point(649, 57);
+            this.txtBudgetMax.Name = "txtBudgetMax";
+            this.txtBudgetMax.Size = new System.Drawing.Size(151, 22);
+            this.txtBudgetMax.TabIndex = 9;
+            this.txtBudgetMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudgetMax_KeyPress);
             // 
             // lblPlanete
             // 
@@ -232,29 +250,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Statut des missions : ";
             // 
-            // btnRecherche
-            // 
-            this.btnRecherche.Location = new System.Drawing.Point(905, 31);
-            this.btnRecherche.Name = "btnRecherche";
-            this.btnRecherche.Size = new System.Drawing.Size(102, 23);
-            this.btnRecherche.TabIndex = 12;
-            this.btnRecherche.Text = "Rechercher";
-            this.btnRecherche.UseVisualStyleBackColor = true;
-            this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
-            // 
-            // txtBudgetMax
-            // 
-            this.txtBudgetMax.Location = new System.Drawing.Point(649, 57);
-            this.txtBudgetMax.Name = "txtBudgetMax";
-            this.txtBudgetMax.Size = new System.Drawing.Size(151, 22);
-            this.txtBudgetMax.TabIndex = 9;
-            this.txtBudgetMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudgetMax_KeyPress);
-            // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1128, 774);
+            this.ClientSize = new System.Drawing.Size(1619, 858);
             this.Controls.Add(this.plMissions);
             this.Controls.Add(this.btnAliens);
             this.Controls.Add(this.btnTableauDeBord);
@@ -264,6 +264,7 @@
             this.Name = "FrmAccueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accueil Stargate";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.plMissions.ResumeLayout(false);
             this.grpFiltres.ResumeLayout(false);

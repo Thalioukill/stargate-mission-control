@@ -255,12 +255,16 @@ namespace Formulaire_principal
                         string numero = dr["numero"].ToString();
                         string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
                         string chef = dr["prenom"]+ " " + dr["nom"];
+                        DateTime dateDepart = DateTime.Parse(dr["dateDepart"].ToString());
+                        DateTime dateRetour = DateTime.Parse(dr["dateRetour"].ToString());
+                        TimeSpan diff = dateRetour.Subtract(dateDepart);
+                        string nbJours = diff.Days.ToString()+ " jours";
                         string matriculeChef = dr["matriculeChef"].ToString();
                         string budget = dr["budget"].ToString();
                         string image = dr["nomPlanete"] + ".jpg";
 
                         // Instanciation du User Control
-                        UserControl_Missions uc = new UserControl_Missions(nom, numero, date, chef, matriculeChef, budget, image);
+                        UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
 
                         // délégué 
                         uc.afficheur = OuvrirDetailMission;

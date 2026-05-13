@@ -67,6 +67,12 @@
     <Compile Include="FrmAliens.Designer.cs">
       <DependentUpon>FrmAliens.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmJournalDeBord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmJournalDeBord.Designer.cs">
+      <DependentUpon>FrmJournalDeBord.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDetailMission.resx">
       <DependentUpon>FrmDetailMission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmJournalDeBord.resx">
+      <DependentUpon>FrmJournalDeBord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
