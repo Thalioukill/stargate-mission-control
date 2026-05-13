@@ -83,7 +83,7 @@ namespace Formulaire_principal
                 string coul = dr["couleur"].ToString();
                 string planete = dr["Planetes"] == DBNull.Value ? "Origine inconnue" : dr["Planetes"].ToString();
                 string inst = dr["instrumentMusique"].ToString();
-                string image = nom + ".png";
+                string image = nom + ".jpg";
 
                 InfoAliensAlliees info = new InfoAliensAlliees(nom, bien, coul, planete, inst, image);
                 flp1.Controls.Add(info);
@@ -123,7 +123,7 @@ namespace Formulaire_principal
                         : dr["Planetes"].ToString();
 
                     string arme = dr["typeArme"].ToString();
-                    string image = nomAlien + ".png";
+                    string image = nomAlien + ".jpg";
 
                     InfoAliensEnnemis info = new InfoAliensEnnemis(nomAlien, agressivite, couleur, planete, arme, image);
                     flp2.Controls.Add(info);

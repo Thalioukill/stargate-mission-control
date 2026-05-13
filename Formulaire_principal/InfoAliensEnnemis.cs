@@ -27,7 +27,7 @@ namespace Formulaire_principal
             lblTypeArme.Text = instrument;
             if (nomalien != string.Empty)
             {
-                string path = "../../Images/Aliens/noomahS.jpg";
+                string path = "../../Images/Aliens/" + nomalien;
                 if (System.IO.File.Exists(path))
                 {
                     picEnnemis.Image = Image.FromFile(path);

@@ -28,7 +28,7 @@ namespace Formulaire_principal
             lblInstrument.Text = instrument;
             if (nomalien != string.Empty)
             {
-                string path = "../../Images/Aliens/noomahS.jpg";
+                string path = "../../Images/Aliens/" + nomalien;
                 if (System.IO.File.Exists(path))
                 {
                     picAlliees.Image = Image.FromFile(path);
