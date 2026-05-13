@@ -64,7 +64,7 @@ namespace Formulaire_principal
                             planete = dr["Planetes"].ToString();
                         }
                         string instrument = dr["instrumentMusique"].ToString();
-                        string image = dr["nom"] + ".jpg";
+                        string image = dr["nom"] + ".png";
 
                         InfoAliensAlliees info = new InfoAliensAlliees(nomAlien, bienveillance, couleur, planete, instrument, image);
                         flp1.Controls.Add(info);
@@ -115,7 +115,7 @@ namespace Formulaire_principal
                             planete = dr["Planetes"].ToString();
                         }
                         string instrument = dr["typeArme"].ToString();
-                        string image = dr["nom"] + ".jpg";
+                        string image = dr["nom"] + ".png";
 
                         InfoAliensEnnemis info = new InfoAliensEnnemis(nomAlien, bienveillance, couleur, planete, instrument, image);
                         flp2.Controls.Add(info);

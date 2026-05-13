@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,19 @@ namespace Formulaire_principal
             lblCouleurAlliees.Text = couleur;
             lblPlaneteAlliees.Text = panete;
             lblInstrument.Text = instrument;
-            if(nomalien != string.Empty) 
+            if (nomalien != string.Empty)
             {
-                picAlliees.Image = Image.FromFile("../../Images/Aliens/noomahS.png");
+                string path = "../../Images/Aliens/noomahS.jpg";
+                if (System.IO.File.Exists(path))
+                {
+                    picAlliees.Image = Image.FromFile(path);
+                }
+                else
+                {
+                    MessageBox.Show("Fichier introuvable à : " + System.IO.Path.GetFullPath(path));
+                }
             }
+
         }
 
         private void InfoAlien_Load(object sender, EventArgs e)
