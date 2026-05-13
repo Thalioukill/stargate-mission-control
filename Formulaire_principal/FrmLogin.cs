@@ -73,6 +73,7 @@ namespace Formulaire_principal
                     bool valide = BCrypt.Net.BCrypt.Verify(txtMdp.Text, mdpStocke);//Résultat de l'authentification
                     if (valide)
                     {
+                        MettreaJourDS();
                         MessageBox.Show("Accès autorisé", "Authentification");
                         this.DialogResult = DialogResult.OK;
                     }
@@ -117,6 +118,16 @@ namespace Formulaire_principal
             {
                 btnValider_Click(sender, e);
             }
+        }
+
+        private void MettreaJourDS()
+        {
+            if (ds.Tables.Contains("Admin"))
+            {
+                ds.Tables["Admin"].Clear();
+            }
+            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Mission", co);
+            da.Fill(ds, "Admin");
         }
     }
 }

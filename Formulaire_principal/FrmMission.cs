@@ -11,7 +11,28 @@ using System.Windows.Forms;
 
 namespace Formulaire_principal
 {
-    
+    public struct ListItem
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public struct ListItemMembre
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
     public partial class FrmMission : Form
     {
         private SQLiteTransaction trans;
@@ -21,6 +42,8 @@ namespace Formulaire_principal
         //instanciation du DataSet
 
         private DataSet ds = MesDatas.DsGlobal;
+
+        
         public FrmMission()
         {
             InitializeComponent();
@@ -439,34 +462,42 @@ namespace Formulaire_principal
 
         private void btnRefaire_Click(object sender, EventArgs e)
         {
-            
-            
-            int reste = int.Parse(lblreste.Text);
-            int reste2 = int.Parse(txtnbMembres.Text);
-
-            if (reste2 >= lstbPartis.Items.Count + 1 && (reste- lstbPartis.Items.Count) > 0)
+            if(lstbPartis.Items.Count == 0)
             {
-                while (lstbMembres.Items.Count > 1)
-                {
-                    lstbMembres.Items.RemoveAt(1);
-                }
-                ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
-                lstbMembres.Items.Add(li);
-                reste -= 1;
-                reste -= lstbPartis.Items.Count;
-                lblreste.Text = reste.ToString();
-                foreach (ListItemMembre li2 in lstbPartis.Items)
-                {
-                    
-                    lstbMembres.Items.Add(li2);
-                    
-                }
+                MessageBox.Show("Aucun modèle d'équipe disponible !");
             }
-
             else
             {
-                MessageBox.Show("Impossible de refaire la même équipe (trop de membres) !");
+                int reste = int.Parse(lblreste.Text);
+                int reste2 = int.Parse(txtnbMembres.Text);
+
+                if (reste2 >= lstbPartis.Items.Count + 1 && (reste - lstbPartis.Items.Count) > 0)
+                {
+                    while (lstbMembres.Items.Count > 1)
+                    {
+                        lstbMembres.Items.RemoveAt(1);
+                    }
+                    ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
+                    lstbMembres.Items.Add(li);
+                    reste -= 1;
+                    reste -= lstbPartis.Items.Count;
+                    lblreste.Text = reste.ToString();
+                    foreach (ListItemMembre li2 in lstbPartis.Items)
+                    {
+
+                        lstbMembres.Items.Add(li2);
+
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Impossible de refaire la même équipe (trop de membres) !");
+                }
             }
+            
+            
+            
         }
 
         private void btnvalidMembres_Click(object sender, EventArgs e)
@@ -526,8 +557,9 @@ namespace Formulaire_principal
                 List<string> values = new List<string>();
                 for (int i = 0; i < lstbMembres.Items.Count; i++)
                 {
-                    values.Add(((ListItemMembre)lstbPartis.Items[i]).Value);
+                    values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
                 }
+                
                 foreach (ListItemMembre li in lstbPartis.SelectedItems)
                 {
                     int reste = int.Parse(lblreste.Text);
@@ -568,8 +600,11 @@ namespace Formulaire_principal
             {
                 foreach (ListItemMembre li in lstbMembres.SelectedItems)
                 {
-                    
-                    if (li.Name != cboChef.Text)
+                    if(li.Value == cboChef.SelectedValue.ToString())
+                    {
+                        MessageBox.Show("Impossible d'enlever le chef de mission de l'équipe ! \n (un peu de bon sens)");
+                    }
+                    else
                     {
                         remove.Add(li);
                     }         
@@ -811,49 +846,29 @@ namespace Formulaire_principal
         {
             if (ds.Tables.Contains("Mission"))
             {
-                MesDatas.DsGlobal.Tables["Mission"].Clear();
+                ds.Tables["Mission"].Clear();
             }
             SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Mission", co);
             da.Fill(ds, "Mission");
 
             if (ds.Tables.Contains("Composer"))
             {
-                MesDatas.DsGlobal.Tables["Composer"].Clear();
+                ds.Tables["Composer"].Clear();
             }
             SQLiteDataAdapter da2 = new SQLiteDataAdapter("SELECT * FROM Composer", co);
             da2.Fill(ds, "Composer");
 
             if (ds.Tables.Contains("Capturer"))
             {
-                MesDatas.DsGlobal.Tables["Capturer"].Clear();
+                ds.Tables["Capturer"].Clear();
             }
             SQLiteDataAdapter da3 = new SQLiteDataAdapter("SELECT * FROM Capturer", co);
             da3.Fill(ds, "Composer");
 
             MessageBox.Show("Tout est bon de notre côté, tous les détails de votre mission ont été validés !");
-            Application.Exit();
+            this.DialogResult = DialogResult.OK;
         }
 
-        public struct ListItem
-        {
-            public string Name { get; set; }
-            public int Value { get; set; }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
-
-        public struct ListItemMembre
-        {
-            public string Name { get; set; }
-            public string Value { get; set; }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
+        
     }
 }

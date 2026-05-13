@@ -89,7 +89,7 @@ namespace Formulaire_principal
                 {
                     MessageBox.Show("Mission créée");
                 }
-                if (drMiss == DialogResult.OK)
+                if (drMiss == DialogResult.Cancel)
                 {
                     MessageBox.Show("Echec de la création de la mission");
                 }
