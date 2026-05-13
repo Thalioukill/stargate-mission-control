@@ -46,6 +46,7 @@
             this.lblNomAlliees = new System.Windows.Forms.Label();
             this.picAlliees = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.flp2 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFiltresEnnemis = new System.Windows.Forms.GroupBox();
             this.btnAgressivité = new System.Windows.Forms.Button();
             this.btnTypeArme = new System.Windows.Forms.Button();
@@ -62,7 +63,6 @@
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.grpAlliees = new System.Windows.Forms.GroupBox();
             this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flp2 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFiltresAlliees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAlliees)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -179,6 +179,7 @@
             this.txtNomAlliees.Name = "txtNomAlliees";
             this.txtNomAlliees.Size = new System.Drawing.Size(180, 23);
             this.txtNomAlliees.TabIndex = 0;
+            this.txtNomAlliees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomAlliees_KeyPress);
             // 
             // lblCouleurAlliees
             // 
@@ -232,6 +233,16 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informations sur les races ennemis";
+            // 
+            // flp2
+            // 
+            this.flp2.AutoScroll = true;
+            this.flp2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flp2.Location = new System.Drawing.Point(3, 19);
+            this.flp2.Name = "flp2";
+            this.flp2.Size = new System.Drawing.Size(434, 342);
+            this.flp2.TabIndex = 0;
             // 
             // grpFiltresEnnemis
             // 
@@ -372,6 +383,7 @@
             this.txtNomEnnemis.Name = "txtNomEnnemis";
             this.txtNomEnnemis.Size = new System.Drawing.Size(180, 23);
             this.txtNomEnnemis.TabIndex = 0;
+            this.txtNomEnnemis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomEnnemis_KeyPress);
             // 
             // grpAlliees
             // 
@@ -392,16 +404,6 @@
             this.flp1.Name = "flp1";
             this.flp1.Size = new System.Drawing.Size(422, 342);
             this.flp1.TabIndex = 0;
-            // 
-            // flp2
-            // 
-            this.flp2.AutoScroll = true;
-            this.flp2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp2.Location = new System.Drawing.Point(3, 19);
-            this.flp2.Name = "flp2";
-            this.flp2.Size = new System.Drawing.Size(434, 342);
-            this.flp2.TabIndex = 0;
             // 
             // FrmAliens
             // 

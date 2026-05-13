@@ -17,8 +17,6 @@ namespace Formulaire_principal
     {
         private SQLiteConnection co = Connexion.Connec;
 
-        //instanciation du DataSet
-
         private DataSet ds = MesDatas.DsGlobal;
 
         public FrmAliens()
@@ -26,55 +24,69 @@ namespace Formulaire_principal
             InitializeComponent();
         }
 
-        private void chargerAliensAlliees()
+        private void charger_dataset()
         {
-            flp1.Controls.Clear();
             try
             {
-                string sql = "SELECT count(*) FROM Allie";
-                SQLiteCommand cmd = new SQLiteCommand(sql, this.co);
-                int nbAlliees = Convert.ToInt32(cmd.ExecuteScalar());
-                sql = "SELECT min(idEspece) FROM Allie";
-                cmd = new SQLiteCommand(sql, this.co);
-                int idMin = Convert.ToInt32(cmd.ExecuteScalar());
-                for (int i = idMin; i <= idMin + nbAlliees; i++)
-                {
-                    sql = $@"SELECT e.nom, a.degreBienveillance, e.couleur, GROUP_CONCAT(h.nomPlanete, '/') as Planetes, a.instrumentMusique
+                string sqlAllies = @"SELECT e.nom, a.degreBienveillance, e.couleur, a.instrumentMusique, e.id as idEspece,
+                            GROUP_CONCAT(h.nomPlanete, '/') as Planetes
                             FROM Allie a
                             JOIN Espece e ON e.id = a.idEspece
                             LEFT JOIN Habiter h ON h.idEspece = e.id
-                            WHERE a.idEspece = {i} AND e.nom LIKE '%{txtNomAlliees.Text}%' AND a.degreBienveillance LIKE '%{cboBienveillance.Text}%' AND e.couleur LIKE '%{cboCouleurAlliees.Text}%'
                             GROUP BY e.nom";
-                    SQLiteCommand cmd2 = new SQLiteCommand(sql, this.co);
-                    SQLiteDataReader dr = cmd2.ExecuteReader();
 
-                    if (dr.Read())
-                    {
-                        string nomAlien = dr["nom"].ToString();
-                        string bienveillance = dr["degreBienveillance"].ToString();
-                        string couleur = dr["couleur"].ToString();
-                        string planete;
+                string sqlEnnemis = @"SELECT e.nom, en.degreAgressivite, e.couleur, en.typeArme, e.id as idEspece,
+                             GROUP_CONCAT(h.nomPlanete, '/') as Planetes
+                             FROM Ennemi en
+                             JOIN Espece e ON e.id = en.idEspece
+                             LEFT JOIN Habiter h ON h.idEspece = e.id
+                             GROUP BY e.nom";
 
-                        if (dr["Planetes"] == DBNull.Value)
-                        {
-                            planete = "Origine inconnue";
-                        }
-                        else
-                        {
-                            planete = dr["Planetes"].ToString();
-                        }
-                        string instrument = dr["instrumentMusique"].ToString();
-                        string image = dr["nom"] + ".png";
+                SQLiteDataAdapter daAllies = new SQLiteDataAdapter(sqlAllies, co);
+                if (ds.Tables.Contains("TableAllies")) ds.Tables["TableAllies"].Clear();
+                daAllies.Fill(ds, "TableAllies");
 
-                        InfoAliensAlliees info = new InfoAliensAlliees(nomAlien, bienveillance, couleur, planete, instrument, image);
-                        flp1.Controls.Add(info);
-                    }
-                    dr.Close();
-                }
+                SQLiteDataAdapter daEnnemis = new SQLiteDataAdapter(sqlEnnemis, co);
+                if (ds.Tables.Contains("TableEnnemis")) ds.Tables["TableEnnemis"].Clear();
+                daEnnemis.Fill(ds, "TableEnnemis");
+
+                SQLiteDataAdapter daEspece = new SQLiteDataAdapter("SELECT * FROM Espece", co);
+                if (ds.Tables.Contains("Espece")) ds.Tables["Espece"].Clear();
+                daEspece.Fill(ds, "Espece");
             }
-            catch (SQLiteException err)
+            catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Erreur lors du chargement initial : " + err.Message);
+            }
+        }
+
+        private void chargerAliensAlliees()
+        {
+            flp1.Controls.Clear();
+
+            string filtre = $"nom LIKE '%{txtNomAlliees.Text}%'";
+            if (cboBienveillance.SelectedIndex != -1)
+            {
+                filtre += $" AND degreBienveillance = '{cboBienveillance.Text}'";
+            }
+            if (cboCouleurAlliees.SelectedIndex != -1)
+            {
+                filtre += $" AND couleur = '{cboCouleurAlliees.Text}'";
+            }
+
+            DataRow[] rows = ds.Tables["TableAllies"].Select(filtre);
+
+            foreach (DataRow dr in rows)
+            {
+                string nom = dr["nom"].ToString();
+                string bien = dr["degreBienveillance"].ToString();
+                string coul = dr["couleur"].ToString();
+                string planete = dr["Planetes"] == DBNull.Value ? "Origine inconnue" : dr["Planetes"].ToString();
+                string inst = dr["instrumentMusique"].ToString();
+                string image = nom + ".png";
+
+                InfoAliensAlliees info = new InfoAliensAlliees(nom, bien, coul, planete, inst, image);
+                flp1.Controls.Add(info);
             }
         }
 
@@ -83,103 +95,92 @@ namespace Formulaire_principal
             flp2.Controls.Clear();
             try
             {
-                string sql = "SELECT count(*) FROM Ennemi";
-                SQLiteCommand cmd = new SQLiteCommand(sql, this.co);
-                int nbEnnemis = Convert.ToInt32(cmd.ExecuteScalar());
-                sql = "SELECT min(idEspece) FROM Ennemi";
-                cmd = new SQLiteCommand(sql, this.co);
-                int idMin = Convert.ToInt32(cmd.ExecuteScalar());
-                for (int i = idMin; i <= idMin + nbEnnemis; i++)
+                string filtre = $"nom LIKE '%{txtNomEnnemis.Text.Replace("'", "''")}%'";
+
+                if (cboAgressivite.SelectedIndex != -1)
                 {
-                    sql = $@"SELECT e.nom, en.degreAgressivite, e.couleur, GROUP_CONCAT(h.nomPlanete, '/') as Planetes, en.typeArme
-                            FROM Ennemi en
-                            JOIN Espece e ON e.id = en.idEspece
-                            LEFT JOIN Habiter h ON h.idEspece = e.id
-                            WHERE en.idEspece = {i} AND e.nom LIKE '%{txtNomEnnemis.Text}%' AND en.degreAgressivite LIKE '%{cboAgressivite.Text}%' AND e.couleur LIKE '%{cboCouleurEnnemis.Text}%' AND en.typeArme LIKE '%{cboTypeArme.Text}%'
-                            GROUP BY e.nom";
-                    SQLiteCommand cmd2 = new SQLiteCommand(sql, this.co);
-                    SQLiteDataReader dr = cmd2.ExecuteReader();
-                    if (dr.Read())
-                    {
-                        string nomAlien = dr["nom"].ToString();
-                        string bienveillance = dr["degreAgressivite"].ToString();
-                        string couleur = dr["couleur"].ToString();
-                        string planete;
+                    filtre += $" AND degreAgressivite = '{cboAgressivite.Text}'";
+                }
+                if (cboCouleurEnnemis.SelectedIndex != -1)
+                {
+                    filtre += $" AND couleur = '{cboCouleurEnnemis.Text}'";
+                }
+                if (cboTypeArme.SelectedIndex != -1)
+                {
+                    filtre += $" AND typeArme = '{cboTypeArme.Text}'";
+                }
 
-                        if (dr["Planetes"] == DBNull.Value)
-                        {
-                            planete = "Origine inconnue";
-                        }
-                        else
-                        {
-                            planete = dr["Planetes"].ToString();
-                        }
-                        string instrument = dr["typeArme"].ToString();
-                        string image = dr["nom"] + ".png";
+                DataRow[] rows = ds.Tables["TableEnnemis"].Select(filtre);
 
-                        InfoAliensEnnemis info = new InfoAliensEnnemis(nomAlien, bienveillance, couleur, planete, instrument, image);
-                        flp2.Controls.Add(info);
-                    }
-                    dr.Close();
+                foreach (DataRow dr in rows)
+                {
+                    string nomAlien = dr["nom"].ToString();
+                    string agressivite = dr["degreAgressivite"].ToString();
+                    string couleur = dr["couleur"].ToString();
+
+                    string planete = dr["Planetes"] == DBNull.Value
+                        ? "Origine inconnue"
+                        : dr["Planetes"].ToString();
+
+                    string arme = dr["typeArme"].ToString();
+                    string image = nomAlien + ".png";
+
+                    InfoAliensEnnemis info = new InfoAliensEnnemis(nomAlien, agressivite, couleur, planete, arme, image);
+                    flp2.Controls.Add(info);
                 }
             }
-            catch (SQLiteException err)
+            catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Erreur filtrage ennemis : " + err.Message);
             }
         }
+        
 
         private void FrmAliens_Load(object sender, EventArgs e)
         {
             try
             {
-                string sql;
-                DataTable schemaTable = co.GetSchema("Tables");
-                string liste = "";
-                for (int i = 0; i < schemaTable.Rows.Count; i++)
-                {
-                    string nomTable = schemaTable.Rows[i][2].ToString();
-                    sql = "SELECT * FROM " + nomTable;
-                    SQLiteDataAdapter da = new SQLiteDataAdapter(sql, this.co);
-                    da.Fill(ds, nomTable);
-                    liste = liste + nomTable + "\n";
-                }
+                charger_dataset();
 
-                string sql2 = "SELECT DISTINCT couleur FROM Espece";
-                SQLiteCommand cm2 = new SQLiteCommand(sql2, this.co);
-                SQLiteDataReader dr2 = cm2.ExecuteReader();
-                while (dr2.Read())
+                foreach (DataRow dr in ds.Tables["Espece"].Rows)
                 {
-                    cboCouleurAlliees.Items.Add(dr2["couleur"].ToString());
-                    cboCouleurEnnemis.Items.Add(dr2["couleur"].ToString());
+                    string coul = dr["couleur"].ToString();
+                    if (!string.IsNullOrEmpty(coul) && !cboCouleurAlliees.Items.Contains(coul))
+                    {
+                        cboCouleurAlliees.Items.Add(coul);
+                        cboCouleurEnnemis.Items.Add(coul);
+                    }
                 }
-                dr2.Close();
+                foreach (DataRow dr in ds.Tables["Ennemi"].Rows)
+                {
+                    string arme = dr["typeArme"].ToString();
+                    string ag = dr["degreAgressivite"].ToString();
 
-                string sql3 = "SELECT DISTINCT degreBienveillance FROM Allie ORDER BY degreBienveillance";
-                SQLiteCommand cm3 = new SQLiteCommand(sql3, this.co);
-                SQLiteDataReader dr3 = cm3.ExecuteReader();
-                while (dr3.Read())
-                {
-                    cboBienveillance.Items.Add(dr3["degreBienveillance"].ToString());
-                    cboAgressivite.Items.Add(dr3["degreBienveillance"].ToString());
+                    if (!string.IsNullOrEmpty(arme) && !cboTypeArme.Items.Contains(arme))
+                    {
+                        cboTypeArme.Items.Add(arme);
+                    }
+                    if (!string.IsNullOrEmpty(ag) && !cboAgressivite.Items.Contains(ag))
+                    {
+                        cboAgressivite.Items.Add(ag);
+                    }
                 }
-                dr3.Close();
+                foreach (DataRow dr in ds.Tables["Allie"].Rows)
+                {
+                    string bv = dr["degreBienveillance"].ToString();
 
-                string sql5 = "SELECT DISTINCT typeArme FROM Ennemi ORDER BY typeArme";
-                SQLiteCommand cm5 = new SQLiteCommand(sql5, this.co);
-                SQLiteDataReader dr5 = cm5.ExecuteReader();
-                while (dr5.Read())
-                {
-                    cboTypeArme.Items.Add(dr5["typeArme"].ToString());
+                    if (!string.IsNullOrEmpty(bv) && !cboBienveillance.Items.Contains(bv))
+                    {
+                        cboBienveillance.Items.Add(bv);
+                    }
                 }
-                dr5.Close();
+                chargerAliensAlliees();
+                chargerAliensEnnemis();
             }
             catch (SQLiteException err)
             {
                 MessageBox.Show(err.Message);
             }
-            chargerAliensAlliees();
-            chargerAliensEnnemis();
         }
 
         private void btnReinitialiserAlliees_Click(object sender, EventArgs e)
@@ -244,6 +245,36 @@ namespace Formulaire_principal
         {
             cboCouleurAlliees.SelectedIndex = -1;
             chargerAliensAlliees();
+        }
+
+        private void txtNomAlliees_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnRechercherAlliees.PerformClick();
+            }
+        }
+
+        private void txtNomEnnemis_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+
+            if (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnRechercherEnnemis.PerformClick();
+            }
         }
     }
 }
