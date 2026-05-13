@@ -30,6 +30,10 @@
         {
             this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFiltre = new System.Windows.Forms.GroupBox();
+            this.btnReinitialiserEspeces = new System.Windows.Forms.Button();
+            this.btnReinitialiserDataBaz = new System.Windows.Forms.Button();
+            this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.btnRechercher = new System.Windows.Forms.Button();
             this.flp2 = new System.Windows.Forms.FlowLayoutPanel();
             this.txtMaxMission = new System.Windows.Forms.TextBox();
             this.txtMinMission = new System.Windows.Forms.TextBox();
@@ -52,18 +56,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRechercher = new System.Windows.Forms.Button();
-            this.btnReinitialiser = new System.Windows.Forms.Button();
-            this.btnReinitialiserDataBaz = new System.Windows.Forms.Button();
-            this.btnReinitialiserEspeces = new System.Windows.Forms.Button();
             this.grpFiltre.SuspendLayout();
             this.SuspendLayout();
             // 
             // flp1
             // 
             this.flp1.AutoScroll = true;
-            this.flp1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flp1.Location = new System.Drawing.Point(0, 0);
+            this.flp1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flp1.Location = new System.Drawing.Point(394, 0);
             this.flp1.Name = "flp1";
             this.flp1.Size = new System.Drawing.Size(289, 566);
             this.flp1.TabIndex = 0;
@@ -97,12 +97,52 @@
             this.grpFiltre.Controls.Add(this.label3);
             this.grpFiltre.Controls.Add(this.label1);
             this.grpFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.grpFiltre.Location = new System.Drawing.Point(295, 12);
+            this.grpFiltre.Location = new System.Drawing.Point(12, 12);
             this.grpFiltre.Name = "grpFiltre";
             this.grpFiltre.Size = new System.Drawing.Size(370, 542);
             this.grpFiltre.TabIndex = 1;
             this.grpFiltre.TabStop = false;
             this.grpFiltre.Text = "Filtres";
+            // 
+            // btnReinitialiserEspeces
+            // 
+            this.btnReinitialiserEspeces.Location = new System.Drawing.Point(205, 370);
+            this.btnReinitialiserEspeces.Name = "btnReinitialiserEspeces";
+            this.btnReinitialiserEspeces.Size = new System.Drawing.Size(159, 32);
+            this.btnReinitialiserEspeces.TabIndex = 26;
+            this.btnReinitialiserEspeces.Text = "Réinitialiser Especes";
+            this.btnReinitialiserEspeces.UseVisualStyleBackColor = true;
+            this.btnReinitialiserEspeces.Click += new System.EventHandler(this.btnReinitialiserEspeces_Click);
+            // 
+            // btnReinitialiserDataBaz
+            // 
+            this.btnReinitialiserDataBaz.Location = new System.Drawing.Point(217, 215);
+            this.btnReinitialiserDataBaz.Name = "btnReinitialiserDataBaz";
+            this.btnReinitialiserDataBaz.Size = new System.Drawing.Size(147, 32);
+            this.btnReinitialiserDataBaz.TabIndex = 25;
+            this.btnReinitialiserDataBaz.Text = "Réinitialiser DataBaz";
+            this.btnReinitialiserDataBaz.UseVisualStyleBackColor = true;
+            this.btnReinitialiserDataBaz.Click += new System.EventHandler(this.btnReinitialiserDataBaz_Click);
+            // 
+            // btnReinitialiser
+            // 
+            this.btnReinitialiser.Location = new System.Drawing.Point(227, 499);
+            this.btnReinitialiser.Name = "btnReinitialiser";
+            this.btnReinitialiser.Size = new System.Drawing.Size(127, 33);
+            this.btnReinitialiser.TabIndex = 24;
+            this.btnReinitialiser.Text = "Tout réinitialiser";
+            this.btnReinitialiser.UseVisualStyleBackColor = true;
+            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
+            // 
+            // btnRechercher
+            // 
+            this.btnRechercher.Location = new System.Drawing.Point(10, 499);
+            this.btnRechercher.Name = "btnRechercher";
+            this.btnRechercher.Size = new System.Drawing.Size(106, 33);
+            this.btnRechercher.TabIndex = 23;
+            this.btnRechercher.Text = "Rechercher";
+            this.btnRechercher.UseVisualStyleBackColor = true;
+            this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
             // 
             // flp2
             // 
@@ -297,51 +337,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nom (like) :";
             // 
-            // btnRechercher
-            // 
-            this.btnRechercher.Location = new System.Drawing.Point(10, 499);
-            this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(106, 33);
-            this.btnRechercher.TabIndex = 23;
-            this.btnRechercher.Text = "Rechercher";
-            this.btnRechercher.UseVisualStyleBackColor = true;
-            this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
-            // 
-            // btnReinitialiser
-            // 
-            this.btnReinitialiser.Location = new System.Drawing.Point(227, 499);
-            this.btnReinitialiser.Name = "btnReinitialiser";
-            this.btnReinitialiser.Size = new System.Drawing.Size(127, 33);
-            this.btnReinitialiser.TabIndex = 24;
-            this.btnReinitialiser.Text = "Tout réinitialiser";
-            this.btnReinitialiser.UseVisualStyleBackColor = true;
-            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
-            // 
-            // btnReinitialiserDataBaz
-            // 
-            this.btnReinitialiserDataBaz.Location = new System.Drawing.Point(217, 215);
-            this.btnReinitialiserDataBaz.Name = "btnReinitialiserDataBaz";
-            this.btnReinitialiserDataBaz.Size = new System.Drawing.Size(147, 32);
-            this.btnReinitialiserDataBaz.TabIndex = 25;
-            this.btnReinitialiserDataBaz.Text = "Réinitialiser DataBaz";
-            this.btnReinitialiserDataBaz.UseVisualStyleBackColor = true;
-            this.btnReinitialiserDataBaz.Click += new System.EventHandler(this.btnReinitialiserDataBaz_Click);
-            // 
-            // btnReinitialiserEspeces
-            // 
-            this.btnReinitialiserEspeces.Location = new System.Drawing.Point(205, 370);
-            this.btnReinitialiserEspeces.Name = "btnReinitialiserEspeces";
-            this.btnReinitialiserEspeces.Size = new System.Drawing.Size(159, 32);
-            this.btnReinitialiserEspeces.TabIndex = 26;
-            this.btnReinitialiserEspeces.Text = "Réinitialiser Especes";
-            this.btnReinitialiserEspeces.UseVisualStyleBackColor = true;
-            this.btnReinitialiserEspeces.Click += new System.EventHandler(this.btnReinitialiserEspeces_Click);
-            // 
             // FrmPlanetes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 566);
+            this.ClientSize = new System.Drawing.Size(683, 566);
             this.Controls.Add(this.grpFiltre);
             this.Controls.Add(this.flp1);
             this.Name = "FrmPlanetes";

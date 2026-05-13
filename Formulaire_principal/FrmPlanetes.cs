@@ -6,9 +6,12 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace Formulaire_principal
 {
@@ -23,29 +26,69 @@ namespace Formulaire_principal
             InitializeComponent();
         }
 
+        private void charger_donnees()
+        {
+            try
+            {
+                string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, 
+                    GROUP_CONCAT(e.nom, '/') as Especes, 
+                    GROUP_CONCAT(h.pourcentage, '/') as Pourcentages, 
+                    stats_m.nbMissions
+                    FROM Planete p
+                    LEFT JOIN Habiter h ON h.nomPlanete = p.nom
+                    LEFT JOIN Espece e ON e.id = h.idEspece
+                    LEFT JOIN(
+                        SELECT nomPlanete, COUNT(*) AS nbMissions
+                        FROM Mission
+                        GROUP BY nomPlanete
+                    ) AS stats_m ON stats_m.nomPlanete = p.nom
+                    GROUP BY p.nom";
+
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql2, co);
+
+                if (ds.Tables.Contains("TablePlanetesRecherche"))
+                    ds.Tables["TablePlanetesRecherche"].Clear();
+
+                da.Fill(ds, "TablePlanetesRecherche");
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
         private void charger_planetes()
         {
             try
             {
                 flp1.Controls.Clear();
-                string txt = "";
+                string filtre = $"nom LIKE '%{txtNom.Text}%'";
+
                 if (txtMinTemp.Text != "")
                 {
-                    txt += $" AND p.temperature >= {txtMinTemp.Text}";
+                    filtre += $" AND temperature >= {txtMinTemp.Text}";
                 }
                 if (txtMaxTemp.Text != "")
                 {
-                    txt += $" AND p.temperature <= {txtMaxTemp.Text}";
+                    filtre += $" AND temperature <= {txtMaxTemp.Text}";
                 }
                 if (txtMinGrav.Text != "")
                 {
-                    txt += $" AND p.gravite >= {txtMinGrav.Text}";
+                    filtre += $" AND gravite >= {txtMinGrav.Text}";
                 }
                 if (txtMaxGrav.Text != "")
                 {
-                    txt += $" AND p.gravite <= {txtMaxGrav.Text}";
+                    filtre += $" AND gravite <= {txtMaxGrav.Text}";
                 }
-                string txtEspece = "";
+                if (rdbSans.Checked)
+                {
+                    filtre += " AND dataBazON = 0";
+                }
+                else if (rdbAvec.Checked)
+                {
+                    filtre += " AND dataBazON = 1";
+                }
+                string filtreEspece = "";
                 for (int i = 0; i < flp2.Controls.Count; i++)
                 {
                     if (flp2.Controls[i] is CheckboxEspeces userCtrl)
@@ -54,113 +97,40 @@ namespace Formulaire_principal
 
                         if (cb != null && cb.Checked)
                         {
-                            if(txtEspece == "")
-                            {
-                                txtEspece += $" AND Especes LIKE '%{cb.Text}%'";
+                            if (filtreEspece != "")
+                            { 
+                                filtreEspece += " OR ";
                             }
-                            else
-                            {
-                                txtEspece += $" OR Especes LIKE '%{cb.Text}%'";
-                            }
+                            filtreEspece += $"Especes LIKE '%{cb.Text}%'";
                         }
                     }
                 }
-                if (rdbSans.Checked)
+                if(filtreEspece != "") 
                 {
-                    txt += " AND p.dataBazON = 0";
+                    filtre += $" AND ({filtreEspece})";
                 }
-                else if (rdbAvec.Checked)
+                DataRow[] rows = ds.Tables["TablePlanetesRecherche"].Select(filtre);
+
+                foreach(DataRow dr in rows) 
                 {
-                    txt += " AND p.dataBazON = 1";
-                }
-                string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, GROUP_CONCAT(e.nom, '/') as Especes, GROUP_CONCAT(h.pourcentage, '/') as Pourcentages
-                            FROM Planete p
-                            LEFT JOIN Habiter h ON h.nomPlanete = p.nom
-                            LEFT JOIN Espece e ON e.id = h.idEspece
-                            WHERE p.nom LIKE '%{txtNom.Text}%'{txt}
-                            GROUP BY p.nom
-                            HAVING 1=1{txtEspece}";
-                SQLiteCommand cmd2 = new SQLiteCommand(sql2, co);
-                SQLiteDataReader dr2 = cmd2.ExecuteReader();
-                while (dr2.Read())
-                {
-                    string nom = dr2["nom"].ToString();
-                    string temperature;
-                    string gravite;
-                    string dataBazON;
-                    string especes;
-                    string pourcentages;
-                    string missions = "0";
-                    if (dr2["temperature"] == DBNull.Value)
-                    {
-                        temperature = "Température inconnue";
-                    }
-                    else
-                    {
-                        temperature = dr2["temperature"].ToString();
-                    }
-                    if (dr2["gravite"] == DBNull.Value)
-                    {
-                        gravite = "Gravité inconnue";
-                    }
-                    else
-                    {
-                        gravite = Convert.ToSingle(dr2["gravite"]).ToString();
-                    }
-                    if (dr2["dataBazON"] == DBNull.Value)
-                    {
-                        dataBazON = "Aucune information sur le dataBaz";
-                    }
-                    else
-                    {
-                        dataBazON = Convert.ToInt32(dr2["dataBazON"]).ToString();
-                    }
-                    if (dr2["Especes"] == DBNull.Value)
-                    {
-                        especes = "Espèces inconnues";
-                    }
-                    else
-                    {
-                        especes = dr2["Especes"].ToString();
-                    }
-                    if (dr2["Pourcentages"] == DBNull.Value)
-                    {
-                        pourcentages = "Taux d'espèces inconnue";
-                    }
-                    else
-                    {
-                        pourcentages = dr2["Pourcentages"].ToString();
-                    }
-                    string sql = $@"SELECT p.nom, COUNT(m.nomPlanete) AS nbMissions
-                              FROM Planete p 
-                              LEFT JOIN Mission m ON p.nom = m.nomPlanete 
-                              GROUP BY p.nom";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                    SQLiteDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        if (dr["nom"].ToString() == nom) 
-                        {
-                           missions = Convert.ToInt32(dr["nbMissions"]).ToString();
-                        }
-                    }
-                    int filtreMin = 0;
-                    if (!string.IsNullOrWhiteSpace(txtMinMission.Text))
-                    {
-                        int.TryParse(txtMinMission.Text, out filtreMin);
-                    }
+                    string nom = dr["nom"].ToString();
+                    string temp = dr["temperature"] == DBNull.Value ? "Température inconnue" : dr["temperature"].ToString();
+                    string grav = dr["gravite"] == DBNull.Value ? "Gravité inconnue" : dr["gravite"].ToString();
+                    string dbz = dr["dataBazON"] == DBNull.Value ? "Aucune information" : dr["dataBazON"].ToString();
+                    string esp = dr["Especes"] == DBNull.Value ? "Espèces inconnues" : dr["Especes"].ToString();
+                    string pct = dr["Pourcentages"] == DBNull.Value ? "Taux d'espèces inconnue" : dr["Pourcentages"].ToString();
 
-                    int filtreMax = int.MaxValue;
-                    if (!string.IsNullOrWhiteSpace(txtMaxMission.Text))
-                    {
-                        int.TryParse(txtMaxMission.Text, out filtreMax);
-                    }
+                    int nbMissions = 0;
+                    if (dr["nbMissions"] != DBNull.Value)
+                        int.TryParse(dr["nbMissions"].ToString(), out nbMissions);
 
-                    int.TryParse(missions, out int nbMissionsActuelles);
+                    int fMin = 0, fMax = int.MaxValue;
+                    int.TryParse(txtMinMission.Text, out fMin);
+                    if (!string.IsNullOrWhiteSpace(txtMaxMission.Text)) int.TryParse(txtMaxMission.Text, out fMax);
 
-                    if (nbMissionsActuelles >= filtreMin && nbMissionsActuelles <= filtreMax)
+                    if (nbMissions >= fMin && nbMissions <= fMax)
                     {
-                        InfoPlanete info = new InfoPlanete(nom, temperature, gravite, dataBazON, especes, pourcentages, missions);
+                        InfoPlanete info = new InfoPlanete(nom, temp, grav, dbz, esp, pct, nbMissions.ToString());
                         flp1.Controls.Add(info);
                     }
                 }
@@ -175,14 +145,12 @@ namespace Formulaire_principal
         {
             try
             {
-                string sql = "SELECT nom FROM Espece";
-                SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                SQLiteDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
+                flp2.Controls.Clear();
+                foreach (DataRow dr in ds.Tables["Espece"].Rows)
                 {
                     string nom = dr["nom"].ToString();
-                    CheckboxEspeces checkbox = new CheckboxEspeces(nom);
-                    flp2.Controls.Add(checkbox);
+                    CheckboxEspeces cb = new CheckboxEspeces(nom);
+                    flp2.Controls.Add(cb);
                 }
             }
             catch (SQLiteException err)
@@ -192,8 +160,9 @@ namespace Formulaire_principal
         }
         private void FrmPlanetes_Load(object sender, EventArgs e)
         {
-            charger_planetes();
+            charger_donnees();
             chargerEspeces();
+            charger_planetes();
         }
 
         private void txtMinTemp_KeyPress(object sender, KeyPressEventArgs e)
@@ -289,6 +258,7 @@ namespace Formulaire_principal
         {
             flp2.Controls.Clear();
             chargerEspeces();
+            charger_planetes();
         }
 
         private void txtMinMission_KeyPress(object sender, KeyPressEventArgs e)
