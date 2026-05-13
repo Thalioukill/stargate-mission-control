@@ -39,11 +39,12 @@ namespace Formulaire_principal
             InitializeComponent();
             this.idPlanete = planete;
             this.idNumero = numero;
+            InitBinding();
         }
 
         private void FrmJournalDeBord_Load(object sender, EventArgs e)
         {
-            InitBinding();
+          
         }
 
 
@@ -74,7 +75,7 @@ namespace Formulaire_principal
 
             // BindingSource Détail (le Journal)
             // On le lie au BS Maître en utilisant le nom de la Relation
-            BindingSource bsJournal = new BindingSource();
+            this.bsJournal = new BindingSource();
             bsJournal.DataSource = bsMissions;
             bsJournal.DataMember = "MissionEvents";
             try
@@ -91,22 +92,54 @@ namespace Formulaire_principal
 
         private void btnDepart_Click(object sender, EventArgs e)
         {
-            bsJournal.MoveLast();
+            //On vérifie si l'instance existe 
+            if (bsJournal != null)
+            {
+                bsJournal.MoveLast();
+            }
+            else
+            {
+                MessageBox.Show("ERREUR : Le journal n'est pas initialisé");
+            }
         }
 
         private void btnBefore_Click(object sender, EventArgs e)
         {
-            bsJournal.MovePrevious();
+            //On vérifie si l'instance existe 
+            if (bsJournal != null)
+            {
+                bsJournal.MovePrevious();
+            }
+            else
+            {
+                MessageBox.Show("ERREUR : Le journal n'est pas initialisé");
+            }
         }
 
         private void btnAfter_Click(object sender, EventArgs e)
         {
-            bsJournal.MoveNext();
+            //On vérifie si l'instance existe 
+            if (bsJournal != null)
+            {
+                bsJournal.MoveNext();
+            }
+            else
+            {
+                MessageBox.Show("ERREUR : Le journal n'est pas initialisé");
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            bsJournal.MoveFirst();
+            //On vérifie si l'instance existe 
+            if (bsJournal != null)
+            {
+                bsJournal.MoveFirst();
+            }
+            else
+            {
+                MessageBox.Show("ERREUR : Le journal n'est pas initialisé");
+            }
         }
     }
 }
