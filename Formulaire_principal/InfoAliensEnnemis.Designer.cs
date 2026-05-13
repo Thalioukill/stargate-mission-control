@@ -41,7 +41,7 @@
             // 
             this.lblTypeArme.AutoSize = true;
             this.lblTypeArme.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypeArme.Location = new System.Drawing.Point(3, 202);
+            this.lblTypeArme.Location = new System.Drawing.Point(3, 226);
             this.lblTypeArme.Name = "lblTypeArme";
             this.lblTypeArme.Size = new System.Drawing.Size(46, 17);
             this.lblTypeArme.TabIndex = 11;
@@ -51,7 +51,7 @@
             // 
             this.lblPlaneteEnnemis.AutoSize = true;
             this.lblPlaneteEnnemis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaneteEnnemis.Location = new System.Drawing.Point(3, 185);
+            this.lblPlaneteEnnemis.Location = new System.Drawing.Point(3, 209);
             this.lblPlaneteEnnemis.Name = "lblPlaneteEnnemis";
             this.lblPlaneteEnnemis.Size = new System.Drawing.Size(46, 17);
             this.lblPlaneteEnnemis.TabIndex = 10;
@@ -61,7 +61,7 @@
             // 
             this.lblCouleurEnnemis.AutoSize = true;
             this.lblCouleurEnnemis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCouleurEnnemis.Location = new System.Drawing.Point(3, 168);
+            this.lblCouleurEnnemis.Location = new System.Drawing.Point(3, 192);
             this.lblCouleurEnnemis.Name = "lblCouleurEnnemis";
             this.lblCouleurEnnemis.Size = new System.Drawing.Size(46, 17);
             this.lblCouleurEnnemis.TabIndex = 9;
@@ -71,7 +71,7 @@
             // 
             this.lblAgressivite.AutoSize = true;
             this.lblAgressivite.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgressivite.Location = new System.Drawing.Point(3, 151);
+            this.lblAgressivite.Location = new System.Drawing.Point(3, 175);
             this.lblAgressivite.Name = "lblAgressivite";
             this.lblAgressivite.Size = new System.Drawing.Size(46, 17);
             this.lblAgressivite.TabIndex = 8;
@@ -81,7 +81,7 @@
             // 
             this.lblNomEnnemis.AutoSize = true;
             this.lblNomEnnemis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomEnnemis.Location = new System.Drawing.Point(3, 134);
+            this.lblNomEnnemis.Location = new System.Drawing.Point(3, 158);
             this.lblNomEnnemis.Name = "lblNomEnnemis";
             this.lblNomEnnemis.Size = new System.Drawing.Size(46, 17);
             this.lblNomEnnemis.TabIndex = 7;
@@ -91,7 +91,7 @@
             // 
             this.picEnnemis.Location = new System.Drawing.Point(3, 3);
             this.picEnnemis.Name = "picEnnemis";
-            this.picEnnemis.Size = new System.Drawing.Size(98, 128);
+            this.picEnnemis.Size = new System.Drawing.Size(128, 152);
             this.picEnnemis.TabIndex = 6;
             this.picEnnemis.TabStop = false;
             // 
@@ -106,7 +106,7 @@
             this.Controls.Add(this.lblNomEnnemis);
             this.Controls.Add(this.picEnnemis);
             this.Name = "InfoAliensEnnemis";
-            this.Size = new System.Drawing.Size(134, 227);
+            this.Size = new System.Drawing.Size(134, 245);
             this.Load += new System.EventHandler(this.InfoAliensEnnemis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picEnnemis)).EndInit();
             this.ResumeLayout(false);
