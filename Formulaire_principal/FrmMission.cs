@@ -11,19 +11,9 @@ using System.Windows.Forms;
 
 namespace Formulaire_principal
 {
-    public class ListItem
-    {
-        public string Name { get; set; }
-        public int Value { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
+    
     public partial class FrmMission : Form
     {
-        //DEMANDER AU PROF : ligne 456 meilleur moyen ou non ?
         private SQLiteTransaction trans;
 
         private SQLiteConnection co = Connexion.Connec;
@@ -213,7 +203,8 @@ namespace Formulaire_principal
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
 
-                    lstbMembres.Items.Add(cboChef.Text);
+                    ListItemMembre li = new ListItemMembre { Name = cboChef.Text, Value = cboChef.SelectedValue.ToString() };
+                    lstbMembres.Items.Add(li);
                     cboMembres.Focus();
                     cboChef.Enabled = false;
                     dtpDepart.Enabled = false;
@@ -364,17 +355,47 @@ namespace Formulaire_principal
                 {
                     while (dr.Read())
                     {
+                        string matricule;
 
-                        string matricule = dr[0].ToString();
-
-                        //cboMembres.DataSource est une table
-                        DataTable dt = (DataTable)cboMembres.DataSource;
-                        //J'utilise un filtre pour garder les lignes de la table voulues
-                        DataRow[] rows = dt.Select($"matricule = '{matricule}'");
-
-                        if (rows.Length > 0)
+                        if(dr.IsDBNull(0))
                         {
-                            lstbPartis.Items.Add(rows[0]["nomComplet"].ToString());
+                            continue;
+                        }
+                        else
+                        {
+                            matricule = dr[0].ToString();
+                        }
+                        if(matricule.StartsWith("M"))
+                        {
+                            string sql2 = $@"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
+                                        AS nomComplet FROM Membre me
+                                        JOIN Militaire mi ON
+                                        me.matricule = mi.matriculeMembre
+                                        WHERE me.matricule != '{cboChef.SelectedValue.ToString()}' AND me.matricule = '{matricule}'";
+                            SQLiteCommand cmd2 = new SQLiteCommand (sql2, co);
+                            SQLiteDataReader dr2 = cmd2.ExecuteReader();
+                            while(dr2.Read())
+                            {
+                                ListItemMembre li = new ListItemMembre { Name = dr2[0].ToString() , Value = matricule };
+                                lstbPartis.Items.Add(li);
+                            }
+
+                        }
+                        else if(matricule.StartsWith("C"))
+                        {
+                            string sql3 = $@"SELECT (me.nom || ' ' || me.prenom || ' : Civil - ' || ci.Specialite) 
+                                            AS nomComplet, me.matricule FROM Membre me
+                                            JOIN Civil ci ON
+                                            me.matricule = ci.matriculeMembre
+                                            WHERE me.matricule = '{matricule}'";
+
+                            SQLiteCommand cmd3 = new SQLiteCommand(sql3, co);
+                            SQLiteDataReader dr3 = cmd3.ExecuteReader();
+                            while (dr3.Read())
+                            {
+                                ListItemMembre li = new ListItemMembre { Name = dr3[0].ToString(), Value = matricule };
+                                lstbPartis.Items.Add(li);
+                            }
                         }
                     }
                 }
@@ -391,12 +412,17 @@ namespace Formulaire_principal
             int reste = int.Parse(lblreste.Text);
             if (reste > 0)
             {
-                
-                if (!lstbMembres.Items.Contains(cboMembres.Text))
+                List<string> values = new List<string>();
+                ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
+                for (int i = 0; i < lstbMembres.Items.Count; i++)
+                {
+                    values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
+                }
+                if (!values.Contains(li.Value))
                 {
                     reste -= 1;
                     lblreste.Text = reste.ToString();
-                    lstbMembres.Items.Add(cboMembres.Text);
+                    lstbMembres.Items.Add(li);
                 }
                 else
                 {
@@ -416,16 +442,23 @@ namespace Formulaire_principal
             
             
             int reste = int.Parse(lblreste.Text);
+            int reste2 = int.Parse(txtnbMembres.Text);
 
-            if (reste >= lstbPartis.Items.Count)
+            if (reste2 >= lstbPartis.Items.Count + 1 && (reste- lstbPartis.Items.Count) > 0)
             {
-                lstbMembres.Items.Clear();
-                foreach (string i in lstbPartis.Items)
+                while (lstbMembres.Items.Count > 1)
+                {
+                    lstbMembres.Items.RemoveAt(1);
+                }
+                ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
+                lstbMembres.Items.Add(li);
+                reste -= 1;
+                reste -= lstbPartis.Items.Count;
+                lblreste.Text = reste.ToString();
+                foreach (ListItemMembre li2 in lstbPartis.Items)
                 {
                     
-                    reste -= 1;
-                    lblreste.Text = reste.ToString();
-                    lstbMembres.Items.Add(i);
+                    lstbMembres.Items.Add(li2);
                     
                 }
             }
@@ -457,26 +490,16 @@ namespace Formulaire_principal
             {
                 try
                 {
-                    string matricule = "";
 
                     string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
                             (@nomPlanete, @numeroMission, @matriculeMembre)";
 
                     
 
-                    DataTable dt = (DataTable)cboMembres.DataSource;
-                    DataRow[] rows = dt.Select($"nomComplet = '{lstbMembres.Items[i]}'");
-
-                    
-                    if (rows.Length > 0)
-                    {
-                        matricule = rows[0]["matricule"].ToString();
-                    }
-
                     SQLiteCommand cmd = new SQLiteCommand(sql, co);
                     cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
                     cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
-                    cmd.Parameters.AddWithValue("matriculeMembre", matricule);
+                    cmd.Parameters.AddWithValue("matriculeMembre", ((ListItemMembre)lstbMembres.Items[i]).Value);
                     cmd.ExecuteNonQuery();
                 }
                 catch(SQLiteException err)
@@ -500,20 +523,25 @@ namespace Formulaire_principal
             }
             else
             {
-                foreach (string elt in lstbPartis.SelectedItems)
+                List<string> values = new List<string>();
+                for (int i = 0; i < lstbMembres.Items.Count; i++)
+                {
+                    values.Add(((ListItemMembre)lstbPartis.Items[i]).Value);
+                }
+                foreach (ListItemMembre li in lstbPartis.SelectedItems)
                 {
                     int reste = int.Parse(lblreste.Text);
                     if (reste > 0)
                     {
-                        if (!lstbMembres.Items.Contains(elt))
+                        if (!values.Contains(li.Value))
                         {
                             reste -= 1;
                             lblreste.Text = reste.ToString();
-                            lstbMembres.Items.Add(elt);
+                            lstbMembres.Items.Add(li);
                         }
                         else
                         {
-                            MessageBox.Show($"{elt} déjà présent dans la liste !");
+                            MessageBox.Show($"{li.Name} déjà présent dans la liste !");
                         }
                     }
                     else
@@ -530,7 +558,7 @@ namespace Formulaire_principal
 
         private void btnSuppSelect_Click(object sender, EventArgs e)
         {
-            List<string> remove = new List<string>();
+            List<ListItemMembre> remove = new List<ListItemMembre>();
             if (lstbMembres.SelectedItem == null)
             {
                 MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-dessus.");
@@ -538,20 +566,20 @@ namespace Formulaire_principal
             }
             else
             {
-                foreach (string elt in lstbMembres.SelectedItems)
+                foreach (ListItemMembre li in lstbMembres.SelectedItems)
                 {
                     
-                    if (elt != cboChef.Text)
+                    if (li.Name != cboChef.Text)
                     {
-                        remove.Add(elt);
+                        remove.Add(li);
                     }         
                 }
-                foreach(string elt2 in remove)
+                foreach(ListItemMembre li2 in remove)
                 {
                     int reste = int.Parse(lblreste.Text);
                     reste += 1;
                     lblreste.Text = reste.ToString();
-                    lstbMembres.Items.Remove(elt2);
+                    lstbMembres.Items.Remove(li2);
                 }
             }
             
@@ -747,7 +775,8 @@ namespace Formulaire_principal
                 }
                 trans.Commit();
                 MessageBox.Show("Objectifs de capture enregistrés !");
-                MessageBox.Show("Tout est bon de notre côté, tous les détails de votre mission ont été validés !");
+                MettreaJourDS();
+                
             }
             catch (SQLiteException err)
             {
@@ -755,6 +784,76 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
 
+        }
+
+        private void btnSuppSelectCapt_Click(object sender, EventArgs e)
+        {
+            List<ListItem> remove = new List<ListItem>();
+            if (lstbCapture.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-contre.");
+
+            }
+            else
+            {
+                foreach (ListItem elt in lstbCapture.SelectedItems)
+                {
+                     remove.Add(elt);
+                }
+                foreach (ListItem elt2 in remove)
+                {
+                    lstbCapture.Items.Remove(elt2);
+                }
+            }
+        }
+
+        private void MettreaJourDS()
+        {
+            if (ds.Tables.Contains("Mission"))
+            {
+                MesDatas.DsGlobal.Tables["Mission"].Clear();
+            }
+            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Mission", co);
+            da.Fill(ds, "Mission");
+
+            if (ds.Tables.Contains("Composer"))
+            {
+                MesDatas.DsGlobal.Tables["Composer"].Clear();
+            }
+            SQLiteDataAdapter da2 = new SQLiteDataAdapter("SELECT * FROM Composer", co);
+            da2.Fill(ds, "Composer");
+
+            if (ds.Tables.Contains("Capturer"))
+            {
+                MesDatas.DsGlobal.Tables["Capturer"].Clear();
+            }
+            SQLiteDataAdapter da3 = new SQLiteDataAdapter("SELECT * FROM Capturer", co);
+            da3.Fill(ds, "Composer");
+
+            MessageBox.Show("Tout est bon de notre côté, tous les détails de votre mission ont été validés !");
+            Application.Exit();
+        }
+
+        public struct ListItem
+        {
+            public string Name { get; set; }
+            public int Value { get; set; }
+
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
+
+        public struct ListItemMembre
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
     }
 }

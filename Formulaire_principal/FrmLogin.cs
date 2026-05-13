@@ -22,7 +22,7 @@ namespace Formulaire_principal
         public FrmLogin()
         {
             InitializeComponent();
-            btnOeil.BackgroundImage = Image.FromFile("../../Images/oeil.png");
+            btnOeil.BackgroundImage = Image.FromFile("../../Images/Missions/oeil.png");
             //Pour que l'image occupe tout le bouton
             btnOeil.BackgroundImageLayout = ImageLayout.Stretch;
             txtMdp.UseSystemPasswordChar = true;

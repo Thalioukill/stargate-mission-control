@@ -73,7 +73,9 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMission.cs" />
+    <Compile Include="FrmMission.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmMission.Designer.cs">
       <DependentUpon>FrmMission.cs</DependentUpon>
     </Compile>
