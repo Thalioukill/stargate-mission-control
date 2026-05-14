@@ -30,23 +30,23 @@
         {
             this.grpNouvelleMission = new System.Windows.Forms.GroupBox();
             this.lblNum = new System.Windows.Forms.Label();
-            this.pnl = new System.Windows.Forms.Panel();
+            this.pnl1 = new System.Windows.Forms.Panel();
             this.btnValidMission = new System.Windows.Forms.Button();
             this.lblEuros = new System.Windows.Forms.Label();
             this.txtBudget = new System.Windows.Forms.TextBox();
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblTonnes = new System.Windows.Forms.Label();
             this.txtobjDataBaz = new System.Windows.Forms.TextBox();
-            this.lblobjDataBaz = new System.Windows.Forms.Label();
+            this.lblObjDataBaz = new System.Windows.Forms.Label();
             this.lblPersonnes = new System.Windows.Forms.Label();
             this.txtnbMembres = new System.Windows.Forms.TextBox();
-            this.lblnbMembres = new System.Windows.Forms.Label();
+            this.lblNbMembres = new System.Windows.Forms.Label();
             this.txtfeuilleRoute = new System.Windows.Forms.TextBox();
-            this.lblfdr = new System.Windows.Forms.Label();
+            this.lblFDR = new System.Windows.Forms.Label();
             this.dtpRetour = new System.Windows.Forms.DateTimePicker();
             this.dtpDepart = new System.Windows.Forms.DateTimePicker();
-            this.lbldateRetour = new System.Windows.Forms.Label();
-            this.lbldateDepart = new System.Windows.Forms.Label();
+            this.lblDateRetour = new System.Windows.Forms.Label();
+            this.lblDateDepart = new System.Windows.Forms.Label();
             this.lblParam = new System.Windows.Forms.Label();
             this.lblChef = new System.Windows.Forms.Label();
             this.cboChef = new System.Windows.Forms.ComboBox();
@@ -59,43 +59,41 @@
             this.btnSuppSelectCapt = new System.Windows.Forms.Button();
             this.btnAddCapture = new System.Windows.Forms.Button();
             this.btnValidObj = new System.Windows.Forms.Button();
-            this.lstbCapture = new System.Windows.Forms.ListBox();
+            this.lstbCaptures = new System.Windows.Forms.ListBox();
             this.nud1 = new System.Windows.Forms.NumericUpDown();
             this.cboCapture = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblObjCapture = new System.Windows.Forms.Label();
             this.pnl2 = new System.Windows.Forms.Panel();
             this.btnSuppSelect = new System.Windows.Forms.Button();
             this.btnAddSelect = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMembresAffect = new System.Windows.Forms.Label();
             this.btnRefaire = new System.Windows.Forms.Button();
             this.lstbMembres = new System.Windows.Forms.ListBox();
-            this.lblnomMembre = new System.Windows.Forms.Label();
+            this.lblNomMembre = new System.Windows.Forms.Label();
             this.lstbPartis = new System.Windows.Forms.ListBox();
             this.btnvalidMembres = new System.Windows.Forms.Button();
             this.btnAddMembre = new System.Windows.Forms.Button();
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
+            this.pnl0 = new System.Windows.Forms.Panel();
             this.grpNouvelleMission.SuspendLayout();
-            this.pnl.SuspendLayout();
+            this.pnl1.SuspendLayout();
             this.grpPrecisions.SuspendLayout();
             this.pnl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).BeginInit();
             this.pnl2.SuspendLayout();
+            this.pnl0.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpNouvelleMission
             // 
             this.grpNouvelleMission.AutoSize = true;
-            this.grpNouvelleMission.Controls.Add(this.lblNum);
-            this.grpNouvelleMission.Controls.Add(this.pnl);
-            this.grpNouvelleMission.Controls.Add(this.lblNomMission);
-            this.grpNouvelleMission.Controls.Add(this.btnValidPlanete);
-            this.grpNouvelleMission.Controls.Add(this.cboPlanete);
-            this.grpNouvelleMission.Controls.Add(this.lblChoix);
-            this.grpNouvelleMission.Location = new System.Drawing.Point(29, 24);
+            this.grpNouvelleMission.Controls.Add(this.pnl0);
+            this.grpNouvelleMission.Controls.Add(this.pnl1);
+            this.grpNouvelleMission.Location = new System.Drawing.Point(17, 14);
             this.grpNouvelleMission.Name = "grpNouvelleMission";
-            this.grpNouvelleMission.Size = new System.Drawing.Size(1029, 1256);
+            this.grpNouvelleMission.Size = new System.Drawing.Size(1013, 1266);
             this.grpNouvelleMission.TabIndex = 0;
             this.grpNouvelleMission.TabStop = false;
             this.grpNouvelleMission.Text = "Nouvelle mission";
@@ -104,43 +102,43 @@
             // 
             this.lblNum.AutoSize = true;
             this.lblNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNum.Location = new System.Drawing.Point(796, 154);
+            this.lblNum.Location = new System.Drawing.Point(765, 118);
             this.lblNum.Name = "lblNum";
             this.lblNum.Size = new System.Drawing.Size(124, 42);
             this.lblNum.TabIndex = 5;
             this.lblNum.Text = "label1";
             // 
-            // pnl
+            // pnl1
             // 
-            this.pnl.Controls.Add(this.btnValidMission);
-            this.pnl.Controls.Add(this.lblEuros);
-            this.pnl.Controls.Add(this.txtBudget);
-            this.pnl.Controls.Add(this.lblBudget);
-            this.pnl.Controls.Add(this.lblTonnes);
-            this.pnl.Controls.Add(this.txtobjDataBaz);
-            this.pnl.Controls.Add(this.lblobjDataBaz);
-            this.pnl.Controls.Add(this.lblPersonnes);
-            this.pnl.Controls.Add(this.txtnbMembres);
-            this.pnl.Controls.Add(this.lblnbMembres);
-            this.pnl.Controls.Add(this.txtfeuilleRoute);
-            this.pnl.Controls.Add(this.lblfdr);
-            this.pnl.Controls.Add(this.dtpRetour);
-            this.pnl.Controls.Add(this.dtpDepart);
-            this.pnl.Controls.Add(this.lbldateRetour);
-            this.pnl.Controls.Add(this.lbldateDepart);
-            this.pnl.Controls.Add(this.lblParam);
-            this.pnl.Controls.Add(this.lblChef);
-            this.pnl.Controls.Add(this.cboChef);
-            this.pnl.Location = new System.Drawing.Point(29, 234);
-            this.pnl.Name = "pnl";
-            this.pnl.Size = new System.Drawing.Size(978, 863);
-            this.pnl.TabIndex = 4;
+            this.pnl1.Controls.Add(this.btnValidMission);
+            this.pnl1.Controls.Add(this.lblEuros);
+            this.pnl1.Controls.Add(this.txtBudget);
+            this.pnl1.Controls.Add(this.lblBudget);
+            this.pnl1.Controls.Add(this.lblTonnes);
+            this.pnl1.Controls.Add(this.txtobjDataBaz);
+            this.pnl1.Controls.Add(this.lblObjDataBaz);
+            this.pnl1.Controls.Add(this.lblPersonnes);
+            this.pnl1.Controls.Add(this.txtnbMembres);
+            this.pnl1.Controls.Add(this.lblNbMembres);
+            this.pnl1.Controls.Add(this.txtfeuilleRoute);
+            this.pnl1.Controls.Add(this.lblFDR);
+            this.pnl1.Controls.Add(this.dtpRetour);
+            this.pnl1.Controls.Add(this.dtpDepart);
+            this.pnl1.Controls.Add(this.lblDateRetour);
+            this.pnl1.Controls.Add(this.lblDateDepart);
+            this.pnl1.Controls.Add(this.lblParam);
+            this.pnl1.Controls.Add(this.lblChef);
+            this.pnl1.Controls.Add(this.cboChef);
+            this.pnl1.Location = new System.Drawing.Point(29, 234);
+            this.pnl1.Name = "pnl1";
+            this.pnl1.Size = new System.Drawing.Size(978, 863);
+            this.pnl1.TabIndex = 4;
             // 
             // btnValidMission
             // 
             this.btnValidMission.Location = new System.Drawing.Point(755, 766);
             this.btnValidMission.Name = "btnValidMission";
-            this.btnValidMission.Size = new System.Drawing.Size(188, 65);
+            this.btnValidMission.Size = new System.Drawing.Size(188, 86);
             this.btnValidMission.TabIndex = 41;
             this.btnValidMission.Text = "Valider la mission";
             this.btnValidMission.UseVisualStyleBackColor = true;
@@ -192,15 +190,15 @@
             this.txtobjDataBaz.TabIndex = 36;
             this.txtobjDataBaz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtobjDataBaz_KeyPress);
             // 
-            // lblobjDataBaz
+            // lblObjDataBaz
             // 
-            this.lblobjDataBaz.AutoSize = true;
-            this.lblobjDataBaz.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblobjDataBaz.Location = new System.Drawing.Point(68, 733);
-            this.lblobjDataBaz.Name = "lblobjDataBaz";
-            this.lblobjDataBaz.Size = new System.Drawing.Size(173, 25);
-            this.lblobjDataBaz.TabIndex = 35;
-            this.lblobjDataBaz.Text = "Objectif DataBaz";
+            this.lblObjDataBaz.AutoSize = true;
+            this.lblObjDataBaz.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblObjDataBaz.Location = new System.Drawing.Point(68, 733);
+            this.lblObjDataBaz.Name = "lblObjDataBaz";
+            this.lblObjDataBaz.Size = new System.Drawing.Size(173, 25);
+            this.lblObjDataBaz.TabIndex = 35;
+            this.lblObjDataBaz.Text = "Objectif DataBaz";
             // 
             // lblPersonnes
             // 
@@ -220,15 +218,15 @@
             this.txtnbMembres.TabIndex = 33;
             this.txtnbMembres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnbMembres_KeyPress);
             // 
-            // lblnbMembres
+            // lblNbMembres
             // 
-            this.lblnbMembres.AutoSize = true;
-            this.lblnbMembres.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblnbMembres.Location = new System.Drawing.Point(68, 671);
-            this.lblnbMembres.Name = "lblnbMembres";
-            this.lblnbMembres.Size = new System.Drawing.Size(211, 25);
-            this.lblnbMembres.TabIndex = 32;
-            this.lblnbMembres.Text = "Nombre de membres";
+            this.lblNbMembres.AutoSize = true;
+            this.lblNbMembres.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblNbMembres.Location = new System.Drawing.Point(68, 671);
+            this.lblNbMembres.Name = "lblNbMembres";
+            this.lblNbMembres.Size = new System.Drawing.Size(211, 25);
+            this.lblNbMembres.TabIndex = 32;
+            this.lblNbMembres.Text = "Nombre de membres";
             // 
             // txtfeuilleRoute
             // 
@@ -238,15 +236,15 @@
             this.txtfeuilleRoute.Size = new System.Drawing.Size(614, 230);
             this.txtfeuilleRoute.TabIndex = 31;
             // 
-            // lblfdr
+            // lblFDR
             // 
-            this.lblfdr.AutoSize = true;
-            this.lblfdr.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblfdr.Location = new System.Drawing.Point(68, 390);
-            this.lblfdr.Name = "lblfdr";
-            this.lblfdr.Size = new System.Drawing.Size(161, 25);
-            this.lblfdr.TabIndex = 30;
-            this.lblfdr.Text = "Feuille de route";
+            this.lblFDR.AutoSize = true;
+            this.lblFDR.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblFDR.Location = new System.Drawing.Point(68, 390);
+            this.lblFDR.Name = "lblFDR";
+            this.lblFDR.Size = new System.Drawing.Size(161, 25);
+            this.lblFDR.TabIndex = 30;
+            this.lblFDR.Text = "Feuille de route";
             // 
             // dtpRetour
             // 
@@ -266,25 +264,25 @@
             this.dtpDepart.Size = new System.Drawing.Size(220, 31);
             this.dtpDepart.TabIndex = 28;
             // 
-            // lbldateRetour
+            // lblDateRetour
             // 
-            this.lbldateRetour.AutoSize = true;
-            this.lbldateRetour.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lbldateRetour.Location = new System.Drawing.Point(68, 310);
-            this.lbldateRetour.Name = "lbldateRetour";
-            this.lbldateRetour.Size = new System.Drawing.Size(119, 25);
-            this.lbldateRetour.TabIndex = 27;
-            this.lbldateRetour.Text = "Date retour";
+            this.lblDateRetour.AutoSize = true;
+            this.lblDateRetour.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblDateRetour.Location = new System.Drawing.Point(68, 310);
+            this.lblDateRetour.Name = "lblDateRetour";
+            this.lblDateRetour.Size = new System.Drawing.Size(119, 25);
+            this.lblDateRetour.TabIndex = 27;
+            this.lblDateRetour.Text = "Date retour";
             // 
-            // lbldateDepart
+            // lblDateDepart
             // 
-            this.lbldateDepart.AutoSize = true;
-            this.lbldateDepart.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lbldateDepart.Location = new System.Drawing.Point(68, 238);
-            this.lbldateDepart.Name = "lbldateDepart";
-            this.lbldateDepart.Size = new System.Drawing.Size(124, 25);
-            this.lbldateDepart.TabIndex = 26;
-            this.lbldateDepart.Text = "Date départ";
+            this.lblDateDepart.AutoSize = true;
+            this.lblDateDepart.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblDateDepart.Location = new System.Drawing.Point(68, 238);
+            this.lblDateDepart.Name = "lblDateDepart";
+            this.lblDateDepart.Size = new System.Drawing.Size(124, 25);
+            this.lblDateDepart.TabIndex = 26;
+            this.lblDateDepart.Text = "Date départ";
             // 
             // lblParam
             // 
@@ -308,7 +306,8 @@
             // 
             // cboChef
             // 
-            this.cboChef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChef.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboChef.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboChef.FormattingEnabled = true;
             this.cboChef.Location = new System.Drawing.Point(343, 31);
             this.cboChef.Name = "cboChef";
@@ -319,7 +318,7 @@
             // 
             this.lblNomMission.AutoSize = true;
             this.lblNomMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomMission.Location = new System.Drawing.Point(63, 154);
+            this.lblNomMission.Location = new System.Drawing.Point(32, 118);
             this.lblNomMission.Name = "lblNomMission";
             this.lblNomMission.Size = new System.Drawing.Size(124, 42);
             this.lblNomMission.TabIndex = 3;
@@ -327,7 +326,7 @@
             // 
             // btnValidPlanete
             // 
-            this.btnValidPlanete.Location = new System.Drawing.Point(803, 49);
+            this.btnValidPlanete.Location = new System.Drawing.Point(772, 13);
             this.btnValidPlanete.Name = "btnValidPlanete";
             this.btnValidPlanete.Size = new System.Drawing.Size(179, 61);
             this.btnValidPlanete.TabIndex = 2;
@@ -339,7 +338,7 @@
             // 
             this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(366, 64);
+            this.cboPlanete.Location = new System.Drawing.Point(335, 28);
             this.cboPlanete.Name = "cboPlanete";
             this.cboPlanete.Size = new System.Drawing.Size(352, 33);
             this.cboPlanete.TabIndex = 1;
@@ -349,7 +348,7 @@
             // lblChoix
             // 
             this.lblChoix.AutoSize = true;
-            this.lblChoix.Location = new System.Drawing.Point(59, 69);
+            this.lblChoix.Location = new System.Drawing.Point(28, 33);
             this.lblChoix.Name = "lblChoix";
             this.lblChoix.Size = new System.Drawing.Size(228, 25);
             this.lblChoix.TabIndex = 0;
@@ -359,9 +358,9 @@
             // 
             this.grpPrecisions.Controls.Add(this.pnl3);
             this.grpPrecisions.Controls.Add(this.pnl2);
-            this.grpPrecisions.Location = new System.Drawing.Point(1109, 24);
+            this.grpPrecisions.Location = new System.Drawing.Point(1030, 14);
             this.grpPrecisions.Name = "grpPrecisions";
-            this.grpPrecisions.Size = new System.Drawing.Size(1094, 1256);
+            this.grpPrecisions.Size = new System.Drawing.Size(1059, 1266);
             this.grpPrecisions.TabIndex = 1;
             this.grpPrecisions.TabStop = false;
             this.grpPrecisions.Text = "Précisions sur la mission créée";
@@ -371,10 +370,10 @@
             this.pnl3.Controls.Add(this.btnSuppSelectCapt);
             this.pnl3.Controls.Add(this.btnAddCapture);
             this.pnl3.Controls.Add(this.btnValidObj);
-            this.pnl3.Controls.Add(this.lstbCapture);
+            this.pnl3.Controls.Add(this.lstbCaptures);
             this.pnl3.Controls.Add(this.nud1);
             this.pnl3.Controls.Add(this.cboCapture);
-            this.pnl3.Controls.Add(this.label3);
+            this.pnl3.Controls.Add(this.lblObjCapture);
             this.pnl3.Location = new System.Drawing.Point(23, 911);
             this.pnl3.Name = "pnl3";
             this.pnl3.Size = new System.Drawing.Size(1011, 313);
@@ -410,15 +409,15 @@
             this.btnValidObj.UseVisualStyleBackColor = true;
             this.btnValidObj.Click += new System.EventHandler(this.btnValidObj_Click);
             // 
-            // lstbCapture
+            // lstbCaptures
             // 
-            this.lstbCapture.FormattingEnabled = true;
-            this.lstbCapture.ItemHeight = 25;
-            this.lstbCapture.Location = new System.Drawing.Point(38, 142);
-            this.lstbCapture.Name = "lstbCapture";
-            this.lstbCapture.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbCapture.Size = new System.Drawing.Size(651, 154);
-            this.lstbCapture.TabIndex = 22;
+            this.lstbCaptures.FormattingEnabled = true;
+            this.lstbCaptures.ItemHeight = 25;
+            this.lstbCaptures.Location = new System.Drawing.Point(38, 142);
+            this.lstbCaptures.Name = "lstbCaptures";
+            this.lstbCaptures.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstbCaptures.Size = new System.Drawing.Size(651, 154);
+            this.lstbCaptures.TabIndex = 22;
             // 
             // nud1
             // 
@@ -429,30 +428,32 @@
             // 
             // cboCapture
             // 
+            this.cboCapture.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCapture.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCapture.FormattingEnabled = true;
             this.cboCapture.Location = new System.Drawing.Point(38, 76);
             this.cboCapture.Name = "cboCapture";
             this.cboCapture.Size = new System.Drawing.Size(518, 33);
             this.cboCapture.TabIndex = 19;
             // 
-            // label3
+            // lblObjCapture
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(33, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(235, 25);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "5 - Objectifs de capture";
+            this.lblObjCapture.AutoSize = true;
+            this.lblObjCapture.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblObjCapture.Location = new System.Drawing.Point(33, 19);
+            this.lblObjCapture.Name = "lblObjCapture";
+            this.lblObjCapture.Size = new System.Drawing.Size(235, 25);
+            this.lblObjCapture.TabIndex = 18;
+            this.lblObjCapture.Text = "5 - Objectifs de capture";
             // 
             // pnl2
             // 
             this.pnl2.Controls.Add(this.btnSuppSelect);
             this.pnl2.Controls.Add(this.btnAddSelect);
-            this.pnl2.Controls.Add(this.label2);
+            this.pnl2.Controls.Add(this.lblMembresAffect);
             this.pnl2.Controls.Add(this.btnRefaire);
             this.pnl2.Controls.Add(this.lstbMembres);
-            this.pnl2.Controls.Add(this.lblnomMembre);
+            this.pnl2.Controls.Add(this.lblNomMembre);
             this.pnl2.Controls.Add(this.lstbPartis);
             this.pnl2.Controls.Add(this.btnvalidMembres);
             this.pnl2.Controls.Add(this.btnAddMembre);
@@ -484,15 +485,15 @@
             this.btnAddSelect.UseVisualStyleBackColor = true;
             this.btnAddSelect.Click += new System.EventHandler(this.btnAddSelect_Click);
             // 
-            // label2
+            // lblMembresAffect
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(38, 489);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(235, 25);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Les membres affectés :";
+            this.lblMembresAffect.AutoSize = true;
+            this.lblMembresAffect.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblMembresAffect.Location = new System.Drawing.Point(38, 489);
+            this.lblMembresAffect.Name = "lblMembresAffect";
+            this.lblMembresAffect.Size = new System.Drawing.Size(235, 25);
+            this.lblMembresAffect.TabIndex = 17;
+            this.lblMembresAffect.Text = "Les membres affectés :";
             // 
             // btnRefaire
             // 
@@ -514,15 +515,15 @@
             this.lstbMembres.Size = new System.Drawing.Size(928, 179);
             this.lstbMembres.TabIndex = 15;
             // 
-            // lblnomMembre
+            // lblNomMembre
             // 
-            this.lblnomMembre.AutoSize = true;
-            this.lblnomMembre.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblnomMembre.Location = new System.Drawing.Point(38, 144);
-            this.lblnomMembre.Name = "lblnomMembre";
-            this.lblnomMembre.Size = new System.Drawing.Size(56, 25);
-            this.lblnomMembre.TabIndex = 13;
-            this.lblnomMembre.Text = "Nom";
+            this.lblNomMembre.AutoSize = true;
+            this.lblNomMembre.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblNomMembre.Location = new System.Drawing.Point(38, 144);
+            this.lblNomMembre.Name = "lblNomMembre";
+            this.lblNomMembre.Size = new System.Drawing.Size(56, 25);
+            this.lblNomMembre.TabIndex = 13;
+            this.lblNomMembre.Text = "Nom";
             // 
             // lstbPartis
             // 
@@ -556,7 +557,8 @@
             // 
             // cboMembres
             // 
-            this.cboMembres.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMembres.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMembres.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMembres.FormattingEnabled = true;
             this.cboMembres.Location = new System.Drawing.Point(43, 80);
             this.cboMembres.Name = "cboMembres";
@@ -584,12 +586,24 @@
             this.lblAffect.TabIndex = 6;
             this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
+            // pnl0
+            // 
+            this.pnl0.Controls.Add(this.lblNum);
+            this.pnl0.Controls.Add(this.lblNomMission);
+            this.pnl0.Controls.Add(this.btnValidPlanete);
+            this.pnl0.Controls.Add(this.cboPlanete);
+            this.pnl0.Controls.Add(this.lblChoix);
+            this.pnl0.Location = new System.Drawing.Point(31, 36);
+            this.pnl0.Name = "pnl0";
+            this.pnl0.Size = new System.Drawing.Size(964, 180);
+            this.pnl0.TabIndex = 6;
+            // 
             // FrmMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2238, 1292);
+            this.ClientSize = new System.Drawing.Size(2127, 1292);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
             this.Name = "FrmMission";
@@ -597,15 +611,16 @@
             this.Text = "Création d\'une nouvelle mission";
             this.Load += new System.EventHandler(this.FrmMission_Load);
             this.grpNouvelleMission.ResumeLayout(false);
-            this.grpNouvelleMission.PerformLayout();
-            this.pnl.ResumeLayout(false);
-            this.pnl.PerformLayout();
+            this.pnl1.ResumeLayout(false);
+            this.pnl1.PerformLayout();
             this.grpPrecisions.ResumeLayout(false);
             this.pnl3.ResumeLayout(false);
             this.pnl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).EndInit();
             this.pnl2.ResumeLayout(false);
             this.pnl2.PerformLayout();
+            this.pnl0.ResumeLayout(false);
+            this.pnl0.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -618,23 +633,23 @@
         private System.Windows.Forms.Button btnValidPlanete;
         private System.Windows.Forms.ComboBox cboPlanete;
         private System.Windows.Forms.Label lblChoix;
-        private System.Windows.Forms.Panel pnl;
+        private System.Windows.Forms.Panel pnl1;
         private System.Windows.Forms.Button btnValidMission;
         private System.Windows.Forms.Label lblEuros;
         private System.Windows.Forms.TextBox txtBudget;
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Label lblTonnes;
         private System.Windows.Forms.TextBox txtobjDataBaz;
-        private System.Windows.Forms.Label lblobjDataBaz;
+        private System.Windows.Forms.Label lblObjDataBaz;
         private System.Windows.Forms.Label lblPersonnes;
         private System.Windows.Forms.TextBox txtnbMembres;
-        private System.Windows.Forms.Label lblnbMembres;
+        private System.Windows.Forms.Label lblNbMembres;
         private System.Windows.Forms.TextBox txtfeuilleRoute;
-        private System.Windows.Forms.Label lblfdr;
+        private System.Windows.Forms.Label lblFDR;
         private System.Windows.Forms.DateTimePicker dtpRetour;
         private System.Windows.Forms.DateTimePicker dtpDepart;
-        private System.Windows.Forms.Label lbldateRetour;
-        private System.Windows.Forms.Label lbldateDepart;
+        private System.Windows.Forms.Label lblDateRetour;
+        private System.Windows.Forms.Label lblDateDepart;
         private System.Windows.Forms.Label lblParam;
         private System.Windows.Forms.Label lblChef;
         private System.Windows.Forms.ComboBox cboChef;
@@ -647,19 +662,20 @@
         private System.Windows.Forms.ComboBox cboMembres;
         private System.Windows.Forms.Button btnRefaire;
         private System.Windows.Forms.ListBox lstbMembres;
-        private System.Windows.Forms.Label lblnomMembre;
+        private System.Windows.Forms.Label lblNomMembre;
         private System.Windows.Forms.ListBox lstbPartis;
         private System.Windows.Forms.ComboBox cboCapture;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblObjCapture;
+        private System.Windows.Forms.Label lblMembresAffect;
         private System.Windows.Forms.NumericUpDown nud1;
         private System.Windows.Forms.Button btnValidObj;
-        private System.Windows.Forms.ListBox lstbCapture;
+        private System.Windows.Forms.ListBox lstbCaptures;
         private System.Windows.Forms.Button btnAddCapture;
         private System.Windows.Forms.Button btnAddSelect;
         private System.Windows.Forms.Button btnSuppSelect;
         private System.Windows.Forms.Panel pnl2;
         private System.Windows.Forms.Panel pnl3;
         private System.Windows.Forms.Button btnSuppSelectCapt;
+        private System.Windows.Forms.Panel pnl0;
     }
 }
