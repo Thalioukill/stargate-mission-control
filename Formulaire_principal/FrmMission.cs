@@ -131,24 +131,7 @@ namespace Formulaire_principal
             cboPlanete.ValueMember = "nom";
             cboPlanete.Focus();*/
 
-            try
-            {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
-                            AS nomComplet, me.matricule FROM Membre me
-                            JOIN Militaire mi ON
-                            me.matricule = mi.matriculeMembre
-                            WHERE me.matricule LIKE 'M%'";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cboChef.DataSource = dt;
-                cboChef.DisplayMember = "nomComplet";
-                cboChef.ValueMember = "matricule";
-            }
-            catch(SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
+            
 
 
         }
@@ -184,6 +167,24 @@ namespace Formulaire_principal
 
         private void btnValidPlanete_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
+                            AS nomComplet, me.matricule FROM Membre me
+                            JOIN Militaire mi ON
+                            me.matricule = mi.matriculeMembre
+                            WHERE me.matricule LIKE 'M%'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cboChef.DataSource = dt;
+                cboChef.DisplayMember = "nomComplet";
+                cboChef.ValueMember = "matricule";
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
             PartieDeuxTroisVisible();  
             cboChef.Focus();
         }
