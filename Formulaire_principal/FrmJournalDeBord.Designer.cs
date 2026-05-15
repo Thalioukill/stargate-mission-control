@@ -30,9 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grpEvenements = new System.Windows.Forms.GroupBox();
             this.flpAffichage = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateEvenement = new System.Windows.Forms.Label();
@@ -50,7 +47,7 @@
             this.btnEditerPDF = new System.Windows.Forms.Button();
             this.dgvBilan = new System.Windows.Forms.DataGridView();
             this.grpBilan = new System.Windows.Forms.GroupBox();
-            this.chartTest = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.flpGraphiques = new System.Windows.Forms.FlowLayoutPanel();
             this.grpEvenements.SuspendLayout();
             this.flpAffichage.SuspendLayout();
             this.grpContact.SuspendLayout();
@@ -59,7 +56,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilan)).BeginInit();
             this.grpBilan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartTest)).BeginInit();
             this.SuspendLayout();
             // 
             // grpEvenements
@@ -157,7 +153,7 @@
             this.dgvContacts.AllowUserToDeleteRows = false;
             this.dgvContacts.AllowUserToResizeColumns = false;
             this.dgvContacts.AllowUserToResizeRows = false;
-            this.dgvContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvContacts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvContacts.Location = new System.Drawing.Point(20, 42);
@@ -186,7 +182,7 @@
             this.dgvDepenses.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDepenses.Location = new System.Drawing.Point(32, 34);
@@ -232,7 +228,7 @@
             this.dgvBilan.AllowUserToResizeRows = false;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBilan.Location = new System.Drawing.Point(20, 44);
@@ -253,21 +249,12 @@
             this.grpBilan.TabStop = false;
             this.grpBilan.Text = "Bilan des captures : ";
             // 
-            // chartTest
+            // flpGraphiques
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartTest.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartTest.Legends.Add(legend1);
-            this.chartTest.Location = new System.Drawing.Point(999, 749);
-            this.chartTest.Name = "chartTest";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartTest.Series.Add(series1);
-            this.chartTest.Size = new System.Drawing.Size(300, 300);
-            this.chartTest.TabIndex = 8;
-            this.chartTest.Text = "chart1";
+            this.flpGraphiques.Location = new System.Drawing.Point(953, 696);
+            this.flpGraphiques.Name = "flpGraphiques";
+            this.flpGraphiques.Size = new System.Drawing.Size(1052, 440);
+            this.flpGraphiques.TabIndex = 10;
             // 
             // FrmJournalDeBord
             // 
@@ -275,7 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2243, 1172);
-            this.Controls.Add(this.chartTest);
+            this.Controls.Add(this.flpGraphiques);
             this.Controls.Add(this.grpBilan);
             this.Controls.Add(this.btnEditerPDF);
             this.Controls.Add(this.lblTotDepenses);
@@ -295,7 +282,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepenses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilan)).EndInit();
             this.grpBilan.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartTest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,6 +306,6 @@
         private System.Windows.Forms.DataGridView dgvDepenses;
         private System.Windows.Forms.DataGridView dgvBilan;
         private System.Windows.Forms.GroupBox grpBilan;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartTest;
+        private System.Windows.Forms.FlowLayoutPanel flpGraphiques;
     }
 }

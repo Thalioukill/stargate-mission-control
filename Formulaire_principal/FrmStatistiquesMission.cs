@@ -123,6 +123,34 @@ namespace Formulaire_principal
             catch (Exception ex) { MessageBox.Show("Erreur : " + ex.Message); }
         }
 
+        private void GetComparaisonBudgets()
+        {
+            string sql = @"SELECT nomPlanete || '-' || numero AS Mission, budget AS 'Budget Initial', (SELECT IFNULL(SUM(montant), 0) FROM Depense d 
+                           WHERE d.nomPlanete = m.nomPlanete AND d.numeroMission = m.numero) AS 'Dépenses', budget - (SELECT IFNULL(SUM(montant), 0) FROM Depense d 
+                             WHERE d.nomPlanete = m.nomPlanete AND d.numeroMission = m.numero) AS 'Solde Restant' FROM Mission m";
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                dgvStatistiques.DataSource = dt;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void GetSuccesGlobalCaptures()
+        {
+            string sql = @"SELECT (SELECT SUM(objectif) FROM ObjectifCapture) AS 'Total Objectifs',(SELECT SUM(nombre) FROM Capturer) AS 'Captures Réalisées', ROUND((SELECT SUM(nombre) FROM Capturer) * 100.0 / (SELECT SUM(objectif) FROM ObjectifCapture), 2) || '%' AS 'Taux de Succès'";
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                dgvStatistiques.DataSource = dt;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
         private void FrmStatistiquesMission_Load(object sender, EventArgs e)
         {
 

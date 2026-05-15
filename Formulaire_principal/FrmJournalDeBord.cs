@@ -56,7 +56,7 @@ namespace Formulaire_principal
 
         private void FrmJournalDeBord_Load(object sender, EventArgs e)
         {
-          
+
         }
 
 
@@ -80,7 +80,7 @@ namespace Formulaire_principal
             this.bsJournal = new BindingSource();
             this.bsJournal.DataSource = bsMissions;
             this.bsJournal.DataMember = "RelJournalDeBord";
-            
+
             /*
             if (dgvDepenses.Columns.Contains("dateJ"))
             {
@@ -168,7 +168,7 @@ namespace Formulaire_principal
             if (dgvContacts.Columns.Contains("nomPlanete"))
             {
                 dgvContacts.Columns["nomPlanete"].Visible = false;
-            }  
+            }
 
             if (dgvContacts.Columns.Contains("numeroMission"))
             {
@@ -187,7 +187,7 @@ namespace Formulaire_principal
             // On peut maintenant utiliser "libelleType" comme n'importe quelle autre colonne
             dgvContacts.Columns["libelleInformateur"].HeaderText = "Informateur : ";
             dgvContacts.Columns["libelleInformateur"].DisplayIndex = 6; // Pour choisir l'ordre d'affichage
-            
+
         }
 
         //Depart
@@ -217,7 +217,7 @@ namespace Formulaire_principal
                 MessageBox.Show("ERREUR : Le journal n'est pas initialisé");
             }
 
-            if(bsJournal.Position == bsJournal.Count - 1)
+            if (bsJournal.Position == bsJournal.Count - 1)
             {
                 btnBefore.Enabled = false;
             }
@@ -329,12 +329,74 @@ namespace Formulaire_principal
 
         private void AfficherBilan()
         {
-            // On crée l'instance du BindingSource lié à notre table de synthèse
+            // Liaison de la table au BindingSource 
             this.bsBilan = new BindingSource();
             this.bsBilan.DataSource = ds.Tables[nomTableBilan];
 
-            // On lie la grille au BindingSource
+            // Liaison de la grille au BindingSource
             dgvBilan.DataSource = this.bsBilan;
+
+            // --- AJOUT POUR LE GRAPHIQUE ---
+
+            // On vide le conteneur pour éviter les doublons lors d'un rafraîchissement
+            flpGraphiques.Controls.Clear();
+
+            DataTable dtBilan = ds.Tables[nomTableBilan];
+
+            //On boucle sur chaque espèce présente dans le bilan de mission
+            foreach (DataRow row in dtBilan.Rows)
+            {
+                string nomEspece = row["Nom de l'espèce"].ToString();
+                int captures = Convert.ToInt32(row["Nombre de captures réalisées"]);
+                int objectif = Convert.ToInt32(row["Objectif initial"]);
+
+                // Calcul du reste à capturer (pour la part vide du camembert)
+                int reste = Math.Max(0, objectif - captures);
+
+                //Création dynamique d'un composant Chart 
+                Chart chartIndiv = new Chart();
+                chartIndiv.Size = new Size(200, 200);
+                chartIndiv.BackColor = Color.Transparent;
+
+                // Zone de graphique
+                ChartArea area = new ChartArea();
+                chartIndiv.ChartAreas.Add(area);
+
+                // Titre : Nom de l'espèce + le taux calculé par votre colonne Expression
+                Title t = new Title($"{nomEspece} : {row["Taux de réussite (%)"]}%");
+                chartIndiv.Titles.Add(t);
+
+                // Configuration de la série en type "Doughnut" (Anneau) ou Pie
+                Series s = new Series("Taux");
+                s.ChartType = SeriesChartType.Doughnut; // Plus moderne pour un taux de réussite
+
+                if (reste <= 0)
+                {
+                    // CAS 100% CAPTURÉS : Une seule part verte
+                    s.Points.AddXY("Capturés", captures);
+                    s.Points[0].Color = Color.LimeGreen;
+                }
+                else if (captures <= 0)
+                {
+                    // CAS 0% CAPTURÉS : Une seule part grise
+                    s.Points.AddXY("Reste", reste);
+                    s.Points[0].Color = Color.FromArgb(220, 220, 220);
+                }
+                else
+                {
+                    // CAS INTERMÉDIAIRE : On affiche les deux parts
+                    s.Points.AddXY("Capturés", captures); // Index 0
+                    s.Points.AddXY("Reste", reste);       // Index 1
+
+                    s.Points[0].Color = Color.LimeGreen;
+                    s.Points[1].Color = Color.FromArgb(220, 220, 220);
+                }
+
+                chartIndiv.Series.Add(s);
+
+                // Ajout du graphique au FlowLayoutPanel
+                flpGraphiques.Controls.Add(chartIndiv);
+            }
         }
     }
 }
