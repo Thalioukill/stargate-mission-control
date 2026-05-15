@@ -40,8 +40,10 @@ namespace Formulaire_principal
             AfficherDetailsMission();
             AfficherEquipage();
             AfficherObjectifs();
+            ChargerCboInformateur();
+            ChargerCboTypeDepense();
 
-            grpNouvContact.Visible = false;
+
 
 
             /*
@@ -248,12 +250,19 @@ namespace Formulaire_principal
             DialogResult dr = fjdb.ShowDialog();
         }
 
-        private void btnNouvContact_Click(object sender, EventArgs e)
+        private void ChargerCboInformateur()
         {
             cboInformateur.DataSource = ds.Tables["Informateur"];
             cboInformateur.DisplayMember = "nom";
             cboInformateur.ValueMember = "nomCode";
-            grpNouvContact.Visible = true;
+
+        }
+
+        private void ChargerCboTypeDepense()
+        {
+            cboTypeDepense.DataSource = ds.Tables["TypeDepense"];
+            cboTypeDepense.DisplayMember = "libelle";
+            cboTypeDepense.ValueMember = "id";
         }
 
         private void btnValidNouvC_Click(object sender, EventArgs e)
@@ -272,11 +281,11 @@ namespace Formulaire_principal
                 MessageBox.Show("Nouveau contact ajouté !");
                 RAZContact();
             }
-            catch(SQLiteException err)
+            catch (SQLiteException err)
             {
                 MessageBox.Show(err.Message);
             }
-            
+
         }
 
         private void RAZContact()
@@ -290,7 +299,85 @@ namespace Formulaire_principal
         private void btnAnnulNouvC_Click(object sender, EventArgs e)
         {
             RAZContact();
-            grpNouvContact.Visible = false;
+        }
+
+        private void btnValidDepense_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow[] Mesrows = ds.Tables["Depense"].Select($"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
+                int maxIdDep = 0;
+                foreach (DataRow row in Mesrows)
+                {
+                    int numero = Convert.ToInt32(row["id"]);
+                    if (numero > maxIdDep)
+                    {
+                        maxIdDep = numero;
+                    }
+                }
+                DataRow maRow = ds.Tables["Depense"].NewRow();
+                maRow["nomPlanete"] = idPlanete;
+                maRow["numeroMission"] = idNumero;
+                maRow["id"] = maxIdDep + 1;
+                maRow["dateD"] = dtpDepense.Value;
+                maRow["montant"] = txtMontant.Text;
+                maRow["motif"] = txtMotif.Text;
+                maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
+                ds.Tables["Depense"].Rows.Add(maRow);
+
+                MessageBox.Show("Nouvelle dépense ajoutée !");
+                RAZDepense();
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+        }
+        private void RAZDepense()
+        {
+            dtpDepense.Value = DateTime.Now;
+            txtMontant.Clear();
+            txtMotif.Clear();
+            cboTypeDepense.SelectedIndex = -1;
+        }
+
+        private void btnAnnulNouvD_Click(object sender, EventArgs e)
+        {
+            RAZDepense();
+        }
+
+        private void btnValidEvnmt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow maRow = ds.Tables["JournalDeBord"].NewRow();
+                maRow["nomPlanete"] = idPlanete;
+                maRow["numero"] = idNumero;
+                maRow["dateJ"] = dtpEvnmt.Value;
+                maRow["commentaires"] = txtCommentaires.Text;
+                ds.Tables["JournalDeBord"].Rows.Add(maRow);
+
+                MessageBox.Show("Nouvel évènement ajoutée !");
+                RAZEvenement();
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+        }
+
+        private void RAZEvenement()
+        {
+            dtpEvnmt.Value = DateTime.Now;
+            txtCommentaires.Clear();
+        }
+
+        private void btnAnnulNouvE_Click(object sender, EventArgs e)
+        {
+            RAZEvenement();
+
         }
     }
 }
