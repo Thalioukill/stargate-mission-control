@@ -67,6 +67,12 @@
     <Compile Include="FrmAliens.Designer.cs">
       <DependentUpon>FrmAliens.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmJournalDeBord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmJournalDeBord.Designer.cs">
+      <DependentUpon>FrmJournalDeBord.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,23 +91,43 @@
     <Compile Include="FrmPlanetes.Designer.cs">
       <DependentUpon>FrmPlanetes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTableauDeBord.cs">
+    <Compile Include="FrmDetailMission.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTableauDeBord.Designer.cs">
-      <DependentUpon>FrmTableauDeBord.cs</DependentUpon>
+    <Compile Include="FrmDetailMission.Designer.cs">
+      <DependentUpon>FrmDetailMission.cs</DependentUpon>
     </Compile>
     <Compile Include="mesDatas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControl_MembresMission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_MembresMission.Designer.cs">
+      <DependentUpon>UserControl_MembresMission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Missions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Missions.Designer.cs">
+      <DependentUpon>UserControl_Missions.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMission.resx">
       <DependentUpon>FrmMission.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="FrmDetailMission.resx">
+      <DependentUpon>FrmDetailMission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmJournalDeBord.resx">
+      <DependentUpon>FrmJournalDeBord.cs</DependentUpon>
+>>>>>>> ff2dced0e71d5ee748a7b226e17b0235151a01b0
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,6 +138,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControl_MembresMission.resx">
+      <DependentUpon>UserControl_MembresMission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Missions.resx">
+      <DependentUpon>UserControl_Missions.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
