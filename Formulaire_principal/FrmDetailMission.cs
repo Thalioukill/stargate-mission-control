@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,9 @@ namespace Formulaire_principal
             AfficherDetailsMission();
             AfficherEquipage();
             AfficherObjectifs();
+
+            grpNouvContact.Visible = false;
+
 
             /*
             // Création d'une vue sur la table "Composer" (qui lie membres et missions)
@@ -242,6 +246,51 @@ namespace Formulaire_principal
         {
             FrmJournalDeBord fjdb = new FrmJournalDeBord(this.idPlanete, this.idNumero);
             DialogResult dr = fjdb.ShowDialog();
+        }
+
+        private void btnNouvContact_Click(object sender, EventArgs e)
+        {
+            cboInformateur.DataSource = ds.Tables["Informateur"];
+            cboInformateur.DisplayMember = "nom";
+            cboInformateur.ValueMember = "nomCode";
+            grpNouvContact.Visible = true;
+        }
+
+        private void btnValidNouvC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow maRow = ds.Tables["Contact"].NewRow();
+                maRow["nomPlanete"] = idPlanete;
+                maRow["numeroMission"] = idNumero;
+                maRow["dateC"] = dtpContact.Value;
+                maRow["sommeVersee"] = txtSomme.Text;
+                maRow["appreciation"] = txtAppreciation.Text;
+                maRow["nomCodeInformateur"] = cboInformateur.SelectedValue.ToString();
+                ds.Tables["Contact"].Rows.Add(maRow);
+
+                MessageBox.Show("Nouveau contact ajouté !");
+                RAZContact();
+            }
+            catch(SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            
+        }
+
+        private void RAZContact()
+        {
+            dtpContact.Value = DateTime.Now;
+            txtSomme.Clear();
+            txtAppreciation.Clear();
+            cboInformateur.SelectedIndex = -1;
+        }
+
+        private void btnAnnulNouvC_Click(object sender, EventArgs e)
+        {
+            RAZContact();
+            grpNouvContact.Visible = false;
         }
     }
 }

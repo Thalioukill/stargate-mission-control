@@ -115,19 +115,17 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMission.resx">
       <DependentUpon>FrmMission.cs</DependentUpon>
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDetailMission.resx">
       <DependentUpon>FrmDetailMission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmJournalDeBord.resx">
       <DependentUpon>FrmJournalDeBord.cs</DependentUpon>
->>>>>>> ff2dced0e71d5ee748a7b226e17b0235151a01b0
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

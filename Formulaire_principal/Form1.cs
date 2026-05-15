@@ -31,7 +31,7 @@ namespace Formulaire_principal
             flpMissions.Visible = false;
             grpFiltres.Visible = false;
 
-            /* Vérification de la connection : 
+            // Vérification de la connection : 
              
             String requete = $@"SELECT COUNT(*) from Mission";
 
@@ -110,10 +110,10 @@ namespace Formulaire_principal
 
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(remplirCboChef, this.co);
+                SQLiteCommand cmd2 = new SQLiteCommand(remplirCboChef, this.co);
 
                 DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
+                dt.Load(cmd2.ExecuteReader());
                 cboChefMission.DataSource = dt;
                 cboChefMission.ValueMember = "matricule";
                 cboChefMission.DisplayMember = "nomComplet";
@@ -131,10 +131,10 @@ namespace Formulaire_principal
 
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(remplirCboPlanete, this.co);
+                SQLiteCommand cmd3 = new SQLiteCommand(remplirCboPlanete, this.co);
 
                 DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
+                dt.Load(cmd3.ExecuteReader());
                 cboPlanete.DataSource = dt;
                 cboPlanete.ValueMember = "nomPlanete";
 
@@ -151,8 +151,8 @@ namespace Formulaire_principal
 
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(remplirBudgetMax, this.co);
-                lblBd.Text += cmd.ExecuteScalar().ToString();
+                SQLiteCommand cmd4 = new SQLiteCommand(remplirBudgetMax, this.co);
+                lblBd.Text += cmd4.ExecuteScalar().ToString();
             }
             catch (Exception err) {
                 MessageBox.Show(err.Message);
