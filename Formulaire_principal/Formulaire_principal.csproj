@@ -91,6 +91,12 @@
     <Compile Include="FrmDetailMission.Designer.cs">
       <DependentUpon>FrmDetailMission.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmStatistiquesMission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStatistiquesMission.Designer.cs">
+      <DependentUpon>FrmStatistiquesMission.cs</DependentUpon>
+    </Compile>
     <Compile Include="mesDatas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmJournalDeBord.resx">
       <DependentUpon>FrmJournalDeBord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStatistiquesMission.resx">
+      <DependentUpon>FrmStatistiquesMission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

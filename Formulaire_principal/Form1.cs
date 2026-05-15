@@ -31,6 +31,14 @@ namespace Formulaire_principal
             flpMissions.Visible = false;
             grpFiltres.Visible = false;
 
+            RemplirDataSet();
+            CreerClesPrim();
+            CreerRelations();
+            ChargerComboBox();
+            AfficherBudgetMax();
+
+
+
             /* Vérification de la connection : 
              
             String requete = $@"SELECT COUNT(*) from Mission";
@@ -41,68 +49,81 @@ namespace Formulaire_principal
             MessageBox.Show("il y a " + nbMission.ToString() + "clients");
 
             */
+        }
 
-            // On rempli le DataSet ds avec toutes les Tables de la base Stargate.ds
-            // ATTENTION POUR L'AJOUT DES MISSIONS IL FAUT BIEN RECREER LES CLE ETRANGERES ET PRIMAIRES
-            string sql;
+        private void CreerRelations()
+        {
+            DataTable dtMission = ds.Tables["Mission"];
+            DataTable dtJournal = ds.Tables["JournalDeBord"];
+            DataTable dtDepenses = ds.Tables["Depense"];
+            DataTable dtTyp = ds.Tables["TypeDepense"];
+            DataTable dtContacts = ds.Tables["Contact"];
+            DataTable dtInf = ds.Tables["Informateur"];
 
-            // méthode GetSchema => pour avoir des méta-données (table qui contient la structure de la Base de données...)
-            DataTable schemaTable = co.GetSchema("Tables");
-
-            string liste = "";
-
-            // on parcoure chaque ligne
-            for (int i = 0; i < schemaTable.Rows.Count; i++)
+            //GESTION DES 3 RELATIONS
+            // On vérifie si les relations existent déjà dans le ds
+            if (!ds.Relations.Contains("RelJournalDeBord"))
             {
-                // la troisième colonne (num 2) contient tous les noms des tables 
-                string nomTable = schemaTable.Rows[i][2].ToString();
-                sql = "SELECT * FROM " + nomTable;
-
-                // le seul objet qui existe dans le monde connecté et deconnecté 
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, this.co);
-                da.Fill(ds, nomTable);
-                liste = liste + nomTable + "\n";
+                DataColumn[] parentCols = { dtMission.Columns["nomPlanete"], dtMission.Columns["numero"] };
+                DataColumn[] enfantCols = { dtJournal.Columns["nomPlanete"], dtJournal.Columns["numero"] };
+                DataRelation rel = new DataRelation("RelJournalDeBord", parentCols, enfantCols);
+                ds.Relations.Add(rel);
             }
-            MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
 
-            // CREER les clés PRIAMIRES dans le DataSet (pour Mission notemment)
+            //Relation pour les dépenses
+            if (!ds.Relations.Contains("RelDepenses"))
+            {
+                DataColumn[] pk = { dtMission.Columns["nomPlanete"], dtMission.Columns["numero"] };
+                DataColumn[] fk = { dtDepenses.Columns["nomPlanete"], dtDepenses.Columns["numeroMission"] };
+                ds.Relations.Add("RelDepenses", pk, fk);
+            }
 
-            // CléS primaireS de la table Mission
-            //On récupère la table Mission dans le DataSet
-            DataTable dtMission = MesDatas.DsGlobal.Tables["Mission"];
+            //Relation pour les TypeDepense
+            if (!ds.Relations.Contains("RelType"))
+            {
+                // Parent : TypeDepense (id), Enfant : Depense (idTypeDepense)
+                ds.Relations.Add("RelType", dtTyp.Columns["id"], dtDepenses.Columns["idTypeDepense"]);
+            }
 
-            // On crée un tableau de DataColumn contenant les deux colonnes de la clé primaire
-            DataColumn[] cles = new DataColumn[2];
-            cles[0] = dtMission.Columns["nomPlanete"];
-            cles[1] = dtMission.Columns["numero"];
+            // On ajoute une colonne de texte si elle n'existe pas encore
+            if (!dtDepenses.Columns.Contains("libelleType"))
+            {
+                DataColumn colLibType = new DataColumn("libelleType", typeof(string));
 
-            //on affecte ce tableau à la propriété PrimaryKey de la table
-            dtMission.PrimaryKey = cles;
+                // "Parent(NomRelation).NomColonneDuParent"
+                colLibType.Expression = "Parent(RelType).libelle";
 
+                dtDepenses.Columns.Add(colLibType);
+            }
 
-            //clé primaire de Membre 
-            DataColumn clePrimMembre = ds.Tables["Membre"].Columns["matricule"];
+            // Relation pour les Contacts
+            if (!ds.Relations.Contains("RelContacts"))
+            {
+                DataColumn[] pk = { dtMission.Columns["nomPlanete"], dtMission.Columns["numero"] };
+                DataColumn[] fk = { dtContacts.Columns["nomPlanete"], dtContacts.Columns["numeroMission"] };
+                ds.Relations.Add("RelContacts", pk, fk);
+            }
 
-            // mise en place de la clé primaire 
-            ds.Tables["Membre"].PrimaryKey = new DataColumn[] { clePrimMembre };
+            //Relation pour le nom de l'informateur d'un contact 
+            if (!ds.Relations.Contains("RelInformateur"))
+            {
+                ds.Relations.Add("RelInformateur", dtInf.Columns["nomCode"], dtContacts.Columns["nomCodeInformateur"]);
+            }
 
+            // On ajoute une colonne pour le nom de l'informateur
+            if (!dtContacts.Columns.Contains("libelleInformateur"))
+            {
+                DataColumn colLibInf = new DataColumn("libelleInformateur", typeof(string));
 
-            //Clé primaire de Militaire
-            DataColumn clePrimMilitaire = ds.Tables["Militaire"].Columns["matriculeMembre"];
+                // "Parent(NomRelation).NomColonneDuParent"
+                colLibInf.Expression = "Parent(RelInformateur).nom";
 
-            // mise en place de la clé primaire 
-            ds.Tables["Militaire"].PrimaryKey = new DataColumn[] { clePrimMilitaire };
+                dtContacts.Columns.Add(colLibInf);
+            }
+        }
 
-
-
-            //Clé primaire de Civil
-            DataColumn clePrimCivil = ds.Tables["Civil"].Columns["matriculeMembre"];
-
-            // mise en place de la clé primaire 
-            ds.Tables["Civil"].PrimaryKey = new DataColumn[] { clePrimCivil };
-
-
-
+        private void ChargerComboBox()
+        {
             // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant)
 
             // ComboBox pour les chefs de mission
@@ -145,7 +166,10 @@ namespace Formulaire_principal
             }
 
             cboPlanete.SelectedIndex = -1;
+        }
 
+        private void AfficherBudgetMax()
+        {
             //on affiche le budget maximum 
             string remplirBudgetMax = $@"SELECT MAX(CAST (budget as integer)) FROM Mission";
 
@@ -154,9 +178,92 @@ namespace Formulaire_principal
                 SQLiteCommand cmd = new SQLiteCommand(remplirBudgetMax, this.co);
                 lblBd.Text += cmd.ExecuteScalar().ToString();
             }
-            catch (Exception err) {
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void CreerClesPrim()
+        {
+            // CléS primaireS de la table Mission
+            //On récupère la table Mission dans le DataSet
+            DataTable dtMission = MesDatas.DsGlobal.Tables["Mission"];
+
+            // On crée un tableau de DataColumn contenant les deux colonnes de la clé primaire
+            DataColumn[] cles = new DataColumn[2];
+            cles[0] = dtMission.Columns["nomPlanete"];
+            cles[1] = dtMission.Columns["numero"];
+
+            //on affecte ce tableau à la propriété PrimaryKey de la table
+            dtMission.PrimaryKey = cles;
+
+
+            //clé primaire de Membre 
+            DataColumn clePrimMembre = ds.Tables["Membre"].Columns["matricule"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Membre"].PrimaryKey = new DataColumn[] { clePrimMembre };
+
+
+            //Clé primaire de Militaire
+            DataColumn clePrimMilitaire = ds.Tables["Militaire"].Columns["matriculeMembre"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Militaire"].PrimaryKey = new DataColumn[] { clePrimMilitaire };
+
+
+
+            //Clé primaire de Civil
+            DataColumn clePrimCivil = ds.Tables["Civil"].Columns["matriculeMembre"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Civil"].PrimaryKey = new DataColumn[] { clePrimCivil };
+
+            // Clé prim de Espece 
+            DataColumn clePrimEspece = ds.Tables["Espece"].Columns["id"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Espece"].PrimaryKey = new DataColumn[] { clePrimEspece };
+
+            // Clé prim de Capturer
+            DataTable dtCapturer = ds.Tables["Capturer"];
+
+            // On crée un tableau de DataColumn contenant les trois colonnes de la clé primaire
+            DataColumn[] clesCapturer = new DataColumn[3];
+            clesCapturer[0] = dtCapturer.Columns["nomPlanete"];
+            clesCapturer[1] = dtCapturer.Columns["numeroMission"];
+            clesCapturer[2] = dtCapturer.Columns["idEspeceEnnemi"];
+
+            //on affecte ce tableau à la propriété PrimaryKey de la table
+            dtCapturer.PrimaryKey = clesCapturer;
+
+        }
+
+        private void RemplirDataSet()
+        {
+            // On rempli le DataSet ds avec toutes les Tables de la base Stargate.ds
+            // ATTENTION POUR L'AJOUT DES MISSIONS IL FAUT BIEN RECREER LES CLE ETRANGERES ET PRIMAIRES
+            string sql;
+
+            // méthode GetSchema => pour avoir des méta-données (table qui contient la structure de la Base de données...)
+            DataTable schemaTable = co.GetSchema("Tables");
+
+            string liste = "";
+
+            // on parcoure chaque ligne
+            for (int i = 0; i < schemaTable.Rows.Count; i++)
+            {
+                // la troisième colonne (num 2) contient tous les noms des tables 
+                string nomTable = schemaTable.Rows[i][2].ToString();
+                sql = "SELECT * FROM " + nomTable;
+
+                // le seul objet qui existe dans le monde connecté et deconnecté 
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, this.co);
+                da.Fill(ds, nomTable);
+                liste = liste + nomTable + "\n";
+            }
+            //MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
         }
 
         private void btnPlanetes_Click(object sender, EventArgs e)
@@ -199,6 +306,20 @@ namespace Formulaire_principal
 
             // ouverture d'un formulaire enfant avec constructeur surchargé pour les détails de la mission
             FrmDetailMission fdm = new FrmDetailMission(planete, numero, matricule);
+            DialogResult dr = fdm.ShowDialog();
+        }
+
+        private void OuvrirStatMission(object sender, EventArgs e)
+        {
+            // On cast le sender générique en votre type d'UC
+            UserControl_Missions ucClique = (UserControl_Missions)sender;
+
+            //on récupère la planète et le numéro directement depuis l'UC cliqué
+            string planete = ucClique.Planete;
+            string numero = ucClique.Numero;
+
+            // ouverture d'un formulaire enfant avec constructeur surchargé pour les détails de la mission
+            FrmStatistiquesMission fdm = new FrmStatistiquesMission(planete, numero);
             DialogResult dr = fdm.ShowDialog();
         }
 
@@ -267,7 +388,8 @@ namespace Formulaire_principal
                         UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
 
                         // délégué 
-                        uc.afficheur = OuvrirDetailMission;
+                        uc.details = OuvrirDetailMission;
+                        uc.stats = OuvrirStatMission;
 
                         // ajout au conteneur (FlowLayoutPanel)
                         flpMissions.Controls.Add(uc);

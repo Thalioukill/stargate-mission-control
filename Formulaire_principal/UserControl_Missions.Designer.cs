@@ -35,6 +35,7 @@
             this.lblBudget = new System.Windows.Forms.Label();
             this.btnDetails = new System.Windows.Forms.Button();
             this.lblNbJours = new System.Windows.Forms.Label();
+            this.btnStats = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,10 +111,21 @@
             this.lblNbJours.TabIndex = 7;
             this.lblNbJours.Text = "Nombre de jours de la mission : ";
             // 
+            // btnStats
+            // 
+            this.btnStats.Location = new System.Drawing.Point(477, 148);
+            this.btnStats.Name = "btnStats";
+            this.btnStats.Size = new System.Drawing.Size(115, 37);
+            this.btnStats.TabIndex = 8;
+            this.btnStats.Text = "Statistiques";
+            this.btnStats.UseVisualStyleBackColor = true;
+            this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
+            // 
             // UserControl_Missions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnStats);
             this.Controls.Add(this.lblNbJours);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.lblBudget);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Button btnDetails;
         private System.Windows.Forms.Label lblNbJours;
+        private System.Windows.Forms.Button btnStats;
     }
 }

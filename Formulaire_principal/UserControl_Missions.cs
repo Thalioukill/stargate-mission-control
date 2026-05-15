@@ -22,7 +22,8 @@ namespace Formulaire_principal
         public string idChef;
 
         // instance du délgate accessible depuis le formulaire parent
-        public afficherMission afficheur;
+        public afficherMission details;
+        public afficherMission stats;
 
         public UserControl_Missions(string nomPlanete, string numeroMission, string date, string nbJours, string chef, string matriculeChef, string budget, string nomImage)
         {
@@ -75,9 +76,18 @@ namespace Formulaire_principal
         private void btnDetails_Click(object sender, EventArgs e)
         {
             // Si le formulaire parent a bien défini une méthode à exécuter
-            if (this.afficheur != null)
+            if (this.details != null)
             {
-                this.afficheur(this, e); // on déclenche la fonction avec le UserControl lui-meme
+                this.details(this, e); // on déclenche la fonction avec le UserControl lui-meme
+            }
+        }
+
+        private void btnStats_Click(object sender, EventArgs e)
+        {
+            // Si le formulaire parent a bien défini une méthode à exécuter
+            if (this.stats != null)
+            {
+                this.stats(this, e); // on déclenche la fonction avec le UserControl lui-meme
             }
         }
     }
