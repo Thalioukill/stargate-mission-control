@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grpEvenements = new System.Windows.Forms.GroupBox();
             this.flpAffichage = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateEvenement = new System.Windows.Forms.Label();
@@ -48,6 +51,9 @@
             this.dgvBilan = new System.Windows.Forms.DataGridView();
             this.grpBilan = new System.Windows.Forms.GroupBox();
             this.flpGraphiques = new System.Windows.Forms.FlowLayoutPanel();
+            this.chartBudget = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblEtatBudget = new System.Windows.Forms.Label();
+            this.lblStatsCaptures = new System.Windows.Forms.Label();
             this.grpEvenements.SuspendLayout();
             this.flpAffichage.SuspendLayout();
             this.grpContact.SuspendLayout();
@@ -56,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilan)).BeginInit();
             this.grpBilan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBudget)).BeginInit();
             this.SuspendLayout();
             // 
             // grpEvenements
@@ -65,12 +72,12 @@
             this.grpEvenements.Controls.Add(this.btnAfter);
             this.grpEvenements.Controls.Add(this.btnBefore);
             this.grpEvenements.Controls.Add(this.btnDepart);
-            this.grpEvenements.Location = new System.Drawing.Point(45, 67);
+            this.grpEvenements.Location = new System.Drawing.Point(409, 24);
             this.grpEvenements.Name = "grpEvenements";
-            this.grpEvenements.Size = new System.Drawing.Size(851, 197);
+            this.grpEvenements.Size = new System.Drawing.Size(507, 197);
             this.grpEvenements.TabIndex = 0;
             this.grpEvenements.TabStop = false;
-            this.grpEvenements.Text = "Evénements du journal";
+            this.grpEvenements.Text = "Evénements du journal :";
             // 
             // flpAffichage
             // 
@@ -78,7 +85,7 @@
             this.flpAffichage.Controls.Add(this.lblCommentaire);
             this.flpAffichage.Location = new System.Drawing.Point(20, 34);
             this.flpAffichage.Name = "flpAffichage";
-            this.flpAffichage.Size = new System.Drawing.Size(757, 76);
+            this.flpAffichage.Size = new System.Drawing.Size(447, 76);
             this.flpAffichage.TabIndex = 1;
             // 
             // lblDateEvenement
@@ -99,7 +106,7 @@
             // 
             // btnEnd
             // 
-            this.btnEnd.Location = new System.Drawing.Point(598, 133);
+            this.btnEnd.Location = new System.Drawing.Point(339, 133);
             this.btnEnd.Name = "btnEnd";
             this.btnEnd.Size = new System.Drawing.Size(75, 34);
             this.btnEnd.TabIndex = 3;
@@ -109,7 +116,7 @@
             // 
             // btnAfter
             // 
-            this.btnAfter.Location = new System.Drawing.Point(431, 133);
+            this.btnAfter.Location = new System.Drawing.Point(233, 133);
             this.btnAfter.Name = "btnAfter";
             this.btnAfter.Size = new System.Drawing.Size(75, 34);
             this.btnAfter.TabIndex = 2;
@@ -119,7 +126,7 @@
             // 
             // btnBefore
             // 
-            this.btnBefore.Location = new System.Drawing.Point(284, 133);
+            this.btnBefore.Location = new System.Drawing.Point(132, 133);
             this.btnBefore.Name = "btnBefore";
             this.btnBefore.Size = new System.Drawing.Size(75, 34);
             this.btnBefore.TabIndex = 1;
@@ -129,7 +136,7 @@
             // 
             // btnDepart
             // 
-            this.btnDepart.Location = new System.Drawing.Point(100, 133);
+            this.btnDepart.Location = new System.Drawing.Point(20, 133);
             this.btnDepart.Name = "btnDepart";
             this.btnDepart.Size = new System.Drawing.Size(75, 34);
             this.btnDepart.TabIndex = 0;
@@ -140,12 +147,12 @@
             // grpContact
             // 
             this.grpContact.Controls.Add(this.dgvContacts);
-            this.grpContact.Location = new System.Drawing.Point(45, 324);
+            this.grpContact.Location = new System.Drawing.Point(22, 367);
             this.grpContact.Name = "grpContact";
-            this.grpContact.Size = new System.Drawing.Size(851, 238);
+            this.grpContact.Size = new System.Drawing.Size(894, 238);
             this.grpContact.TabIndex = 1;
             this.grpContact.TabStop = false;
-            this.grpContact.Text = "Contact avec les informateurs";
+            this.grpContact.Text = "Contact avec les informateurs :";
             // 
             // dgvContacts
             // 
@@ -161,15 +168,15 @@
             this.dgvContacts.ReadOnly = true;
             this.dgvContacts.RowHeadersWidth = 51;
             this.dgvContacts.RowTemplate.Height = 24;
-            this.dgvContacts.Size = new System.Drawing.Size(791, 166);
+            this.dgvContacts.Size = new System.Drawing.Size(834, 166);
             this.dgvContacts.TabIndex = 0;
             // 
             // grpDepensesEffectues
             // 
             this.grpDepensesEffectues.Controls.Add(this.dgvDepenses);
-            this.grpDepensesEffectues.Location = new System.Drawing.Point(953, 67);
+            this.grpDepensesEffectues.Location = new System.Drawing.Point(979, 156);
             this.grpDepensesEffectues.Name = "grpDepensesEffectues";
-            this.grpDepensesEffectues.Size = new System.Drawing.Size(1179, 568);
+            this.grpDepensesEffectues.Size = new System.Drawing.Size(1018, 449);
             this.grpDepensesEffectues.TabIndex = 2;
             this.grpDepensesEffectues.TabStop = false;
             this.grpDepensesEffectues.Text = "Dépenses effectuées :";
@@ -180,8 +187,8 @@
             this.dgvDepenses.AllowUserToDeleteRows = false;
             this.dgvDepenses.AllowUserToResizeColumns = false;
             this.dgvDepenses.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -190,13 +197,13 @@
             this.dgvDepenses.ReadOnly = true;
             this.dgvDepenses.RowHeadersWidth = 51;
             this.dgvDepenses.RowTemplate.Height = 24;
-            this.dgvDepenses.Size = new System.Drawing.Size(1095, 494);
+            this.dgvDepenses.Size = new System.Drawing.Size(952, 375);
             this.dgvDepenses.TabIndex = 6;
             // 
             // lblTotSommes
             // 
             this.lblTotSommes.AutoSize = true;
-            this.lblTotSommes.Location = new System.Drawing.Point(45, 579);
+            this.lblTotSommes.Location = new System.Drawing.Point(596, 238);
             this.lblTotSommes.Name = "lblTotSommes";
             this.lblTotSommes.Size = new System.Drawing.Size(180, 16);
             this.lblTotSommes.TabIndex = 3;
@@ -205,7 +212,7 @@
             // lblTotDepenses
             // 
             this.lblTotDepenses.AutoSize = true;
-            this.lblTotDepenses.Location = new System.Drawing.Point(950, 660);
+            this.lblTotDepenses.Location = new System.Drawing.Point(596, 273);
             this.lblTotDepenses.Name = "lblTotDepenses";
             this.lblTotDepenses.Size = new System.Drawing.Size(137, 16);
             this.lblTotDepenses.TabIndex = 4;
@@ -213,7 +220,7 @@
             // 
             // btnEditerPDF
             // 
-            this.btnEditerPDF.Location = new System.Drawing.Point(45, 1126);
+            this.btnEditerPDF.Location = new System.Drawing.Point(409, 301);
             this.btnEditerPDF.Name = "btnEditerPDF";
             this.btnEditerPDF.Size = new System.Drawing.Size(140, 23);
             this.btnEditerPDF.TabIndex = 5;
@@ -226,8 +233,8 @@
             this.dgvBilan.AllowUserToDeleteRows = false;
             this.dgvBilan.AllowUserToResizeColumns = false;
             this.dgvBilan.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -236,33 +243,70 @@
             this.dgvBilan.ReadOnly = true;
             this.dgvBilan.RowHeadersWidth = 51;
             this.dgvBilan.RowTemplate.Height = 24;
-            this.dgvBilan.Size = new System.Drawing.Size(791, 309);
+            this.dgvBilan.Size = new System.Drawing.Size(834, 366);
             this.dgvBilan.TabIndex = 6;
             // 
             // grpBilan
             // 
             this.grpBilan.Controls.Add(this.dgvBilan);
-            this.grpBilan.Location = new System.Drawing.Point(45, 696);
+            this.grpBilan.Location = new System.Drawing.Point(22, 638);
             this.grpBilan.Name = "grpBilan";
-            this.grpBilan.Size = new System.Drawing.Size(851, 394);
+            this.grpBilan.Size = new System.Drawing.Size(894, 447);
             this.grpBilan.TabIndex = 7;
             this.grpBilan.TabStop = false;
             this.grpBilan.Text = "Bilan des captures : ";
             // 
             // flpGraphiques
             // 
-            this.flpGraphiques.Location = new System.Drawing.Point(953, 696);
+            this.flpGraphiques.Location = new System.Drawing.Point(979, 682);
             this.flpGraphiques.Name = "flpGraphiques";
-            this.flpGraphiques.Size = new System.Drawing.Size(1052, 440);
+            this.flpGraphiques.Size = new System.Drawing.Size(1018, 440);
             this.flpGraphiques.TabIndex = 10;
+            // 
+            // chartBudget
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chartBudget.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartBudget.Legends.Add(legend4);
+            this.chartBudget.Location = new System.Drawing.Point(22, 24);
+            this.chartBudget.Name = "chartBudget";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartBudget.Series.Add(series4);
+            this.chartBudget.Size = new System.Drawing.Size(353, 313);
+            this.chartBudget.TabIndex = 11;
+            this.chartBudget.Text = "chart1";
+            // 
+            // lblEtatBudget
+            // 
+            this.lblEtatBudget.AutoSize = true;
+            this.lblEtatBudget.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblEtatBudget.Location = new System.Drawing.Point(231, 273);
+            this.lblEtatBudget.Name = "lblEtatBudget";
+            this.lblEtatBudget.Size = new System.Drawing.Size(0, 16);
+            this.lblEtatBudget.TabIndex = 12;
+            // 
+            // lblStatsCaptures
+            // 
+            this.lblStatsCaptures.AutoSize = true;
+            this.lblStatsCaptures.Location = new System.Drawing.Point(976, 638);
+            this.lblStatsCaptures.Name = "lblStatsCaptures";
+            this.lblStatsCaptures.Size = new System.Drawing.Size(159, 16);
+            this.lblStatsCaptures.TabIndex = 14;
+            this.lblStatsCaptures.Text = "Statistiques de captures : ";
             // 
             // FrmJournalDeBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2243, 1172);
+            this.ClientSize = new System.Drawing.Size(2044, 1261);
+            this.Controls.Add(this.lblStatsCaptures);
+            this.Controls.Add(this.lblEtatBudget);
             this.Controls.Add(this.flpGraphiques);
+            this.Controls.Add(this.chartBudget);
             this.Controls.Add(this.grpBilan);
             this.Controls.Add(this.btnEditerPDF);
             this.Controls.Add(this.lblTotDepenses);
@@ -282,6 +326,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepenses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilan)).EndInit();
             this.grpBilan.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartBudget)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,5 +352,8 @@
         private System.Windows.Forms.DataGridView dgvBilan;
         private System.Windows.Forms.GroupBox grpBilan;
         private System.Windows.Forms.FlowLayoutPanel flpGraphiques;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartBudget;
+        private System.Windows.Forms.Label lblEtatBudget;
+        private System.Windows.Forms.Label lblStatsCaptures;
     }
 }

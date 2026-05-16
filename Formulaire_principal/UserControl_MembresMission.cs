@@ -32,7 +32,7 @@ namespace Formulaire_principal
 
             if (estChef)
             {
-                this.BackColor = Color.LightGreen;
+                this.BackColor = Color.LightBlue;
                 this.lblNom.Font = new Font(this.lblNom.Font, FontStyle.Bold);
             }
 

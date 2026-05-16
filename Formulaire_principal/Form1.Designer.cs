@@ -150,6 +150,7 @@
             // lblBd
             // 
             this.lblBd.AutoSize = true;
+            this.lblBd.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBd.Location = new System.Drawing.Point(646, 31);
             this.lblBd.Name = "lblBd";
             this.lblBd.Size = new System.Drawing.Size(116, 16);
@@ -175,6 +176,7 @@
             // 
             // cboPlanete
             // 
+            this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
             this.cboPlanete.Location = new System.Drawing.Point(417, 61);
             this.cboPlanete.Name = "cboPlanete";
@@ -193,6 +195,7 @@
             // 
             // cboChefMission
             // 
+            this.cboChefMission.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChefMission.FormattingEnabled = true;
             this.cboChefMission.Location = new System.Drawing.Point(417, 31);
             this.cboChefMission.Name = "cboChefMission";

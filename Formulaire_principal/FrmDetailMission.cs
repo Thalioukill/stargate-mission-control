@@ -84,8 +84,8 @@ namespace Formulaire_principal
                 string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
                 DataRow rMission = MesDatas.DsGlobal.Tables["Composer"].Select(filtre);
                 */
-
-                DataRow rMission = MesDatas.DsGlobal.Tables["Mission"].Rows.Find(new object[] { idPlanete, idNumero });
+                // la méthode Find ne fonctionne que si on a mis en place les clés primaires dans le DataSet
+                DataRow rMission = ds.Tables["Mission"].Rows.Find(new object[] { idPlanete, idNumero });
 
                 if (rMission != null)
                 {
@@ -162,12 +162,11 @@ namespace Formulaire_principal
                 if (tabInfosBase.Length > 0)
                 {
                     nomComplet = tabInfosBase[0]["prenom"] + " " + tabInfosBase[0]["nom"];
-
                 }
-                // 5. On vérifie si c'est le chef 
+                // On vérifie si c'est le chef 
                 bool estChef = (matricule == this.idChefMission);
 
-                // 6. Instanciation de l'UC avec les bonnes variables
+                // Instanciation de l'UC avec les bonnes variables
                 UserControl_MembresMission uc = new UserControl_MembresMission(nomComplet, grade_specialite, image, estChef);
                 flpEquipage.Controls.Add(uc);
             }

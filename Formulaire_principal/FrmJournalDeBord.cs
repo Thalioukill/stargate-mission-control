@@ -47,11 +47,13 @@ namespace Formulaire_principal
             this.idPlanete = planete;
             this.idNumero = numero;
             this.nomTableBilan = $"BilanCapture{this.idPlanete.ToUpper()}-{this.idNumero}";
+            
             CreerTableBilanCapture();
             RemplirTableBilan();
             AfficherBilan();
             InitBinding();
             CalculerTotaux();
+            GenererGraphiqueBudget();
         }
 
         private void FrmJournalDeBord_Load(object sender, EventArgs e)
@@ -113,6 +115,61 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
 
+
+            this.bsContacts = new BindingSource();
+            this.bsContacts.DataSource = bsMissions;
+            this.bsContacts.DataMember = "RelContacts";
+
+            // Remplissage des DataGridView avec les Contacts :
+            try
+            {
+                dgvContacts.DataSource = bsContacts;
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            AffichageDgv();
+        }
+
+        private void AffichageDgv()
+        {
+            // Pour la grille des CONTACTS : 
+
+            // Formatage des dates : 
+            if (dgvContacts.Columns.Contains("dateC"))
+            {
+                dgvContacts.Columns["dateC"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
+
+            // On rend invisible aux yeux de l'utilisateur les informations inutiles :
+            if (dgvContacts.Columns.Contains("nomPlanete"))
+            {
+                dgvContacts.Columns["nomPlanete"].Visible = false;
+            }
+
+            if (dgvContacts.Columns.Contains("numeroMission"))
+            {
+                dgvContacts.Columns["numeroMission"].Visible = false;
+            }
+
+            if (dgvContacts.Columns.Contains("nomCodeInformateur"))
+            {
+                dgvContacts.Columns["nomCodeInformateur"].Visible = false;
+            }
+
+            // Renommer les colonnes pour un affichage plus propre :
+            dgvContacts.Columns["dateC"].HeaderText = "Date du contact :  ";
+            dgvContacts.Columns["sommeVersee"].HeaderText = "Montant en € : ";
+            dgvContacts.Columns["appreciation"].HeaderText = "Détail du contact : ";
+            dgvContacts.Columns["libelleInformateur"].HeaderText = "Informateur : ";
+            dgvContacts.Columns["libelleInformateur"].DisplayIndex = 6; 
+
+
+
+            // Pour la grille des DEPENSES :
+
             // Formatage de la date pour la grille des dépenses
             if (dgvDepenses.Columns.Contains("dateD"))
             {
@@ -140,54 +197,8 @@ namespace Formulaire_principal
             dgvDepenses.Columns["dateD"].HeaderText = "Date de dépense : ";
             dgvDepenses.Columns["montant"].HeaderText = "Montant en € : ";
             dgvDepenses.Columns["motif"].HeaderText = "Motif : ";
-            // On peut maintenant utiliser "libelleType" comme n'importe quelle autre colonne
             dgvDepenses.Columns["libelleType"].HeaderText = "Catégorie de la dépense : ";
             dgvDepenses.Columns["libelleType"].DisplayIndex = 6; // Pour choisir l'ordre d'affichage
-
-
-            this.bsContacts = new BindingSource();
-            this.bsContacts.DataSource = bsMissions;
-            this.bsContacts.DataMember = "RelContacts";
-
-            try
-            {
-                dgvContacts.DataSource = bsContacts;
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
-
-            // Formatage de la date pour la grille des contacts
-            if (dgvContacts.Columns.Contains("dateC"))
-            {
-                dgvContacts.Columns["dateC"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            }
-
-            // Pour la grille des contacts
-            if (dgvContacts.Columns.Contains("nomPlanete"))
-            {
-                dgvContacts.Columns["nomPlanete"].Visible = false;
-            }
-
-            if (dgvContacts.Columns.Contains("numeroMission"))
-            {
-                dgvContacts.Columns["numeroMission"].Visible = false;
-            }
-
-            if (dgvContacts.Columns.Contains("nomCodeInformateur"))
-            {
-                dgvContacts.Columns["nomCodeInformateur"].Visible = false;
-            }
-
-            // Renommer les colonnes pour un affichage plus propre
-            dgvContacts.Columns["dateC"].HeaderText = "Date du contact :  ";
-            dgvContacts.Columns["sommeVersee"].HeaderText = "Montant en € : ";
-            dgvContacts.Columns["appreciation"].HeaderText = "Détail du contact : ";
-            // On peut maintenant utiliser "libelleType" comme n'importe quelle autre colonne
-            dgvContacts.Columns["libelleInformateur"].HeaderText = "Informateur : ";
-            dgvContacts.Columns["libelleInformateur"].DisplayIndex = 6; // Pour choisir l'ordre d'affichage
-
         }
 
         //Depart
@@ -336,7 +347,7 @@ namespace Formulaire_principal
             // Liaison de la grille au BindingSource
             dgvBilan.DataSource = this.bsBilan;
 
-            // --- AJOUT POUR LE GRAPHIQUE ---
+            // AJOUT POUR LE GRAPHIQUE
 
             // On vide le conteneur pour éviter les doublons lors d'un rafraîchissement
             flpGraphiques.Controls.Clear();
@@ -347,6 +358,18 @@ namespace Formulaire_principal
             foreach (DataRow row in dtBilan.Rows)
             {
                 string nomEspece = row["Nom de l'espèce"].ToString();
+
+                string filtre = "nom = '" + nomEspece.Replace("'", "''") + "'";
+                DataRow[] tabRows = ds.Tables["Espece"].Select(filtre);
+
+
+                // A REMPLACER 
+                string couleurEspece = "Inconnue";
+                if (tabRows.Length > 0)
+                {
+                    couleurEspece = tabRows[0]["couleur"].ToString();
+                }
+
                 int captures = Convert.ToInt32(row["Nombre de captures réalisées"]);
                 int objectif = Convert.ToInt32(row["Objectif initial"]);
 
@@ -362,19 +385,18 @@ namespace Formulaire_principal
                 ChartArea area = new ChartArea();
                 chartIndiv.ChartAreas.Add(area);
 
-                // Titre : Nom de l'espèce + le taux calculé par votre colonne Expression
-                Title t = new Title($"{nomEspece} : {row["Taux de réussite (%)"]}%");
-                chartIndiv.Titles.Add(t);
+                // Titre : Nom de l'espèce + le taux calculé 
+                chartIndiv.Titles.Add($"Taux de capture :{nomEspece} -> {row["Taux de réussite (%)"]}%");
 
                 // Configuration de la série en type "Doughnut" (Anneau) ou Pie
                 Series s = new Series("Taux");
-                s.ChartType = SeriesChartType.Doughnut; // Plus moderne pour un taux de réussite
+                s.ChartType = SeriesChartType.Doughnut;
 
                 if (reste <= 0)
                 {
                     // CAS 100% CAPTURÉS : Une seule part verte
                     s.Points.AddXY("Capturés", captures);
-                    s.Points[0].Color = Color.LimeGreen;
+                    s.Points[0].Color = ConvertirNomCouleur(couleurEspece);
                 }
                 else if (captures <= 0)
                 {
@@ -385,18 +407,102 @@ namespace Formulaire_principal
                 else
                 {
                     // CAS INTERMÉDIAIRE : On affiche les deux parts
-                    s.Points.AddXY("Capturés", captures); // Index 0
-                    s.Points.AddXY("Reste", reste);       // Index 1
+                    s.Points.AddXY("Capturés", captures);
+                    s.Points.AddXY("Reste", reste);    
 
-                    s.Points[0].Color = Color.LimeGreen;
+                    s.Points[0].Color = ConvertirNomCouleur(couleurEspece);
                     s.Points[1].Color = Color.FromArgb(220, 220, 220);
                 }
 
                 chartIndiv.Series.Add(s);
-
-                // Ajout du graphique au FlowLayoutPanel
                 flpGraphiques.Controls.Add(chartIndiv);
             }
+        }
+
+        // Méthode pour mapper les couleurs du projet Stargate
+        private Color ConvertirNomCouleur(string couleurFr)
+        {
+            // On utilise un switch pour faire correspondre le texte DB et la couleur C#
+            switch (couleurFr.ToLower())
+            {
+                case "gris": return Color.Gray;
+                case "pourpre": return Color.Purple;
+                case "orange": return Color.Orange;
+                case "rose": return Color.Pink;
+                case "violet": return Color.Violet;
+                case "marron": return Color.SaddleBrown;
+                case "vert": return Color.Green;
+                case "bleu": return Color.Blue;
+                default: return Color.Black; // Couleur par défaut si non trouvé
+            }
+        }
+
+        private void GenererGraphiqueBudget()
+        {
+            //Récupération des données via le DataSet
+            string filtreMission = $"nomPlanete = '{idPlanete}' AND numero = {idNumero}";
+            string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
+
+            // Budget initial
+            DataRow[] mission = ds.Tables["Mission"].Select(filtreMission);
+            double budgetInitial = Convert.ToDouble(mission[0]["budget"]);
+
+            // Somme des dépenses
+            object resDep = ds.Tables["Depense"].Compute("SUM(montant)", filtre);
+            double totalDepenses = (resDep == DBNull.Value) ? 0 : Convert.ToDouble(resDep);
+
+            // Somme des informateurs (table Contact)
+            object resInf = ds.Tables["Contact"].Compute("SUM(sommeVersee)", filtre);
+            double totalInformateurs = (resInf == DBNull.Value) ? 0 : Convert.ToDouble(resInf);
+
+            double totalConsomme = totalDepenses + totalInformateurs;
+            double reste = budgetInitial - totalConsomme;
+
+            // Configuration du graphique
+            chartBudget.Series.Clear();
+            chartBudget.Titles.Clear();
+            chartBudget.Titles.Add("Utilisation du budget de la mission : "+this.idPlanete+"-"+this.idNumero);
+
+            Series s = new Series("Budget");
+            s.ChartType = SeriesChartType.Doughnut; // Forme d'anneau pour le design
+            s.IsValueShownAsLabel = true;
+            s.LabelFormat = "{0} €";
+
+            //Gestion du dépassement
+            if (reste < 0)
+            {
+                // CAS => DÉPASSEMENT DE BUDGET
+                double depassement = Math.Abs(reste);
+
+                // On affiche la part des dépenses et informateurs
+                s.Points.AddXY("Dépenses", totalDepenses);
+                s.Points.AddXY("Informateurs", totalInformateurs);
+                s.Points.AddXY("DÉPASSEMENT !", depassement);
+
+                // Couleur rouge pour la part en trop
+                s.Points[s.Points.Count - 1].Color = Color.Red;
+
+                // Alerte visuelle sur le côté
+                lblEtatBudget.Text = "ATTENTION : Budget dépassé !";
+                lblEtatBudget.ForeColor = Color.Red;
+            }
+            else
+            {
+                // CAS => BUDGET Ok
+                if (totalDepenses > 0) s.Points.AddXY("Dépenses", totalDepenses);
+                if (totalInformateurs > 0) s.Points.AddXY("Informateurs", totalInformateurs);
+                if (reste > 0) s.Points.AddXY("Disponible", reste);
+
+                // Couleurs normales
+                lblEtatBudget.Text = "Budget sous contrôle";
+                lblEtatBudget.ForeColor = Color.Green;
+
+                // On colore la part "Disponible" en vert clair
+                int idxDispo = s.Points.IndexOf(s.Points.FirstOrDefault(p => p.AxisLabel == "Disponible"));
+                if (idxDispo != -1) s.Points[idxDispo].Color = Color.LightGreen;
+            }
+
+            chartBudget.Series.Add(s);
         }
     }
 }
