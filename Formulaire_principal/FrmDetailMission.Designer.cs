@@ -252,6 +252,7 @@
             this.txtSomme.Name = "txtSomme";
             this.txtSomme.Size = new System.Drawing.Size(203, 31);
             this.txtSomme.TabIndex = 18;
+            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSomme_KeyPress);
             // 
             // txtAppreciation
             // 
@@ -283,6 +284,8 @@
             // 
             // cboInformateur
             // 
+            this.cboInformateur.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboInformateur.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboInformateur.FormattingEnabled = true;
             this.cboInformateur.Location = new System.Drawing.Point(283, 869);
             this.cboInformateur.Name = "cboInformateur";
@@ -358,6 +361,7 @@
             this.txtMontant.Name = "txtMontant";
             this.txtMontant.Size = new System.Drawing.Size(203, 31);
             this.txtMontant.TabIndex = 18;
+            this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
             // txtMotif
             // 
@@ -389,6 +393,8 @@
             // 
             // cboTypeDepense
             // 
+            this.cboTypeDepense.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboTypeDepense.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTypeDepense.FormattingEnabled = true;
             this.cboTypeDepense.Location = new System.Drawing.Point(283, 869);
             this.cboTypeDepense.Name = "cboTypeDepense";

@@ -269,6 +269,19 @@ namespace Formulaire_principal
         {
             try
             {
+                //Mode connecté pour ajouter dans la bse
+                string sql = @"INSERT INTO Contact (nomPlanete, numeroMission, dateC, sommeVersee, appreciation, nomCodeInformateur)
+                       VALUES (@nomPlanete, @numeroMission, @dateC, @sommeVersee, @appreciation, @nomCodeInformateur)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                cmd.Parameters.AddWithValue("@dateC", dtpContact.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@sommeVersee", txtSomme.Text);
+                cmd.Parameters.AddWithValue("@appreciation", txtAppreciation.Text);
+                cmd.Parameters.AddWithValue("@nomCodeInformateur", cboInformateur.SelectedValue.ToString());
+                cmd.ExecuteNonQuery();
+
+                //Mode déconnecté pour mettre à jour le data set
                 DataRow maRow = ds.Tables["Contact"].NewRow();
                 maRow["nomPlanete"] = idPlanete;
                 maRow["numeroMission"] = idNumero;
@@ -305,16 +318,29 @@ namespace Formulaire_principal
         {
             try
             {
-                DataRow[] Mesrows = ds.Tables["Depense"].Select($"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
-                int maxIdDep = 0;
-                foreach (DataRow row in Mesrows)
-                {
-                    int numero = Convert.ToInt32(row["id"]);
-                    if (numero > maxIdDep)
-                    {
-                        maxIdDep = numero;
-                    }
-                }
+                //Calcul du max pour l'id des dépenses en mode connecté
+                string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
+                       AND numeroMission = @numeroMission";
+                SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
+                cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
+
+                int maxIdDep = Convert.ToInt32(cmdMax.ExecuteScalar());
+
+                //Ajout à la base en mode connecté
+                string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
+                       VALUES (@nomPlanete, @numeroMission, @id, @dateD, @montant, @motif, @idTypeDepense)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
+                cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
+                cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
+                cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
+                cmd.ExecuteNonQuery();
+
+                //Mise à jour du data set en mode déconnecté
                 DataRow maRow = ds.Tables["Depense"].NewRow();
                 maRow["nomPlanete"] = idPlanete;
                 maRow["numeroMission"] = idNumero;
@@ -351,6 +377,17 @@ namespace Formulaire_principal
         {
             try
             {
+                //Ajout à la base en mode connecté
+                string sql = @"INSERT INTO JournalDeBord (nomPlanete, numero, dateJ, commentaires)
+                       VALUES (@nomPlanete, @numero, @dateJ, @commentaires)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmd.Parameters.AddWithValue("@numero", idNumero);
+                cmd.Parameters.AddWithValue("@dateJ", dtpEvnmt.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@commentaires", txtCommentaires.Text);
+                cmd.ExecuteNonQuery();
+
+                //Mise à jour du data set en mode déconnecté
                 DataRow maRow = ds.Tables["JournalDeBord"].NewRow();
                 maRow["nomPlanete"] = idPlanete;
                 maRow["numero"] = idNumero;
@@ -378,6 +415,38 @@ namespace Formulaire_principal
         {
             RAZEvenement();
 
+        }
+
+        private void txtSomme_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == 13)
+            {
+                txtAppreciation.Focus();
+            }
+        }
+
+        private void txtMontant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == 13)
+            {
+                txtMotif.Focus();
+            }
         }
     }
 }
