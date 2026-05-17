@@ -29,7 +29,12 @@
         private void InitializeComponent()
         {
             this.grpNouvelleMission = new System.Windows.Forms.GroupBox();
+            this.pnl0 = new System.Windows.Forms.Panel();
             this.lblNum = new System.Windows.Forms.Label();
+            this.lblNomMission = new System.Windows.Forms.Label();
+            this.btnValidPlanete = new System.Windows.Forms.Button();
+            this.cboPlanete = new System.Windows.Forms.ComboBox();
+            this.lblChoix = new System.Windows.Forms.Label();
             this.pnl1 = new System.Windows.Forms.Panel();
             this.btnValidMission = new System.Windows.Forms.Button();
             this.lblEuros = new System.Windows.Forms.Label();
@@ -50,10 +55,6 @@
             this.lblParam = new System.Windows.Forms.Label();
             this.lblChef = new System.Windows.Forms.Label();
             this.cboChef = new System.Windows.Forms.ComboBox();
-            this.lblNomMission = new System.Windows.Forms.Label();
-            this.btnValidPlanete = new System.Windows.Forms.Button();
-            this.cboPlanete = new System.Windows.Forms.ComboBox();
-            this.lblChoix = new System.Windows.Forms.Label();
             this.grpPrecisions = new System.Windows.Forms.GroupBox();
             this.pnl3 = new System.Windows.Forms.Panel();
             this.btnSuppSelectCapt = new System.Windows.Forms.Button();
@@ -61,7 +62,7 @@
             this.btnValidObj = new System.Windows.Forms.Button();
             this.lstbCaptures = new System.Windows.Forms.ListBox();
             this.nud1 = new System.Windows.Forms.NumericUpDown();
-            this.cboCapture = new System.Windows.Forms.ComboBox();
+            this.cboCaptures = new System.Windows.Forms.ComboBox();
             this.lblObjCapture = new System.Windows.Forms.Label();
             this.pnl2 = new System.Windows.Forms.Panel();
             this.btnSuppSelect = new System.Windows.Forms.Button();
@@ -76,14 +77,13 @@
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
-            this.pnl0 = new System.Windows.Forms.Panel();
             this.grpNouvelleMission.SuspendLayout();
+            this.pnl0.SuspendLayout();
             this.pnl1.SuspendLayout();
             this.grpPrecisions.SuspendLayout();
             this.pnl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).BeginInit();
             this.pnl2.SuspendLayout();
-            this.pnl0.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpNouvelleMission
@@ -98,6 +98,18 @@
             this.grpNouvelleMission.TabStop = false;
             this.grpNouvelleMission.Text = "Nouvelle mission";
             // 
+            // pnl0
+            // 
+            this.pnl0.Controls.Add(this.lblNum);
+            this.pnl0.Controls.Add(this.lblNomMission);
+            this.pnl0.Controls.Add(this.btnValidPlanete);
+            this.pnl0.Controls.Add(this.cboPlanete);
+            this.pnl0.Controls.Add(this.lblChoix);
+            this.pnl0.Location = new System.Drawing.Point(31, 36);
+            this.pnl0.Name = "pnl0";
+            this.pnl0.Size = new System.Drawing.Size(964, 180);
+            this.pnl0.TabIndex = 6;
+            // 
             // lblNum
             // 
             this.lblNum.AutoSize = true;
@@ -107,6 +119,46 @@
             this.lblNum.Size = new System.Drawing.Size(124, 42);
             this.lblNum.TabIndex = 5;
             this.lblNum.Text = "label1";
+            // 
+            // lblNomMission
+            // 
+            this.lblNomMission.AutoSize = true;
+            this.lblNomMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.Location = new System.Drawing.Point(32, 118);
+            this.lblNomMission.Name = "lblNomMission";
+            this.lblNomMission.Size = new System.Drawing.Size(124, 42);
+            this.lblNomMission.TabIndex = 3;
+            this.lblNomMission.Text = "label1";
+            // 
+            // btnValidPlanete
+            // 
+            this.btnValidPlanete.Location = new System.Drawing.Point(772, 13);
+            this.btnValidPlanete.Name = "btnValidPlanete";
+            this.btnValidPlanete.Size = new System.Drawing.Size(179, 61);
+            this.btnValidPlanete.TabIndex = 2;
+            this.btnValidPlanete.Text = "Valider planète";
+            this.btnValidPlanete.UseVisualStyleBackColor = true;
+            this.btnValidPlanete.Click += new System.EventHandler(this.btnValidPlanete_Click);
+            // 
+            // cboPlanete
+            // 
+            this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPlanete.FormattingEnabled = true;
+            this.cboPlanete.Location = new System.Drawing.Point(335, 28);
+            this.cboPlanete.Name = "cboPlanete";
+            this.cboPlanete.Size = new System.Drawing.Size(352, 33);
+            this.cboPlanete.TabIndex = 1;
+            this.cboPlanete.SelectedIndexChanged += new System.EventHandler(this.cboPlanete_SelectedIndexChanged);
+            this.cboPlanete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboPlanete_KeyPress);
+            // 
+            // lblChoix
+            // 
+            this.lblChoix.AutoSize = true;
+            this.lblChoix.Location = new System.Drawing.Point(28, 33);
+            this.lblChoix.Name = "lblChoix";
+            this.lblChoix.Size = new System.Drawing.Size(228, 25);
+            this.lblChoix.TabIndex = 0;
+            this.lblChoix.Text = "1 - Choix de la planète";
             // 
             // pnl1
             // 
@@ -314,46 +366,6 @@
             this.cboChef.Size = new System.Drawing.Size(450, 33);
             this.cboChef.TabIndex = 23;
             // 
-            // lblNomMission
-            // 
-            this.lblNomMission.AutoSize = true;
-            this.lblNomMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomMission.Location = new System.Drawing.Point(32, 118);
-            this.lblNomMission.Name = "lblNomMission";
-            this.lblNomMission.Size = new System.Drawing.Size(124, 42);
-            this.lblNomMission.TabIndex = 3;
-            this.lblNomMission.Text = "label1";
-            // 
-            // btnValidPlanete
-            // 
-            this.btnValidPlanete.Location = new System.Drawing.Point(772, 13);
-            this.btnValidPlanete.Name = "btnValidPlanete";
-            this.btnValidPlanete.Size = new System.Drawing.Size(179, 61);
-            this.btnValidPlanete.TabIndex = 2;
-            this.btnValidPlanete.Text = "Valider planète";
-            this.btnValidPlanete.UseVisualStyleBackColor = true;
-            this.btnValidPlanete.Click += new System.EventHandler(this.btnValidPlanete_Click);
-            // 
-            // cboPlanete
-            // 
-            this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(335, 28);
-            this.cboPlanete.Name = "cboPlanete";
-            this.cboPlanete.Size = new System.Drawing.Size(352, 33);
-            this.cboPlanete.TabIndex = 1;
-            this.cboPlanete.SelectedIndexChanged += new System.EventHandler(this.cboPlanete_SelectedIndexChanged);
-            this.cboPlanete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboPlanete_KeyPress);
-            // 
-            // lblChoix
-            // 
-            this.lblChoix.AutoSize = true;
-            this.lblChoix.Location = new System.Drawing.Point(28, 33);
-            this.lblChoix.Name = "lblChoix";
-            this.lblChoix.Size = new System.Drawing.Size(228, 25);
-            this.lblChoix.TabIndex = 0;
-            this.lblChoix.Text = "1 - Choix de la planète";
-            // 
             // grpPrecisions
             // 
             this.grpPrecisions.Controls.Add(this.pnl3);
@@ -372,7 +384,7 @@
             this.pnl3.Controls.Add(this.btnValidObj);
             this.pnl3.Controls.Add(this.lstbCaptures);
             this.pnl3.Controls.Add(this.nud1);
-            this.pnl3.Controls.Add(this.cboCapture);
+            this.pnl3.Controls.Add(this.cboCaptures);
             this.pnl3.Controls.Add(this.lblObjCapture);
             this.pnl3.Location = new System.Drawing.Point(23, 911);
             this.pnl3.Name = "pnl3";
@@ -426,15 +438,15 @@
             this.nud1.Size = new System.Drawing.Size(85, 31);
             this.nud1.TabIndex = 21;
             // 
-            // cboCapture
+            // cboCaptures
             // 
-            this.cboCapture.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboCapture.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCapture.FormattingEnabled = true;
-            this.cboCapture.Location = new System.Drawing.Point(38, 76);
-            this.cboCapture.Name = "cboCapture";
-            this.cboCapture.Size = new System.Drawing.Size(518, 33);
-            this.cboCapture.TabIndex = 19;
+            this.cboCaptures.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCaptures.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCaptures.FormattingEnabled = true;
+            this.cboCaptures.Location = new System.Drawing.Point(38, 76);
+            this.cboCaptures.Name = "cboCaptures";
+            this.cboCaptures.Size = new System.Drawing.Size(518, 33);
+            this.cboCaptures.TabIndex = 19;
             // 
             // lblObjCapture
             // 
@@ -586,18 +598,6 @@
             this.lblAffect.TabIndex = 6;
             this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
-            // pnl0
-            // 
-            this.pnl0.Controls.Add(this.lblNum);
-            this.pnl0.Controls.Add(this.lblNomMission);
-            this.pnl0.Controls.Add(this.btnValidPlanete);
-            this.pnl0.Controls.Add(this.cboPlanete);
-            this.pnl0.Controls.Add(this.lblChoix);
-            this.pnl0.Location = new System.Drawing.Point(31, 36);
-            this.pnl0.Name = "pnl0";
-            this.pnl0.Size = new System.Drawing.Size(964, 180);
-            this.pnl0.TabIndex = 6;
-            // 
             // FrmMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -611,6 +611,8 @@
             this.Text = "Création d\'une nouvelle mission";
             this.Load += new System.EventHandler(this.FrmMission_Load);
             this.grpNouvelleMission.ResumeLayout(false);
+            this.pnl0.ResumeLayout(false);
+            this.pnl0.PerformLayout();
             this.pnl1.ResumeLayout(false);
             this.pnl1.PerformLayout();
             this.grpPrecisions.ResumeLayout(false);
@@ -619,8 +621,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).EndInit();
             this.pnl2.ResumeLayout(false);
             this.pnl2.PerformLayout();
-            this.pnl0.ResumeLayout(false);
-            this.pnl0.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -664,7 +664,7 @@
         private System.Windows.Forms.ListBox lstbMembres;
         private System.Windows.Forms.Label lblNomMembre;
         private System.Windows.Forms.ListBox lstbPartis;
-        private System.Windows.Forms.ComboBox cboCapture;
+        private System.Windows.Forms.ComboBox cboCaptures;
         private System.Windows.Forms.Label lblObjCapture;
         private System.Windows.Forms.Label lblMembresAffect;
         private System.Windows.Forms.NumericUpDown nud1;

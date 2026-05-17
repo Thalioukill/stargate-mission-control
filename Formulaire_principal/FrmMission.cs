@@ -111,6 +111,7 @@ namespace Formulaire_principal
 
         private void FrmMission_Load(object sender, EventArgs e)
         {
+            //Chargement de la comboBox cboPlanete au démarrage de l'application
             try
             {
                 string sql = "SELECT nom FROM Planete";
@@ -125,28 +126,23 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(err.Message);
             }
-
-            /*cboPlanete.DataSource = ds.Tables["Planete"];
-            cboPlanete.DisplayMember = "nom";
-            cboPlanete.ValueMember = "nom";
-            cboPlanete.Focus();*/
-
-            
-
-
         }
 
         private void cboPlanete_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Dès qu'on change d'index dans la cboPlanete, le nom de la mission change
             try
             {
                 string nomPlanete = cboPlanete.Text.ToString();
                 int numMiss;
+                //Le numéro de notre mission sera le plus grand numéro associé à la planète choisie + 1
                 string sql = $@"SELECT MAX(numero) FROM Mission WHERE 
                             nomPlanete = '{nomPlanete}'";
 
                 SQLiteCommand cmd = new SQLiteCommand(sql, co);
 
+                //On récup d'abord un objet resultat et on s'assure qu'il est non nul
+                //Sinon notre numéro sera 1 (première mission associée à la planète)
                 object resultat = cmd.ExecuteScalar();
                 if (resultat != null && resultat != DBNull.Value)
                 {
@@ -167,30 +163,19 @@ namespace Formulaire_principal
 
         private void btnValidPlanete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
-                            AS nomComplet, me.matricule FROM Membre me
-                            JOIN Militaire mi ON
-                            me.matricule = mi.matriculeMembre
-                            WHERE me.matricule LIKE 'M%'";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cboChef.DataSource = dt;
-                cboChef.DisplayMember = "nomComplet";
-                cboChef.ValueMember = "matricule";
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
-            PartieDeuxTroisVisible();  
+            //Lorsque notre planète a été validée, on charge la prochaine comboBox, cboChef
+            RemplirCboChef();
+            //La partie 2 - 3 devient utilisable et on désactive la partie 1
+            PartieDeuxTroisUtilisable();  
             cboChef.Focus();
         }
 
         private void btnValidMission_Click(object sender, EventArgs e)
         {
+            //instance.CompareTo(object value)
+            //si < 0 alors instance précède value
+            //si = 0 alors instance à la même position que value en terme de trie
+            //si > 0 alors instance est après value
             if (dtpDepart.Value.Date.CompareTo(dtpRetour.Value.Date) > 0)
             {
                 
@@ -205,6 +190,7 @@ namespace Formulaire_principal
             {
                 try
                 {
+                    //On insère notre mission dans la base
                     string sql = @"INSERT INTO Mission 
                               (nomPlanete, numero, nbMembreRequis, dateDepart, dateRetour, matriculeChef, feuilleDeRoute, objectifDatabaz, budget)
                               VALUES (@nomPlanete, @numero, @nbMembres, @dateDepart, @dateRetour, @matriculeChef, @feuilleRoute, @objDataBaz, @budget)";
@@ -224,27 +210,21 @@ namespace Formulaire_principal
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
 
+                    //On insère d'office le chef de mission dans la listBox lstbMembres sous forme de ListItemMembre
+                    //(Il fera forcément parti des membres de la mission)
                     ListItemMembre li = new ListItemMembre { Name = cboChef.Text, Value = cboChef.SelectedValue.ToString() };
                     lstbMembres.Items.Add(li);
                     cboMembres.Focus();
-                    cboChef.Enabled = false;
-                    dtpDepart.Enabled = false;
-                    dtpRetour.Enabled = false;
-                    txtfeuilleRoute.Enabled = false;
-                    txtBudget.Enabled = false;
-                    txtnbMembres.Enabled = false;
-                    txtobjDataBaz.Enabled = false;
-                    btnValidMission.Enabled = false;
 
-                    foreach (Control c in pnl1.Controls)
-                    {
-                        if (c is Label lbl)
-                            lbl.ForeColor = SystemColors.ControlDark;
-                    }
+                    //Le reste des membres à affecter
                     lblreste.Text = (int.Parse(txtnbMembres.Text)-1).ToString();
+
+                    //On rempli la prochaine comboBox cboMembres
                     RemplirCboMembres();
                     cboMembres_SelectedIndexChanged(sender, e);
-                    PartieQuatreVisible();
+
+                    //On rends la partie 4 utilisable et on désactive la partie 2 - 3
+                    PartieQuatreUtilisable();
 
                 }
                 catch (SQLiteException err)
@@ -314,7 +294,10 @@ namespace Formulaire_principal
 
         private void cboMembres_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //A chaque changement d'index, les membres déjà partis avec la personne sélectionnée changent
             lstbPartis.Items.Clear();
+
+            //On extrait le nomComplet du membre pour avoir juste son nom et prénom
             string texteDecoup = cboMembres.Text;
             int deuxpt = texteDecoup.IndexOf(':');
             if (deuxpt != -1)
@@ -327,6 +310,7 @@ namespace Formulaire_principal
             }
             try
             {
+                //Requête imbriquée pour select les membres déjà partis en missions avec la personne sélectionnée
                 string sql = @"SELECT DISTINCT co.matriculeMembre FROM Composer co
                             WHERE (co.numeroMission, co.nomPlanete) IN
                             (SELECT co2.numeroMission, co2.nomPlanete FROM Composer co2 
@@ -346,12 +330,14 @@ namespace Formulaire_principal
 
                         if(dr.IsDBNull(0))
                         {
+                            //S'il n'y a pas de résultat, dr.Read continue
                             continue;
                         }
                         else
                         {
                             matricule = dr[0].ToString();
                         }
+                        //Si c'est un militaire
                         if(matricule.StartsWith("M"))
                         {
                             string sql2 = $@"SELECT (me.nom || ' ' || me.prenom || ' : Militaire - ' || mi.grade) 
@@ -363,11 +349,13 @@ namespace Formulaire_principal
                             SQLiteDataReader dr2 = cmd2.ExecuteReader();
                             while(dr2.Read())
                             {
+                                //On ajoute dans lstbPartis sous forme de ListItemMembre
                                 ListItemMembre li = new ListItemMembre { Name = dr2[0].ToString() , Value = matricule };
                                 lstbPartis.Items.Add(li);
                             }
 
                         }
+                        //Si c'est un civil
                         else if(matricule.StartsWith("C"))
                         {
                             string sql3 = $@"SELECT (me.nom || ' ' || me.prenom || ' : Civil - ' || ci.Specialite) 
@@ -380,6 +368,7 @@ namespace Formulaire_principal
                             SQLiteDataReader dr3 = cmd3.ExecuteReader();
                             while (dr3.Read())
                             {
+                                //On ajoute dans lstbPartis sous forme de ListItemMembre
                                 ListItemMembre li = new ListItemMembre { Name = dr3[0].ToString(), Value = matricule };
                                 lstbPartis.Items.Add(li);
                             }
@@ -396,6 +385,8 @@ namespace Formulaire_principal
 
         private void btnAddMembre_Click(object sender, EventArgs e)
         {
+            //On ajoute le membre sélectionné dans cboMembres dans lstbMembres sous forme de ListItemMembre
+            //On vérifie s'il reste des membres à ajouter
             int reste = int.Parse(lblreste.Text);
             if (reste > 0)
             {
@@ -432,18 +423,21 @@ namespace Formulaire_principal
             }
             else
             {
+                //On ajoute les membres de lstbPartis dans lstbMembres
                 int reste = int.Parse(lblreste.Text);
                 int reste2 = int.Parse(txtnbMembres.Text);
 
+                //On vérifie si on a demandé assez de membre dans la mission pour refaire l'équipe ou s'il reste des membres à ajouter
                 if (reste2 >= lstbPartis.Items.Count + 1 && (reste - lstbPartis.Items.Count) > 0)
                 {
+                    //On retire tout de lstbMembres sauf le chef à l'index 0
                     while (lstbMembres.Items.Count > 1)
                     {
                         lstbMembres.Items.RemoveAt(1);
                     }
                     ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
                     lstbMembres.Items.Add(li);
-                    reste -= 1;
+                    reste --;
                     reste -= lstbPartis.Items.Count;
                     lblreste.Text = reste.ToString();
                     foreach (ListItemMembre li2 in lstbPartis.Items)
@@ -468,6 +462,7 @@ namespace Formulaire_principal
         {
             try
             {
+                //On insère le chef de la mission dans la base 
                 string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
                             (@nomPlanete, @numeroMission, @matriculeMembre)";
                 SQLiteCommand cmd = new SQLiteCommand(sql, co);
@@ -481,8 +476,10 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
 
+            //On insère nos membres dans la base 
             for (int i = 1; i < lstbMembres.Items.Count; i++)
             {
+                
                 try
                 {
 
@@ -503,8 +500,12 @@ namespace Formulaire_principal
                 }
             }
             MessageBox.Show("Membres ajoutés !");
+
+            //On rempli la prochaine comboBox
             RemplirCboCapture();
-            PartieCinqueVisible();
+
+            //Partie 5 utilisbale et partie 4 désactivée
+            PartieCinqueUtilisable();
 
         }
 
@@ -518,12 +519,15 @@ namespace Formulaire_principal
             }
             else
             {
+                //On mets les valeurs de nos ListItemMembre de lstbMembres dans une liste
                 List<string> values = new List<string>();
                 for (int i = 0; i < lstbMembres.Items.Count; i++)
                 {
                     values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
                 }
                 
+                //On peut comparer pour chaque valeur de lstbPartis si elle ne correspond pas à une valeur de notre liste
+                //Sinon, membre déjà présent
                 foreach (ListItemMembre li in lstbPartis.SelectedItems)
                 {
                     int reste = int.Parse(lblreste.Text);
@@ -554,6 +558,7 @@ namespace Formulaire_principal
 
         private void btnSuppSelect_Click(object sender, EventArgs e)
         {
+            //Pour supprimer une sélcetion de lstbMembres
             List<ListItemMembre> remove = new List<ListItemMembre>();
             if (lstbMembres.SelectedItem == null)
             {
@@ -584,6 +589,110 @@ namespace Formulaire_principal
             
         }
 
+        private void btnAddCapture_Click(object sender, EventArgs e)
+        {
+            //Pour ajouter une capture à lstbCaptures, on créé un ListItemCapture à partir de notre sélection dans cboCaptures
+            List<int> values = new List<int>();
+            string texte = cboCaptures.Text + "--> objectif de capture : " + nud1.Value.ToString();
+            ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()) };
+            for (int i = 0; i < lstbCaptures.Items.Count; i++)
+            {
+                values.Add(((ListItemCapture)lstbCaptures.Items[i]).Value);
+            }
+            if (!values.Contains(li.Value))
+            {
+                lstbCaptures.Items.Add(li);
+            }
+            else
+            {
+                MessageBox.Show("Espèce déjà présente dans la liste !");
+            }
+            
+        }
+
+        private void btnValidObj_Click(object sender, EventArgs e)
+        {
+            //Démarrage de la transaction (une erreur -> on annule toutes les insertions)
+            this.trans = co.BeginTransaction();
+
+            try
+            {
+                //On insère nos objectifs dans la base
+                for (int i = 0; i < lstbCaptures.Items.Count; i++)
+                {
+                    int id = ((ListItemCapture)lstbCaptures.Items[i]).Value;
+
+                    string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
+                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
+
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+
+                    cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
+                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", id);
+                    cmd.Parameters.AddWithValue("@nombre", int.Parse(nud1.Value.ToString()));
+
+                    cmd.ExecuteNonQuery();
+                    
+                }
+                trans.Commit();
+                MessageBox.Show("Objectifs de capture enregistrés !");
+
+                //On a tout renseigné, on peut mettre à jour le data set
+                MettreaJourDS();
+                
+            }
+            catch (SQLiteException err)
+            {
+                trans.Rollback();
+                MessageBox.Show(err.Message);
+            }
+
+        }
+
+        private void btnSuppSelectCapt_Click(object sender, EventArgs e)
+        {
+            //Pour supprimer un objectif de lstbCaptures
+            List<ListItemCapture> remove = new List<ListItemCapture>();
+            if (lstbCaptures.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-contre.");
+
+            }
+            else
+            {
+                foreach (ListItemCapture elt in lstbCaptures.SelectedItems)
+                {
+                     remove.Add(elt);
+                }
+                foreach (ListItemCapture elt2 in remove)
+                {
+                    lstbCaptures.Items.Remove(elt2);
+                }
+            }
+        }
+
+        private void RemplirCboChef()
+        {
+            try
+            {
+                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
+                            AS nomComplet, me.matricule FROM Membre me
+                            JOIN Militaire mi ON
+                            me.matricule = mi.matriculeMembre
+                            WHERE me.matricule LIKE 'M%'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cboChef.DataSource = dt;
+                cboChef.DisplayMember = "nomComplet";
+                cboChef.ValueMember = "matricule";
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
         private void RemplirCboMembres()
         {
             try
@@ -628,9 +737,9 @@ namespace Formulaire_principal
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                cboCapture.DataSource = dt;
-                cboCapture.DisplayMember = "nomComplet";
-                cboCapture.ValueMember = "id";
+                cboCaptures.DataSource = dt;
+                cboCaptures.DisplayMember = "nomComplet";
+                cboCaptures.ValueMember = "id";
             }
             catch (SQLiteException err)
             {
@@ -638,9 +747,9 @@ namespace Formulaire_principal
             }
         }
 
-        private void PartieDeuxTroisVisible()
+        private void PartieDeuxTroisUtilisable()
         {
-            foreach(Control c in pnl0.Controls)
+            foreach (Control c in pnl0.Controls)
             {
                 if (c is Button btn)
                 {
@@ -657,7 +766,7 @@ namespace Formulaire_principal
             }
             foreach (Control c in pnl1.Controls)
             {
-                if(c is ComboBox cbo)
+                if (c is ComboBox cbo)
                 {
                     cbo.Enabled = true;
                 }
@@ -680,7 +789,7 @@ namespace Formulaire_principal
             }
         }
 
-        private void PartieQuatreVisible()
+        private void PartieQuatreUtilisable()
         {
             foreach (Control c in pnl2.Controls)
             {
@@ -688,7 +797,7 @@ namespace Formulaire_principal
                 {
                     btn.Enabled = true;
                 }
-                if(c is ComboBox cbo)
+                if (c is ComboBox cbo)
                 {
                     cbo.Enabled = true;
                 }
@@ -696,13 +805,13 @@ namespace Formulaire_principal
                 {
                     lbl.ForeColor = SystemColors.ControlText;
                 }
-                if(c is ListBox lst)
+                if (c is ListBox lst)
                 {
                     lst.Enabled = true;
                 }
-                    
+
             }
-            foreach(Control c in pnl1.Controls)
+            foreach (Control c in pnl1.Controls)
             {
                 if (c is Button btn)
                 {
@@ -712,18 +821,18 @@ namespace Formulaire_principal
                 {
                     lbl.ForeColor = SystemColors.ControlDark;
                 }
-                if(c is TextBox txt)
+                if (c is TextBox txt)
                 {
                     txt.Enabled = false;
                 }
-                if(c is DateTimePicker dtp)
+                if (c is DateTimePicker dtp)
                 {
                     dtp.Enabled = false;
                 }
             }
         }
 
-        private void PartieCinqueVisible()
+        private void PartieCinqueUtilisable()
         {
             foreach (Control c in pnl3.Controls)
             {
@@ -771,104 +880,31 @@ namespace Formulaire_principal
             }
         }
 
-        private void btnAddCapture_Click(object sender, EventArgs e)
-        {
-            List<int> values = new List<int>();
-            string texte = cboCapture.Text + "--> objectif de capture : " + nud1.Value.ToString();
-            ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCapture.SelectedValue.ToString()) };
-            for (int i = 0; i < lstbCaptures.Items.Count; i++)
-            {
-                values.Add(((ListItemCapture)lstbCaptures.Items[i]).Value);
-            }
-            if (!values.Contains(li.Value))
-            {
-                lstbCaptures.Items.Add(li);
-            }
-            else
-            {
-                MessageBox.Show("Espèce déjà présente dans la liste !");
-            }
-            
-        }
-
-        private void btnValidObj_Click(object sender, EventArgs e)
-        {
-            this.trans = co.BeginTransaction();
-
-            try
-            {
-                for (int i = 0; i < lstbCaptures.Items.Count; i++)
-                {
-                    int id = ((ListItemCapture)lstbCaptures.Items[i]).Value;
-
-                    string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
-                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
-
-                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
-
-                    cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
-                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
-                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", id);
-                    cmd.Parameters.AddWithValue("@nombre", int.Parse(nud1.Value.ToString()));
-
-                    cmd.ExecuteNonQuery();
-                    
-                }
-                trans.Commit();
-                MessageBox.Show("Objectifs de capture enregistrés !");
-                MettreaJourDS();
-                
-            }
-            catch (SQLiteException err)
-            {
-                trans.Rollback();
-                MessageBox.Show(err.Message);
-            }
-
-        }
-
-        private void btnSuppSelectCapt_Click(object sender, EventArgs e)
-        {
-            List<ListItemCapture> remove = new List<ListItemCapture>();
-            if (lstbCaptures.SelectedItem == null)
-            {
-                MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-contre.");
-
-            }
-            else
-            {
-                foreach (ListItemCapture elt in lstbCaptures.SelectedItems)
-                {
-                     remove.Add(elt);
-                }
-                foreach (ListItemCapture elt2 in remove)
-                {
-                    lstbCaptures.Items.Remove(elt2);
-                }
-            }
-        }
-
         private void MettreaJourDS()
         {
+            //On vide les tables qu'on a changé du data set et on mets les nouvelles à la place
             if (ds.Tables.Contains("Mission"))
             {
                 ds.Tables["Mission"].Clear();
             }
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Mission", co);
+            string sqlMiss = "SELECT * FROM Mission";
+            SQLiteDataAdapter da = new SQLiteDataAdapter(sqlMiss, co);
             da.Fill(ds, "Mission");
 
             if (ds.Tables.Contains("Composer"))
             {
                 ds.Tables["Composer"].Clear();
             }
-            SQLiteDataAdapter da2 = new SQLiteDataAdapter("SELECT * FROM Composer", co);
+            string sqlComp = "SELECT * FROM Composer";
+            SQLiteDataAdapter da2 = new SQLiteDataAdapter(sqlComp, co);
             da2.Fill(ds, "Composer");
 
             if (ds.Tables.Contains("Capturer"))
             {
                 ds.Tables["Capturer"].Clear();
             }
-            SQLiteDataAdapter da3 = new SQLiteDataAdapter("SELECT * FROM Capturer", co);
+            string sqlCapt = "SELECT * FROM Capturer";
+            SQLiteDataAdapter da3 = new SQLiteDataAdapter(sqlCapt, co);
             da3.Fill(ds, "Composer");
 
             MessageBox.Show($"Tout est bon de notre côté, tous les détails de la mission {cboPlanete.Text} - {lblNum.Text} ont été validés !");
