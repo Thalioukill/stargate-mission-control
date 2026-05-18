@@ -368,6 +368,7 @@
             this.btnRechercherEnnemis.Text = "Rechercher";
             this.btnRechercherEnnemis.UseVisualStyleBackColor = true;
             this.btnRechercherEnnemis.Click += new System.EventHandler(this.btnRechercherEnnemis_Click);
+            this.btnRechercherEnnemis.MouseEnter += new System.EventHandler(this.btnRechercherEnnemis_MouseEnter);
             // 
             // cboCouleurEnnemis
             // 

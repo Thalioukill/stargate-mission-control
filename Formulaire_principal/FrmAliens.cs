@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Formulaire_principal
 {
@@ -22,6 +23,7 @@ namespace Formulaire_principal
         public FrmAliens()
         {
             InitializeComponent();
+            AppliquerCurseurBoutons(this);
         }
 
         private void charger_dataset()
@@ -275,6 +277,26 @@ namespace Formulaire_principal
                 e.Handled = true;
                 btnRechercherEnnemis.PerformClick();
             }
+        }
+
+        private void AppliquerCurseurBoutons(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is Button)
+                {
+                    ctrl.Cursor = System.Windows.Forms.Cursors.Hand;
+                }
+                if (ctrl.HasChildren)
+                {
+                    AppliquerCurseurBoutons(ctrl);
+                }
+            }
+        }
+
+        private void btnRechercherEnnemis_MouseEnter(object sender, EventArgs e)
+        {
+            AppliquerCurseurBoutons(this);
         }
     }
 }
