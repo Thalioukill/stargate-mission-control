@@ -90,6 +90,7 @@
             // 
             // btnDetails
             // 
+            this.btnDetails.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDetails.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDetails.ForeColor = System.Drawing.Color.Blue;
             this.btnDetails.Location = new System.Drawing.Point(598, 148);
@@ -113,6 +114,9 @@
             // 
             // btnStats
             // 
+            this.btnStats.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStats.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStats.ForeColor = System.Drawing.Color.Blue;
             this.btnStats.Location = new System.Drawing.Point(477, 148);
             this.btnStats.Name = "btnStats";
             this.btnStats.Size = new System.Drawing.Size(115, 37);
