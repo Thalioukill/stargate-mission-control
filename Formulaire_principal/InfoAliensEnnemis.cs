@@ -35,7 +35,9 @@ namespace Formulaire_principal
                 }
                 else
                 {
-                    MessageBox.Show("Fichier introuvable à : " + System.IO.Path.GetFullPath(path));
+                    path = "../../Images/Aliens/link.jpg";
+                    picEnnemis.SizeMode = PictureBoxSizeMode.Zoom;
+                    picEnnemis.Image = Image.FromFile(path);
                 }
             }
         }
