@@ -52,80 +52,23 @@ namespace Formulaire_principal
         {
             InitializeComponent();
 
-            //Désactivation de tous autres composasants sauf ceux de la première partie
-            foreach (Control c in pnl1.Controls)
-            {
-                if (c is Button btn)
-                {
-                    btn.Enabled = false;
-                }
-                if (c is DateTimePicker dtp)
-                {
-                    dtp.Enabled = false;
-                }
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = false;
-                }
-                if(c is TextBox txt)
-                {
-                    txt.Enabled = false;
-                }
-            }
-            foreach(Control c in pnl2.Controls)
-            {
-                if(c is Button btn)
-                {
-                    btn.Enabled = false;
-                }
-                if (c is ListBox lst)
-                {
-                    lst.Enabled = false;
-                }
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = false;
-                }
-            }
-            foreach(Control c in pnl3.Controls)
-            {
-                if(c is Button btn)
-                {
-                    btn.Enabled = false;
-                }
-                if(c is ComboBox cbo)
-                {
-                    cbo.Enabled = false;
-                }
-                if(c is NumericUpDown nud)
-                {
-                    nud.Enabled = false;
-                }
-                if(c is ListBox lst)
-                {
-                    lst.Enabled = false;
-                }
-            }
+            //Désactivation des composants de la deuxième partie
             
+            foreach(Control c in pnlSection2.Controls)
+            {
+                c.Enabled = false;
+            }
+            foreach (Control c in pnlSection3.Controls)
+            {
+                c.Enabled = false;
+            }
         }
 
         private void FrmMission_Load(object sender, EventArgs e)
         {
-            //Chargement de la comboBox cboPlanete au démarrage de l'application
-            try
-            {
-                string sql = "SELECT nom FROM Planete";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cboPlanete.DataSource = dt;
-                cboPlanete.DisplayMember = "nom";
-                cboPlanete.ValueMember = "nom";
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
+            //Chargement des comboBoxs cboPlanete et cboChef au démarrage de l'application
+            RemplirCboPlanete();
+            RemplirCboChef();
         }
 
         private void cboPlanete_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,10 +106,6 @@ namespace Formulaire_principal
 
         private void btnValidPlanete_Click(object sender, EventArgs e)
         {
-            //Lorsque notre planète a été validée, on charge la prochaine comboBox, cboChef
-            RemplirCboChef();
-            //La partie 2 - 3 devient utilisable et on désactive la partie 1
-            PartieDeuxTroisUtilisable();  
             cboChef.Focus();
         }
 
@@ -219,12 +158,13 @@ namespace Formulaire_principal
                     //Le reste des membres à affecter
                     lblreste.Text = (int.Parse(txtnbMembres.Text)-1).ToString();
 
-                    //On rempli la prochaine comboBox cboMembres
+                    //On rempli les prochaines comboBoxs
                     RemplirCboMembres();
                     cboMembres_SelectedIndexChanged(sender, e);
+                    RemplirCboCapture();
 
                     //On rends la partie 4 utilisable et on désactive la partie 2 - 3
-                    PartieQuatreUtilisable();
+                    PartieDeuxUtilisable();
 
                 }
                 catch (SQLiteException err)
@@ -246,6 +186,47 @@ namespace Formulaire_principal
                 e.Handled=false;
             }
             if (e.KeyChar == 13)
+            {
+                txtobjDataBaz.Focus();
+            }
+        }
+
+        //Pour la navigation au clavier avec les flèches
+        private void txtfeuilleRoute_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtnbMembres.Focus();
+            }
+        }
+
+        private void txtnbMembres_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtobjDataBaz.Focus();
+            }
+            if(e.KeyCode == Keys.Up)
+            {
+                txtfeuilleRoute.Focus();
+            }
+        }
+
+        private void txtobjDataBaz_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtBudget.Focus();
+            }
+            if(e.KeyCode== Keys.Up)
+            {
+                txtnbMembres.Focus();
+            }
+        }
+
+        private void txtBudget_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
             {
                 txtobjDataBaz.Focus();
             }
@@ -280,15 +261,6 @@ namespace Formulaire_principal
             if (e.KeyChar == 13)
             {
                 btnValidMission_Click(sender, e);
-            }
-        }
-
-        private void cboPlanete_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //Si on appuie sur la touche entrée ...
-            if (e.KeyChar == 13)
-            {
-                btnValidPlanete_Click(sender, e);
             }
         }
 
@@ -460,21 +432,29 @@ namespace Formulaire_principal
 
         private void btnvalidMembres_Click(object sender, EventArgs e)
         {
-            try
+            if(int.Parse(lblreste.Text) != 0)
             {
-                //On insère le chef de la mission dans la base 
-                string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
+                MessageBox.Show("Il reste des membres à ajouter");
+            }
+            else
+            {
+                try
+                {
+                    //On insère le chef de la mission dans la base 
+                    string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
                             (@nomPlanete, @numeroMission, @matriculeMembre)";
-                SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
-                cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
-                cmd.Parameters.AddWithValue("matriculeMembre", cboChef.SelectedValue.ToString());
-                cmd.ExecuteNonQuery();
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
+                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                    cmd.Parameters.AddWithValue("matriculeMembre", cboChef.SelectedValue.ToString());
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
+            
 
             //On insère nos membres dans la base 
             for (int i = 1; i < lstbMembres.Items.Count; i++)
@@ -500,13 +480,7 @@ namespace Formulaire_principal
                 }
             }
             MessageBox.Show("Membres ajoutés !");
-
-            //On rempli la prochaine comboBox
-            RemplirCboCapture();
-
-            //Partie 5 utilisbale et partie 4 désactivée
-            PartieCinqueUtilisable();
-
+            PartieTroisUtilisable();
         }
 
         private void btnAddSelect_Click(object sender, EventArgs e)
@@ -672,6 +646,24 @@ namespace Formulaire_principal
             }
         }
 
+        private void RemplirCboPlanete()
+        {
+            try
+            {
+                string sql = "SELECT nom FROM Planete";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cboPlanete.DataSource = dt;
+                cboPlanete.DisplayMember = "nom";
+                cboPlanete.ValueMember = "nom";
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
         private void RemplirCboChef()
         {
             try
@@ -747,137 +739,52 @@ namespace Formulaire_principal
             }
         }
 
-        private void PartieDeuxTroisUtilisable()
+        private void PartieDeuxUtilisable()
         {
-            foreach (Control c in pnl0.Controls)
+            foreach (Control c in pnlSection2.Controls)
             {
-                if (c is Button btn)
-                {
-                    btn.Enabled = false;
-                }
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = false;
-                }
-                if (c is Label lbl)
-                {
-                    lbl.ForeColor = SystemColors.ControlText;
-                }
-            }
-            foreach (Control c in pnl1.Controls)
-            {
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = true;
-                }
-                if (c is Button btn)
-                {
-                    btn.Enabled = true;
-                }
-                if (c is Label lbl)
-                {
-                    lbl.ForeColor = SystemColors.ControlText;
-                }
-                if (c is TextBox txt)
-                {
-                    txt.Enabled = true;
-                }
-                if (c is DateTimePicker dtp)
-                {
-                    dtp.Enabled = true;
-                }
-            }
-        }
+                c.Enabled = true;
 
-        private void PartieQuatreUtilisable()
-        {
-            foreach (Control c in pnl2.Controls)
-            {
-                if (c is Button btn)
-                {
-                    btn.Enabled = true;
-                }
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = true;
-                }
                 if (c is Label lbl)
                 {
                     lbl.ForeColor = SystemColors.ControlText;
-                }
-                if (c is ListBox lst)
-                {
-                    lst.Enabled = true;
                 }
 
             }
-            foreach (Control c in pnl1.Controls)
+            foreach (Control c in pnlSection1.Controls)
             {
-                if (c is Button btn)
-                {
-                    btn.Enabled = false;
-                }
+                c.Enabled = false;
+
                 if (c is Label lbl)
                 {
                     lbl.ForeColor = SystemColors.ControlDark;
                 }
-                if (c is TextBox txt)
-                {
-                    txt.Enabled = false;
-                }
-                if (c is DateTimePicker dtp)
-                {
-                    dtp.Enabled = false;
-                }
             }
+
         }
 
-        private void PartieCinqueUtilisable()
+        private void PartieTroisUtilisable()
         {
-            foreach (Control c in pnl3.Controls)
+            foreach (Control c in pnlSection3.Controls)
             {
-                if (c is Button btn)
-                {
-                    btn.Enabled = true;
-                }
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = true;
-                }
-                if (c is NumericUpDown nud)
-                {
-                    nud.Enabled = true;
-                }
-                if (c is ListBox lst)
-                {
-                    lst.Enabled = true;
-                }
+                c.Enabled = true;
+
                 if (c is Label lbl)
                 {
                     lbl.ForeColor = SystemColors.ControlText;
                 }
             }
-            foreach (Control c in pnl2.Controls)
+            foreach (Control c in pnlSection2.Controls)
             {
-                if (c is Button btn)
-                {
-                    btn.Enabled = false;
-                }
-                if (c is ComboBox cbo)
-                {
-                    cbo.Enabled = false;
-                }
+                c.Enabled = false;
+
                 if (c is Label lbl)
                 {
                     lbl.ForeColor = SystemColors.ControlDark;
                 }
-                if (c is ListBox lst)
-                {
-                    lst.SelectedIndex = -1;
-                    lst.Enabled = false;
-                }
 
             }
+            
         }
 
         private void MettreaJourDS()
@@ -907,7 +814,7 @@ namespace Formulaire_principal
             SQLiteDataAdapter da3 = new SQLiteDataAdapter(sqlCapt, co);
             da3.Fill(ds, "Composer");
 
-            MessageBox.Show($"Tout est bon de notre côté, tous les détails de la mission {cboPlanete.Text} - {lblNum.Text} ont été validés !");
+            MessageBox.Show($"Tout est bon de notre côté, tous les détails de la mission {cboPlanete.Text}{lblNum.Text} ont été validés !");
             this.DialogResult = DialogResult.OK;
         }
 

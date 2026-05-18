@@ -77,6 +77,7 @@
             // 
             // btnValider
             // 
+            this.btnValider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnValider.Location = new System.Drawing.Point(563, 350);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(175, 55);
