@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace Formulaire_principal
 {
-    public partial class InfoAliensAlliees : UserControl
+    public partial class InfoAlien : UserControl
     {
-        public InfoAliensAlliees()
+        public InfoAlien()
         {
             InitializeComponent();
         }
 
-        public InfoAliensAlliees(string nom, string bienveillance, string couleur, string panete, string instrument, string nomalien)
+        public InfoAlien(string nom, string bienveillance, string couleur, string panete, string instrument, string nomalien)
         {
             InitializeComponent();
             lblNomAlliees.Text = nom;

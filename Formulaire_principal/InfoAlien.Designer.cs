@@ -1,6 +1,6 @@
 ﻿namespace Formulaire_principal
 {
-    partial class InfoAliensAlliees
+    partial class InfoAlien
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -95,7 +95,7 @@
             this.lblInstrument.TabIndex = 5;
             this.lblInstrument.Text = "label5";
             // 
-            // InfoAliensAlliees
+            // InfoAlien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,7 +105,7 @@
             this.Controls.Add(this.lblBienveillance);
             this.Controls.Add(this.lblNomAlliees);
             this.Controls.Add(this.picAlliees);
-            this.Name = "InfoAliensAlliees";
+            this.Name = "InfoAlien";
             this.Size = new System.Drawing.Size(134, 245);
             this.Load += new System.EventHandler(this.InfoAlien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAlliees)).EndInit();

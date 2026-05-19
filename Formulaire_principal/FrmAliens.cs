@@ -87,7 +87,7 @@ namespace Formulaire_principal
                 string inst = dr["instrumentMusique"].ToString();
                 string image = nom + ".jpg";
 
-                InfoAliensAlliees info = new InfoAliensAlliees(nom, bien, coul, planete, inst, image);
+                InfoAlien info = new InfoAlien(nom, bien, coul, planete, inst, image);
                 flp1.Controls.Add(info);
             }
         }
@@ -127,7 +127,7 @@ namespace Formulaire_principal
                     string arme = dr["typeArme"].ToString();
                     string image = nomAlien + ".jpg";
 
-                    InfoAliensEnnemis info = new InfoAliensEnnemis(nomAlien, agressivite, couleur, planete, arme, image);
+                    InfoAlien info = new InfoAlien(nomAlien, agressivite, couleur, planete, arme, image);
                     flp2.Controls.Add(info);
                 }
             }
