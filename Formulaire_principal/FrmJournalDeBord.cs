@@ -86,7 +86,7 @@ namespace Formulaire_principal
             /*
             if (dgvDepenses.Columns.Contains("dateJ"))
             {
-                dgvDepenses.Columns["dateJ"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dgvDepenses.Columns[0]["dateJ"].ToString() = "dd/MM/yyyy";
             }
             */
 
