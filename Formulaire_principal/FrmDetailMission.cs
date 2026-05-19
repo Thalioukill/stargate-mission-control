@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,11 @@ namespace Formulaire_principal
             AfficherDetailsMission();
             AfficherEquipage();
             AfficherObjectifs();
+            ChargerCboInformateur();
+            ChargerCboTypeDepense();
+
+
+
 
             /*
             // Création d'une vue sur la table "Composer" (qui lie membres et missions)
@@ -241,6 +247,205 @@ namespace Formulaire_principal
         {
             FrmJournalDeBord fjdb = new FrmJournalDeBord(this.idPlanete, this.idNumero);
             DialogResult dr = fjdb.ShowDialog();
+        }
+
+        private void ChargerCboInformateur()
+        {
+            cboInformateur.DataSource = ds.Tables["Informateur"];
+            cboInformateur.DisplayMember = "nom";
+            cboInformateur.ValueMember = "nomCode";
+
+        }
+
+        private void ChargerCboTypeDepense()
+        {
+            cboTypeDepense.DataSource = ds.Tables["TypeDepense"];
+            cboTypeDepense.DisplayMember = "libelle";
+            cboTypeDepense.ValueMember = "id";
+        }
+
+        private void btnValidNouvC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Mode connecté pour ajouter dans la bse
+                string sql = @"INSERT INTO Contact (nomPlanete, numeroMission, dateC, sommeVersee, appreciation, nomCodeInformateur)
+                       VALUES (@nomPlanete, @numeroMission, @dateC, @sommeVersee, @appreciation, @nomCodeInformateur)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                cmd.Parameters.AddWithValue("@dateC", dtpContact.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@sommeVersee", txtSomme.Text);
+                cmd.Parameters.AddWithValue("@appreciation", txtAppreciation.Text);
+                cmd.Parameters.AddWithValue("@nomCodeInformateur", cboInformateur.SelectedValue.ToString());
+                cmd.ExecuteNonQuery();
+
+                //Mode déconnecté pour mettre à jour le data set
+                DataRow maRow = ds.Tables["Contact"].NewRow();
+                maRow["nomPlanete"] = idPlanete;
+                maRow["numeroMission"] = idNumero;
+                maRow["dateC"] = dtpContact.Value;
+                maRow["sommeVersee"] = txtSomme.Text;
+                maRow["appreciation"] = txtAppreciation.Text;
+                maRow["nomCodeInformateur"] = cboInformateur.SelectedValue.ToString();
+                ds.Tables["Contact"].Rows.Add(maRow);
+
+                MessageBox.Show("Nouveau contact ajouté !");
+                RAZContact();
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+        }
+
+        private void RAZContact()
+        {
+            dtpContact.Value = DateTime.Now;
+            txtSomme.Clear();
+            txtAppreciation.Clear();
+            cboInformateur.SelectedIndex = -1;
+        }
+
+        private void btnAnnulNouvC_Click(object sender, EventArgs e)
+        {
+            RAZContact();
+        }
+
+        private void btnValidDepense_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Calcul du max pour l'id des dépenses en mode connecté
+                string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
+                       AND numeroMission = @numeroMission";
+                SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
+                cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
+
+                int maxIdDep = Convert.ToInt32(cmdMax.ExecuteScalar());
+
+                //Ajout à la base en mode connecté
+                string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
+                       VALUES (@nomPlanete, @numeroMission, @id, @dateD, @montant, @motif, @idTypeDepense)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
+                cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
+                cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
+                cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
+                cmd.ExecuteNonQuery();
+
+                //Mise à jour du data set en mode déconnecté
+                DataRow maRow = ds.Tables["Depense"].NewRow();
+                maRow["nomPlanete"] = idPlanete;
+                maRow["numeroMission"] = idNumero;
+                maRow["id"] = maxIdDep + 1;
+                maRow["dateD"] = dtpDepense.Value;
+                maRow["montant"] = txtMontant.Text;
+                maRow["motif"] = txtMotif.Text;
+                maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
+                ds.Tables["Depense"].Rows.Add(maRow);
+
+                MessageBox.Show("Nouvelle dépense ajoutée !");
+                RAZDepense();
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+        }
+        private void RAZDepense()
+        {
+            dtpDepense.Value = DateTime.Now;
+            txtMontant.Clear();
+            txtMotif.Clear();
+            cboTypeDepense.SelectedIndex = -1;
+        }
+
+        private void btnAnnulNouvD_Click(object sender, EventArgs e)
+        {
+            RAZDepense();
+        }
+
+        private void btnValidEvnmt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Ajout à la base en mode connecté
+                string sql = @"INSERT INTO JournalDeBord (nomPlanete, numero, dateJ, commentaires)
+                       VALUES (@nomPlanete, @numero, @dateJ, @commentaires)";
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                cmd.Parameters.AddWithValue("@numero", idNumero);
+                cmd.Parameters.AddWithValue("@dateJ", dtpEvnmt.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@commentaires", txtCommentaires.Text);
+                cmd.ExecuteNonQuery();
+
+                //Mise à jour du data set en mode déconnecté
+                DataRow maRow = ds.Tables["JournalDeBord"].NewRow();
+                maRow["nomPlanete"] = idPlanete;
+                maRow["numero"] = idNumero;
+                maRow["dateJ"] = dtpEvnmt.Value;
+                maRow["commentaires"] = txtCommentaires.Text;
+                ds.Tables["JournalDeBord"].Rows.Add(maRow);
+
+                MessageBox.Show("Nouvel évènement ajoutée !");
+                RAZEvenement();
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+        }
+
+        private void RAZEvenement()
+        {
+            dtpEvnmt.Value = DateTime.Now;
+            txtCommentaires.Clear();
+        }
+
+        private void btnAnnulNouvE_Click(object sender, EventArgs e)
+        {
+            RAZEvenement();
+
+        }
+
+        private void txtSomme_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == 13)
+            {
+                txtAppreciation.Focus();
+            }
+        }
+
+        private void txtMontant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (e.KeyChar == 13)
+            {
+                txtMotif.Focus();
+            }
         }
     }
 }
