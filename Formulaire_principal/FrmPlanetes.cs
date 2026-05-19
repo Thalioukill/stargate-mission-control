@@ -177,6 +177,10 @@ namespace Formulaire_principal
             {
                 e.Handled = false;
             }
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                txtMaxTemp.Focus();
+            }
         }
 
         private void txtMaxTemp_KeyPress(object sender, KeyPressEventArgs e)
@@ -190,6 +194,10 @@ namespace Formulaire_principal
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtMinGrav.Focus();
             }
         }
 
@@ -218,6 +226,10 @@ namespace Formulaire_principal
             {
                 e.Handled = false;
             }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtMaxGrav.Focus();
+            }
         }
 
         private void txtMaxGrav_KeyPress(object sender, KeyPressEventArgs e)
@@ -245,6 +257,10 @@ namespace Formulaire_principal
             {
                 e.Handled = false;
             }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtMinMission.Focus();
+            }
         }
 
         private void btnReinitialiserDataBaz_Click(object sender, EventArgs e)
@@ -267,6 +283,10 @@ namespace Formulaire_principal
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtMaxMission.Focus();
             }
         }
 
@@ -325,6 +345,82 @@ namespace Formulaire_principal
             chargerEspeces();
             txtNom.Text = "";
             charger_planetes();
+        }
+
+        private void txtNom_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                txtMinTemp.Focus();
+            }
+        }
+
+        private void txtMinTemp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                txtMaxTemp.Focus();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                txtNom.Focus();
+            }
+        }
+
+        private void txtMaxTemp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                txtMinGrav.Focus();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                txtMinTemp.Focus();
+            }
+        }
+
+        private void txtMinGrav_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                txtMaxGrav.Focus();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                txtMaxTemp.Focus();
+            }
+        }
+
+        private void txtMaxGrav_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                txtMinMission.Focus();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                txtMinGrav.Focus();
+            }
+        }
+
+        private void txtMinMission_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                txtMaxMission.Focus();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                txtMaxGrav.Focus();
+            }
+        }
+
+        private void txtMaxMission_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                txtMinMission.Focus();
+            }
         }
     }
 }

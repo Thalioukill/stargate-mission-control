@@ -158,7 +158,7 @@
             this.txtMaxMission.Name = "txtMaxMission";
             this.txtMaxMission.Size = new System.Drawing.Size(100, 23);
             this.txtMaxMission.TabIndex = 21;
-            this.txtMaxMission.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaxMission_KeyPress);
+            this.txtMaxMission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaxMission_KeyDown);
             // 
             // txtMinMission
             // 
@@ -166,6 +166,7 @@
             this.txtMinMission.Name = "txtMinMission";
             this.txtMinMission.Size = new System.Drawing.Size(100, 23);
             this.txtMinMission.TabIndex = 20;
+            this.txtMinMission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMinMission_KeyDown);
             this.txtMinMission.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinMission_KeyPress);
             // 
             // label11
@@ -214,6 +215,7 @@
             this.txtMaxGrav.Name = "txtMaxGrav";
             this.txtMaxGrav.Size = new System.Drawing.Size(100, 23);
             this.txtMaxGrav.TabIndex = 15;
+            this.txtMaxGrav.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaxGrav_KeyDown);
             this.txtMaxGrav.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaxGrav_KeyPress);
             // 
             // txtMinGrav
@@ -222,6 +224,7 @@
             this.txtMinGrav.Name = "txtMinGrav";
             this.txtMinGrav.Size = new System.Drawing.Size(100, 23);
             this.txtMinGrav.TabIndex = 14;
+            this.txtMinGrav.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMinGrav_KeyDown);
             this.txtMinGrav.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinGrav_KeyPress);
             // 
             // label9
@@ -248,6 +251,7 @@
             this.txtMaxTemp.Name = "txtMaxTemp";
             this.txtMaxTemp.Size = new System.Drawing.Size(100, 23);
             this.txtMaxTemp.TabIndex = 11;
+            this.txtMaxTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaxTemp_KeyDown);
             this.txtMaxTemp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaxTemp_KeyPress);
             // 
             // txtMinTemp
@@ -256,6 +260,7 @@
             this.txtMinTemp.Name = "txtMinTemp";
             this.txtMinTemp.Size = new System.Drawing.Size(100, 23);
             this.txtMinTemp.TabIndex = 10;
+            this.txtMinTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMinTemp_KeyDown);
             this.txtMinTemp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinTemp_KeyPress);
             // 
             // label8
@@ -282,6 +287,7 @@
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(157, 23);
             this.txtNom.TabIndex = 7;
+            this.txtNom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNom_KeyDown);
             // 
             // label7
             // 
