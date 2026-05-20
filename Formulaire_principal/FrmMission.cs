@@ -568,33 +568,40 @@ namespace Formulaire_principal
 
         private void btnAddCapture_Click(object sender, EventArgs e)
         {
-            //Pour ajouter une capture à lstbCaptures, on créé un ListItemCapture à partir de notre sélection dans cboCaptures
-            List<int> values = new List<int>();
-            string texte = cboCaptures.Text + "--> objectif de capture : " + nud1.Value.ToString();
-            ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()), Quantite = Convert.ToInt32(nud1.Value) };
+            bool ajouter = true;
+            int quantite = Convert.ToInt32(nud1.Value);
+            
+            //On balaie la listebox lstbCaptures pour vérif si notre espèce choisie est déjà dedans
             for (int i = 0; i < lstbCaptures.Items.Count; i++)
             {
-                values.Add(((ListItemCapture)lstbCaptures.Items[i]).Value);
-            }
-            if (values.Contains(li.Value))
+                ListItemCapture li = (ListItemCapture)lstbCaptures.Items[i];
+                if (li.Value == int.Parse(cboCaptures.SelectedValue.ToString()))
+                {
+                    //Si oui, on augmente sa quantité voulue*
+                    int nouvelleq = li.Quantite + quantite;
+                    if(nouvelleq > 200)
+                    {
+                        MessageBox.Show("Ca fait beaucoup là non ?");
+                    }
+                    else
+                    {
+                        li.Quantite += quantite;
+
+                        li.Name = cboCaptures.Text + "--> objectif de capture : " + li.Quantite.ToString();
+                        //Dans ce cas pas besoin d'ajouter l'espèce à la liste
+                        lstbCaptures.Items[i] = li;
+                        ajouter = false;
+                    }
+                }
+            }  
+            if(ajouter)
             {
-                li.Quantite += Convert.ToInt32(nud1.Value);
+                string texte = cboCaptures.Text + "--> objectif de capture : " + nud1.Value.ToString();
+                ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()), Quantite = Convert.ToInt32(nud1.Value) };
                 lstbCaptures.Items.Add(li);
             }
-            else
-            {
-                if(!values.Contains(li.Value))
-                {
-                    lstbCaptures.Items.Add(li);
-                }
-                else
-                {
-                    MessageBox.Show("Espèce déjà présente dans la liste !");
-                }
-            }
-
-            
         }
+                
 
         private void btnValidObj_Click(object sender, EventArgs e)
         {
@@ -802,15 +809,11 @@ namespace Formulaire_principal
 
         private void MettreaJourDS()
         {
-            //On vide les tables qu'on a changé du data set et on mets les nouvelles à la place
-            if (ds.Tables.Contains("Mission"))
-            {
-                ds.Tables["Mission"].Clear();
-            }
-            string sqlMiss = "SELECT * FROM Mission";
-            SQLiteDataAdapter da = new SQLiteDataAdapter(sqlMiss, co);
-            da.Fill(ds, "Mission");
+            //bool prevEnforce = ds.EnforceConstraints;
+            //ds.EnforceConstraints = false;
 
+            //On vide les tables qu'on a changé du data set et on mets les nouvelles à la place
+            
             if (ds.Tables.Contains("Composer"))
             {
                 ds.Tables["Composer"].Clear();
@@ -825,7 +828,17 @@ namespace Formulaire_principal
             }
             string sqlCapt = "SELECT * FROM Capturer";
             SQLiteDataAdapter da3 = new SQLiteDataAdapter(sqlCapt, co);
-            da3.Fill(ds, "Composer");
+            da3.Fill(ds, "Capturer");
+
+            if (ds.Tables.Contains("Mission"))
+            {
+                ds.Tables["Mission"].Clear();
+            }
+            string sqlMiss = "SELECT * FROM Mission";
+            SQLiteDataAdapter da = new SQLiteDataAdapter(sqlMiss, co);
+            da.Fill(ds, "Mission");
+
+            //ds.EnforceConstraints = prevEnforce;
 
             MessageBox.Show($"Tout est bon de notre côté, tous les détails de la mission {cboPlanete.Text}{lblNum.Text} ont été validés !");
             this.DialogResult = DialogResult.OK;
