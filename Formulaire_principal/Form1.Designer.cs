@@ -63,7 +63,7 @@
             this.btnPlanetes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPlanetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlanetes.Location = new System.Drawing.Point(2154, 1435);
-            this.btnPlanetes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnPlanetes.Margin = new System.Windows.Forms.Padding(6);
             this.btnPlanetes.Name = "btnPlanetes";
             this.btnPlanetes.Size = new System.Drawing.Size(150, 61);
             this.btnPlanetes.TabIndex = 0;
@@ -76,7 +76,7 @@
             this.btnMission.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMission.Location = new System.Drawing.Point(1017, 1435);
-            this.btnMission.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnMission.Margin = new System.Windows.Forms.Padding(6);
             this.btnMission.Name = "btnMission";
             this.btnMission.Size = new System.Drawing.Size(216, 61);
             this.btnMission.TabIndex = 1;
@@ -89,7 +89,7 @@
             this.btnAliens.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAliens.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAliens.Location = new System.Drawing.Point(1506, 1435);
-            this.btnAliens.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnAliens.Margin = new System.Windows.Forms.Padding(6);
             this.btnAliens.Name = "btnAliens";
             this.btnAliens.Size = new System.Drawing.Size(150, 61);
             this.btnAliens.TabIndex = 3;
@@ -102,7 +102,7 @@
             this.btnTableauDeBord.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTableauDeBord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTableauDeBord.Location = new System.Drawing.Point(454, 1435);
-            this.btnTableauDeBord.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTableauDeBord.Margin = new System.Windows.Forms.Padding(6);
             this.btnTableauDeBord.Name = "btnTableauDeBord";
             this.btnTableauDeBord.Size = new System.Drawing.Size(236, 61);
             this.btnTableauDeBord.TabIndex = 2;
@@ -370,6 +370,7 @@
             this.Name = "FrmAccueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accueil Stargate";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.plMissions.ResumeLayout(false);
             this.grpFiltres.ResumeLayout(false);
