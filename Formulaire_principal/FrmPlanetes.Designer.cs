@@ -28,15 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // FrmPlanetes
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "FrmPlanetes";
-            this.Text = "FrmPlanetes";
             this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFiltre = new System.Windows.Forms.GroupBox();
             this.btnReinitialiserEspeces = new System.Windows.Forms.Button();
@@ -356,7 +347,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 566);
+            this.ClientSize = new System.Drawing.Size(876, 665);
             this.Controls.Add(this.grpFiltre);
             this.Controls.Add(this.flp1);
             this.Name = "FrmPlanetes";
