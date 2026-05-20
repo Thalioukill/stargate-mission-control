@@ -399,6 +399,7 @@
             this.btnAgressivité.TabIndex = 15;
             this.btnAgressivité.Text = "Réinitialiser agressivité";
             this.btnAgressivité.UseVisualStyleBackColor = true;
+            this.btnAgressivité.Click += new System.EventHandler(this.btnAgressivité_Click);
             // 
             // btnTypeArme
             // 
@@ -409,6 +410,7 @@
             this.btnTypeArme.TabIndex = 14;
             this.btnTypeArme.Text = "Réinitialiser type arme";
             this.btnTypeArme.UseVisualStyleBackColor = true;
+            this.btnTypeArme.Click += new System.EventHandler(this.btnTypeArme_Click);
             // 
             // btnReinitialiserCouleurEnnemis
             // 
@@ -419,6 +421,7 @@
             this.btnReinitialiserCouleurEnnemis.TabIndex = 14;
             this.btnReinitialiserCouleurEnnemis.Text = "Réinitialiser couleur";
             this.btnReinitialiserCouleurEnnemis.UseVisualStyleBackColor = true;
+            this.btnReinitialiserCouleurEnnemis.Click += new System.EventHandler(this.btnReinitialiserCouleurEnnemis_Click);
             // 
             // btnReinitialiserEnnemis
             // 
@@ -429,6 +432,7 @@
             this.btnReinitialiserEnnemis.TabIndex = 12;
             this.btnReinitialiserEnnemis.Text = "Tout réinitialiser";
             this.btnReinitialiserEnnemis.UseVisualStyleBackColor = true;
+            this.btnReinitialiserEnnemis.Click += new System.EventHandler(this.btnReinitialiserEnnemis_Click);
             // 
             // cboAgressivite
             // 
@@ -497,6 +501,7 @@
             this.btnRechercherEnnemis.TabIndex = 2;
             this.btnRechercherEnnemis.Text = "Rechercher";
             this.btnRechercherEnnemis.UseVisualStyleBackColor = true;
+            this.btnRechercherEnnemis.Click += new System.EventHandler(this.btnRechercherEnnemis_Click);
             // 
             // cboCouleurEnnemis
             // 
@@ -546,6 +551,7 @@
             this.btnReinitialiserBienveillance.TabIndex = 13;
             this.btnReinitialiserBienveillance.Text = "Réinitialiser bienveillance";
             this.btnReinitialiserBienveillance.UseVisualStyleBackColor = true;
+            this.btnReinitialiserBienveillance.Click += new System.EventHandler(this.btnReinitialiserBienveillance_Click);
             // 
             // btnReinitialiserCouleurAlliees
             // 
@@ -556,6 +562,7 @@
             this.btnReinitialiserCouleurAlliees.TabIndex = 12;
             this.btnReinitialiserCouleurAlliees.Text = "Réinitialiser couleur";
             this.btnReinitialiserCouleurAlliees.UseVisualStyleBackColor = true;
+            this.btnReinitialiserCouleurAlliees.Click += new System.EventHandler(this.btnReinitialiserCouleurAlliees_Click);
             // 
             // btnReinitialiserAlliees
             // 
@@ -566,6 +573,7 @@
             this.btnReinitialiserAlliees.TabIndex = 11;
             this.btnReinitialiserAlliees.Text = "Tout réinitialiser";
             this.btnReinitialiserAlliees.UseVisualStyleBackColor = true;
+            this.btnReinitialiserAlliees.Click += new System.EventHandler(this.btnReinitialiserAlliees_Click);
             // 
             // cboBienveillance
             // 
@@ -615,6 +623,7 @@
             this.btnRechercherAlliees.TabIndex = 2;
             this.btnRechercherAlliees.Text = "Rechercher";
             this.btnRechercherAlliees.UseVisualStyleBackColor = true;
+            this.btnRechercherAlliees.Click += new System.EventHandler(this.btnRechercherAlliees_Click);
             // 
             // cboCouleurAlliees
             // 
