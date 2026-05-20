@@ -452,7 +452,8 @@ namespace Formulaire_principal
         private void chargerAliensAlliees()
         {
             flp1.Controls.Clear();
-
+            lblErreur.Visible = false;
+            errorProvider1.Clear();
             string filtre = $"nom LIKE '%{txtNomAlliees.Text}%'";
             if (cboBienveillance.SelectedIndex != -1)
             {
@@ -477,10 +478,17 @@ namespace Formulaire_principal
                 InfoAlien info = new InfoAlien(nom, bien, coul, planete, inst, image);
                 flp1.Controls.Add(info);
             }
+            if (flp1.Controls.Count == 0)
+            {
+                lblErreur.Visible = true;
+                errorProvider1.SetError(lblErreur, "Veuillez réinitialiser les filtres.");
+            }
         }
 
         private void chargerAliensEnnemis()
         {
+            lblErreur2.Visible = false;
+            errorProvider1.Clear();
             flp2.Controls.Clear();
             try
             {
@@ -516,6 +524,11 @@ namespace Formulaire_principal
 
                     InfoAlien info = new InfoAlien(nomAlien, agressivite, couleur, planete, arme, image);
                     flp2.Controls.Add(info);
+                }
+                if(flp2.Controls.Count == 0)
+                {
+                    lblErreur2.Visible = true;
+                    errorProvider1.SetError(lblErreur2, "Veuillez réinitialiser les filtres.");
                 }
             }
             catch (Exception err)
