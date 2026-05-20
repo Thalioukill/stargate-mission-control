@@ -88,10 +88,10 @@
             this.grpNouvelleMission.AutoSize = true;
             this.grpNouvelleMission.BackColor = System.Drawing.Color.Transparent;
             this.grpNouvelleMission.Controls.Add(this.pnlSection1);
-            this.grpNouvelleMission.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpNouvelleMission.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpNouvelleMission.Location = new System.Drawing.Point(17, 14);
             this.grpNouvelleMission.Name = "grpNouvelleMission";
-            this.grpNouvelleMission.Size = new System.Drawing.Size(1048, 1310);
+            this.grpNouvelleMission.Size = new System.Drawing.Size(1048, 1314);
             this.grpNouvelleMission.TabIndex = 0;
             this.grpNouvelleMission.TabStop = false;
             this.grpNouvelleMission.Text = "Nouvelle mission";
@@ -141,11 +141,11 @@
             // lblEuros
             // 
             this.lblEuros.AutoSize = true;
-            this.lblEuros.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEuros.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEuros.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblEuros.Location = new System.Drawing.Point(543, 1005);
             this.lblEuros.Name = "lblEuros";
-            this.lblEuros.Size = new System.Drawing.Size(26, 29);
+            this.lblEuros.Size = new System.Drawing.Size(29, 33);
             this.lblEuros.TabIndex = 59;
             this.lblEuros.Text = "€";
             // 
@@ -153,7 +153,7 @@
             // 
             this.txtBudget.Location = new System.Drawing.Point(412, 1005);
             this.txtBudget.Name = "txtBudget";
-            this.txtBudget.Size = new System.Drawing.Size(61, 36);
+            this.txtBudget.Size = new System.Drawing.Size(61, 40);
             this.txtBudget.TabIndex = 58;
             this.txtBudget.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBudget_KeyDown);
             this.txtBudget.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudget_KeyPress);
@@ -161,22 +161,22 @@
             // lblBudget
             // 
             this.lblBudget.AutoSize = true;
-            this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBudget.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblBudget.Location = new System.Drawing.Point(61, 1011);
             this.lblBudget.Name = "lblBudget";
-            this.lblBudget.Size = new System.Drawing.Size(89, 29);
+            this.lblBudget.Size = new System.Drawing.Size(99, 33);
             this.lblBudget.TabIndex = 57;
             this.lblBudget.Text = "Budget";
             // 
             // lblTonnes
             // 
             this.lblTonnes.AutoSize = true;
-            this.lblTonnes.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTonnes.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTonnes.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblTonnes.Location = new System.Drawing.Point(543, 930);
             this.lblTonnes.Name = "lblTonnes";
-            this.lblTonnes.Size = new System.Drawing.Size(84, 29);
+            this.lblTonnes.Size = new System.Drawing.Size(93, 33);
             this.lblTonnes.TabIndex = 56;
             this.lblTonnes.Text = "tonnes";
             // 
@@ -184,7 +184,7 @@
             // 
             this.txtobjDataBaz.Location = new System.Drawing.Point(412, 931);
             this.txtobjDataBaz.Name = "txtobjDataBaz";
-            this.txtobjDataBaz.Size = new System.Drawing.Size(61, 36);
+            this.txtobjDataBaz.Size = new System.Drawing.Size(61, 40);
             this.txtobjDataBaz.TabIndex = 55;
             this.txtobjDataBaz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtobjDataBaz_KeyDown);
             this.txtobjDataBaz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtobjDataBaz_KeyPress);
@@ -192,22 +192,22 @@
             // lblObjDataBaz
             // 
             this.lblObjDataBaz.AutoSize = true;
-            this.lblObjDataBaz.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObjDataBaz.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblObjDataBaz.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblObjDataBaz.Location = new System.Drawing.Point(61, 930);
             this.lblObjDataBaz.Name = "lblObjDataBaz";
-            this.lblObjDataBaz.Size = new System.Drawing.Size(199, 29);
+            this.lblObjDataBaz.Size = new System.Drawing.Size(223, 33);
             this.lblObjDataBaz.TabIndex = 54;
             this.lblObjDataBaz.Text = "Objectif DataBaz";
             // 
             // lblPersonnes
             // 
             this.lblPersonnes.AutoSize = true;
-            this.lblPersonnes.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPersonnes.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPersonnes.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblPersonnes.Location = new System.Drawing.Point(543, 855);
             this.lblPersonnes.Name = "lblPersonnes";
-            this.lblPersonnes.Size = new System.Drawing.Size(120, 29);
+            this.lblPersonnes.Size = new System.Drawing.Size(134, 33);
             this.lblPersonnes.TabIndex = 53;
             this.lblPersonnes.Text = "Personnes";
             // 
@@ -215,7 +215,7 @@
             // 
             this.txtnbMembres.Location = new System.Drawing.Point(412, 855);
             this.txtnbMembres.Name = "txtnbMembres";
-            this.txtnbMembres.Size = new System.Drawing.Size(61, 36);
+            this.txtnbMembres.Size = new System.Drawing.Size(61, 40);
             this.txtnbMembres.TabIndex = 52;
             this.txtnbMembres.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtnbMembres_KeyDown);
             this.txtnbMembres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnbMembres_KeyPress);
@@ -223,11 +223,11 @@
             // lblNbMembres
             // 
             this.lblNbMembres.AutoSize = true;
-            this.lblNbMembres.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNbMembres.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNbMembres.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblNbMembres.Location = new System.Drawing.Point(61, 855);
             this.lblNbMembres.Name = "lblNbMembres";
-            this.lblNbMembres.Size = new System.Drawing.Size(223, 29);
+            this.lblNbMembres.Size = new System.Drawing.Size(255, 33);
             this.lblNbMembres.TabIndex = 51;
             this.lblNbMembres.Text = "Nombre de membres";
             // 
@@ -243,11 +243,11 @@
             // lblFDR
             // 
             this.lblFDR.AutoSize = true;
-            this.lblFDR.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFDR.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFDR.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblFDR.Location = new System.Drawing.Point(61, 583);
             this.lblFDR.Name = "lblFDR";
-            this.lblFDR.Size = new System.Drawing.Size(177, 29);
+            this.lblFDR.Size = new System.Drawing.Size(195, 33);
             this.lblFDR.TabIndex = 49;
             this.lblFDR.Text = "Feuille de route";
             // 
@@ -257,7 +257,7 @@
             this.dtpRetour.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpRetour.Location = new System.Drawing.Point(412, 480);
             this.dtpRetour.Name = "dtpRetour";
-            this.dtpRetour.Size = new System.Drawing.Size(220, 36);
+            this.dtpRetour.Size = new System.Drawing.Size(220, 40);
             this.dtpRetour.TabIndex = 48;
             // 
             // dtpDepart
@@ -266,50 +266,50 @@
             this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDepart.Location = new System.Drawing.Point(412, 391);
             this.dtpDepart.Name = "dtpDepart";
-            this.dtpDepart.Size = new System.Drawing.Size(220, 36);
+            this.dtpDepart.Size = new System.Drawing.Size(220, 40);
             this.dtpDepart.TabIndex = 47;
             // 
             // lblDateRetour
             // 
             this.lblDateRetour.AutoSize = true;
-            this.lblDateRetour.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateRetour.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateRetour.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDateRetour.Location = new System.Drawing.Point(61, 486);
             this.lblDateRetour.Name = "lblDateRetour";
-            this.lblDateRetour.Size = new System.Drawing.Size(139, 29);
+            this.lblDateRetour.Size = new System.Drawing.Size(157, 33);
             this.lblDateRetour.TabIndex = 46;
             this.lblDateRetour.Text = "Date retour";
             // 
             // lblDateDepart
             // 
             this.lblDateDepart.AutoSize = true;
-            this.lblDateDepart.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateDepart.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateDepart.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDateDepart.Location = new System.Drawing.Point(61, 407);
             this.lblDateDepart.Name = "lblDateDepart";
-            this.lblDateDepart.Size = new System.Drawing.Size(141, 29);
+            this.lblDateDepart.Size = new System.Drawing.Size(158, 33);
             this.lblDateDepart.TabIndex = 45;
             this.lblDateDepart.Text = "Date départ";
             // 
             // lblParam
             // 
             this.lblParam.AutoSize = true;
-            this.lblParam.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParam.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblParam.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblParam.Location = new System.Drawing.Point(29, 333);
             this.lblParam.Name = "lblParam";
-            this.lblParam.Size = new System.Drawing.Size(290, 29);
+            this.lblParam.Size = new System.Drawing.Size(326, 33);
             this.lblParam.TabIndex = 44;
             this.lblParam.Text = "3- Paramètres de la mission";
             // 
             // lblChef
             // 
             this.lblChef.AutoSize = true;
-            this.lblChef.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChef.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChef.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblChef.Location = new System.Drawing.Point(29, 230);
             this.lblChef.Name = "lblChef";
-            this.lblChef.Size = new System.Drawing.Size(305, 29);
+            this.lblChef.Size = new System.Drawing.Size(344, 33);
             this.lblChef.TabIndex = 43;
             this.lblChef.Text = "2 - Choix du chef de mission";
             // 
@@ -320,7 +320,7 @@
             this.cboChef.FormattingEnabled = true;
             this.cboChef.Location = new System.Drawing.Point(412, 230);
             this.cboChef.Name = "cboChef";
-            this.cboChef.Size = new System.Drawing.Size(451, 37);
+            this.cboChef.Size = new System.Drawing.Size(451, 41);
             this.cboChef.TabIndex = 3;
             // 
             // lblNum
@@ -349,19 +349,19 @@
             this.cboPlanete.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(335, 28);
+            this.cboPlanete.Location = new System.Drawing.Point(325, 33);
             this.cboPlanete.Name = "cboPlanete";
-            this.cboPlanete.Size = new System.Drawing.Size(352, 37);
+            this.cboPlanete.Size = new System.Drawing.Size(352, 41);
             this.cboPlanete.TabIndex = 1;
             this.cboPlanete.SelectedIndexChanged += new System.EventHandler(this.cboPlanete_SelectedIndexChanged);
             // 
             // lblChoix
             // 
             this.lblChoix.AutoSize = true;
-            this.lblChoix.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChoix.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChoix.Location = new System.Drawing.Point(28, 33);
             this.lblChoix.Name = "lblChoix";
-            this.lblChoix.Size = new System.Drawing.Size(242, 29);
+            this.lblChoix.Size = new System.Drawing.Size(270, 33);
             this.lblChoix.TabIndex = 0;
             this.lblChoix.Text = "1 - Choix de la planète";
             // 
@@ -370,7 +370,7 @@
             this.grpPrecisions.BackColor = System.Drawing.Color.Transparent;
             this.grpPrecisions.Controls.Add(this.pnlSection3);
             this.grpPrecisions.Controls.Add(this.pnlSection2);
-            this.grpPrecisions.Font = new System.Drawing.Font("Kristen ITC", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpPrecisions.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpPrecisions.Location = new System.Drawing.Point(1055, 14);
             this.grpPrecisions.Name = "grpPrecisions";
             this.grpPrecisions.Size = new System.Drawing.Size(1089, 1307);
@@ -429,18 +429,18 @@
             // lstbCaptures
             // 
             this.lstbCaptures.FormattingEnabled = true;
-            this.lstbCaptures.ItemHeight = 29;
+            this.lstbCaptures.ItemHeight = 33;
             this.lstbCaptures.Location = new System.Drawing.Point(44, 204);
             this.lstbCaptures.Name = "lstbCaptures";
             this.lstbCaptures.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbCaptures.Size = new System.Drawing.Size(651, 149);
+            this.lstbCaptures.Size = new System.Drawing.Size(651, 136);
             this.lstbCaptures.TabIndex = 38;
             // 
             // nud1
             // 
             this.nud1.Location = new System.Drawing.Point(611, 107);
             this.nud1.Name = "nud1";
-            this.nud1.Size = new System.Drawing.Size(85, 36);
+            this.nud1.Size = new System.Drawing.Size(85, 40);
             this.nud1.TabIndex = 37;
             // 
             // cboCaptures
@@ -450,7 +450,7 @@
             this.cboCaptures.FormattingEnabled = true;
             this.cboCaptures.Location = new System.Drawing.Point(45, 107);
             this.cboCaptures.Name = "cboCaptures";
-            this.cboCaptures.Size = new System.Drawing.Size(517, 37);
+            this.cboCaptures.Size = new System.Drawing.Size(517, 41);
             this.cboCaptures.TabIndex = 36;
             // 
             // lblObjCapture
@@ -459,7 +459,7 @@
             this.lblObjCapture.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.lblObjCapture.Location = new System.Drawing.Point(40, 49);
             this.lblObjCapture.Name = "lblObjCapture";
-            this.lblObjCapture.Size = new System.Drawing.Size(260, 29);
+            this.lblObjCapture.Size = new System.Drawing.Size(292, 33);
             this.lblObjCapture.TabIndex = 35;
             this.lblObjCapture.Text = "5 - Objectifs de capture";
             // 
@@ -511,7 +511,7 @@
             this.lblMembresAffect.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.lblMembresAffect.Location = new System.Drawing.Point(39, 489);
             this.lblMembresAffect.Name = "lblMembresAffect";
-            this.lblMembresAffect.Size = new System.Drawing.Size(253, 29);
+            this.lblMembresAffect.Size = new System.Drawing.Size(286, 33);
             this.lblMembresAffect.TabIndex = 17;
             this.lblMembresAffect.Text = "Les membres affectés :";
             // 
@@ -529,11 +529,11 @@
             // lstbMembres
             // 
             this.lstbMembres.FormattingEnabled = true;
-            this.lstbMembres.ItemHeight = 29;
+            this.lstbMembres.ItemHeight = 33;
             this.lstbMembres.Location = new System.Drawing.Point(43, 532);
             this.lstbMembres.Name = "lstbMembres";
             this.lstbMembres.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbMembres.Size = new System.Drawing.Size(928, 178);
+            this.lstbMembres.Size = new System.Drawing.Size(928, 169);
             this.lstbMembres.TabIndex = 15;
             // 
             // lblNomMembre
@@ -542,18 +542,18 @@
             this.lblNomMembre.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.lblNomMembre.Location = new System.Drawing.Point(39, 143);
             this.lblNomMembre.Name = "lblNomMembre";
-            this.lblNomMembre.Size = new System.Drawing.Size(61, 29);
+            this.lblNomMembre.Size = new System.Drawing.Size(71, 33);
             this.lblNomMembre.TabIndex = 13;
             this.lblNomMembre.Text = "Nom";
             // 
             // lstbPartis
             // 
             this.lstbPartis.FormattingEnabled = true;
-            this.lstbPartis.ItemHeight = 29;
+            this.lstbPartis.ItemHeight = 33;
             this.lstbPartis.Location = new System.Drawing.Point(43, 188);
             this.lstbPartis.Name = "lstbPartis";
             this.lstbPartis.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbPartis.Size = new System.Drawing.Size(928, 178);
+            this.lstbPartis.Size = new System.Drawing.Size(928, 169);
             this.lstbPartis.TabIndex = 12;
             // 
             // btnvalidMembres
@@ -585,7 +585,7 @@
             this.cboMembres.FormattingEnabled = true;
             this.cboMembres.Location = new System.Drawing.Point(43, 80);
             this.cboMembres.Name = "cboMembres";
-            this.cboMembres.Size = new System.Drawing.Size(703, 37);
+            this.cboMembres.Size = new System.Drawing.Size(703, 41);
             this.cboMembres.TabIndex = 8;
             this.cboMembres.SelectedIndexChanged += new System.EventHandler(this.cboMembres_SelectedIndexChanged);
             // 
@@ -594,7 +594,7 @@
             this.lblreste.AutoSize = true;
             this.lblreste.Location = new System.Drawing.Point(511, 11);
             this.lblreste.Name = "lblreste";
-            this.lblreste.Size = new System.Drawing.Size(19, 29);
+            this.lblreste.Size = new System.Drawing.Size(22, 33);
             this.lblreste.TabIndex = 7;
             this.lblreste.Text = ".";
             // 
@@ -605,7 +605,7 @@
             this.lblAffect.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.lblAffect.Location = new System.Drawing.Point(39, 11);
             this.lblAffect.Name = "lblAffect";
-            this.lblAffect.Size = new System.Drawing.Size(502, 29);
+            this.lblAffect.Size = new System.Drawing.Size(567, 33);
             this.lblAffect.TabIndex = 6;
             this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
