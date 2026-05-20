@@ -281,7 +281,26 @@ namespace Formulaire_principal
         private void btnMission_Click(object sender, EventArgs e)
         {
             FrmLogin flog = new FrmLogin();
-            DialogResult dr = flog.ShowDialog();
+            DialogResult drLog = flog.ShowDialog();
+
+            if (drLog == DialogResult.OK)
+            {
+                FrmMission fm = new FrmMission();
+                DialogResult drMiss = fm.ShowDialog();
+                if (drMiss == DialogResult.OK)
+                {
+                    MessageBox.Show("Mission créée");
+                }
+                if (drMiss == DialogResult.Cancel)
+                {
+                    MessageBox.Show("Echec de la création de la mission");
+                }
+            }
+
+            if (drLog == DialogResult.Cancel)
+            {
+                MessageBox.Show("Opération annulée");
+            }
         }
 
         private void btnTableauDeBord_Click(object sender, EventArgs e)

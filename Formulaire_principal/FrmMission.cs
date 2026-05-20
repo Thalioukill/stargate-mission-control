@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,8 +54,8 @@ namespace Formulaire_principal
             InitializeComponent();
 
             //Désactivation des composants de la deuxième partie
-            
-            foreach(Control c in pnlSection2.Controls)
+
+            foreach (Control c in pnlSection2.Controls)
             {
                 c.Enabled = false;
             }
