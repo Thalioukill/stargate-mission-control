@@ -413,7 +413,6 @@ namespace Formulaire_principal
         private void btnAnnulNouvE_Click(object sender, EventArgs e)
         {
             RAZEvenement();
-
         }
 
         private void txtSomme_KeyPress(object sender, KeyPressEventArgs e)

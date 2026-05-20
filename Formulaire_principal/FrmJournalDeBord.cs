@@ -227,11 +227,12 @@ namespace Formulaire_principal
             {
                 MessageBox.Show("ERREUR : Le journal n'est pas initialisé");
             }
-
+            /*
             if (bsJournal.Position == bsJournal.Count - 1)
             {
                 btnBefore.Enabled = false;
             }
+            */
         }
 
         //Suivant

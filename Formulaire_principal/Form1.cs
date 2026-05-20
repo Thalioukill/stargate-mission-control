@@ -28,7 +28,7 @@ namespace Formulaire_principal
         private void Form1_Load(object sender, EventArgs e)
         {
             plMissions.Visible = false;
-
+            plPlanetes.Visible = false;
             plAliens.Visible = false;
 
 
@@ -312,12 +312,31 @@ namespace Formulaire_principal
 
             da2.Fill(ds, "TablePlanetesRecherche");
         }
+        public void ActualiserPanel(Panel panelAAfficher)
+        {
+            // On parcourt tous les contrôles du formulaire pour masquer les panels
+            foreach (Panel p in this.Controls.OfType<Panel>())
+            {
+                // On évite de masquer un éventuel panel de menu permanent
+                if (p == plMissions || p == plAliens || p == plPlanetes)
+                {
+                    p.Visible = false;
+                }
+            }
+
+            // On affiche uniquement celui passé en paramètre
+            if (panelAAfficher != null)
+            {
+                panelAAfficher.Visible = true;
+            }
+        }
+
 
         // =======> Code TABLEAU DE BORD
 
         private void tsmiTableauDeBord_Click(object sender, EventArgs e)
         {
-            plMissions.Visible = true;
+            ActualiserPanel(plMissions);
             ActualiserAffichage();
         }
 
@@ -467,6 +486,10 @@ namespace Formulaire_principal
 
         // =======>  Code partie ALIENS
 
+        private void tmsiAliens_Click(object sender, EventArgs e)
+        {
+            ActualiserPanel(plAliens);
+        }
 
         private void chargerAliensAlliees()
         {
@@ -589,13 +612,6 @@ namespace Formulaire_principal
             }
         }
 
-        private void tmsiAliens_Click(object sender, EventArgs e)
-        {
-            //plPlanetes.Visible = false;
-            plMissions.Visible = false;
-            plAliens.Visible = true;
-        }
-
         private void btnReinitialiserAlliees_Click(object sender, EventArgs e)
         {
             txtNomAlliees.Text = "";
@@ -695,7 +711,7 @@ namespace Formulaire_principal
 
         private void tmsiPlanete_Click(object sender, EventArgs e)
         {
-            plPlanetes.Visible = true;
+            ActualiserPanel(plPlanetes);
         }
 
         private void chargerEspeces()
@@ -1057,6 +1073,16 @@ namespace Formulaire_principal
             {
                 txtMinMission.Focus();
             }
+        }
+
+        // =====> Code FrmCreationMission
+        private void tsmiMission_Click(object sender, EventArgs e)
+        {
+            plAliens.Visible = false;
+            plMissions.Visible = false;
+            plPlanetes.Visible = false;
+            FrmMission fdm = new FrmMission();
+            DialogResult dr = fdm.ShowDialog();
         }
     }
 }
