@@ -19,6 +19,8 @@ namespace Formulaire_principal
         public string Name { get; set; }
         public int Value { get; set; }
 
+        public int Quantite { get; set; }
+
         public override string ToString()
         {
             return Name;
@@ -569,19 +571,28 @@ namespace Formulaire_principal
             //Pour ajouter une capture à lstbCaptures, on créé un ListItemCapture à partir de notre sélection dans cboCaptures
             List<int> values = new List<int>();
             string texte = cboCaptures.Text + "--> objectif de capture : " + nud1.Value.ToString();
-            ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()) };
+            ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()), Quantite = Convert.ToInt32(nud1.Value) };
             for (int i = 0; i < lstbCaptures.Items.Count; i++)
             {
                 values.Add(((ListItemCapture)lstbCaptures.Items[i]).Value);
             }
-            if (!values.Contains(li.Value))
+            if (values.Contains(li.Value))
             {
+                li.Quantite += Convert.ToInt32(nud1.Value);
                 lstbCaptures.Items.Add(li);
             }
             else
             {
-                MessageBox.Show("Espèce déjà présente dans la liste !");
+                if(!values.Contains(li.Value))
+                {
+                    lstbCaptures.Items.Add(li);
+                }
+                else
+                {
+                    MessageBox.Show("Espèce déjà présente dans la liste !");
+                }
             }
+
             
         }
 
@@ -596,6 +607,7 @@ namespace Formulaire_principal
                 for (int i = 0; i < lstbCaptures.Items.Count; i++)
                 {
                     int id = ((ListItemCapture)lstbCaptures.Items[i]).Value;
+                    int quant = ((ListItemCapture)lstbCaptures.Items[i]).Quantite;
 
                     string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
                             VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
@@ -605,7 +617,7 @@ namespace Formulaire_principal
                     cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
                     cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
                     cmd.Parameters.AddWithValue("@idEspeceEnnemi", id);
-                    cmd.Parameters.AddWithValue("@nombre", int.Parse(nud1.Value.ToString()));
+                    cmd.Parameters.AddWithValue("@nombre", quant);
 
                     cmd.ExecuteNonQuery();
                     

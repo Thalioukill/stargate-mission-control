@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpNouvelleMission = new System.Windows.Forms.GroupBox();
             this.pnlSection1 = new System.Windows.Forms.Panel();
             this.btnValidMission = new System.Windows.Forms.Button();
@@ -75,6 +76,13 @@
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
+            this.ttValidMission = new System.Windows.Forms.ToolTip(this.components);
+            this.ttAddMembre = new System.Windows.Forms.ToolTip(this.components);
+            this.ttSuppMembre = new System.Windows.Forms.ToolTip(this.components);
+            this.ttValidMembre = new System.Windows.Forms.ToolTip(this.components);
+            this.ttAddCapture = new System.Windows.Forms.ToolTip(this.components);
+            this.ttSuppCapture = new System.Windows.Forms.ToolTip(this.components);
+            this.ttValidCapture = new System.Windows.Forms.ToolTip(this.components);
             this.grpNouvelleMission.SuspendLayout();
             this.pnlSection1.SuspendLayout();
             this.grpPrecisions.SuspendLayout();
@@ -91,7 +99,7 @@
             this.grpNouvelleMission.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpNouvelleMission.Location = new System.Drawing.Point(17, 14);
             this.grpNouvelleMission.Name = "grpNouvelleMission";
-            this.grpNouvelleMission.Size = new System.Drawing.Size(1048, 1314);
+            this.grpNouvelleMission.Size = new System.Drawing.Size(1048, 1293);
             this.grpNouvelleMission.TabIndex = 0;
             this.grpNouvelleMission.TabStop = false;
             this.grpNouvelleMission.Text = "Nouvelle mission";
@@ -124,17 +132,19 @@
             this.pnlSection1.Controls.Add(this.lblChoix);
             this.pnlSection1.Location = new System.Drawing.Point(31, 36);
             this.pnlSection1.Name = "pnlSection1";
-            this.pnlSection1.Size = new System.Drawing.Size(1001, 1239);
+            this.pnlSection1.Size = new System.Drawing.Size(1001, 1218);
             this.pnlSection1.TabIndex = 0;
             // 
             // btnValidMission
             // 
+            this.btnValidMission.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValidMission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnValidMission.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidMission.Location = new System.Drawing.Point(772, 1108);
+            this.btnValidMission.Location = new System.Drawing.Point(839, 1088);
             this.btnValidMission.Name = "btnValidMission";
-            this.btnValidMission.Size = new System.Drawing.Size(188, 86);
+            this.btnValidMission.Size = new System.Drawing.Size(105, 88);
             this.btnValidMission.TabIndex = 60;
-            this.btnValidMission.Text = "Valider la mission";
+            this.ttValidMission.SetToolTip(this.btnValidMission, "Valider la mission");
             this.btnValidMission.UseVisualStyleBackColor = true;
             this.btnValidMission.Click += new System.EventHandler(this.btnValidMission_Click);
             // 
@@ -373,7 +383,7 @@
             this.grpPrecisions.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpPrecisions.Location = new System.Drawing.Point(1055, 14);
             this.grpPrecisions.Name = "grpPrecisions";
-            this.grpPrecisions.Size = new System.Drawing.Size(1089, 1307);
+            this.grpPrecisions.Size = new System.Drawing.Size(1089, 1293);
             this.grpPrecisions.TabIndex = 1;
             this.grpPrecisions.TabStop = false;
             this.grpPrecisions.Text = "Précisions sur la mission créée";
@@ -395,34 +405,41 @@
             // 
             // btnSuppSelectCapt
             // 
+            this.btnSuppSelectCapt.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
+            this.btnSuppSelectCapt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSuppSelectCapt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSuppSelectCapt.Location = new System.Drawing.Point(729, 175);
+            this.btnSuppSelectCapt.Location = new System.Drawing.Point(733, 252);
             this.btnSuppSelectCapt.Name = "btnSuppSelectCapt";
-            this.btnSuppSelectCapt.Size = new System.Drawing.Size(243, 93);
+            this.btnSuppSelectCapt.Size = new System.Drawing.Size(105, 88);
             this.btnSuppSelectCapt.TabIndex = 41;
-            this.btnSuppSelectCapt.Text = "Supprimer la sélection";
+            this.ttSuppCapture.SetToolTip(this.btnSuppSelectCapt, "Supprimer le(s) objectif(s) sélectionné(s)\r\n(ctrl click pour en sélectionner plus" +
+        "ieurs)");
             this.btnSuppSelectCapt.UseVisualStyleBackColor = true;
             this.btnSuppSelectCapt.Click += new System.EventHandler(this.btnSuppSelectCapt_Click);
             // 
             // btnAddCapture
             // 
+            this.btnAddCapture.BackgroundImage = global::Formulaire_principal.Properties.Resources.ajouter;
+            this.btnAddCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAddCapture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddCapture.Location = new System.Drawing.Point(793, 107);
+            this.btnAddCapture.Location = new System.Drawing.Point(733, 81);
             this.btnAddCapture.Name = "btnAddCapture";
-            this.btnAddCapture.Size = new System.Drawing.Size(179, 49);
+            this.btnAddCapture.Size = new System.Drawing.Size(105, 88);
             this.btnAddCapture.TabIndex = 40;
-            this.btnAddCapture.Text = "Ajouter";
+            this.ttAddCapture.SetToolTip(this.btnAddCapture, "Ajouter l\'objectif de capture à la liste");
             this.btnAddCapture.UseVisualStyleBackColor = true;
             this.btnAddCapture.Click += new System.EventHandler(this.btnAddCapture_Click);
             // 
             // btnValidObj
             // 
+            this.btnValidObj.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValidObj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnValidObj.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidObj.Location = new System.Drawing.Point(772, 304);
+            this.btnValidObj.Location = new System.Drawing.Point(897, 252);
             this.btnValidObj.Name = "btnValidObj";
-            this.btnValidObj.Size = new System.Drawing.Size(200, 54);
+            this.btnValidObj.Size = new System.Drawing.Size(105, 88);
             this.btnValidObj.TabIndex = 39;
-            this.btnValidObj.Text = "Valider Objectifs";
+            this.ttValidCapture.SetToolTip(this.btnValidObj, "Valider les objectifs de capture");
             this.btnValidObj.UseVisualStyleBackColor = true;
             this.btnValidObj.Click += new System.EventHandler(this.btnValidObj_Click);
             // 
@@ -485,19 +502,22 @@
             // 
             // btnSuppSelect
             // 
+            this.btnSuppSelect.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
+            this.btnSuppSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSuppSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSuppSelect.Location = new System.Drawing.Point(473, 730);
+            this.btnSuppSelect.Location = new System.Drawing.Point(732, 721);
             this.btnSuppSelect.Name = "btnSuppSelect";
-            this.btnSuppSelect.Size = new System.Drawing.Size(272, 55);
+            this.btnSuppSelect.Size = new System.Drawing.Size(105, 88);
             this.btnSuppSelect.TabIndex = 26;
-            this.btnSuppSelect.Text = "Supprimer la sélection";
+            this.ttSuppMembre.SetToolTip(this.btnSuppSelect, "Supprimer le(s) membre(s) sélectionné(s)\r\n(ctrl click pour en sélectionner plusie" +
+        "urs)");
             this.btnSuppSelect.UseVisualStyleBackColor = true;
             this.btnSuppSelect.Click += new System.EventHandler(this.btnSuppSelect_Click);
             // 
             // btnAddSelect
             // 
             this.btnAddSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddSelect.Location = new System.Drawing.Point(396, 382);
+            this.btnAddSelect.Location = new System.Drawing.Point(289, 382);
             this.btnAddSelect.Name = "btnAddSelect";
             this.btnAddSelect.Size = new System.Drawing.Size(272, 55);
             this.btnAddSelect.TabIndex = 25;
@@ -518,9 +538,9 @@
             // btnRefaire
             // 
             this.btnRefaire.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefaire.Location = new System.Drawing.Point(699, 382);
+            this.btnRefaire.Location = new System.Drawing.Point(610, 382);
             this.btnRefaire.Name = "btnRefaire";
-            this.btnRefaire.Size = new System.Drawing.Size(272, 55);
+            this.btnRefaire.Size = new System.Drawing.Size(361, 55);
             this.btnRefaire.TabIndex = 16;
             this.btnRefaire.Text = "Refaire la même équipe";
             this.btnRefaire.UseVisualStyleBackColor = true;
@@ -533,7 +553,7 @@
             this.lstbMembres.Location = new System.Drawing.Point(43, 532);
             this.lstbMembres.Name = "lstbMembres";
             this.lstbMembres.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbMembres.Size = new System.Drawing.Size(928, 169);
+            this.lstbMembres.Size = new System.Drawing.Size(958, 169);
             this.lstbMembres.TabIndex = 15;
             // 
             // lblNomMembre
@@ -558,23 +578,27 @@
             // 
             // btnvalidMembres
             // 
+            this.btnvalidMembres.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnvalidMembres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnvalidMembres.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnvalidMembres.Location = new System.Drawing.Point(771, 730);
+            this.btnvalidMembres.Location = new System.Drawing.Point(896, 721);
             this.btnvalidMembres.Name = "btnvalidMembres";
-            this.btnvalidMembres.Size = new System.Drawing.Size(200, 55);
+            this.btnvalidMembres.Size = new System.Drawing.Size(105, 88);
             this.btnvalidMembres.TabIndex = 11;
-            this.btnvalidMembres.Text = "Valider membres";
+            this.ttAddMembre.SetToolTip(this.btnvalidMembres, "Valider les membres");
             this.btnvalidMembres.UseVisualStyleBackColor = true;
             this.btnvalidMembres.Click += new System.EventHandler(this.btnvalidMembres_Click);
             // 
             // btnAddMembre
             // 
+            this.btnAddMembre.BackgroundImage = global::Formulaire_principal.Properties.Resources.ajouter;
+            this.btnAddMembre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAddMembre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddMembre.Location = new System.Drawing.Point(792, 71);
+            this.btnAddMembre.Location = new System.Drawing.Point(732, 56);
             this.btnAddMembre.Name = "btnAddMembre";
-            this.btnAddMembre.Size = new System.Drawing.Size(179, 49);
+            this.btnAddMembre.Size = new System.Drawing.Size(105, 88);
             this.btnAddMembre.TabIndex = 9;
-            this.btnAddMembre.Text = "Ajouter";
+            this.ttAddMembre.SetToolTip(this.btnAddMembre, "Ajouter le membre dans la liste \"Les membres affectés\"");
             this.btnAddMembre.UseVisualStyleBackColor = true;
             this.btnAddMembre.Click += new System.EventHandler(this.btnAddMembre_Click);
             // 
@@ -585,7 +609,7 @@
             this.cboMembres.FormattingEnabled = true;
             this.cboMembres.Location = new System.Drawing.Point(43, 80);
             this.cboMembres.Name = "cboMembres";
-            this.cboMembres.Size = new System.Drawing.Size(703, 41);
+            this.cboMembres.Size = new System.Drawing.Size(651, 41);
             this.cboMembres.TabIndex = 8;
             this.cboMembres.SelectedIndexChanged += new System.EventHandler(this.cboMembres_SelectedIndexChanged);
             // 
@@ -614,7 +638,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_mission;
             this.ClientSize = new System.Drawing.Size(2156, 1333);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
@@ -685,5 +708,12 @@
         private System.Windows.Forms.NumericUpDown nud1;
         private System.Windows.Forms.ComboBox cboCaptures;
         private System.Windows.Forms.Label lblObjCapture;
+        private System.Windows.Forms.ToolTip ttValidMission;
+        private System.Windows.Forms.ToolTip ttAddMembre;
+        private System.Windows.Forms.ToolTip ttSuppMembre;
+        private System.Windows.Forms.ToolTip ttSuppCapture;
+        private System.Windows.Forms.ToolTip ttAddCapture;
+        private System.Windows.Forms.ToolTip ttValidCapture;
+        private System.Windows.Forms.ToolTip ttValidMembre;
     }
 }
