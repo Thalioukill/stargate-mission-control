@@ -59,6 +59,7 @@ namespace Formulaire_principal
         private void FrmJournalDeBord_Load(object sender, EventArgs e)
         {
 
+
         }
 
 
@@ -71,7 +72,7 @@ namespace Formulaire_principal
             // liaison à la DataTable Mission du ds
             this.bsMissions.DataSource = ds.Tables["Mission"];
             // tri par défaut (par date de départ)
-            this.bsMissions.Sort = "dateDepart DESC";
+            this.bsMissions.Sort = "dateDepart ASC";
 
             // IMPORTANCE : On filtre pour ne garder que la mission consultée
             this.bsMissions.Filter = $"nomPlanete = '{this.idPlanete}' AND numero = {this.idNumero}";
@@ -83,18 +84,12 @@ namespace Formulaire_principal
             this.bsJournal.DataSource = bsMissions;
             this.bsJournal.DataMember = "RelJournalDeBord";
 
-            /*
-            if (dgvDepenses.Columns.Contains("dateJ"))
-            {
-                dgvDepenses.Columns[0]["dateJ"].ToString() = "dd/MM/yyyy";
-            }
-            */
-
             try
             {
-                //Liaison aux composants(Labels / TextBox)
+                //Liaison aux composants(Labels/TextBox)
                 lblDateEvenement.DataBindings.Add("Text", this.bsJournal, "dateJ");
                 lblCommentaire.DataBindings.Add("Text", this.bsJournal, "commentaires");
+
             }
             catch (SQLiteException err)
             {
@@ -331,8 +326,20 @@ namespace Formulaire_principal
                 // On cherche le nombre de captures réalisées (table Capturer)
                 string filtreCaptures = filtreMission + $" AND idEspeceEnnemi = {idEnnemi}";
                 object result = ds.Tables["Capturer"].Compute("SUM(nombre)", filtreCaptures);
-                // expression ternaire pour définir le nombre de captures 
-                int captures = (result == DBNull.Value) ? 0 : Convert.ToInt32(result);
+
+
+                // définir le nombre de captures 
+                int captures;
+
+                if (result == DBNull.Value)
+                {
+                    // Si la base de données renvoie un résultat vide (cas d'un SUM sans lignes)
+                    captures = 0;
+                }
+                else
+                {
+                    captures = Convert.ToInt32(result);
+                }
 
                 // Ajout de la ligne de synthèse
                 dtBilan.Rows.Add(nomEspece, objectif, captures);

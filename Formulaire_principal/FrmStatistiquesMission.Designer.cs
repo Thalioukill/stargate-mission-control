@@ -31,11 +31,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvStatistiques = new System.Windows.Forms.DataGridView();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
-            this.rdbRentabilite = new System.Windows.Forms.RadioButton();
-            this.rdbDepensesMax = new System.Windows.Forms.RadioButton();
-            this.rdbInformateursMoinsPayes = new System.Windows.Forms.RadioButton();
-            this.rdbComparaisonBudget = new System.Windows.Forms.RadioButton();
             this.rdbSuccesGlobal = new System.Windows.Forms.RadioButton();
+            this.rdbComparaisonBudget = new System.Windows.Forms.RadioButton();
+            this.rdbInformateursMoinsPayes = new System.Windows.Forms.RadioButton();
+            this.rdbDepensesMax = new System.Windows.Forms.RadioButton();
+            this.rdbRentabilite = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistiques)).BeginInit();
             this.grpFiltres.SuspendLayout();
@@ -75,41 +75,17 @@
             this.grpFiltres.TabStop = false;
             this.grpFiltres.Text = "Filtres :";
             // 
-            // rdbRentabilite
+            // rdbSuccesGlobal
             // 
-            this.rdbRentabilite.AutoSize = true;
-            this.rdbRentabilite.Location = new System.Drawing.Point(31, 48);
-            this.rdbRentabilite.Name = "rdbRentabilite";
-            this.rdbRentabilite.Size = new System.Drawing.Size(155, 20);
-            this.rdbRentabilite.TabIndex = 0;
-            this.rdbRentabilite.TabStop = true;
-            this.rdbRentabilite.Text = "Rentabilité (DataBaz)";
-            this.rdbRentabilite.UseVisualStyleBackColor = true;
-            this.rdbRentabilite.CheckedChanged += new System.EventHandler(this.rdbRentabilite_CheckedChanged);
-            // 
-            // rdbDepensesMax
-            // 
-            this.rdbDepensesMax.AutoSize = true;
-            this.rdbDepensesMax.Location = new System.Drawing.Point(31, 92);
-            this.rdbDepensesMax.Name = "rdbDepensesMax";
-            this.rdbDepensesMax.Size = new System.Drawing.Size(165, 20);
-            this.rdbDepensesMax.TabIndex = 1;
-            this.rdbDepensesMax.TabStop = true;
-            this.rdbDepensesMax.Text = "Dépenses maximales  ";
-            this.rdbDepensesMax.UseVisualStyleBackColor = true;
-            this.rdbDepensesMax.CheckedChanged += new System.EventHandler(this.rdbDepensesMax_CheckedChanged);
-            // 
-            // rdbInformateursMoinsPayes
-            // 
-            this.rdbInformateursMoinsPayes.AutoSize = true;
-            this.rdbInformateursMoinsPayes.Location = new System.Drawing.Point(31, 134);
-            this.rdbInformateursMoinsPayes.Name = "rdbInformateursMoinsPayes";
-            this.rdbInformateursMoinsPayes.Size = new System.Drawing.Size(202, 20);
-            this.rdbInformateursMoinsPayes.TabIndex = 2;
-            this.rdbInformateursMoinsPayes.TabStop = true;
-            this.rdbInformateursMoinsPayes.Text = "Informateurs les moins payés";
-            this.rdbInformateursMoinsPayes.UseVisualStyleBackColor = true;
-            this.rdbInformateursMoinsPayes.CheckedChanged += new System.EventHandler(this.rdbInformateursMoinsPayes_CheckedChanged);
+            this.rdbSuccesGlobal.AutoSize = true;
+            this.rdbSuccesGlobal.Location = new System.Drawing.Point(356, 92);
+            this.rdbSuccesGlobal.Name = "rdbSuccesGlobal";
+            this.rdbSuccesGlobal.Size = new System.Drawing.Size(196, 20);
+            this.rdbSuccesGlobal.TabIndex = 4;
+            this.rdbSuccesGlobal.TabStop = true;
+            this.rdbSuccesGlobal.Text = "Succès global de la mission";
+            this.rdbSuccesGlobal.UseVisualStyleBackColor = true;
+            this.rdbSuccesGlobal.CheckedChanged += new System.EventHandler(this.rdbSuccesGlobal_CheckedChanged);
             // 
             // rdbComparaisonBudget
             // 
@@ -123,17 +99,41 @@
             this.rdbComparaisonBudget.UseVisualStyleBackColor = true;
             this.rdbComparaisonBudget.CheckedChanged += new System.EventHandler(this.rdbComparaisonBudget_CheckedChanged);
             // 
-            // rdbSuccesGlobal
+            // rdbInformateursMoinsPayes
             // 
-            this.rdbSuccesGlobal.AutoSize = true;
-            this.rdbSuccesGlobal.Location = new System.Drawing.Point(356, 92);
-            this.rdbSuccesGlobal.Name = "rdbSuccesGlobal";
-            this.rdbSuccesGlobal.Size = new System.Drawing.Size(196, 20);
-            this.rdbSuccesGlobal.TabIndex = 4;
-            this.rdbSuccesGlobal.TabStop = true;
-            this.rdbSuccesGlobal.Text = "Succès global de la mission";
-            this.rdbSuccesGlobal.UseVisualStyleBackColor = true;
-            this.rdbSuccesGlobal.CheckedChanged += new System.EventHandler(this.rdbSuccesGlobal_CheckedChanged);
+            this.rdbInformateursMoinsPayes.AutoSize = true;
+            this.rdbInformateursMoinsPayes.Location = new System.Drawing.Point(31, 134);
+            this.rdbInformateursMoinsPayes.Name = "rdbInformateursMoinsPayes";
+            this.rdbInformateursMoinsPayes.Size = new System.Drawing.Size(202, 20);
+            this.rdbInformateursMoinsPayes.TabIndex = 2;
+            this.rdbInformateursMoinsPayes.TabStop = true;
+            this.rdbInformateursMoinsPayes.Text = "Informateurs les moins payés";
+            this.rdbInformateursMoinsPayes.UseVisualStyleBackColor = true;
+            this.rdbInformateursMoinsPayes.CheckedChanged += new System.EventHandler(this.rdbInformateursMoinsPayes_CheckedChanged);
+            // 
+            // rdbDepensesMax
+            // 
+            this.rdbDepensesMax.AutoSize = true;
+            this.rdbDepensesMax.Location = new System.Drawing.Point(31, 92);
+            this.rdbDepensesMax.Name = "rdbDepensesMax";
+            this.rdbDepensesMax.Size = new System.Drawing.Size(165, 20);
+            this.rdbDepensesMax.TabIndex = 1;
+            this.rdbDepensesMax.TabStop = true;
+            this.rdbDepensesMax.Text = "Dépenses maximales  ";
+            this.rdbDepensesMax.UseVisualStyleBackColor = true;
+            this.rdbDepensesMax.CheckedChanged += new System.EventHandler(this.rdbDepensesMax_CheckedChanged);
+            // 
+            // rdbRentabilite
+            // 
+            this.rdbRentabilite.AutoSize = true;
+            this.rdbRentabilite.Location = new System.Drawing.Point(31, 48);
+            this.rdbRentabilite.Name = "rdbRentabilite";
+            this.rdbRentabilite.Size = new System.Drawing.Size(155, 20);
+            this.rdbRentabilite.TabIndex = 0;
+            this.rdbRentabilite.TabStop = true;
+            this.rdbRentabilite.Text = "Rentabilité (DataBaz)";
+            this.rdbRentabilite.UseVisualStyleBackColor = true;
+            this.rdbRentabilite.CheckedChanged += new System.EventHandler(this.rdbRentabilite_CheckedChanged);
             // 
             // FrmStatistiquesMission
             // 
@@ -143,6 +143,7 @@
             this.Controls.Add(this.grpFiltres);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmStatistiquesMission";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmStatistiquesMission";
             this.Load += new System.EventHandler(this.FrmStatistiquesMission_Load);
             this.groupBox1.ResumeLayout(false);

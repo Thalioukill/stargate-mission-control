@@ -50,8 +50,8 @@
             // 
             // lblNomMission
             // 
-            this.lblNomMission.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomMission.ForeColor = System.Drawing.Color.Blue;
+            this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.ForeColor = System.Drawing.Color.Black;
             this.lblNomMission.Location = new System.Drawing.Point(214, 40);
             this.lblNomMission.Name = "lblNomMission";
             this.lblNomMission.Size = new System.Drawing.Size(217, 25);
@@ -60,9 +60,9 @@
             // 
             // lblDate
             // 
-            this.lblDate.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.ForeColor = System.Drawing.Color.Blue;
-            this.lblDate.Location = new System.Drawing.Point(474, 40);
+            this.lblDate.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDate.Location = new System.Drawing.Point(660, 40);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(293, 44);
             this.lblDate.TabIndex = 3;
@@ -70,8 +70,8 @@
             // 
             // lblChefMission
             // 
-            this.lblChefMission.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChefMission.ForeColor = System.Drawing.Color.Blue;
+            this.lblChefMission.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChefMission.ForeColor = System.Drawing.Color.Black;
             this.lblChefMission.Location = new System.Drawing.Point(214, 80);
             this.lblChefMission.Name = "lblChefMission";
             this.lblChefMission.Size = new System.Drawing.Size(194, 49);
@@ -80,8 +80,8 @@
             // 
             // lblBudget
             // 
-            this.lblBudget.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBudget.ForeColor = System.Drawing.Color.Blue;
+            this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudget.ForeColor = System.Drawing.Color.Black;
             this.lblBudget.Location = new System.Drawing.Point(214, 129);
             this.lblBudget.Name = "lblBudget";
             this.lblBudget.Size = new System.Drawing.Size(225, 24);
@@ -91,9 +91,9 @@
             // btnDetails
             // 
             this.btnDetails.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDetails.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetails.ForeColor = System.Drawing.Color.Blue;
-            this.btnDetails.Location = new System.Drawing.Point(598, 148);
+            this.btnDetails.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetails.ForeColor = System.Drawing.Color.Black;
+            this.btnDetails.Location = new System.Drawing.Point(840, 163);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(145, 37);
             this.btnDetails.TabIndex = 6;
@@ -104,20 +104,20 @@
             // lblNbJours
             // 
             this.lblNbJours.AutoSize = true;
-            this.lblNbJours.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNbJours.ForeColor = System.Drawing.Color.Blue;
-            this.lblNbJours.Location = new System.Drawing.Point(474, 97);
+            this.lblNbJours.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNbJours.ForeColor = System.Drawing.Color.Black;
+            this.lblNbJours.Location = new System.Drawing.Point(660, 97);
             this.lblNbJours.Name = "lblNbJours";
-            this.lblNbJours.Size = new System.Drawing.Size(200, 16);
+            this.lblNbJours.Size = new System.Drawing.Size(245, 22);
             this.lblNbJours.TabIndex = 7;
             this.lblNbJours.Text = "Nombre de jours de la mission : ";
             // 
             // btnStats
             // 
             this.btnStats.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStats.Font = new System.Drawing.Font("Century", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStats.ForeColor = System.Drawing.Color.Blue;
-            this.btnStats.Location = new System.Drawing.Point(477, 148);
+            this.btnStats.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStats.ForeColor = System.Drawing.Color.Black;
+            this.btnStats.Location = new System.Drawing.Point(719, 163);
             this.btnStats.Name = "btnStats";
             this.btnStats.Size = new System.Drawing.Size(115, 37);
             this.btnStats.TabIndex = 8;
@@ -138,7 +138,7 @@
             this.Controls.Add(this.lblNomMission);
             this.Controls.Add(this.picMission);
             this.Name = "UserControl_Missions";
-            this.Size = new System.Drawing.Size(782, 205);
+            this.Size = new System.Drawing.Size(1002, 218);
             this.Load += new System.EventHandler(this.UserControl_Missions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).EndInit();
             this.ResumeLayout(false);
