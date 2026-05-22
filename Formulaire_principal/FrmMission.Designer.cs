@@ -54,35 +54,35 @@
             this.lblNomMission = new System.Windows.Forms.Label();
             this.cboPlanete = new System.Windows.Forms.ComboBox();
             this.lblChoix = new System.Windows.Forms.Label();
+            this.ttValidMission = new System.Windows.Forms.ToolTip(this.components);
+            this.ttAddMembre = new System.Windows.Forms.ToolTip(this.components);
+            this.btnvalidMembres = new System.Windows.Forms.Button();
+            this.btnAddMembre = new System.Windows.Forms.Button();
+            this.ttSuppMembre = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSuppSelect = new System.Windows.Forms.Button();
+            this.ttValidMembre = new System.Windows.Forms.ToolTip(this.components);
+            this.ttAddCapture = new System.Windows.Forms.ToolTip(this.components);
+            this.btnAddCapture = new System.Windows.Forms.Button();
+            this.ttSuppCapture = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSuppSelectCapt = new System.Windows.Forms.Button();
+            this.ttValidCapture = new System.Windows.Forms.ToolTip(this.components);
+            this.btnValidObj = new System.Windows.Forms.Button();
             this.grpPrecisions = new System.Windows.Forms.GroupBox();
             this.pnlSection3 = new System.Windows.Forms.Panel();
-            this.btnSuppSelectCapt = new System.Windows.Forms.Button();
-            this.btnAddCapture = new System.Windows.Forms.Button();
-            this.btnValidObj = new System.Windows.Forms.Button();
             this.lstbCaptures = new System.Windows.Forms.ListBox();
             this.nud1 = new System.Windows.Forms.NumericUpDown();
             this.cboCaptures = new System.Windows.Forms.ComboBox();
             this.lblObjCapture = new System.Windows.Forms.Label();
             this.pnlSection2 = new System.Windows.Forms.Panel();
-            this.btnSuppSelect = new System.Windows.Forms.Button();
             this.btnAddSelect = new System.Windows.Forms.Button();
             this.lblMembresAffect = new System.Windows.Forms.Label();
             this.btnRefaire = new System.Windows.Forms.Button();
             this.lstbMembres = new System.Windows.Forms.ListBox();
             this.lblNomMembre = new System.Windows.Forms.Label();
             this.lstbPartis = new System.Windows.Forms.ListBox();
-            this.btnvalidMembres = new System.Windows.Forms.Button();
-            this.btnAddMembre = new System.Windows.Forms.Button();
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
-            this.ttValidMission = new System.Windows.Forms.ToolTip(this.components);
-            this.ttAddMembre = new System.Windows.Forms.ToolTip(this.components);
-            this.ttSuppMembre = new System.Windows.Forms.ToolTip(this.components);
-            this.ttValidMembre = new System.Windows.Forms.ToolTip(this.components);
-            this.ttAddCapture = new System.Windows.Forms.ToolTip(this.components);
-            this.ttSuppCapture = new System.Windows.Forms.ToolTip(this.components);
-            this.ttValidCapture = new System.Windows.Forms.ToolTip(this.components);
             this.grpNouvelleMission.SuspendLayout();
             this.pnlSection1.SuspendLayout();
             this.grpPrecisions.SuspendLayout();
@@ -99,7 +99,7 @@
             this.grpNouvelleMission.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpNouvelleMission.Location = new System.Drawing.Point(17, 14);
             this.grpNouvelleMission.Name = "grpNouvelleMission";
-            this.grpNouvelleMission.Size = new System.Drawing.Size(1048, 1293);
+            this.grpNouvelleMission.Size = new System.Drawing.Size(1121, 1293);
             this.grpNouvelleMission.TabIndex = 0;
             this.grpNouvelleMission.TabStop = false;
             this.grpNouvelleMission.Text = "Nouvelle mission";
@@ -132,7 +132,7 @@
             this.pnlSection1.Controls.Add(this.lblChoix);
             this.pnlSection1.Location = new System.Drawing.Point(31, 36);
             this.pnlSection1.Name = "pnlSection1";
-            this.pnlSection1.Size = new System.Drawing.Size(1001, 1218);
+            this.pnlSection1.Size = new System.Drawing.Size(1035, 1218);
             this.pnlSection1.TabIndex = 0;
             // 
             // btnValidMission
@@ -186,9 +186,9 @@
             this.lblTonnes.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblTonnes.Location = new System.Drawing.Point(543, 930);
             this.lblTonnes.Name = "lblTonnes";
-            this.lblTonnes.Size = new System.Drawing.Size(93, 33);
+            this.lblTonnes.Size = new System.Drawing.Size(100, 33);
             this.lblTonnes.TabIndex = 56;
-            this.lblTonnes.Text = "tonnes";
+            this.lblTonnes.Text = "Tonnes";
             // 
             // txtobjDataBaz
             // 
@@ -317,7 +317,7 @@
             this.lblChef.AutoSize = true;
             this.lblChef.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChef.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblChef.Location = new System.Drawing.Point(29, 230);
+            this.lblChef.Location = new System.Drawing.Point(29, 235);
             this.lblChef.Name = "lblChef";
             this.lblChef.Size = new System.Drawing.Size(344, 33);
             this.lblChef.TabIndex = 43;
@@ -328,7 +328,7 @@
             this.cboChef.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboChef.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboChef.FormattingEnabled = true;
-            this.cboChef.Location = new System.Drawing.Point(412, 230);
+            this.cboChef.Location = new System.Drawing.Point(412, 232);
             this.cboChef.Name = "cboChef";
             this.cboChef.Size = new System.Drawing.Size(451, 41);
             this.cboChef.TabIndex = 3;
@@ -337,7 +337,7 @@
             // 
             this.lblNum.AutoSize = true;
             this.lblNum.Font = new System.Drawing.Font("Kristen ITC", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNum.Location = new System.Drawing.Point(765, 118);
+            this.lblNum.Location = new System.Drawing.Point(815, 18);
             this.lblNum.Name = "lblNum";
             this.lblNum.Size = new System.Drawing.Size(129, 51);
             this.lblNum.TabIndex = 5;
@@ -347,7 +347,7 @@
             // 
             this.lblNomMission.AutoSize = true;
             this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomMission.Location = new System.Drawing.Point(32, 118);
+            this.lblNomMission.Location = new System.Drawing.Point(31, 25);
             this.lblNomMission.Name = "lblNomMission";
             this.lblNomMission.Size = new System.Drawing.Size(129, 51);
             this.lblNomMission.TabIndex = 3;
@@ -359,7 +359,7 @@
             this.cboPlanete.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(325, 33);
+            this.cboPlanete.Location = new System.Drawing.Point(412, 133);
             this.cboPlanete.Name = "cboPlanete";
             this.cboPlanete.Size = new System.Drawing.Size(352, 41);
             this.cboPlanete.TabIndex = 1;
@@ -369,24 +369,104 @@
             // 
             this.lblChoix.AutoSize = true;
             this.lblChoix.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChoix.Location = new System.Drawing.Point(28, 33);
+            this.lblChoix.Location = new System.Drawing.Point(34, 136);
             this.lblChoix.Name = "lblChoix";
             this.lblChoix.Size = new System.Drawing.Size(270, 33);
             this.lblChoix.TabIndex = 0;
             this.lblChoix.Text = "1 - Choix de la planète";
             // 
+            // btnvalidMembres
+            // 
+            this.btnvalidMembres.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnvalidMembres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnvalidMembres.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnvalidMembres.Location = new System.Drawing.Point(1050, 721);
+            this.btnvalidMembres.Name = "btnvalidMembres";
+            this.btnvalidMembres.Size = new System.Drawing.Size(105, 88);
+            this.btnvalidMembres.TabIndex = 11;
+            this.ttAddMembre.SetToolTip(this.btnvalidMembres, "Valider les membres");
+            this.btnvalidMembres.UseVisualStyleBackColor = true;
+            this.btnvalidMembres.Click += new System.EventHandler(this.btnvalidMembres_Click);
+            // 
+            // btnAddMembre
+            // 
+            this.btnAddMembre.BackgroundImage = global::Formulaire_principal.Properties.Resources.ajouter;
+            this.btnAddMembre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddMembre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddMembre.Location = new System.Drawing.Point(842, 56);
+            this.btnAddMembre.Name = "btnAddMembre";
+            this.btnAddMembre.Size = new System.Drawing.Size(105, 88);
+            this.btnAddMembre.TabIndex = 9;
+            this.ttAddMembre.SetToolTip(this.btnAddMembre, "Ajouter le membre dans la liste \"Les membres affectés\"");
+            this.btnAddMembre.UseVisualStyleBackColor = true;
+            this.btnAddMembre.Click += new System.EventHandler(this.btnAddMembre_Click);
+            // 
+            // btnSuppSelect
+            // 
+            this.btnSuppSelect.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
+            this.btnSuppSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSuppSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSuppSelect.Location = new System.Drawing.Point(866, 721);
+            this.btnSuppSelect.Name = "btnSuppSelect";
+            this.btnSuppSelect.Size = new System.Drawing.Size(105, 88);
+            this.btnSuppSelect.TabIndex = 26;
+            this.ttSuppMembre.SetToolTip(this.btnSuppSelect, "Supprimer le(s) membre(s) sélectionné(s)\r\n(ctrl click pour en sélectionner plusie" +
+        "urs)");
+            this.btnSuppSelect.UseVisualStyleBackColor = true;
+            this.btnSuppSelect.Click += new System.EventHandler(this.btnSuppSelect_Click);
+            // 
+            // btnAddCapture
+            // 
+            this.btnAddCapture.BackgroundImage = global::Formulaire_principal.Properties.Resources.ajouter;
+            this.btnAddCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddCapture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddCapture.Location = new System.Drawing.Point(867, 81);
+            this.btnAddCapture.Name = "btnAddCapture";
+            this.btnAddCapture.Size = new System.Drawing.Size(105, 88);
+            this.btnAddCapture.TabIndex = 40;
+            this.ttAddCapture.SetToolTip(this.btnAddCapture, "Ajouter l\'objectif de capture à la liste");
+            this.btnAddCapture.UseVisualStyleBackColor = true;
+            this.btnAddCapture.Click += new System.EventHandler(this.btnAddCapture_Click);
+            // 
+            // btnSuppSelectCapt
+            // 
+            this.btnSuppSelectCapt.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
+            this.btnSuppSelectCapt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSuppSelectCapt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSuppSelectCapt.Location = new System.Drawing.Point(867, 252);
+            this.btnSuppSelectCapt.Name = "btnSuppSelectCapt";
+            this.btnSuppSelectCapt.Size = new System.Drawing.Size(105, 88);
+            this.btnSuppSelectCapt.TabIndex = 41;
+            this.ttSuppCapture.SetToolTip(this.btnSuppSelectCapt, "Supprimer le(s) objectif(s) sélectionné(s)\r\n(ctrl click pour en sélectionner plus" +
+        "ieurs)");
+            this.btnSuppSelectCapt.UseVisualStyleBackColor = true;
+            this.btnSuppSelectCapt.Click += new System.EventHandler(this.btnSuppSelectCapt_Click);
+            // 
+            // btnValidObj
+            // 
+            this.btnValidObj.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValidObj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidObj.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidObj.Location = new System.Drawing.Point(1051, 252);
+            this.btnValidObj.Name = "btnValidObj";
+            this.btnValidObj.Size = new System.Drawing.Size(105, 88);
+            this.btnValidObj.TabIndex = 39;
+            this.ttValidCapture.SetToolTip(this.btnValidObj, "Valider les objectifs de capture");
+            this.btnValidObj.UseVisualStyleBackColor = true;
+            this.btnValidObj.Click += new System.EventHandler(this.btnValidObj_Click);
+            // 
             // grpPrecisions
             // 
             this.grpPrecisions.BackColor = System.Drawing.Color.Transparent;
+            this.grpPrecisions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.grpPrecisions.Controls.Add(this.pnlSection3);
             this.grpPrecisions.Controls.Add(this.pnlSection2);
             this.grpPrecisions.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPrecisions.Location = new System.Drawing.Point(1055, 14);
+            this.grpPrecisions.Location = new System.Drawing.Point(1137, 14);
             this.grpPrecisions.Name = "grpPrecisions";
-            this.grpPrecisions.Size = new System.Drawing.Size(1089, 1293);
+            this.grpPrecisions.Size = new System.Drawing.Size(1152, 1293);
             this.grpPrecisions.TabIndex = 1;
             this.grpPrecisions.TabStop = false;
-            this.grpPrecisions.Text = "Précisions sur la mission créée";
             // 
             // pnlSection3
             // 
@@ -398,56 +478,16 @@
             this.pnlSection3.Controls.Add(this.nud1);
             this.pnlSection3.Controls.Add(this.cboCaptures);
             this.pnlSection3.Controls.Add(this.lblObjCapture);
-            this.pnlSection3.Location = new System.Drawing.Point(16, 872);
+            this.pnlSection3.Location = new System.Drawing.Point(41, 872);
             this.pnlSection3.Name = "pnlSection3";
-            this.pnlSection3.Size = new System.Drawing.Size(1056, 403);
+            this.pnlSection3.Size = new System.Drawing.Size(1187, 403);
             this.pnlSection3.TabIndex = 28;
-            // 
-            // btnSuppSelectCapt
-            // 
-            this.btnSuppSelectCapt.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
-            this.btnSuppSelectCapt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSuppSelectCapt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSuppSelectCapt.Location = new System.Drawing.Point(733, 252);
-            this.btnSuppSelectCapt.Name = "btnSuppSelectCapt";
-            this.btnSuppSelectCapt.Size = new System.Drawing.Size(105, 88);
-            this.btnSuppSelectCapt.TabIndex = 41;
-            this.ttSuppCapture.SetToolTip(this.btnSuppSelectCapt, "Supprimer le(s) objectif(s) sélectionné(s)\r\n(ctrl click pour en sélectionner plus" +
-        "ieurs)");
-            this.btnSuppSelectCapt.UseVisualStyleBackColor = true;
-            this.btnSuppSelectCapt.Click += new System.EventHandler(this.btnSuppSelectCapt_Click);
-            // 
-            // btnAddCapture
-            // 
-            this.btnAddCapture.BackgroundImage = global::Formulaire_principal.Properties.Resources.ajouter;
-            this.btnAddCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddCapture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddCapture.Location = new System.Drawing.Point(733, 81);
-            this.btnAddCapture.Name = "btnAddCapture";
-            this.btnAddCapture.Size = new System.Drawing.Size(105, 88);
-            this.btnAddCapture.TabIndex = 40;
-            this.ttAddCapture.SetToolTip(this.btnAddCapture, "Ajouter l\'objectif de capture à la liste");
-            this.btnAddCapture.UseVisualStyleBackColor = true;
-            this.btnAddCapture.Click += new System.EventHandler(this.btnAddCapture_Click);
-            // 
-            // btnValidObj
-            // 
-            this.btnValidObj.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
-            this.btnValidObj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnValidObj.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidObj.Location = new System.Drawing.Point(897, 252);
-            this.btnValidObj.Name = "btnValidObj";
-            this.btnValidObj.Size = new System.Drawing.Size(105, 88);
-            this.btnValidObj.TabIndex = 39;
-            this.ttValidCapture.SetToolTip(this.btnValidObj, "Valider les objectifs de capture");
-            this.btnValidObj.UseVisualStyleBackColor = true;
-            this.btnValidObj.Click += new System.EventHandler(this.btnValidObj_Click);
             // 
             // lstbCaptures
             // 
             this.lstbCaptures.FormattingEnabled = true;
             this.lstbCaptures.ItemHeight = 33;
-            this.lstbCaptures.Location = new System.Drawing.Point(44, 204);
+            this.lstbCaptures.Location = new System.Drawing.Point(123, 204);
             this.lstbCaptures.Name = "lstbCaptures";
             this.lstbCaptures.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstbCaptures.Size = new System.Drawing.Size(651, 136);
@@ -455,7 +495,7 @@
             // 
             // nud1
             // 
-            this.nud1.Location = new System.Drawing.Point(611, 107);
+            this.nud1.Location = new System.Drawing.Point(689, 107);
             this.nud1.Name = "nud1";
             this.nud1.Size = new System.Drawing.Size(85, 40);
             this.nud1.TabIndex = 37;
@@ -465,7 +505,7 @@
             this.cboCaptures.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboCaptures.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCaptures.FormattingEnabled = true;
-            this.cboCaptures.Location = new System.Drawing.Point(45, 107);
+            this.cboCaptures.Location = new System.Drawing.Point(123, 106);
             this.cboCaptures.Name = "cboCaptures";
             this.cboCaptures.Size = new System.Drawing.Size(517, 41);
             this.cboCaptures.TabIndex = 36;
@@ -473,8 +513,8 @@
             // lblObjCapture
             // 
             this.lblObjCapture.AutoSize = true;
-            this.lblObjCapture.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblObjCapture.Location = new System.Drawing.Point(40, 49);
+            this.lblObjCapture.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblObjCapture.Location = new System.Drawing.Point(117, 44);
             this.lblObjCapture.Name = "lblObjCapture";
             this.lblObjCapture.Size = new System.Drawing.Size(292, 33);
             this.lblObjCapture.TabIndex = 35;
@@ -495,29 +535,15 @@
             this.pnlSection2.Controls.Add(this.cboMembres);
             this.pnlSection2.Controls.Add(this.lblreste);
             this.pnlSection2.Controls.Add(this.lblAffect);
-            this.pnlSection2.Location = new System.Drawing.Point(17, 61);
+            this.pnlSection2.Location = new System.Drawing.Point(41, 61);
             this.pnlSection2.Name = "pnlSection2";
-            this.pnlSection2.Size = new System.Drawing.Size(1055, 809);
+            this.pnlSection2.Size = new System.Drawing.Size(1187, 809);
             this.pnlSection2.TabIndex = 27;
-            // 
-            // btnSuppSelect
-            // 
-            this.btnSuppSelect.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
-            this.btnSuppSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSuppSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSuppSelect.Location = new System.Drawing.Point(732, 721);
-            this.btnSuppSelect.Name = "btnSuppSelect";
-            this.btnSuppSelect.Size = new System.Drawing.Size(105, 88);
-            this.btnSuppSelect.TabIndex = 26;
-            this.ttSuppMembre.SetToolTip(this.btnSuppSelect, "Supprimer le(s) membre(s) sélectionné(s)\r\n(ctrl click pour en sélectionner plusie" +
-        "urs)");
-            this.btnSuppSelect.UseVisualStyleBackColor = true;
-            this.btnSuppSelect.Click += new System.EventHandler(this.btnSuppSelect_Click);
             // 
             // btnAddSelect
             // 
             this.btnAddSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddSelect.Location = new System.Drawing.Point(289, 382);
+            this.btnAddSelect.Location = new System.Drawing.Point(463, 382);
             this.btnAddSelect.Name = "btnAddSelect";
             this.btnAddSelect.Size = new System.Drawing.Size(272, 55);
             this.btnAddSelect.TabIndex = 25;
@@ -528,8 +554,8 @@
             // lblMembresAffect
             // 
             this.lblMembresAffect.AutoSize = true;
-            this.lblMembresAffect.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblMembresAffect.Location = new System.Drawing.Point(39, 489);
+            this.lblMembresAffect.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMembresAffect.Location = new System.Drawing.Point(116, 489);
             this.lblMembresAffect.Name = "lblMembresAffect";
             this.lblMembresAffect.Size = new System.Drawing.Size(286, 33);
             this.lblMembresAffect.TabIndex = 17;
@@ -538,7 +564,7 @@
             // btnRefaire
             // 
             this.btnRefaire.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefaire.Location = new System.Drawing.Point(610, 382);
+            this.btnRefaire.Location = new System.Drawing.Point(794, 382);
             this.btnRefaire.Name = "btnRefaire";
             this.btnRefaire.Size = new System.Drawing.Size(361, 55);
             this.btnRefaire.TabIndex = 16;
@@ -550,17 +576,17 @@
             // 
             this.lstbMembres.FormattingEnabled = true;
             this.lstbMembres.ItemHeight = 33;
-            this.lstbMembres.Location = new System.Drawing.Point(43, 532);
+            this.lstbMembres.Location = new System.Drawing.Point(122, 525);
             this.lstbMembres.Name = "lstbMembres";
             this.lstbMembres.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbMembres.Size = new System.Drawing.Size(958, 169);
+            this.lstbMembres.Size = new System.Drawing.Size(1033, 169);
             this.lstbMembres.TabIndex = 15;
             // 
             // lblNomMembre
             // 
             this.lblNomMembre.AutoSize = true;
-            this.lblNomMembre.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblNomMembre.Location = new System.Drawing.Point(39, 143);
+            this.lblNomMembre.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblNomMembre.Location = new System.Drawing.Point(116, 151);
             this.lblNomMembre.Name = "lblNomMembre";
             this.lblNomMembre.Size = new System.Drawing.Size(71, 33);
             this.lblNomMembre.TabIndex = 13;
@@ -570,44 +596,18 @@
             // 
             this.lstbPartis.FormattingEnabled = true;
             this.lstbPartis.ItemHeight = 33;
-            this.lstbPartis.Location = new System.Drawing.Point(43, 188);
+            this.lstbPartis.Location = new System.Drawing.Point(122, 187);
             this.lstbPartis.Name = "lstbPartis";
             this.lstbPartis.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbPartis.Size = new System.Drawing.Size(928, 169);
+            this.lstbPartis.Size = new System.Drawing.Size(1033, 169);
             this.lstbPartis.TabIndex = 12;
-            // 
-            // btnvalidMembres
-            // 
-            this.btnvalidMembres.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
-            this.btnvalidMembres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnvalidMembres.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnvalidMembres.Location = new System.Drawing.Point(896, 721);
-            this.btnvalidMembres.Name = "btnvalidMembres";
-            this.btnvalidMembres.Size = new System.Drawing.Size(105, 88);
-            this.btnvalidMembres.TabIndex = 11;
-            this.ttAddMembre.SetToolTip(this.btnvalidMembres, "Valider les membres");
-            this.btnvalidMembres.UseVisualStyleBackColor = true;
-            this.btnvalidMembres.Click += new System.EventHandler(this.btnvalidMembres_Click);
-            // 
-            // btnAddMembre
-            // 
-            this.btnAddMembre.BackgroundImage = global::Formulaire_principal.Properties.Resources.ajouter;
-            this.btnAddMembre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddMembre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddMembre.Location = new System.Drawing.Point(732, 56);
-            this.btnAddMembre.Name = "btnAddMembre";
-            this.btnAddMembre.Size = new System.Drawing.Size(105, 88);
-            this.btnAddMembre.TabIndex = 9;
-            this.ttAddMembre.SetToolTip(this.btnAddMembre, "Ajouter le membre dans la liste \"Les membres affectés\"");
-            this.btnAddMembre.UseVisualStyleBackColor = true;
-            this.btnAddMembre.Click += new System.EventHandler(this.btnAddMembre_Click);
             // 
             // cboMembres
             // 
             this.cboMembres.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboMembres.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMembres.FormattingEnabled = true;
-            this.cboMembres.Location = new System.Drawing.Point(43, 80);
+            this.cboMembres.Location = new System.Drawing.Point(122, 81);
             this.cboMembres.Name = "cboMembres";
             this.cboMembres.Size = new System.Drawing.Size(651, 41);
             this.cboMembres.TabIndex = 8;
@@ -616,7 +616,7 @@
             // lblreste
             // 
             this.lblreste.AutoSize = true;
-            this.lblreste.Location = new System.Drawing.Point(511, 11);
+            this.lblreste.Location = new System.Drawing.Point(733, 13);
             this.lblreste.Name = "lblreste";
             this.lblreste.Size = new System.Drawing.Size(22, 33);
             this.lblreste.TabIndex = 7;
@@ -626,8 +626,8 @@
             // 
             this.lblAffect.AutoSize = true;
             this.lblAffect.BackColor = System.Drawing.Color.Transparent;
-            this.lblAffect.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lblAffect.Location = new System.Drawing.Point(39, 11);
+            this.lblAffect.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblAffect.Location = new System.Drawing.Point(116, 13);
             this.lblAffect.Name = "lblAffect";
             this.lblAffect.Size = new System.Drawing.Size(567, 33);
             this.lblAffect.TabIndex = 6;
@@ -638,9 +638,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2156, 1333);
+            this.ClientSize = new System.Drawing.Size(2301, 1333);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
+            this.DoubleBuffered = true;
             this.Name = "FrmMission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Création d\'une nouvelle mission";
