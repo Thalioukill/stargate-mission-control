@@ -388,7 +388,7 @@
             this.plPlanetes.Location = new System.Drawing.Point(303, 8);
             this.plPlanetes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.plPlanetes.Name = "plPlanetes";
-            this.plPlanetes.Size = new System.Drawing.Size(1484, 774);
+            this.plPlanetes.Size = new System.Drawing.Size(1599, 978);
             this.plPlanetes.TabIndex = 2;
             this.plPlanetes.Visible = false;
             // 
@@ -728,7 +728,7 @@
             this.grpFiltresAlliees.Controls.Add(this.label3);
             this.grpFiltresAlliees.Controls.Add(this.cboCouleurAlliees);
             this.grpFiltresAlliees.Controls.Add(this.txtNomAlliees);
-            this.grpFiltresAlliees.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpFiltresAlliees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpFiltresAlliees.Location = new System.Drawing.Point(51, 722);
             this.grpFiltresAlliees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpFiltresAlliees.Name = "grpFiltresAlliees";
@@ -777,7 +777,7 @@
             this.cboBienveillance.Location = new System.Drawing.Point(273, 82);
             this.cboBienveillance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboBienveillance.Name = "cboBienveillance";
-            this.cboBienveillance.Size = new System.Drawing.Size(224, 28);
+            this.cboBienveillance.Size = new System.Drawing.Size(224, 36);
             this.cboBienveillance.TabIndex = 9;
             // 
             // btnRechercherAlliees
@@ -797,7 +797,7 @@
             this.label4.Location = new System.Drawing.Point(269, 51);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 20);
+            this.label4.Size = new System.Drawing.Size(139, 28);
             this.label4.TabIndex = 7;
             this.label4.Text = "Bienveillance";
             // 
@@ -807,7 +807,7 @@
             this.label2.Location = new System.Drawing.Point(8, 102);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 20);
+            this.label2.Size = new System.Drawing.Size(92, 28);
             this.label2.TabIndex = 4;
             this.label2.Text = "Couleur";
             // 
@@ -817,25 +817,25 @@
             this.label3.Location = new System.Drawing.Point(8, 25);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 20);
+            this.label3.Size = new System.Drawing.Size(108, 28);
             this.label3.TabIndex = 3;
             this.label3.Text = "Nom (like)";
             // 
             // cboCouleurAlliees
             // 
             this.cboCouleurAlliees.FormattingEnabled = true;
-            this.cboCouleurAlliees.Location = new System.Drawing.Point(8, 137);
+            this.cboCouleurAlliees.Location = new System.Drawing.Point(8, 136);
             this.cboCouleurAlliees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboCouleurAlliees.Name = "cboCouleurAlliees";
-            this.cboCouleurAlliees.Size = new System.Drawing.Size(224, 28);
+            this.cboCouleurAlliees.Size = new System.Drawing.Size(224, 36);
             this.cboCouleurAlliees.TabIndex = 1;
             // 
             // txtNomAlliees
             // 
-            this.txtNomAlliees.Location = new System.Drawing.Point(8, 49);
+            this.txtNomAlliees.Location = new System.Drawing.Point(12, 56);
             this.txtNomAlliees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNomAlliees.Name = "txtNomAlliees";
-            this.txtNomAlliees.Size = new System.Drawing.Size(224, 26);
+            this.txtNomAlliees.Size = new System.Drawing.Size(224, 35);
             this.txtNomAlliees.TabIndex = 0;
             // 
             // grpFiltresEnnemis
@@ -854,18 +854,19 @@
             this.grpFiltresEnnemis.Controls.Add(this.cboCouleurEnnemis);
             this.grpFiltresEnnemis.Controls.Add(this.txtNomEnnemis);
             this.grpFiltresEnnemis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltresEnnemis.Location = new System.Drawing.Point(694, 629);
+            this.grpFiltresEnnemis.Location = new System.Drawing.Point(681, 638);
             this.grpFiltresEnnemis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpFiltresEnnemis.Name = "grpFiltresEnnemis";
             this.grpFiltresEnnemis.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpFiltresEnnemis.Size = new System.Drawing.Size(825, 264);
+            this.grpFiltresEnnemis.Size = new System.Drawing.Size(870, 331);
             this.grpFiltresEnnemis.TabIndex = 6;
             this.grpFiltresEnnemis.TabStop = false;
             this.grpFiltresEnnemis.Text = "Filtres";
             // 
             // btnAgressivité
             // 
-            this.btnAgressivité.Location = new System.Drawing.Point(249, 215);
+            this.btnAgressivité.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgressivité.Location = new System.Drawing.Point(293, 274);
             this.btnAgressivité.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgressivité.Name = "btnAgressivité";
             this.btnAgressivité.Size = new System.Drawing.Size(205, 42);
@@ -876,7 +877,8 @@
             // 
             // btnTypeArme
             // 
-            this.btnTypeArme.Location = new System.Drawing.Point(249, 150);
+            this.btnTypeArme.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTypeArme.Location = new System.Drawing.Point(302, 194);
             this.btnTypeArme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTypeArme.Name = "btnTypeArme";
             this.btnTypeArme.Size = new System.Drawing.Size(196, 42);
@@ -887,7 +889,8 @@
             // 
             // btnReinitialiserCouleurEnnemis
             // 
-            this.btnReinitialiserCouleurEnnemis.Location = new System.Drawing.Point(249, 91);
+            this.btnReinitialiserCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReinitialiserCouleurEnnemis.Location = new System.Drawing.Point(302, 136);
             this.btnReinitialiserCouleurEnnemis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReinitialiserCouleurEnnemis.Name = "btnReinitialiserCouleurEnnemis";
             this.btnReinitialiserCouleurEnnemis.Size = new System.Drawing.Size(181, 42);
@@ -898,7 +901,8 @@
             // 
             // btnReinitialiserEnnemis
             // 
-            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(394, 21);
+            this.btnReinitialiserEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(408, 45);
             this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReinitialiserEnnemis.Name = "btnReinitialiserEnnemis";
             this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(155, 54);
@@ -909,65 +913,72 @@
             // 
             // cboAgressivite
             // 
+            this.cboAgressivite.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAgressivite.FormattingEnabled = true;
-            this.cboAgressivite.Location = new System.Drawing.Point(16, 222);
+            this.cboAgressivite.Location = new System.Drawing.Point(29, 287);
             this.cboAgressivite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboAgressivite.Name = "cboAgressivite";
-            this.cboAgressivite.Size = new System.Drawing.Size(224, 28);
+            this.cboAgressivite.Size = new System.Drawing.Size(224, 36);
             this.cboAgressivite.TabIndex = 10;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 197);
+            this.label6.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(27, 253);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 20);
+            this.label6.Size = new System.Drawing.Size(122, 28);
             this.label6.TabIndex = 8;
             this.label6.Text = "Agressivité";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 135);
+            this.label8.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(24, 180);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 20);
+            this.label8.Size = new System.Drawing.Size(112, 28);
             this.label8.TabIndex = 6;
             this.label8.Text = "Type arme";
             // 
             // cboTypeArme
             // 
+            this.cboTypeArme.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTypeArme.FormattingEnabled = true;
-            this.cboTypeArme.Location = new System.Drawing.Point(16, 162);
+            this.cboTypeArme.Location = new System.Drawing.Point(30, 207);
             this.cboTypeArme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboTypeArme.Name = "cboTypeArme";
-            this.cboTypeArme.Size = new System.Drawing.Size(224, 28);
+            this.cboTypeArme.Size = new System.Drawing.Size(224, 36);
             this.cboTypeArme.TabIndex = 5;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 77);
+            this.label9.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(27, 109);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 20);
+            this.label9.Size = new System.Drawing.Size(92, 28);
             this.label9.TabIndex = 4;
             this.label9.Text = "Couleur";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 18);
+            this.label10.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(25, 36);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 20);
+            this.label10.Size = new System.Drawing.Size(108, 28);
             this.label10.TabIndex = 3;
             this.label10.Text = "Nom (like)";
             // 
             // btnRechercherEnnemis
             // 
-            this.btnRechercherEnnemis.Location = new System.Drawing.Point(627, 208);
+            this.btnRechercherEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRechercherEnnemis.Location = new System.Drawing.Point(641, 244);
             this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRechercherEnnemis.Name = "btnRechercherEnnemis";
             this.btnRechercherEnnemis.Size = new System.Drawing.Size(139, 54);
@@ -978,19 +989,21 @@
             // 
             // cboCouleurEnnemis
             // 
+            this.cboCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCouleurEnnemis.FormattingEnabled = true;
-            this.cboCouleurEnnemis.Location = new System.Drawing.Point(16, 104);
+            this.cboCouleurEnnemis.Location = new System.Drawing.Point(30, 140);
             this.cboCouleurEnnemis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboCouleurEnnemis.Name = "cboCouleurEnnemis";
-            this.cboCouleurEnnemis.Size = new System.Drawing.Size(224, 28);
+            this.cboCouleurEnnemis.Size = new System.Drawing.Size(224, 36);
             this.cboCouleurEnnemis.TabIndex = 1;
             // 
             // txtNomEnnemis
             // 
-            this.txtNomEnnemis.Location = new System.Drawing.Point(16, 46);
+            this.txtNomEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomEnnemis.Location = new System.Drawing.Point(30, 70);
             this.txtNomEnnemis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNomEnnemis.Name = "txtNomEnnemis";
-            this.txtNomEnnemis.Size = new System.Drawing.Size(224, 26);
+            this.txtNomEnnemis.Size = new System.Drawing.Size(224, 35);
             this.txtNomEnnemis.TabIndex = 0;
             // 
             // grpAlliees
@@ -1077,8 +1090,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1138);
-            this.Controls.Add(this.plPlanetes);
             this.Controls.Add(this.plAliens);
+            this.Controls.Add(this.plPlanetes);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.plMissions);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
