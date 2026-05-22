@@ -27,6 +27,19 @@ namespace Formulaire_principal
         private string idPlanete;
         private string idNumero;
         private string nomTableBilan;
+        private string nomMission;
+        private string dateDepart;
+        private string dateArrivee;
+        private string nomChef;
+        private string budgetInitial;
+        private string txtFeuilleRoute;
+        private List<string> membres = new List<string>();
+        private int nbJours;
+        private List<string> evenements = new List<string>();
+        private List<string> captures = new List<string>();
+        private int depenses;
+        private int sommeVersee;
+        private List<string> contactsInformateurs = new List<string>();
 
         // On déclare les BindingSources ici pour qu'ils soient accessibles partout dans le formulaire
         private BindingSource bsMissions;
@@ -40,12 +53,19 @@ namespace Formulaire_principal
             InitializeComponent();
         }
 
-        public FrmJournalDeBord(string planete, string numero)
+        public FrmJournalDeBord(string planete, string numero, string dateDepart, string dateArrivee, string nomChef, string txtFeuilleRoute, List<string> membres, int nbJours)
         {
             InitializeComponent();
             this.Text += planete.ToUpper() + "-" + numero;
             this.idPlanete = planete;
             this.idNumero = numero;
+            this.dateDepart = dateDepart;
+            this.dateArrivee = dateArrivee;
+            this.nomChef = nomChef;
+            this.txtFeuilleRoute = txtFeuilleRoute;
+            this.membres = membres;
+            this.nbJours = nbJours;
+            this.nomMission = $"{planete.ToUpper()}-{numero}";
             this.nomTableBilan = $"BilanCapture{this.idPlanete.ToUpper()}-{this.idNumero}";
             
             CreerTableBilanCapture();
@@ -89,7 +109,18 @@ namespace Formulaire_principal
                 //Liaison aux composants(Labels/TextBox)
                 lblDateEvenement.DataBindings.Add("Text", this.bsJournal, "dateJ");
                 lblCommentaire.DataBindings.Add("Text", this.bsJournal, "commentaires");
+                foreach (DataRowView drvInJournal in this.bsJournal)
+                {
+                    // On extrait proprement les données typées de la ligne de données actuelle
+                    string dateJ = drvInJournal["dateJ"].ToString();
+                    string commentaire = drvInJournal["commentaires"].ToString();
 
+                    if (!string.IsNullOrEmpty(commentaire))
+                    {
+                        // On ajoute la combinaison à la liste
+                        this.evenements.Add($"Le {dateJ} :\n{commentaire}");
+                    }
+                }
             }
             catch (SQLiteException err)
             {
@@ -159,9 +190,16 @@ namespace Formulaire_principal
             dgvContacts.Columns["sommeVersee"].HeaderText = "Montant en € : ";
             dgvContacts.Columns["appreciation"].HeaderText = "Détail du contact : ";
             dgvContacts.Columns["libelleInformateur"].HeaderText = "Informateur : ";
-            dgvContacts.Columns["libelleInformateur"].DisplayIndex = 6; 
+            dgvContacts.Columns["libelleInformateur"].DisplayIndex = 6;
 
-
+            foreach(DataRowView drv in this.bsContacts)
+            {
+                string dateC = drv["dateC"].ToString();
+                string appreciation = drv["appreciation"].ToString();
+                string nomInformateur = drv["libelleInformateur"].ToString();
+                string objectif = drv["sommeVersee"].ToString();
+                this.contactsInformateurs.Add($"Date du contact : {dateC}\nSomme versée : {objectif}\nDétail du contact : {appreciation}\nInformateur : {nomInformateur}");
+            }
 
             // Pour la grille des DEPENSES :
 
@@ -280,6 +318,8 @@ namespace Formulaire_principal
             // Affichage dans les labels
             lblTotSommes.Text += $" {totalC}€";
             lblTotDepenses.Text += $" {totalD}€";
+            this.depenses = Convert.ToInt32(totalD); // Stockage pour le PDF
+            this.sommeVersee = Convert.ToInt32(totalC); // Stockage pour le PDF
         }
 
         private void CreerTableBilanCapture()
@@ -424,6 +464,7 @@ namespace Formulaire_principal
 
                 chartIndiv.Series.Add(s);
                 flpGraphiques.Controls.Add(chartIndiv);
+                this.captures.Add($"Nom de l'espèce : {nomEspece}\nObjectif de capture : {objectif}\nCapturés : {captures}\nTaux de réussite de capture : {row["Taux de réussite (%)"]}%");
             }
         }
 
@@ -454,6 +495,7 @@ namespace Formulaire_principal
             // Budget initial
             DataRow[] mission = ds.Tables["Mission"].Select(filtreMission);
             double budgetInitial = Convert.ToDouble(mission[0]["budget"]);
+            this.budgetInitial = budgetInitial.ToString(); // Stockage pour le PDF
 
             // Somme des dépenses
             object resDep = ds.Tables["Depense"].Compute("SUM(montant)", filtre);
@@ -511,6 +553,12 @@ namespace Formulaire_principal
             }
 
             chartBudget.Series.Add(s);
+        }
+
+        private void btnEditerPDF_Click(object sender, EventArgs e)
+        {
+            FrmPDF fdm = new FrmPDF(this.nomMission, this.dateDepart, this.dateArrivee, this.nomChef, this.budgetInitial, this.txtFeuilleRoute, this.membres, this.nbJours, this.evenements, this.captures, this.depenses, this.sommeVersee, this.contactsInformateurs);
+            DialogResult dr = fdm.ShowDialog();
         }
     }
 }

@@ -244,6 +244,7 @@
             this.btnEditerPDF.TabIndex = 5;
             this.btnEditerPDF.Text = "Editer un pdf";
             this.btnEditerPDF.UseVisualStyleBackColor = true;
+            this.btnEditerPDF.Click += new System.EventHandler(this.btnEditerPDF_Click);
             // 
             // dgvBilan
             // 
