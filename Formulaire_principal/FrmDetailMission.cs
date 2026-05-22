@@ -24,6 +24,12 @@ namespace Formulaire_principal
         private string idPlanete;
         private string idNumero;
         private string idChefMission;
+        private string dateDepart;
+        private string dateArrivee;
+        private string nomChef;
+        private string txtFeuilleRoute;
+        private List<string> membres = new List<string>();
+        private int nbJours;
 
         public FrmDetailMission()
         {
@@ -97,8 +103,18 @@ namespace Formulaire_principal
                 {
                     this.lblNomMission.Text += idPlanete + idNumero;
                     this.lblDateDepart.Text += rMission["dateDepart"].ToString();
+                    this.dateDepart = rMission["dateDepart"].ToString();
                     this.lblDateRetour.Text += rMission["dateRetour"].ToString();
+                    this.dateArrivee = rMission["dateRetour"].ToString();
+
+                    DateTime dtDepart = DateTime.Parse(this.dateDepart);
+                    DateTime dtRetour = DateTime.Parse(this.dateArrivee);
+
+                    TimeSpan difference = dtRetour.Date - dtDepart.Date;
+                    this.nbJours = difference.Days;
+
                     this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString();
+                    this.txtFeuilleRoute = rMission["feuilleDeRoute"].ToString();
                     this.picMission.Image = Image.FromFile("../../Images/Missions/" + idPlanete + ".jpg");
 
                     // Calcul du budget (Budget initial - Somme des dépenses) 
@@ -171,6 +187,12 @@ namespace Formulaire_principal
                 }
                 // On vérifie si c'est le chef 
                 bool estChef = (matricule == this.idChefMission);
+
+                if (estChef) {
+                    this.nomChef = nomComplet;
+                }
+
+                this.membres.Add(nomComplet);
 
                 // Instanciation de l'UC avec les bonnes variables
                 UserControl_MembresMission uc = new UserControl_MembresMission(nomComplet, grade_specialite, image, estChef);
@@ -245,7 +267,7 @@ namespace Formulaire_principal
 
         private void btnJournal_Click(object sender, EventArgs e)
         {
-            FrmJournalDeBord fjdb = new FrmJournalDeBord(this.idPlanete, this.idNumero);
+            FrmJournalDeBord fjdb = new FrmJournalDeBord(this.idPlanete, this.idNumero, this.dateDepart, this.dateArrivee, this.nomChef, this.txtFeuilleRoute, this.membres, this.nbJours);
             DialogResult dr = fjdb.ShowDialog();
         }
 

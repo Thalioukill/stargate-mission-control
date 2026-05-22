@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAccueil));
             this.flpMissions = new System.Windows.Forms.FlowLayoutPanel();
             this.plMissions = new System.Windows.Forms.Panel();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
@@ -419,36 +420,43 @@
             // 
             // btnAgressivité
             // 
-            this.btnAgressivité.Location = new System.Drawing.Point(183, 178);
+            this.btnAgressivité.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgressivité.BackgroundImage")));
+            this.btnAgressivité.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgressivité.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgressivité.Location = new System.Drawing.Point(183, 172);
             this.btnAgressivité.Name = "btnAgressivité";
-            this.btnAgressivité.Size = new System.Drawing.Size(181, 34);
+            this.btnAgressivité.Size = new System.Drawing.Size(43, 40);
             this.btnAgressivité.TabIndex = 15;
-            this.btnAgressivité.Text = "Réinitialiser agressivité";
             this.btnAgressivité.UseVisualStyleBackColor = true;
             this.btnAgressivité.Click += new System.EventHandler(this.btnAgressivité_Click);
             // 
             // btnTypeArme
             // 
-            this.btnTypeArme.Location = new System.Drawing.Point(183, 125);
+            this.btnTypeArme.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTypeArme.BackgroundImage")));
+            this.btnTypeArme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTypeArme.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTypeArme.Location = new System.Drawing.Point(183, 124);
             this.btnTypeArme.Name = "btnTypeArme";
-            this.btnTypeArme.Size = new System.Drawing.Size(181, 34);
+            this.btnTypeArme.Size = new System.Drawing.Size(43, 42);
             this.btnTypeArme.TabIndex = 14;
-            this.btnTypeArme.Text = "Réinitialiser type arme";
             this.btnTypeArme.UseVisualStyleBackColor = true;
             this.btnTypeArme.Click += new System.EventHandler(this.btnTypeArme_Click);
             // 
             // btnReinitialiserCouleurEnnemis
             // 
+            this.btnReinitialiserCouleurEnnemis.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserCouleurEnnemis.BackgroundImage")));
+            this.btnReinitialiserCouleurEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReinitialiserCouleurEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserCouleurEnnemis.Location = new System.Drawing.Point(183, 77);
             this.btnReinitialiserCouleurEnnemis.Name = "btnReinitialiserCouleurEnnemis";
-            this.btnReinitialiserCouleurEnnemis.Size = new System.Drawing.Size(181, 34);
+            this.btnReinitialiserCouleurEnnemis.Size = new System.Drawing.Size(43, 42);
             this.btnReinitialiserCouleurEnnemis.TabIndex = 14;
-            this.btnReinitialiserCouleurEnnemis.Text = "Réinitialiser couleur";
             this.btnReinitialiserCouleurEnnemis.UseVisualStyleBackColor = true;
             this.btnReinitialiserCouleurEnnemis.Click += new System.EventHandler(this.btnReinitialiserCouleurEnnemis_Click);
             // 
             // btnReinitialiserEnnemis
             // 
+            this.btnReinitialiserEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(292, 20);
             this.btnReinitialiserEnnemis.Name = "btnReinitialiserEnnemis";
             this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(116, 44);
@@ -459,6 +467,7 @@
             // 
             // cboAgressivite
             // 
+            this.cboAgressivite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAgressivite.FormattingEnabled = true;
             this.cboAgressivite.Location = new System.Drawing.Point(8, 184);
             this.cboAgressivite.Name = "cboAgressivite";
@@ -485,6 +494,7 @@
             // 
             // cboTypeArme
             // 
+            this.cboTypeArme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTypeArme.FormattingEnabled = true;
             this.cboTypeArme.Location = new System.Drawing.Point(8, 135);
             this.cboTypeArme.Name = "cboTypeArme";
@@ -511,6 +521,7 @@
             // 
             // btnRechercherEnnemis
             // 
+            this.btnRechercherEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercherEnnemis.Location = new System.Drawing.Point(183, 20);
             this.btnRechercherEnnemis.Name = "btnRechercherEnnemis";
             this.btnRechercherEnnemis.Size = new System.Drawing.Size(104, 44);
@@ -521,6 +532,7 @@
             // 
             // cboCouleurEnnemis
             // 
+            this.cboCouleurEnnemis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCouleurEnnemis.FormattingEnabled = true;
             this.cboCouleurEnnemis.Location = new System.Drawing.Point(8, 88);
             this.cboCouleurEnnemis.Name = "cboCouleurEnnemis";
@@ -556,26 +568,31 @@
             // 
             // btnReinitialiserBienveillance
             // 
-            this.btnReinitialiserBienveillance.Location = new System.Drawing.Point(180, 128);
+            this.btnReinitialiserBienveillance.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserBienveillance.BackgroundImage")));
+            this.btnReinitialiserBienveillance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReinitialiserBienveillance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReinitialiserBienveillance.Location = new System.Drawing.Point(181, 124);
             this.btnReinitialiserBienveillance.Name = "btnReinitialiserBienveillance";
-            this.btnReinitialiserBienveillance.Size = new System.Drawing.Size(181, 34);
+            this.btnReinitialiserBienveillance.Size = new System.Drawing.Size(42, 41);
             this.btnReinitialiserBienveillance.TabIndex = 13;
-            this.btnReinitialiserBienveillance.Text = "Réinitialiser bienveillance";
             this.btnReinitialiserBienveillance.UseVisualStyleBackColor = true;
             this.btnReinitialiserBienveillance.Click += new System.EventHandler(this.btnReinitialiserBienveillance_Click);
             // 
             // btnReinitialiserCouleurAlliees
             // 
-            this.btnReinitialiserCouleurAlliees.Location = new System.Drawing.Point(180, 80);
+            this.btnReinitialiserCouleurAlliees.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserCouleurAlliees.BackgroundImage")));
+            this.btnReinitialiserCouleurAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReinitialiserCouleurAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReinitialiserCouleurAlliees.Location = new System.Drawing.Point(181, 76);
             this.btnReinitialiserCouleurAlliees.Name = "btnReinitialiserCouleurAlliees";
-            this.btnReinitialiserCouleurAlliees.Size = new System.Drawing.Size(181, 34);
+            this.btnReinitialiserCouleurAlliees.Size = new System.Drawing.Size(43, 42);
             this.btnReinitialiserCouleurAlliees.TabIndex = 12;
-            this.btnReinitialiserCouleurAlliees.Text = "Réinitialiser couleur";
             this.btnReinitialiserCouleurAlliees.UseVisualStyleBackColor = true;
             this.btnReinitialiserCouleurAlliees.Click += new System.EventHandler(this.btnReinitialiserCouleurAlliees_Click);
             // 
             // btnReinitialiserAlliees
             // 
+            this.btnReinitialiserAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserAlliees.Location = new System.Drawing.Point(284, 18);
             this.btnReinitialiserAlliees.Name = "btnReinitialiserAlliees";
             this.btnReinitialiserAlliees.Size = new System.Drawing.Size(112, 45);
@@ -586,6 +603,7 @@
             // 
             // cboBienveillance
             // 
+            this.cboBienveillance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBienveillance.FormattingEnabled = true;
             this.cboBienveillance.Location = new System.Drawing.Point(6, 134);
             this.cboBienveillance.Name = "cboBienveillance";
@@ -621,6 +639,7 @@
             // 
             // btnRechercherAlliees
             // 
+            this.btnRechercherAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercherAlliees.Location = new System.Drawing.Point(180, 20);
             this.btnRechercherAlliees.Name = "btnRechercherAlliees";
             this.btnRechercherAlliees.Size = new System.Drawing.Size(104, 44);
@@ -631,6 +650,7 @@
             // 
             // cboCouleurAlliees
             // 
+            this.cboCouleurAlliees.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCouleurAlliees.FormattingEnabled = true;
             this.cboCouleurAlliees.Location = new System.Drawing.Point(6, 86);
             this.cboCouleurAlliees.Name = "cboCouleurAlliees";
