@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea20 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend20 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grpEvenements = new System.Windows.Forms.GroupBox();
             this.flpAffichage = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateEvenement = new System.Windows.Forms.Label();
@@ -72,9 +72,11 @@
             this.grpEvenements.Controls.Add(this.btnAfter);
             this.grpEvenements.Controls.Add(this.btnBefore);
             this.grpEvenements.Controls.Add(this.btnDepart);
-            this.grpEvenements.Location = new System.Drawing.Point(409, 24);
+            this.grpEvenements.Location = new System.Drawing.Point(614, 38);
+            this.grpEvenements.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpEvenements.Name = "grpEvenements";
-            this.grpEvenements.Size = new System.Drawing.Size(507, 197);
+            this.grpEvenements.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpEvenements.Size = new System.Drawing.Size(760, 308);
             this.grpEvenements.TabIndex = 0;
             this.grpEvenements.TabStop = false;
             this.grpEvenements.Text = "Evénements du journal :";
@@ -83,32 +85,36 @@
             // 
             this.flpAffichage.Controls.Add(this.lblDateEvenement);
             this.flpAffichage.Controls.Add(this.lblCommentaire);
-            this.flpAffichage.Location = new System.Drawing.Point(20, 34);
+            this.flpAffichage.Location = new System.Drawing.Point(30, 53);
+            this.flpAffichage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flpAffichage.Name = "flpAffichage";
-            this.flpAffichage.Size = new System.Drawing.Size(447, 76);
+            this.flpAffichage.Size = new System.Drawing.Size(670, 119);
             this.flpAffichage.TabIndex = 1;
             // 
             // lblDateEvenement
             // 
             this.lblDateEvenement.AutoSize = true;
-            this.lblDateEvenement.Location = new System.Drawing.Point(3, 0);
+            this.lblDateEvenement.Location = new System.Drawing.Point(4, 0);
+            this.lblDateEvenement.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDateEvenement.Name = "lblDateEvenement";
-            this.lblDateEvenement.Size = new System.Drawing.Size(0, 16);
+            this.lblDateEvenement.Size = new System.Drawing.Size(0, 25);
             this.lblDateEvenement.TabIndex = 0;
             // 
             // lblCommentaire
             // 
             this.lblCommentaire.AutoSize = true;
-            this.lblCommentaire.Location = new System.Drawing.Point(9, 0);
+            this.lblCommentaire.Location = new System.Drawing.Point(12, 0);
+            this.lblCommentaire.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCommentaire.Name = "lblCommentaire";
-            this.lblCommentaire.Size = new System.Drawing.Size(0, 16);
+            this.lblCommentaire.Size = new System.Drawing.Size(0, 25);
             this.lblCommentaire.TabIndex = 1;
             // 
             // btnEnd
             // 
-            this.btnEnd.Location = new System.Drawing.Point(339, 133);
+            this.btnEnd.Location = new System.Drawing.Point(508, 208);
+            this.btnEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(75, 34);
+            this.btnEnd.Size = new System.Drawing.Size(112, 53);
             this.btnEnd.TabIndex = 3;
             this.btnEnd.Text = ">>";
             this.btnEnd.UseVisualStyleBackColor = true;
@@ -116,9 +122,10 @@
             // 
             // btnAfter
             // 
-            this.btnAfter.Location = new System.Drawing.Point(233, 133);
+            this.btnAfter.Location = new System.Drawing.Point(350, 208);
+            this.btnAfter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAfter.Name = "btnAfter";
-            this.btnAfter.Size = new System.Drawing.Size(75, 34);
+            this.btnAfter.Size = new System.Drawing.Size(112, 53);
             this.btnAfter.TabIndex = 2;
             this.btnAfter.Text = ">";
             this.btnAfter.UseVisualStyleBackColor = true;
@@ -126,9 +133,10 @@
             // 
             // btnBefore
             // 
-            this.btnBefore.Location = new System.Drawing.Point(132, 133);
+            this.btnBefore.Location = new System.Drawing.Point(198, 208);
+            this.btnBefore.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBefore.Name = "btnBefore";
-            this.btnBefore.Size = new System.Drawing.Size(75, 34);
+            this.btnBefore.Size = new System.Drawing.Size(112, 53);
             this.btnBefore.TabIndex = 1;
             this.btnBefore.Text = "<";
             this.btnBefore.UseVisualStyleBackColor = true;
@@ -136,9 +144,10 @@
             // 
             // btnDepart
             // 
-            this.btnDepart.Location = new System.Drawing.Point(20, 133);
+            this.btnDepart.Location = new System.Drawing.Point(30, 208);
+            this.btnDepart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDepart.Name = "btnDepart";
-            this.btnDepart.Size = new System.Drawing.Size(75, 34);
+            this.btnDepart.Size = new System.Drawing.Size(112, 53);
             this.btnDepart.TabIndex = 0;
             this.btnDepart.Text = "<<";
             this.btnDepart.UseVisualStyleBackColor = true;
@@ -147,9 +156,11 @@
             // grpContact
             // 
             this.grpContact.Controls.Add(this.dgvContacts);
-            this.grpContact.Location = new System.Drawing.Point(22, 367);
+            this.grpContact.Location = new System.Drawing.Point(33, 573);
+            this.grpContact.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpContact.Name = "grpContact";
-            this.grpContact.Size = new System.Drawing.Size(894, 238);
+            this.grpContact.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpContact.Size = new System.Drawing.Size(1281, 313);
             this.grpContact.TabIndex = 1;
             this.grpContact.TabStop = false;
             this.grpContact.Text = "Contact avec les informateurs :";
@@ -163,20 +174,23 @@
             this.dgvContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvContacts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvContacts.Location = new System.Drawing.Point(20, 42);
+            this.dgvContacts.Location = new System.Drawing.Point(22, 34);
+            this.dgvContacts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvContacts.Name = "dgvContacts";
             this.dgvContacts.ReadOnly = true;
             this.dgvContacts.RowHeadersWidth = 51;
             this.dgvContacts.RowTemplate.Height = 24;
-            this.dgvContacts.Size = new System.Drawing.Size(834, 166);
+            this.dgvContacts.Size = new System.Drawing.Size(1251, 259);
             this.dgvContacts.TabIndex = 0;
             // 
             // grpDepensesEffectues
             // 
             this.grpDepensesEffectues.Controls.Add(this.dgvDepenses);
-            this.grpDepensesEffectues.Location = new System.Drawing.Point(979, 156);
+            this.grpDepensesEffectues.Location = new System.Drawing.Point(845, 500);
+            this.grpDepensesEffectues.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpDepensesEffectues.Name = "grpDepensesEffectues";
-            this.grpDepensesEffectues.Size = new System.Drawing.Size(1018, 449);
+            this.grpDepensesEffectues.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpDepensesEffectues.Size = new System.Drawing.Size(231, 63);
             this.grpDepensesEffectues.TabIndex = 2;
             this.grpDepensesEffectues.TabStop = false;
             this.grpDepensesEffectues.Text = "Dépenses effectuées :";
@@ -187,42 +201,46 @@
             this.dgvDepenses.AllowUserToDeleteRows = false;
             this.dgvDepenses.AllowUserToResizeColumns = false;
             this.dgvDepenses.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle39;
             this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDepenses.Location = new System.Drawing.Point(32, 34);
+            this.dgvDepenses.Location = new System.Drawing.Point(48, 53);
+            this.dgvDepenses.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDepenses.Name = "dgvDepenses";
             this.dgvDepenses.ReadOnly = true;
             this.dgvDepenses.RowHeadersWidth = 51;
             this.dgvDepenses.RowTemplate.Height = 24;
-            this.dgvDepenses.Size = new System.Drawing.Size(952, 375);
+            this.dgvDepenses.Size = new System.Drawing.Size(1428, 586);
             this.dgvDepenses.TabIndex = 6;
             // 
             // lblTotSommes
             // 
             this.lblTotSommes.AutoSize = true;
-            this.lblTotSommes.Location = new System.Drawing.Point(596, 238);
+            this.lblTotSommes.Location = new System.Drawing.Point(894, 372);
+            this.lblTotSommes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotSommes.Name = "lblTotSommes";
-            this.lblTotSommes.Size = new System.Drawing.Size(180, 16);
+            this.lblTotSommes.Size = new System.Drawing.Size(287, 25);
             this.lblTotSommes.TabIndex = 3;
             this.lblTotSommes.Text = "Total des sommes versées : ";
             // 
             // lblTotDepenses
             // 
             this.lblTotDepenses.AutoSize = true;
-            this.lblTotDepenses.Location = new System.Drawing.Point(596, 273);
+            this.lblTotDepenses.Location = new System.Drawing.Point(894, 427);
+            this.lblTotDepenses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotDepenses.Name = "lblTotDepenses";
-            this.lblTotDepenses.Size = new System.Drawing.Size(137, 16);
+            this.lblTotDepenses.Size = new System.Drawing.Size(219, 25);
             this.lblTotDepenses.TabIndex = 4;
             this.lblTotDepenses.Text = "Total des dépenses : ";
             // 
             // btnEditerPDF
             // 
-            this.btnEditerPDF.Location = new System.Drawing.Point(409, 301);
+            this.btnEditerPDF.Location = new System.Drawing.Point(614, 470);
+            this.btnEditerPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditerPDF.Name = "btnEditerPDF";
-            this.btnEditerPDF.Size = new System.Drawing.Size(140, 23);
+            this.btnEditerPDF.Size = new System.Drawing.Size(210, 36);
             this.btnEditerPDF.TabIndex = 5;
             this.btnEditerPDF.Text = "Editer un pdf";
             this.btnEditerPDF.UseVisualStyleBackColor = true;
@@ -233,49 +251,54 @@
             this.dgvBilan.AllowUserToDeleteRows = false;
             this.dgvBilan.AllowUserToResizeColumns = false;
             this.dgvBilan.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle40;
             this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBilan.Location = new System.Drawing.Point(20, 44);
+            this.dgvBilan.Location = new System.Drawing.Point(30, 69);
+            this.dgvBilan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvBilan.Name = "dgvBilan";
             this.dgvBilan.ReadOnly = true;
             this.dgvBilan.RowHeadersWidth = 51;
             this.dgvBilan.RowTemplate.Height = 24;
-            this.dgvBilan.Size = new System.Drawing.Size(834, 366);
+            this.dgvBilan.Size = new System.Drawing.Size(1251, 572);
             this.dgvBilan.TabIndex = 6;
             // 
             // grpBilan
             // 
             this.grpBilan.Controls.Add(this.dgvBilan);
-            this.grpBilan.Location = new System.Drawing.Point(22, 638);
+            this.grpBilan.Location = new System.Drawing.Point(33, 896);
+            this.grpBilan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpBilan.Name = "grpBilan";
-            this.grpBilan.Size = new System.Drawing.Size(894, 447);
+            this.grpBilan.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpBilan.Size = new System.Drawing.Size(1281, 570);
             this.grpBilan.TabIndex = 7;
             this.grpBilan.TabStop = false;
             this.grpBilan.Text = "Bilan des captures : ";
             // 
             // flpGraphiques
             // 
-            this.flpGraphiques.Location = new System.Drawing.Point(979, 682);
+            this.flpGraphiques.Location = new System.Drawing.Point(1085, 488);
+            this.flpGraphiques.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flpGraphiques.Name = "flpGraphiques";
-            this.flpGraphiques.Size = new System.Drawing.Size(1018, 440);
+            this.flpGraphiques.Size = new System.Drawing.Size(234, 75);
             this.flpGraphiques.TabIndex = 10;
             // 
             // chartBudget
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartBudget.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBudget.Legends.Add(legend1);
-            this.chartBudget.Location = new System.Drawing.Point(22, 24);
+            chartArea20.Name = "ChartArea1";
+            this.chartBudget.ChartAreas.Add(chartArea20);
+            legend20.Name = "Legend1";
+            this.chartBudget.Legends.Add(legend20);
+            this.chartBudget.Location = new System.Drawing.Point(33, 38);
+            this.chartBudget.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chartBudget.Name = "chartBudget";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartBudget.Series.Add(series1);
-            this.chartBudget.Size = new System.Drawing.Size(353, 313);
+            series20.ChartArea = "ChartArea1";
+            series20.Legend = "Legend1";
+            series20.Name = "Series1";
+            this.chartBudget.Series.Add(series20);
+            this.chartBudget.Size = new System.Drawing.Size(530, 489);
             this.chartBudget.TabIndex = 11;
             this.chartBudget.Text = "chart1";
             // 
@@ -283,39 +306,43 @@
             // 
             this.lblEtatBudget.AutoSize = true;
             this.lblEtatBudget.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblEtatBudget.Location = new System.Drawing.Point(231, 273);
+            this.lblEtatBudget.Location = new System.Drawing.Point(346, 427);
+            this.lblEtatBudget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEtatBudget.Name = "lblEtatBudget";
-            this.lblEtatBudget.Size = new System.Drawing.Size(0, 16);
+            this.lblEtatBudget.Size = new System.Drawing.Size(0, 25);
             this.lblEtatBudget.TabIndex = 12;
             // 
             // lblStatsCaptures
             // 
             this.lblStatsCaptures.AutoSize = true;
-            this.lblStatsCaptures.Location = new System.Drawing.Point(976, 638);
+            this.lblStatsCaptures.Location = new System.Drawing.Point(1080, 452);
+            this.lblStatsCaptures.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatsCaptures.Name = "lblStatsCaptures";
-            this.lblStatsCaptures.Size = new System.Drawing.Size(159, 16);
+            this.lblStatsCaptures.Size = new System.Drawing.Size(261, 25);
             this.lblStatsCaptures.TabIndex = 14;
             this.lblStatsCaptures.Text = "Statistiques de captures : ";
             // 
             // FrmJournalDeBord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1924, 1175);
+            this.ClientSize = new System.Drawing.Size(1401, 1308);
             this.Controls.Add(this.lblStatsCaptures);
             this.Controls.Add(this.lblEtatBudget);
             this.Controls.Add(this.flpGraphiques);
             this.Controls.Add(this.chartBudget);
             this.Controls.Add(this.grpBilan);
+            this.Controls.Add(this.grpDepensesEffectues);
             this.Controls.Add(this.btnEditerPDF);
             this.Controls.Add(this.lblTotDepenses);
             this.Controls.Add(this.lblTotSommes);
-            this.Controls.Add(this.grpDepensesEffectues);
             this.Controls.Add(this.grpContact);
             this.Controls.Add(this.grpEvenements);
+            this.Location = new System.Drawing.Point(670, 25);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmJournalDeBord";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Journal de bord : ";
             this.Load += new System.EventHandler(this.FrmJournalDeBord_Load);
             this.grpEvenements.ResumeLayout(false);
