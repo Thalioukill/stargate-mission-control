@@ -41,6 +41,7 @@
             // 
             // picPlanete
             // 
+            this.picPlanete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.picPlanete.Location = new System.Drawing.Point(3, 3);
             this.picPlanete.Name = "picPlanete";
             this.picPlanete.Size = new System.Drawing.Size(161, 138);

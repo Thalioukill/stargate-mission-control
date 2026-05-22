@@ -26,7 +26,11 @@ namespace Formulaire_principal
             lblEspeces.Text = especes;
             lblPourcentage.Text = pourcentages;
             lblMission.Text = missions;
-            picPlanete.Image = Image.FromFile("../../Images/Planetes/noomahS.png");
+            if (nom != string.Empty)
+            {
+                picPlanete.Image = Image.FromFile("../../Images/Missions/" + nom + ".jpg");
+                picPlanete.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
 
         }
 
