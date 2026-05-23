@@ -34,12 +34,12 @@
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblSoldeApresDepenses = new System.Windows.Forms.Label();
             this.flpEquipage = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpObjectifCaptures = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateRetour = new System.Windows.Forms.Label();
             this.rtbFeuilleDeRoute = new System.Windows.Forms.RichTextBox();
             this.lblMembres = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnJournal = new System.Windows.Forms.Button();
-            this.flpObjectifCaptures = new System.Windows.Forms.FlowLayoutPanel();
             this.lblObjectifCapture = new System.Windows.Forms.Label();
             this.tbcNouvEvnmt = new System.Windows.Forms.TabControl();
             this.tpNouvContact = new System.Windows.Forms.TabPage();
@@ -72,7 +72,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
-            this.flpEquipage.SuspendLayout();
             this.tbcNouvEvnmt.SuspendLayout();
             this.tpNouvContact.SuspendLayout();
             this.tbcNouvDepense.SuspendLayout();
@@ -82,19 +81,18 @@
             // lblNomMission
             // 
             this.lblNomMission.AutoSize = true;
-            this.lblNomMission.Location = new System.Drawing.Point(316, 45);
-            this.lblNomMission.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.Location = new System.Drawing.Point(617, 32);
             this.lblNomMission.Name = "lblNomMission";
-            this.lblNomMission.Size = new System.Drawing.Size(98, 25);
+            this.lblNomMission.Size = new System.Drawing.Size(139, 39);
             this.lblNomMission.TabIndex = 0;
             this.lblNomMission.Text = "Mission :";
             // 
             // picMission
             // 
-            this.picMission.Location = new System.Drawing.Point(38, 45);
-            this.picMission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.picMission.Location = new System.Drawing.Point(25, 29);
             this.picMission.Name = "picMission";
-            this.picMission.Size = new System.Drawing.Size(252, 241);
+            this.picMission.Size = new System.Drawing.Size(168, 154);
             this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMission.TabIndex = 2;
             this.picMission.TabStop = false;
@@ -102,111 +100,107 @@
             // lblDateDepart
             // 
             this.lblDateDepart.AutoSize = true;
-            this.lblDateDepart.Location = new System.Drawing.Point(316, 142);
-            this.lblDateDepart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDateDepart.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateDepart.Location = new System.Drawing.Point(212, 67);
             this.lblDateDepart.Name = "lblDateDepart";
-            this.lblDateDepart.Size = new System.Drawing.Size(172, 25);
+            this.lblDateDepart.Size = new System.Drawing.Size(180, 28);
             this.lblDateDepart.TabIndex = 3;
             this.lblDateDepart.Text = "Date de départ : ";
             // 
             // lblBudget
             // 
             this.lblBudget.AutoSize = true;
-            this.lblBudget.Location = new System.Drawing.Point(812, 142);
-            this.lblBudget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudget.Location = new System.Drawing.Point(212, 155);
             this.lblBudget.Name = "lblBudget";
-            this.lblBudget.Size = new System.Drawing.Size(86, 25);
+            this.lblBudget.Size = new System.Drawing.Size(89, 28);
             this.lblBudget.TabIndex = 5;
             this.lblBudget.Text = "Budget ";
             // 
             // lblSoldeApresDepenses
             // 
             this.lblSoldeApresDepenses.AutoSize = true;
-            this.lblSoldeApresDepenses.Location = new System.Drawing.Point(812, 209);
-            this.lblSoldeApresDepenses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSoldeApresDepenses.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoldeApresDepenses.Location = new System.Drawing.Point(552, 155);
             this.lblSoldeApresDepenses.Name = "lblSoldeApresDepenses";
-            this.lblSoldeApresDepenses.Size = new System.Drawing.Size(245, 25);
+            this.lblSoldeApresDepenses.Size = new System.Drawing.Size(235, 28);
             this.lblSoldeApresDepenses.TabIndex = 6;
             this.lblSoldeApresDepenses.Text = "Solde après dépenses : ";
             // 
             // flpEquipage
             // 
             this.flpEquipage.AutoScroll = true;
-            this.flpEquipage.Controls.Add(this.flpObjectifCaptures);
-            this.flpEquipage.Location = new System.Drawing.Point(38, 720);
-            this.flpEquipage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flpEquipage.Location = new System.Drawing.Point(25, 362);
             this.flpEquipage.Name = "flpEquipage";
-            this.flpEquipage.Size = new System.Drawing.Size(1432, 438);
+            this.flpEquipage.Size = new System.Drawing.Size(841, 272);
             this.flpEquipage.TabIndex = 7;
+            // 
+            // flpObjectifCaptures
+            // 
+            this.flpObjectifCaptures.AutoScroll = true;
+            this.flpObjectifCaptures.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpObjectifCaptures.Location = new System.Drawing.Point(28, 680);
+            this.flpObjectifCaptures.Name = "flpObjectifCaptures";
+            this.flpObjectifCaptures.Size = new System.Drawing.Size(671, 109);
+            this.flpObjectifCaptures.TabIndex = 13;
             // 
             // lblDateRetour
             // 
             this.lblDateRetour.AutoSize = true;
-            this.lblDateRetour.Location = new System.Drawing.Point(316, 209);
-            this.lblDateRetour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDateRetour.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateRetour.Location = new System.Drawing.Point(212, 110);
             this.lblDateRetour.Name = "lblDateRetour";
-            this.lblDateRetour.Size = new System.Drawing.Size(167, 25);
+            this.lblDateRetour.Size = new System.Drawing.Size(178, 28);
             this.lblDateRetour.TabIndex = 4;
             this.lblDateRetour.Text = "Date de retour : ";
             // 
             // rtbFeuilleDeRoute
             // 
-            this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(38, 359);
-            this.rtbFeuilleDeRoute.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(25, 239);
             this.rtbFeuilleDeRoute.Name = "rtbFeuilleDeRoute";
             this.rtbFeuilleDeRoute.ReadOnly = true;
-            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(1430, 285);
+            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(841, 77);
             this.rtbFeuilleDeRoute.TabIndex = 8;
             this.rtbFeuilleDeRoute.Text = "";
             // 
             // lblMembres
             // 
             this.lblMembres.AutoSize = true;
-            this.lblMembres.Location = new System.Drawing.Point(38, 686);
-            this.lblMembres.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMembres.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMembres.Location = new System.Drawing.Point(22, 331);
             this.lblMembres.Name = "lblMembres";
-            this.lblMembres.Size = new System.Drawing.Size(253, 25);
+            this.lblMembres.Size = new System.Drawing.Size(252, 28);
             this.lblMembres.TabIndex = 9;
             this.lblMembres.Text = "Membres de l\'équipage : ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 325);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(25, 208);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 25);
+            this.label1.Size = new System.Drawing.Size(176, 28);
             this.label1.TabIndex = 10;
             this.label1.Text = "Feuille de route :";
             // 
             // btnJournal
             // 
-            this.btnJournal.Location = new System.Drawing.Point(1085, 1424);
-            this.btnJournal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnJournal.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJournal.Location = new System.Drawing.Point(744, 716);
             this.btnJournal.Name = "btnJournal";
-            this.btnJournal.Size = new System.Drawing.Size(216, 61);
+            this.btnJournal.Size = new System.Drawing.Size(122, 73);
             this.btnJournal.TabIndex = 12;
             this.btnJournal.Text = "Accès Journal";
             this.btnJournal.UseVisualStyleBackColor = true;
             this.btnJournal.Click += new System.EventHandler(this.btnJournal_Click);
             // 
-            // flpObjectifCaptures
-            // 
-            this.flpObjectifCaptures.AutoScroll = true;
-            this.flpObjectifCaptures.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpObjectifCaptures.Location = new System.Drawing.Point(4, 5);
-            this.flpObjectifCaptures.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.flpObjectifCaptures.Name = "flpObjectifCaptures";
-            this.flpObjectifCaptures.Size = new System.Drawing.Size(741, 428);
-            this.flpObjectifCaptures.TabIndex = 13;
-            // 
             // lblObjectifCapture
             // 
             this.lblObjectifCapture.AutoSize = true;
-            this.lblObjectifCapture.Location = new System.Drawing.Point(33, 1217);
-            this.lblObjectifCapture.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblObjectifCapture.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObjectifCapture.Location = new System.Drawing.Point(22, 647);
             this.lblObjectifCapture.Name = "lblObjectifCapture";
-            this.lblObjectifCapture.Size = new System.Drawing.Size(222, 25);
+            this.lblObjectifCapture.Size = new System.Drawing.Size(236, 28);
             this.lblObjectifCapture.TabIndex = 0;
             this.lblObjectifCapture.Text = "Objectif de captures : ";
             // 
@@ -215,10 +209,12 @@
             this.tbcNouvEvnmt.Controls.Add(this.tpNouvContact);
             this.tbcNouvEvnmt.Controls.Add(this.tbcNouvDepense);
             this.tbcNouvEvnmt.Controls.Add(this.tbcEvnmt);
-            this.tbcNouvEvnmt.Location = new System.Drawing.Point(1475, 45);
+            this.tbcNouvEvnmt.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbcNouvEvnmt.Location = new System.Drawing.Point(950, 67);
+            this.tbcNouvEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.tbcNouvEvnmt.Name = "tbcNouvEvnmt";
             this.tbcNouvEvnmt.SelectedIndex = 0;
-            this.tbcNouvEvnmt.Size = new System.Drawing.Size(1182, 1194);
+            this.tbcNouvEvnmt.Size = new System.Drawing.Size(774, 722);
             this.tbcNouvEvnmt.TabIndex = 10;
             // 
             // tpNouvContact
@@ -233,42 +229,47 @@
             this.tpNouvContact.Controls.Add(this.label4);
             this.tpNouvContact.Controls.Add(this.label3);
             this.tpNouvContact.Controls.Add(this.label2);
-            this.tpNouvContact.Location = new System.Drawing.Point(8, 39);
+            this.tpNouvContact.Location = new System.Drawing.Point(4, 37);
+            this.tpNouvContact.Margin = new System.Windows.Forms.Padding(2);
             this.tpNouvContact.Name = "tpNouvContact";
-            this.tpNouvContact.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tpNouvContact.Size = new System.Drawing.Size(1166, 1147);
+            this.tpNouvContact.Padding = new System.Windows.Forms.Padding(2);
+            this.tpNouvContact.Size = new System.Drawing.Size(766, 681);
             this.tpNouvContact.TabIndex = 0;
             this.tpNouvContact.Text = "Nouveau Contact";
             this.tpNouvContact.UseVisualStyleBackColor = true;
             // 
             // dtpContact
             // 
-            this.dtpContact.Location = new System.Drawing.Point(284, 112);
+            this.dtpContact.Location = new System.Drawing.Point(189, 72);
+            this.dtpContact.Margin = new System.Windows.Forms.Padding(2);
             this.dtpContact.Name = "dtpContact";
-            this.dtpContact.Size = new System.Drawing.Size(384, 31);
+            this.dtpContact.Size = new System.Drawing.Size(257, 35);
             this.dtpContact.TabIndex = 19;
             // 
             // txtSomme
             // 
-            this.txtSomme.Location = new System.Drawing.Point(284, 227);
+            this.txtSomme.Location = new System.Drawing.Point(189, 145);
+            this.txtSomme.Margin = new System.Windows.Forms.Padding(2);
             this.txtSomme.Name = "txtSomme";
-            this.txtSomme.Size = new System.Drawing.Size(204, 31);
+            this.txtSomme.Size = new System.Drawing.Size(137, 35);
             this.txtSomme.TabIndex = 18;
             this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSomme_KeyPress);
             // 
             // txtAppreciation
             // 
-            this.txtAppreciation.Location = new System.Drawing.Point(284, 356);
+            this.txtAppreciation.Location = new System.Drawing.Point(189, 228);
+            this.txtAppreciation.Margin = new System.Windows.Forms.Padding(2);
             this.txtAppreciation.Multiline = true;
             this.txtAppreciation.Name = "txtAppreciation";
-            this.txtAppreciation.Size = new System.Drawing.Size(727, 420);
+            this.txtAppreciation.Size = new System.Drawing.Size(486, 270);
             this.txtAppreciation.TabIndex = 17;
             // 
             // btnValidNouvC
             // 
-            this.btnValidNouvC.Location = new System.Drawing.Point(878, 956);
+            this.btnValidNouvC.Location = new System.Drawing.Point(585, 612);
+            this.btnValidNouvC.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidNouvC.Name = "btnValidNouvC";
-            this.btnValidNouvC.Size = new System.Drawing.Size(219, 78);
+            this.btnValidNouvC.Size = new System.Drawing.Size(146, 50);
             this.btnValidNouvC.TabIndex = 16;
             this.btnValidNouvC.Text = "Valider";
             this.btnValidNouvC.UseVisualStyleBackColor = true;
@@ -276,9 +277,10 @@
             // 
             // btnAnnulNouvC
             // 
-            this.btnAnnulNouvC.Location = new System.Drawing.Point(608, 956);
+            this.btnAnnulNouvC.Location = new System.Drawing.Point(405, 612);
+            this.btnAnnulNouvC.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnulNouvC.Name = "btnAnnulNouvC";
-            this.btnAnnulNouvC.Size = new System.Drawing.Size(219, 78);
+            this.btnAnnulNouvC.Size = new System.Drawing.Size(146, 50);
             this.btnAnnulNouvC.TabIndex = 15;
             this.btnAnnulNouvC.Text = "Annuler";
             this.btnAnnulNouvC.UseVisualStyleBackColor = true;
@@ -289,46 +291,51 @@
             this.cboInformateur.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboInformateur.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboInformateur.FormattingEnabled = true;
-            this.cboInformateur.Location = new System.Drawing.Point(284, 869);
+            this.cboInformateur.Location = new System.Drawing.Point(214, 556);
+            this.cboInformateur.Margin = new System.Windows.Forms.Padding(2);
             this.cboInformateur.Name = "cboInformateur";
-            this.cboInformateur.Size = new System.Drawing.Size(534, 33);
+            this.cboInformateur.Size = new System.Drawing.Size(357, 36);
             this.cboInformateur.TabIndex = 14;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(70, 872);
+            this.label5.Location = new System.Drawing.Point(47, 564);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 25);
+            this.label5.Size = new System.Drawing.Size(144, 28);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Informateur";
+            this.label5.Text = "Informateur :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(70, 356);
+            this.label4.Location = new System.Drawing.Point(47, 228);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 25);
+            this.label4.Size = new System.Drawing.Size(142, 28);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Apréciation";
+            this.label4.Text = "Apréciation :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 227);
+            this.label3.Location = new System.Drawing.Point(47, 145);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 25);
+            this.label3.Size = new System.Drawing.Size(91, 28);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Somme";
+            this.label3.Text = "Somme :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 112);
+            this.label2.Location = new System.Drawing.Point(47, 72);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 25);
+            this.label2.Size = new System.Drawing.Size(73, 28);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Date";
+            this.label2.Text = "Date :";
             // 
             // tbcNouvDepense
             // 
@@ -342,42 +349,47 @@
             this.tbcNouvDepense.Controls.Add(this.label7);
             this.tbcNouvDepense.Controls.Add(this.label8);
             this.tbcNouvDepense.Controls.Add(this.label9);
-            this.tbcNouvDepense.Location = new System.Drawing.Point(8, 39);
+            this.tbcNouvDepense.Location = new System.Drawing.Point(4, 37);
+            this.tbcNouvDepense.Margin = new System.Windows.Forms.Padding(2);
             this.tbcNouvDepense.Name = "tbcNouvDepense";
-            this.tbcNouvDepense.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tbcNouvDepense.Size = new System.Drawing.Size(1166, 1147);
+            this.tbcNouvDepense.Padding = new System.Windows.Forms.Padding(2);
+            this.tbcNouvDepense.Size = new System.Drawing.Size(766, 681);
             this.tbcNouvDepense.TabIndex = 1;
             this.tbcNouvDepense.Text = "Nouvelle dépense";
             this.tbcNouvDepense.UseVisualStyleBackColor = true;
             // 
             // dtpDepense
             // 
-            this.dtpDepense.Location = new System.Drawing.Point(284, 112);
+            this.dtpDepense.Location = new System.Drawing.Point(189, 72);
+            this.dtpDepense.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDepense.Name = "dtpDepense";
-            this.dtpDepense.Size = new System.Drawing.Size(384, 31);
+            this.dtpDepense.Size = new System.Drawing.Size(257, 35);
             this.dtpDepense.TabIndex = 19;
             // 
             // txtMontant
             // 
-            this.txtMontant.Location = new System.Drawing.Point(284, 227);
+            this.txtMontant.Location = new System.Drawing.Point(189, 145);
+            this.txtMontant.Margin = new System.Windows.Forms.Padding(2);
             this.txtMontant.Name = "txtMontant";
-            this.txtMontant.Size = new System.Drawing.Size(204, 31);
+            this.txtMontant.Size = new System.Drawing.Size(257, 35);
             this.txtMontant.TabIndex = 18;
             this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
             // txtMotif
             // 
-            this.txtMotif.Location = new System.Drawing.Point(284, 356);
+            this.txtMotif.Location = new System.Drawing.Point(189, 228);
+            this.txtMotif.Margin = new System.Windows.Forms.Padding(2);
             this.txtMotif.Multiline = true;
             this.txtMotif.Name = "txtMotif";
-            this.txtMotif.Size = new System.Drawing.Size(727, 420);
+            this.txtMotif.Size = new System.Drawing.Size(486, 270);
             this.txtMotif.TabIndex = 17;
             // 
             // btnValidDepense
             // 
-            this.btnValidDepense.Location = new System.Drawing.Point(878, 956);
+            this.btnValidDepense.Location = new System.Drawing.Point(585, 612);
+            this.btnValidDepense.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidDepense.Name = "btnValidDepense";
-            this.btnValidDepense.Size = new System.Drawing.Size(219, 78);
+            this.btnValidDepense.Size = new System.Drawing.Size(146, 50);
             this.btnValidDepense.TabIndex = 16;
             this.btnValidDepense.Text = "Valider";
             this.btnValidDepense.UseVisualStyleBackColor = true;
@@ -385,9 +397,10 @@
             // 
             // btnAnnulNouvD
             // 
-            this.btnAnnulNouvD.Location = new System.Drawing.Point(608, 956);
+            this.btnAnnulNouvD.Location = new System.Drawing.Point(405, 612);
+            this.btnAnnulNouvD.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnulNouvD.Name = "btnAnnulNouvD";
-            this.btnAnnulNouvD.Size = new System.Drawing.Size(219, 78);
+            this.btnAnnulNouvD.Size = new System.Drawing.Size(146, 50);
             this.btnAnnulNouvD.TabIndex = 15;
             this.btnAnnulNouvD.Text = "Annuler";
             this.btnAnnulNouvD.UseVisualStyleBackColor = true;
@@ -398,46 +411,51 @@
             this.cboTypeDepense.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboTypeDepense.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTypeDepense.FormattingEnabled = true;
-            this.cboTypeDepense.Location = new System.Drawing.Point(284, 869);
+            this.cboTypeDepense.Location = new System.Drawing.Point(289, 555);
+            this.cboTypeDepense.Margin = new System.Windows.Forms.Padding(2);
             this.cboTypeDepense.Name = "cboTypeDepense";
-            this.cboTypeDepense.Size = new System.Drawing.Size(534, 33);
+            this.cboTypeDepense.Size = new System.Drawing.Size(357, 36);
             this.cboTypeDepense.TabIndex = 14;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(70, 872);
+            this.label6.Location = new System.Drawing.Point(47, 558);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(179, 25);
+            this.label6.Size = new System.Drawing.Size(186, 28);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Type de dépense";
+            this.label6.Text = "Type de dépense :";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(70, 356);
+            this.label7.Location = new System.Drawing.Point(47, 228);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 25);
+            this.label7.Size = new System.Drawing.Size(82, 28);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Motif";
+            this.label7.Text = "Motif :";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(70, 227);
+            this.label8.Location = new System.Drawing.Point(47, 145);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(90, 25);
+            this.label8.Size = new System.Drawing.Size(110, 28);
             this.label8.TabIndex = 11;
-            this.label8.Text = "Montant";
+            this.label8.Text = "Montant :";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(70, 112);
+            this.label9.Location = new System.Drawing.Point(47, 72);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 25);
+            this.label9.Size = new System.Drawing.Size(73, 28);
             this.label9.TabIndex = 10;
-            this.label9.Text = "Date";
+            this.label9.Text = "Date :";
             // 
             // tbcEvnmt
             // 
@@ -447,34 +465,38 @@
             this.tbcEvnmt.Controls.Add(this.btnAnnulNouvE);
             this.tbcEvnmt.Controls.Add(this.label11);
             this.tbcEvnmt.Controls.Add(this.label13);
-            this.tbcEvnmt.Location = new System.Drawing.Point(8, 39);
+            this.tbcEvnmt.Location = new System.Drawing.Point(4, 37);
+            this.tbcEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.tbcEvnmt.Name = "tbcEvnmt";
-            this.tbcEvnmt.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tbcEvnmt.Size = new System.Drawing.Size(1166, 1147);
+            this.tbcEvnmt.Padding = new System.Windows.Forms.Padding(2);
+            this.tbcEvnmt.Size = new System.Drawing.Size(766, 681);
             this.tbcEvnmt.TabIndex = 2;
             this.tbcEvnmt.Text = "Nouvel évènement";
             this.tbcEvnmt.UseVisualStyleBackColor = true;
             // 
             // dtpEvnmt
             // 
-            this.dtpEvnmt.Location = new System.Drawing.Point(284, 112);
+            this.dtpEvnmt.Location = new System.Drawing.Point(189, 72);
+            this.dtpEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.dtpEvnmt.Name = "dtpEvnmt";
-            this.dtpEvnmt.Size = new System.Drawing.Size(384, 31);
+            this.dtpEvnmt.Size = new System.Drawing.Size(257, 35);
             this.dtpEvnmt.TabIndex = 15;
             // 
             // txtCommentaires
             // 
-            this.txtCommentaires.Location = new System.Drawing.Point(236, 384);
+            this.txtCommentaires.Location = new System.Drawing.Point(52, 246);
+            this.txtCommentaires.Margin = new System.Windows.Forms.Padding(2);
             this.txtCommentaires.Multiline = true;
             this.txtCommentaires.Name = "txtCommentaires";
-            this.txtCommentaires.Size = new System.Drawing.Size(727, 420);
+            this.txtCommentaires.Size = new System.Drawing.Size(591, 270);
             this.txtCommentaires.TabIndex = 14;
             // 
             // btnValidEvnmt
             // 
-            this.btnValidEvnmt.Location = new System.Drawing.Point(878, 956);
+            this.btnValidEvnmt.Location = new System.Drawing.Point(585, 612);
+            this.btnValidEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidEvnmt.Name = "btnValidEvnmt";
-            this.btnValidEvnmt.Size = new System.Drawing.Size(219, 78);
+            this.btnValidEvnmt.Size = new System.Drawing.Size(146, 50);
             this.btnValidEvnmt.TabIndex = 13;
             this.btnValidEvnmt.Text = "Valider";
             this.btnValidEvnmt.UseVisualStyleBackColor = true;
@@ -482,9 +504,10 @@
             // 
             // btnAnnulNouvE
             // 
-            this.btnAnnulNouvE.Location = new System.Drawing.Point(608, 956);
+            this.btnAnnulNouvE.Location = new System.Drawing.Point(405, 612);
+            this.btnAnnulNouvE.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnulNouvE.Name = "btnAnnulNouvE";
-            this.btnAnnulNouvE.Size = new System.Drawing.Size(219, 78);
+            this.btnAnnulNouvE.Size = new System.Drawing.Size(146, 50);
             this.btnAnnulNouvE.TabIndex = 12;
             this.btnAnnulNouvE.Text = "Annuler";
             this.btnAnnulNouvE.UseVisualStyleBackColor = true;
@@ -493,27 +516,30 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(369, 319);
+            this.label11.Location = new System.Drawing.Point(47, 184);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(424, 25);
+            this.label11.Size = new System.Drawing.Size(441, 28);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Évènement à écrire dans le journal de bord";
+            this.label11.Text = "Évènement à écrire dans le journal de bord :";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(70, 112);
+            this.label13.Location = new System.Drawing.Point(47, 77);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 25);
+            this.label13.Size = new System.Drawing.Size(61, 28);
             this.label13.TabIndex = 10;
             this.label13.Text = "Date";
             // 
             // FrmDetailMission
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2669, 1499);
+            this.ClientSize = new System.Drawing.Size(1779, 807);
+            this.Controls.Add(this.flpObjectifCaptures);
             this.Controls.Add(this.tbcNouvEvnmt);
             this.Controls.Add(this.lblObjectifCapture);
             this.Controls.Add(this.btnJournal);
@@ -527,13 +553,11 @@
             this.Controls.Add(this.lblDateDepart);
             this.Controls.Add(this.picMission);
             this.Controls.Add(this.lblNomMission);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmDetailMission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fiche Mission : ";
             this.Load += new System.EventHandler(this.FrmDetailMission_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).EndInit();
-            this.flpEquipage.ResumeLayout(false);
             this.tbcNouvEvnmt.ResumeLayout(false);
             this.tpNouvContact.ResumeLayout(false);
             this.tpNouvContact.PerformLayout();

@@ -1097,5 +1097,10 @@ namespace Formulaire_principal
             FrmMission fdm = new FrmMission();
             DialogResult dr = fdm.ShowDialog();
         }
+
+        private void statistiquesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

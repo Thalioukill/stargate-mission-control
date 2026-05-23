@@ -72,6 +72,8 @@ namespace Formulaire_principal
             RemplirTableBilan();
             AfficherBilan();
             InitBinding();
+            InitContacts();
+            InitDepenses();
             CalculerTotaux();
             GenererGraphiqueBudget();
         }
@@ -79,9 +81,7 @@ namespace Formulaire_principal
         private void FrmJournalDeBord_Load(object sender, EventArgs e)
         {
 
-
         }
-
 
         private void InitBinding()
         {
@@ -109,24 +109,17 @@ namespace Formulaire_principal
                 //Liaison aux composants(Labels/TextBox)
                 lblDateEvenement.DataBindings.Add("Text", this.bsJournal, "dateJ");
                 lblCommentaire.DataBindings.Add("Text", this.bsJournal, "commentaires");
-                foreach (DataRowView drvInJournal in this.bsJournal)
-                {
-                    // On extrait proprement les données typées de la ligne de données actuelle
-                    string dateJ = drvInJournal["dateJ"].ToString();
-                    string commentaire = drvInJournal["commentaires"].ToString();
 
-                    if (!string.IsNullOrEmpty(commentaire))
-                    {
-                        // On ajoute la combinaison à la liste
-                        this.evenements.Add($"Le {dateJ} :\n{commentaire}");
-                    }
-                }
             }
             catch (SQLiteException err)
             {
                 MessageBox.Show(err.Message);
             }
+        }
 
+
+        private void InitDepenses()
+        {
             this.bsDepenses = new BindingSource();
             this.bsDepenses.DataSource = bsMissions;
             this.bsDepenses.DataMember = "RelDepenses";
@@ -140,67 +133,12 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(err.Message);
             }
+            AffichageDepenses();
 
-
-            this.bsContacts = new BindingSource();
-            this.bsContacts.DataSource = bsMissions;
-            this.bsContacts.DataMember = "RelContacts";
-
-            // Remplissage des DataGridView avec les Contacts :
-            try
-            {
-                dgvContacts.DataSource = bsContacts;
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
-
-            AffichageDgv();
         }
 
-        private void AffichageDgv()
+        private void AffichageDepenses()
         {
-            // Pour la grille des CONTACTS : 
-
-            // Formatage des dates : 
-            if (dgvContacts.Columns.Contains("dateC"))
-            {
-                dgvContacts.Columns["dateC"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            }
-
-            // On rend invisible aux yeux de l'utilisateur les informations inutiles :
-            if (dgvContacts.Columns.Contains("nomPlanete"))
-            {
-                dgvContacts.Columns["nomPlanete"].Visible = false;
-            }
-
-            if (dgvContacts.Columns.Contains("numeroMission"))
-            {
-                dgvContacts.Columns["numeroMission"].Visible = false;
-            }
-
-            if (dgvContacts.Columns.Contains("nomCodeInformateur"))
-            {
-                dgvContacts.Columns["nomCodeInformateur"].Visible = false;
-            }
-
-            // Renommer les colonnes pour un affichage plus propre :
-            dgvContacts.Columns["dateC"].HeaderText = "Date du contact :  ";
-            dgvContacts.Columns["sommeVersee"].HeaderText = "Montant en € : ";
-            dgvContacts.Columns["appreciation"].HeaderText = "Détail du contact : ";
-            dgvContacts.Columns["libelleInformateur"].HeaderText = "Informateur : ";
-            dgvContacts.Columns["libelleInformateur"].DisplayIndex = 6;
-
-            foreach(DataRowView drv in this.bsContacts)
-            {
-                string dateC = drv["dateC"].ToString();
-                string appreciation = drv["appreciation"].ToString();
-                string nomInformateur = drv["libelleInformateur"].ToString();
-                string objectif = drv["sommeVersee"].ToString();
-                this.contactsInformateurs.Add($"Date du contact : {dateC}\nSomme versée : {objectif}\nDétail du contact : {appreciation}\nInformateur : {nomInformateur}");
-            }
-
             // Pour la grille des DEPENSES :
 
             // Formatage de la date pour la grille des dépenses
@@ -232,6 +170,67 @@ namespace Formulaire_principal
             dgvDepenses.Columns["motif"].HeaderText = "Motif : ";
             dgvDepenses.Columns["libelleType"].HeaderText = "Catégorie de la dépense : ";
             dgvDepenses.Columns["libelleType"].DisplayIndex = 6; // Pour choisir l'ordre d'affichage
+        }
+        private void InitContacts()
+        {
+
+            this.bsContacts = new BindingSource();
+            this.bsContacts.DataSource = bsMissions;
+            this.bsContacts.DataMember = "RelContacts";
+
+            // Remplissage des DataGridView avec les Contacts :
+            try
+            {
+                dgvInformateurs.DataSource = bsContacts;
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            AffichageContacts();
+        }
+
+        private void AffichageContacts()
+        {
+            // Pour la grille des CONTACTS : 
+
+            // Formatage des dates : 
+            if (dgvInformateurs.Columns.Contains("dateC"))
+            {
+                dgvInformateurs.Columns["dateC"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
+
+            // On rend invisible aux yeux de l'utilisateur les informations inutiles :
+            if (dgvInformateurs.Columns.Contains("nomPlanete"))
+            {
+                dgvInformateurs.Columns["nomPlanete"].Visible = false;
+            }
+
+            if (dgvInformateurs.Columns.Contains("numeroMission"))
+            {
+                dgvInformateurs.Columns["numeroMission"].Visible = false;
+            }
+
+            if (dgvInformateurs.Columns.Contains("nomCodeInformateur"))
+            {
+                dgvInformateurs.Columns["nomCodeInformateur"].Visible = false;
+            }
+
+            // Renommer les colonnes pour un affichage plus propre :
+            dgvInformateurs.Columns["dateC"].HeaderText = "Date du contact :  ";
+            dgvInformateurs.Columns["sommeVersee"].HeaderText = "Montant en € : ";
+            dgvInformateurs.Columns["appreciation"].HeaderText = "Détail du contact : ";
+            dgvInformateurs.Columns["libelleInformateur"].HeaderText = "Informateur : ";
+            dgvInformateurs.Columns["libelleInformateur"].DisplayIndex = 6;
+
+            foreach (DataRowView drv in this.bsContacts)
+            {
+                string dateC = drv["dateC"].ToString();
+                string appreciation = drv["appreciation"].ToString();
+                string nomInformateur = drv["libelleInformateur"].ToString();
+                string objectif = drv["sommeVersee"].ToString();
+                this.contactsInformateurs.Add($"Date du contact : {dateC}\nSomme versée : {objectif}\nDétail du contact : {appreciation}\nInformateur : {nomInformateur}");
+            }
         }
 
         //Depart
@@ -555,10 +554,171 @@ namespace Formulaire_principal
             chartBudget.Series.Add(s);
         }
 
+
+        // REQUETES SQL COMPLEXES SUR UNE MISSION (Volet 7) 
+
+        public void GetDepensesMaximales()
+        {
+
+            string sql = $@"SELECT d.dateD || ' - ' || d.motif || ' - ' || d.montant || '€' AS 'Dépenses les plus importantes', m.nomPlanete AS 'Mission', chef.prenom || ' ' || chef.nom AS 'Chef de mission'
+                   FROM Depense d JOIN Mission m ON d.nomPlanete = m.nomPlanete AND d.numeroMission = m.numero
+                   JOIN Membre chef ON m.matriculeChef = chef.matricule
+                   WHERE d.montant = (SELECT MAX(montant)
+                                      FROM Depense d2
+                                      WHERE d2.nomPlanete = d.nomPlanete AND d2.numeroMission = d.numeroMission)";
+
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                SQLiteDataReader dr = cmd.ExecuteReader();
+
+                // On peut charger le résultat dans une DataTable pour l'afficher dans un DataGridView
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                dgvDepenses.DataSource = dt;
+
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show("Erreur SQL : " + err.Message);
+            }
+        }
+
+        public void GetInformateursMoinsPayes(string planete, int numero)
+        {
+            SQLiteConnection connec = Connexion.Connec;
+
+            // Requête complexe avec regroupement et filtre sur agrégation (HAVING)
+            string sql = $@"SELECT i.nomCode, e.nom AS Espece, SUM(c.sommeVersee) AS SommeTotale FROM Informateur i
+                            JOIN Espece e ON i.idEspeceEnnemi = e.id
+                            JOIN Contact c ON i.nomCode = c.nomCodeInformateur
+                            WHERE c.nomPlanete = @planete AND c.numeroMission = @num
+                            GROUP BY i.nomCode, e.nom
+                            HAVING SUM(c.sommeVersee) = (SELECT MIN(Total) FROM (SELECT SUM(sommeVersee) AS Total
+                                                                                 FROM Contact
+                                                                                 WHERE nomPlanete = @planete AND numeroMission = @num
+                            GROUP BY nomCodeInformateur))";
+
+            try
+            {
+
+                SQLiteCommand cmd = new SQLiteCommand(sql, connec);
+                // Utilisation de paramètres pour sécuriser la saisie (injection SQL) 
+                cmd.Parameters.AddWithValue("@planete", planete);
+                cmd.Parameters.AddWithValue("@num", numero);
+
+                SQLiteDataReader dr = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+
+                if (dt.Rows.Count > 0)
+                    dgvInformateurs.DataSource = dt;
+                else
+                    MessageBox.Show("Aucun contact enregistré pour cette mission.");
+            }
+            catch (SQLiteException err)
+            {
+                MessageBox.Show("Erreur lors de la recherche des informateurs : " + err.Message);
+            }
+        }
+
+        private void GetRentabiliteMission(string p, int n)
+        {
+            // Requête utilisant des sous-requêtes pour calculer les deux totaux indépendamment
+            string sql = @"SELECT @p || '-' || @n AS Mission,(SELECT SUM(qteDataBaz) FROM Negocier WHERE nomPlanete=@p AND numeroMission=@n) AS 'DataBaz (kg)',
+                   (SELECT SUM(montant) FROM Depense WHERE nomPlanete=@p AND numeroMission=@n) AS 'Coût Total (€)',
+                   ROUND((SELECT SUM(qteDataBaz) FROM Negocier WHERE nomPlanete=@p AND numeroMission=@n) / 
+                         (SELECT SUM(montant) FROM Depense WHERE nomPlanete=@p AND numeroMission=@n), 3) AS 'Rentabilité (kg/€)'";
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                cmd.Parameters.AddWithValue("@p", p);
+                cmd.Parameters.AddWithValue("@n", n);
+
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                dgvBilan.DataSource = dt;
+            }
+            catch (Exception ex) { MessageBox.Show("Erreur : " + ex.Message); }
+        }
+
+        //Filtres : 
+
+        // ====> Code pour l'affichage du dgvBilan
+        private void rdbCapturesEnnemies_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbCapturesEnnemies.Checked)
+            {
+                dgvBilan.DataSource = null;
+                dgvBilan.Columns.Clear();
+
+                AfficherBilan();
+            }
+        }
+
+        private void rdbRenta_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        // =====> Code d'appel et remplissage pour les dgv sur les Informateurs
+        private void rdbInformateursMoinsPayees_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbInformateursMoinsPayees.Checked)
+            {
+                dgvInformateurs.DataSource = null;
+                dgvInformateurs.Columns.Clear();
+
+                GetInformateursMoinsPayes(this.idPlanete, int.Parse(this.idNumero));
+            }
+        }
+
+        private void rdbInf_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbInf.Checked)
+            {
+                dgvInformateurs.DataSource = null;
+                dgvInformateurs.Columns.Clear();
+
+                InitContacts();
+            }
+        }
+
+
+        // ===> Code d'appel et remplissage pour les dgv sur les Dépenses 
+        private void rdbListeDepenses_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbListeDepenses.Checked)
+            {
+                dgvDepenses.DataSource = null;
+                dgvDepenses.Columns.Clear();
+
+                InitDepenses();
+            }
+        }
+
+        private void rrdDepensesMax_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rrdDepensesMax.Checked)
+            {
+                dgvDepenses.DataSource = null;
+                dgvDepenses.Columns.Clear();
+
+                GetDepensesMaximales();
+            }
+        }
+
+
+        // EDITER LE PDF
         private void btnEditerPDF_Click(object sender, EventArgs e)
         {
             FrmPDF fdm = new FrmPDF(this.nomMission, this.dateDepart, this.dateArrivee, this.nomChef, this.budgetInitial, this.txtFeuilleRoute, this.membres, this.nbJours, this.evenements, this.captures, this.depenses, this.sommeVersee, this.contactsInformateurs);
             DialogResult dr = fdm.ShowDialog();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

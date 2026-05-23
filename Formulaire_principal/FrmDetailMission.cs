@@ -111,7 +111,8 @@ namespace Formulaire_principal
                     DateTime dtRetour = DateTime.Parse(this.dateArrivee);
 
                     TimeSpan difference = dtRetour.Date - dtDepart.Date;
-                    this.nbJours = difference.Days;
+                    // on rajoute 1 pour qu'une mission sur un meme jour marque le nombre de jours de mission à 1
+                    this.nbJours = difference.Days+1;
 
                     this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString();
                     this.txtFeuilleRoute = rMission["feuilleDeRoute"].ToString();
@@ -265,12 +266,16 @@ namespace Formulaire_principal
 
         }
 
+        // pour appeler le FrmJournalDeBord (besoin d'autant de paramètres pour le PDF)
+
         private void btnJournal_Click(object sender, EventArgs e)
         {
             FrmJournalDeBord fjdb = new FrmJournalDeBord(this.idPlanete, this.idNumero, this.dateDepart, this.dateArrivee, this.nomChef, this.txtFeuilleRoute, this.membres, this.nbJours);
             DialogResult dr = fjdb.ShowDialog();
         }
 
+
+        // ===> Code des Onglets pour nouveau contact, nouvelles dépenses ou autre.
         private void ChargerCboInformateur()
         {
             cboInformateur.DataSource = ds.Tables["Informateur"];
