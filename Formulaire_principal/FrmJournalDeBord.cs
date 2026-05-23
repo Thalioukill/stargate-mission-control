@@ -40,6 +40,7 @@ namespace Formulaire_principal
         private int depenses;
         private int sommeVersee;
         private List<string> contactsInformateurs = new List<string>();
+        private double maxMontantMission = 0;
 
         // On déclare les BindingSources ici pour qu'ils soient accessibles partout dans le formulaire
         private BindingSource bsMissions;
@@ -92,7 +93,7 @@ namespace Formulaire_principal
             // liaison à la DataTable Mission du ds
             this.bsMissions.DataSource = ds.Tables["Mission"];
             // tri par défaut (par date de départ)
-            this.bsMissions.Sort = "dateDepart ASC";
+            //this.bsMissions.Sort = "dateDepart DESC"; UTILE ? 
 
             // IMPORTANCE : On filtre pour ne garder que la mission consultée
             this.bsMissions.Filter = $"nomPlanete = '{this.idPlanete}' AND numero = {this.idNumero}";
@@ -103,6 +104,14 @@ namespace Formulaire_principal
             this.bsJournal = new BindingSource();
             this.bsJournal.DataSource = bsMissions;
             this.bsJournal.DataMember = "RelJournalDeBord";
+            this.bsJournal.Sort = "dateJ ASC";
+            this.bsJournal.MoveFirst();
+
+            // On lie le changement de position (MoveLast, MoveFirst) à la fonction bsJournal_PositionChanged pour compter le nombre d'évènements
+            this.bsJournal.PositionChanged += new EventHandler(bsJournal_PositionChanged);
+
+            // ON force l'affichage dès le début sinon on ne voit rien avant de toucher aux boutons
+            bsJournal_PositionChanged(null, null);
 
             try
             {
@@ -114,6 +123,39 @@ namespace Formulaire_principal
             catch (SQLiteException err)
             {
                 MessageBox.Show(err.Message);
+            }
+        }
+
+        // ===> Code du compteur d'évènement du Journal de Bord
+
+        private void bsJournal_PositionChanged(object sender, EventArgs e)
+        {
+            // Récupération des informations de bsJournal
+            int totalElements = this.bsJournal.Count;
+            int indexActuel = this.bsJournal.Position; // index commence à 0
+
+            // Nombre d'éléments avant: c'est l'index actuel (ex position 2 signifie qu'il y a 2 eléments avant)
+            int nbAvant = indexActuel;
+
+            // Nombre d'éléments après :(tot - 1) pour avoir le dernier index, moins la position actuelle
+            int nbApres = Math.Max(0, (totalElements - 1) - indexActuel);
+
+            if (totalElements > 0)
+            {
+                lblNavigation.Text = $"Événement {indexActuel + 1} sur {totalElements}";
+                //Pas assez de place pour tout afficher mdrrr
+                //lblAvant.Text = $"{nbAvant} événement(s) au début";
+                //lblApres.Text = $"{nbApres} événement(s) restant(s) à la fin";
+
+                //Désactivation automatique des boutons aux extrémités quand on arrive à la fin ou au début des évènements...
+                btnBefore.Enabled = (indexActuel > 0);
+                btnDepart.Enabled = (indexActuel > 0);
+                btnAfter.Enabled = (indexActuel < totalElements - 1);
+                btnEnd.Enabled = (indexActuel < totalElements - 1);
+            }
+            else
+            {
+                lblNavigation.Text = "Aucun événement enregistré";
             }
         }
 
@@ -164,11 +206,11 @@ namespace Formulaire_principal
             }
 
             // Renommer les colonnes pour un affichage plus propre
-            dgvDepenses.Columns["id"].HeaderText = "Numéro de dépense : ";
-            dgvDepenses.Columns["dateD"].HeaderText = "Date de dépense : ";
-            dgvDepenses.Columns["montant"].HeaderText = "Montant en € : ";
-            dgvDepenses.Columns["motif"].HeaderText = "Motif : ";
-            dgvDepenses.Columns["libelleType"].HeaderText = "Catégorie de la dépense : ";
+            dgvDepenses.Columns["id"].HeaderText = "Numéro de dépense";
+            dgvDepenses.Columns["dateD"].HeaderText = "Date de dépense";
+            dgvDepenses.Columns["montant"].HeaderText = "Montant en €";
+            dgvDepenses.Columns["motif"].HeaderText = "Motif";
+            dgvDepenses.Columns["libelleType"].HeaderText = "Catégorie de la dépense";
             dgvDepenses.Columns["libelleType"].DisplayIndex = 6; // Pour choisir l'ordre d'affichage
         }
         private void InitContacts()
@@ -217,10 +259,10 @@ namespace Formulaire_principal
             }
 
             // Renommer les colonnes pour un affichage plus propre :
-            dgvInformateurs.Columns["dateC"].HeaderText = "Date du contact :  ";
-            dgvInformateurs.Columns["sommeVersee"].HeaderText = "Montant en € : ";
-            dgvInformateurs.Columns["appreciation"].HeaderText = "Détail du contact : ";
-            dgvInformateurs.Columns["libelleInformateur"].HeaderText = "Informateur : ";
+            dgvInformateurs.Columns["dateC"].HeaderText = "Date du contact";
+            dgvInformateurs.Columns["sommeVersee"].HeaderText = "Montant en €";
+            dgvInformateurs.Columns["appreciation"].HeaderText = "Détail du contact";
+            dgvInformateurs.Columns["libelleInformateur"].HeaderText = "Informateur";
             dgvInformateurs.Columns["libelleInformateur"].DisplayIndex = 6;
 
             foreach (DataRowView drv in this.bsContacts)
@@ -239,7 +281,7 @@ namespace Formulaire_principal
             //On vérifie si l'instance existe 
             if (bsJournal != null)
             {
-                bsJournal.MoveLast();
+                bsJournal.MoveFirst();
             }
             else
             {
@@ -253,7 +295,7 @@ namespace Formulaire_principal
             //On vérifie si l'instance existe 
             if (bsJournal != null)
             {
-                bsJournal.MoveNext();
+                bsJournal.MovePrevious();
             }
             else
             {
@@ -274,7 +316,7 @@ namespace Formulaire_principal
             //On vérifie si l'instance existe 
             if (bsJournal != null)
             {
-                bsJournal.MovePrevious();
+                bsJournal.MoveNext();
             }
             else
             {
@@ -288,7 +330,7 @@ namespace Formulaire_principal
             //On vérifie si l'instance existe 
             if (bsJournal != null)
             {
-                bsJournal.MoveFirst();
+                bsJournal.MoveLast();
             }
             else
             {
@@ -433,7 +475,8 @@ namespace Formulaire_principal
                 chartIndiv.ChartAreas.Add(area);
 
                 // Titre : Nom de l'espèce + le taux calculé 
-                chartIndiv.Titles.Add($"Taux de capture :{nomEspece} -> {row["Taux de réussite (%)"]}%");
+                var titrePrincipal = chartIndiv.Titles.Add($"Taux de capture : {nomEspece} ({row["Taux de réussite (%)"]}%)");
+                titrePrincipal.Font = new Font("Kristen ITC", 12, FontStyle.Underline);
 
                 // Configuration de la série en type "Doughnut" (Anneau) ou Pie
                 Series s = new Series("Taux");
@@ -510,12 +553,16 @@ namespace Formulaire_principal
             // Configuration du graphique
             chartBudget.Series.Clear();
             chartBudget.Titles.Clear();
-            chartBudget.Titles.Add("Utilisation du budget de la mission : "+this.idPlanete+"-"+this.idNumero);
+            var titrePrincipal = chartBudget.Titles.Add("Utilisation du budget de la mission : "+this.idPlanete+"-"+this.idNumero);
+            titrePrincipal.Font = new Font("Kristen ITC", 13, FontStyle.Underline);
 
             Series s = new Series("Budget");
+            s.Font = new Font("Kristen ITC", 12);
             s.ChartType = SeriesChartType.Doughnut; // Forme d'anneau pour le design
             s.IsValueShownAsLabel = true;
             s.LabelFormat = "{0} €";
+
+            lblEtatBudget.Font = new Font("Kristen ITC", 10, FontStyle.Bold);
 
             //Gestion du dépassement
             if (reste < 0)
@@ -538,9 +585,18 @@ namespace Formulaire_principal
             else
             {
                 // CAS => BUDGET Ok
-                if (totalDepenses > 0) s.Points.AddXY("Dépenses", totalDepenses);
-                if (totalInformateurs > 0) s.Points.AddXY("Informateurs", totalInformateurs);
-                if (reste > 0) s.Points.AddXY("Disponible", reste);
+                if (totalDepenses > 0)
+                {
+                    s.Points.AddXY("Dépenses", totalDepenses);
+                }
+                if (totalInformateurs > 0)
+                {
+                    s.Points.AddXY("Informateurs", totalInformateurs);
+                }
+                if (reste > 0)
+                {
+                    s.Points.AddXY("Disponible", reste);
+                }
 
                 // Couleurs normales
                 lblEtatBudget.Text = "Budget sous contrôle";
@@ -548,7 +604,10 @@ namespace Formulaire_principal
 
                 // On colore la part "Disponible" en vert clair
                 int idxDispo = s.Points.IndexOf(s.Points.FirstOrDefault(p => p.AxisLabel == "Disponible"));
-                if (idxDispo != -1) s.Points[idxDispo].Color = Color.LightGreen;
+                if (idxDispo != -1)
+                {
+                    s.Points[idxDispo].Color = Color.LightGreen;
+                }
             }
 
             chartBudget.Series.Add(s);
@@ -559,14 +618,14 @@ namespace Formulaire_principal
 
         public void GetDepensesMaximales()
         {
-
-            string sql = $@"SELECT d.dateD || ' - ' || d.motif || ' - ' || d.montant || '€' AS 'Dépenses les plus importantes', m.nomPlanete AS 'Mission', chef.prenom || ' ' || chef.nom AS 'Chef de mission'
+            // on creer une colonne MontantTri pour l'utiliser comme filtre après...
+            string sql = $@"SELECT d.dateD || ' - ' || d.motif || ' - ' || d.montant || '€' AS 'Dépenses les plus importantes', m.nomPlanete AS 'Mission', chef.prenom || ' ' || chef.nom AS 'Chef de mission', d.montant AS 'MontantTri'
                    FROM Depense d JOIN Mission m ON d.nomPlanete = m.nomPlanete AND d.numeroMission = m.numero
                    JOIN Membre chef ON m.matriculeChef = chef.matricule
                    WHERE d.montant = (SELECT MAX(montant)
                                       FROM Depense d2
                                       WHERE d2.nomPlanete = d.nomPlanete AND d2.numeroMission = d.numeroMission)";
-
+            
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(sql, co);
@@ -575,7 +634,22 @@ namespace Formulaire_principal
                 // On peut charger le résultat dans une DataTable pour l'afficher dans un DataGridView
                 DataTable dt = new DataTable();
                 dt.Load(dr);
-                dgvDepenses.DataSource = dt;
+
+                if (dt.Rows.Count > 0)
+                {
+                    dt.DefaultView.Sort = "MontantTri ASC";
+                    dgvDepenses.DataSource = dt;
+
+                    // On cache la colonne technique de tri pour l'ergonomie
+                    dgvDepenses.Columns["MontantTri"].Visible = false;
+
+                    // ON REND LA LIGNE DE LA MISSION ROUGEEEE
+                    this.dgvDepenses.CellFormatting += new DataGridViewCellFormattingEventHandler(dgvDepenses_CellFormatting);
+                }
+                else
+                {
+                    MessageBox.Show("Aucune dépense n'a été enregistrée pour cette mission.");
+                }
 
             }
             catch (SQLiteException err)
@@ -584,12 +658,31 @@ namespace Formulaire_principal
             }
         }
 
+
+        private void dgvDepenses_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // On vérifie que la ligne en cours existe bien (bon index quoi) et que le datagridview possède une colonne Mission
+            if (e.RowIndex >= 0 && dgvDepenses.Columns.Contains("Mission"))
+            {
+                // On récupère la valeur seulement si la colonne est trouvée
+                var cellValue = dgvDepenses.Rows[e.RowIndex].Cells["Mission"].Value;
+
+                if (cellValue != null && cellValue.ToString() == this.idPlanete)   // Si c'est la planète de la mission en cours 
+                {
+                    // Fond rouge et texte blanc pour détacher la ligne du reste
+                    e.CellStyle.BackColor = Color.Red;
+                    e.CellStyle.ForeColor = Color.White;
+                    e.CellStyle.Font = new Font(dgvDepenses.Font, FontStyle.Bold);
+                }
+            }
+        }
+
         public void GetInformateursMoinsPayes(string planete, int numero)
         {
             SQLiteConnection connec = Connexion.Connec;
 
             // Requête complexe avec regroupement et filtre sur agrégation (HAVING)
-            string sql = $@"SELECT i.nomCode, e.nom AS Espece, SUM(c.sommeVersee) AS SommeTotale FROM Informateur i
+            string sql = $@"SELECT i.nom AS [Nom de l'informateur], e.nom AS [Espece], SUM(c.sommeVersee) AS [Somme versée] FROM Informateur i
                             JOIN Espece e ON i.idEspeceEnnemi = e.id
                             JOIN Contact c ON i.nomCode = c.nomCodeInformateur
                             WHERE c.nomPlanete = @planete AND c.numeroMission = @num
@@ -601,7 +694,6 @@ namespace Formulaire_principal
 
             try
             {
-
                 SQLiteCommand cmd = new SQLiteCommand(sql, connec);
                 // Utilisation de paramètres pour sécuriser la saisie (injection SQL) 
                 cmd.Parameters.AddWithValue("@planete", planete);
@@ -612,9 +704,13 @@ namespace Formulaire_principal
                 dt.Load(dr);
 
                 if (dt.Rows.Count > 0)
+                {
                     dgvInformateurs.DataSource = dt;
+                }
                 else
+                {
                     MessageBox.Show("Aucun contact enregistré pour cette mission.");
+                }
             }
             catch (SQLiteException err)
             {
@@ -626,7 +722,7 @@ namespace Formulaire_principal
         {
             // Requête utilisant des sous-requêtes pour calculer les deux totaux indépendamment
             string sql = @"SELECT @p || '-' || @n AS Mission,(SELECT SUM(qteDataBaz) FROM Negocier WHERE nomPlanete=@p AND numeroMission=@n) AS 'DataBaz (kg)',
-                   (SELECT SUM(montant) FROM Depense WHERE nomPlanete=@p AND numeroMission=@n) AS 'Coût Total (€)',
+                   (SELECT SUM(montant) FROM Depense WHERE nomPlanete=@p AND numeroMission=@n) AS [Coût Total (€)],
                    ROUND((SELECT SUM(qteDataBaz) FROM Negocier WHERE nomPlanete=@p AND numeroMission=@n) / 
                          (SELECT SUM(montant) FROM Depense WHERE nomPlanete=@p AND numeroMission=@n), 3) AS 'Rentabilité (kg/€)'";
             try
@@ -658,13 +754,19 @@ namespace Formulaire_principal
 
         private void rdbRenta_CheckedChanged(object sender, EventArgs e)
         {
+            if (rdbRenta.Checked)
+            {
+                dgvBilan.DataSource = null;
+                dgvBilan.Columns.Clear();
 
+                GetRentabiliteMission(this.idPlanete, int.Parse(this.idNumero));
+            }
         }
 
         // =====> Code d'appel et remplissage pour les dgv sur les Informateurs
         private void rdbInformateursMoinsPayees_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbInformateursMoinsPayees.Checked)
+            if (rdbInformateurMoinsPayees.Checked)
             {
                 dgvInformateurs.DataSource = null;
                 dgvInformateurs.Columns.Clear();
@@ -720,5 +822,6 @@ namespace Formulaire_principal
         {
 
         }
+
     }
 }
