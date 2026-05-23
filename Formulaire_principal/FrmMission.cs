@@ -101,7 +101,7 @@ namespace Formulaire_principal
                 {
                     numMiss = 1;
                 }
-                lblNomMission.Text = $"Nom de mission: {nomPlanete}     -";
+                lblNomMission.Text = $"Nom de mission:  {nomPlanete}  -";
                 lblNum.Text = numMiss.ToString();
             }
             catch (SQLiteException err)
@@ -365,6 +365,15 @@ namespace Formulaire_principal
                             }
                         }
                     }
+                    if(lstbPartis.Items.Count == 0)
+                    {
+                        erpPersonnePartis.SetError(lblNomMembre, "Aucun membre trouvé !");
+                    }
+                    else
+                    {
+                        erpPersonnePartis.SetError(lblNomMembre, "");
+                    }
+
                 }
                 catch (SQLiteException err)
                 {
@@ -506,7 +515,11 @@ namespace Formulaire_principal
         private void btnAddSelect_Click(object sender, EventArgs e)
         {
             bool tousajoutes = false;
-            if (lstbPartis.SelectedItem == null)
+            if(lstbPartis.Items.Count == 0)
+            {
+                MessageBox.Show("Aucune sélection possible !");
+            }
+            else if (lstbPartis.SelectedItem == null)
             {
                 MessageBox.Show("Veuillez sélectionner un ou plusieurs élément(s) dans la liste ci-dessus.");
 
@@ -587,8 +600,14 @@ namespace Formulaire_principal
         {
             bool ajouter = true;
             int quantite = Convert.ToInt32(nud1.Value);
-            
-            //On balaie la listebox lstbCaptures pour vérif si notre espèce choisie est déjà dedans
+
+            if(nud1.Value == 0)
+            {
+                MessageBox.Show("Veuillez choisir une quantité de capture pour ajouter l'objectif !");
+            }
+            else
+            {
+                //On balaie la listebox lstbCaptures pour vérif si notre espèce choisie est déjà dedans
             for (int i = 0; i < lstbCaptures.Items.Count; i++)
             {
                 ListItemCapture li = (ListItemCapture)lstbCaptures.Items[i];
@@ -619,6 +638,9 @@ namespace Formulaire_principal
                 lstbCaptures.Items.Add(li);
                 nud1.Value = 0;
             }
+            }
+            
+            
         }
                 
 
@@ -666,6 +688,7 @@ namespace Formulaire_principal
         private void btnSuppSelectCapt_Click(object sender, EventArgs e)
         {
             //Pour supprimer un objectif de lstbCaptures
+
             List<ListItemCapture> remove = new List<ListItemCapture>();
             if (lstbCaptures.SelectedItem == null)
             {
@@ -674,6 +697,8 @@ namespace Formulaire_principal
             }
             else
             {
+                cboCaptures.SelectedIndex = -1;
+                nud1.Value = 0;
                 foreach (ListItemCapture elt in lstbCaptures.SelectedItems)
                 {
                      remove.Add(elt);
@@ -705,13 +730,17 @@ namespace Formulaire_principal
 
         private void RemplirCboChef()
         {
+            //On select les membre qui sont des militaires (matricule commence par M) et qui ne sont pas
+            //entrain de faire une mission !
             try
             {
                 string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
                             AS nomComplet, me.matricule FROM Membre me
                             JOIN Militaire mi ON
                             me.matricule = mi.matriculeMembre
-                            WHERE me.matricule LIKE 'M%'";
+                            WHERE me.matricule LIKE 'M%' AND me.matricule NOT IN 
+                            (SELECT matriculeChef FROM Mission 
+                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE);";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -726,13 +755,19 @@ namespace Formulaire_principal
         }
         private void RemplirCboMembres()
         {
+            //On select les membre qui sont des militaires (matricule commence par M) ou des civils
+            //(matricule commence par C) et qui ne sont pas entrain de faire une mission 
             try
             {
                 string sql = @"SELECT (me.nom || ' ' || me.prenom || ' : Civil - ' || ci.Specialite) 
                             AS nomComplet, me.matricule FROM Membre me
                             JOIN Civil ci ON
                             me.matricule = ci.matriculeMembre
-                            WHERE me.matricule LIKE 'C%'";
+                            WHERE me.matricule LIKE 'C%' AND me.matricule NOT IN
+                                (SELECT matriculeMembre FROM Composer co
+                                JOIN Mission mi ON co.nomPlanete = mi.nomPlanete 
+                                AND co.numeroMission = mi.numero
+                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -741,7 +776,12 @@ namespace Formulaire_principal
                             AS nomComplet, me.matricule FROM Membre me
                             JOIN Militaire mi ON
                             me.matricule = mi.matriculeMembre
-                            WHERE me.matricule != '{cboChef.SelectedValue.ToString()}' AND me.matricule LIKE 'M%'";
+                            WHERE me.matricule != '{cboChef.SelectedValue.ToString()}' AND me.matricule LIKE 'M%'
+                            AND me.matricule NOT IN
+                                (SELECT matriculeMembre FROM Composer co
+                                JOIN Mission mi ON co.nomPlanete = mi.nomPlanete 
+                                AND co.numeroMission = mi.numero
+                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)";
                 SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
                 DataTable dtMilitaires = new DataTable();
                 da2.Fill(dtMilitaires);
