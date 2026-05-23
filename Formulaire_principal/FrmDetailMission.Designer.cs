@@ -81,19 +81,20 @@
             // lblNomMission
             // 
             this.lblNomMission.AutoSize = true;
-            this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.ForeColor = System.Drawing.Color.Goldenrod;
             this.lblNomMission.Location = new System.Drawing.Point(617, 32);
             this.lblNomMission.Name = "lblNomMission";
-            this.lblNomMission.Size = new System.Drawing.Size(139, 39);
+            this.lblNomMission.Size = new System.Drawing.Size(157, 42);
             this.lblNomMission.TabIndex = 0;
-            this.lblNomMission.Text = "Mission :";
+            this.lblNomMission.Text = "Mission : ";
             // 
             // picMission
             // 
             this.picMission.Location = new System.Drawing.Point(25, 29);
             this.picMission.Name = "picMission";
             this.picMission.Size = new System.Drawing.Size(168, 154);
-            this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picMission.TabIndex = 2;
             this.picMission.TabStop = false;
             // 
@@ -113,9 +114,9 @@
             this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBudget.Location = new System.Drawing.Point(212, 155);
             this.lblBudget.Name = "lblBudget";
-            this.lblBudget.Size = new System.Drawing.Size(89, 28);
+            this.lblBudget.Size = new System.Drawing.Size(101, 28);
             this.lblBudget.TabIndex = 5;
-            this.lblBudget.Text = "Budget ";
+            this.lblBudget.Text = "Budget : ";
             // 
             // lblSoldeApresDepenses
             // 
@@ -130,15 +131,16 @@
             // flpEquipage
             // 
             this.flpEquipage.AutoScroll = true;
-            this.flpEquipage.Location = new System.Drawing.Point(25, 362);
+            this.flpEquipage.Location = new System.Drawing.Point(25, 393);
             this.flpEquipage.Name = "flpEquipage";
-            this.flpEquipage.Size = new System.Drawing.Size(841, 272);
+            this.flpEquipage.Size = new System.Drawing.Size(841, 241);
             this.flpEquipage.TabIndex = 7;
             // 
             // flpObjectifCaptures
             // 
             this.flpObjectifCaptures.AutoScroll = true;
             this.flpObjectifCaptures.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpObjectifCaptures.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flpObjectifCaptures.Location = new System.Drawing.Point(28, 680);
             this.flpObjectifCaptures.Name = "flpObjectifCaptures";
             this.flpObjectifCaptures.Size = new System.Drawing.Size(671, 109);
@@ -156,10 +158,11 @@
             // 
             // rtbFeuilleDeRoute
             // 
+            this.rtbFeuilleDeRoute.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(25, 239);
             this.rtbFeuilleDeRoute.Name = "rtbFeuilleDeRoute";
             this.rtbFeuilleDeRoute.ReadOnly = true;
-            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(841, 77);
+            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(841, 107);
             this.rtbFeuilleDeRoute.TabIndex = 8;
             this.rtbFeuilleDeRoute.Text = "";
             // 
@@ -167,7 +170,7 @@
             // 
             this.lblMembres.AutoSize = true;
             this.lblMembres.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMembres.Location = new System.Drawing.Point(22, 331);
+            this.lblMembres.Location = new System.Drawing.Point(20, 362);
             this.lblMembres.Name = "lblMembres";
             this.lblMembres.Size = new System.Drawing.Size(252, 28);
             this.lblMembres.TabIndex = 9;
@@ -210,11 +213,11 @@
             this.tbcNouvEvnmt.Controls.Add(this.tbcNouvDepense);
             this.tbcNouvEvnmt.Controls.Add(this.tbcEvnmt);
             this.tbcNouvEvnmt.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbcNouvEvnmt.Location = new System.Drawing.Point(950, 67);
+            this.tbcNouvEvnmt.Location = new System.Drawing.Point(960, 110);
             this.tbcNouvEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.tbcNouvEvnmt.Name = "tbcNouvEvnmt";
             this.tbcNouvEvnmt.SelectedIndex = 0;
-            this.tbcNouvEvnmt.Size = new System.Drawing.Size(774, 722);
+            this.tbcNouvEvnmt.Size = new System.Drawing.Size(741, 679);
             this.tbcNouvEvnmt.TabIndex = 10;
             // 
             // tpNouvContact
@@ -233,7 +236,7 @@
             this.tpNouvContact.Margin = new System.Windows.Forms.Padding(2);
             this.tpNouvContact.Name = "tpNouvContact";
             this.tpNouvContact.Padding = new System.Windows.Forms.Padding(2);
-            this.tpNouvContact.Size = new System.Drawing.Size(766, 681);
+            this.tpNouvContact.Size = new System.Drawing.Size(733, 638);
             this.tpNouvContact.TabIndex = 0;
             this.tpNouvContact.Text = "Nouveau Contact";
             this.tpNouvContact.UseVisualStyleBackColor = true;
@@ -261,12 +264,12 @@
             this.txtAppreciation.Margin = new System.Windows.Forms.Padding(2);
             this.txtAppreciation.Multiline = true;
             this.txtAppreciation.Name = "txtAppreciation";
-            this.txtAppreciation.Size = new System.Drawing.Size(486, 270);
+            this.txtAppreciation.Size = new System.Drawing.Size(486, 148);
             this.txtAppreciation.TabIndex = 17;
             // 
             // btnValidNouvC
             // 
-            this.btnValidNouvC.Location = new System.Drawing.Point(585, 612);
+            this.btnValidNouvC.Location = new System.Drawing.Point(551, 559);
             this.btnValidNouvC.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidNouvC.Name = "btnValidNouvC";
             this.btnValidNouvC.Size = new System.Drawing.Size(146, 50);
@@ -277,7 +280,7 @@
             // 
             // btnAnnulNouvC
             // 
-            this.btnAnnulNouvC.Location = new System.Drawing.Point(405, 612);
+            this.btnAnnulNouvC.Location = new System.Drawing.Point(371, 559);
             this.btnAnnulNouvC.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnulNouvC.Name = "btnAnnulNouvC";
             this.btnAnnulNouvC.Size = new System.Drawing.Size(146, 50);
@@ -291,7 +294,7 @@
             this.cboInformateur.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboInformateur.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboInformateur.FormattingEnabled = true;
-            this.cboInformateur.Location = new System.Drawing.Point(214, 556);
+            this.cboInformateur.Location = new System.Drawing.Point(214, 436);
             this.cboInformateur.Margin = new System.Windows.Forms.Padding(2);
             this.cboInformateur.Name = "cboInformateur";
             this.cboInformateur.Size = new System.Drawing.Size(357, 36);
@@ -300,7 +303,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 564);
+            this.label5.Location = new System.Drawing.Point(47, 444);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(144, 28);
@@ -353,7 +356,7 @@
             this.tbcNouvDepense.Margin = new System.Windows.Forms.Padding(2);
             this.tbcNouvDepense.Name = "tbcNouvDepense";
             this.tbcNouvDepense.Padding = new System.Windows.Forms.Padding(2);
-            this.tbcNouvDepense.Size = new System.Drawing.Size(766, 681);
+            this.tbcNouvDepense.Size = new System.Drawing.Size(733, 638);
             this.tbcNouvDepense.TabIndex = 1;
             this.tbcNouvDepense.Text = "Nouvelle dépense";
             this.tbcNouvDepense.UseVisualStyleBackColor = true;
@@ -381,12 +384,12 @@
             this.txtMotif.Margin = new System.Windows.Forms.Padding(2);
             this.txtMotif.Multiline = true;
             this.txtMotif.Name = "txtMotif";
-            this.txtMotif.Size = new System.Drawing.Size(486, 270);
+            this.txtMotif.Size = new System.Drawing.Size(486, 177);
             this.txtMotif.TabIndex = 17;
             // 
             // btnValidDepense
             // 
-            this.btnValidDepense.Location = new System.Drawing.Point(585, 612);
+            this.btnValidDepense.Location = new System.Drawing.Point(551, 559);
             this.btnValidDepense.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidDepense.Name = "btnValidDepense";
             this.btnValidDepense.Size = new System.Drawing.Size(146, 50);
@@ -397,7 +400,7 @@
             // 
             // btnAnnulNouvD
             // 
-            this.btnAnnulNouvD.Location = new System.Drawing.Point(405, 612);
+            this.btnAnnulNouvD.Location = new System.Drawing.Point(371, 559);
             this.btnAnnulNouvD.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnulNouvD.Name = "btnAnnulNouvD";
             this.btnAnnulNouvD.Size = new System.Drawing.Size(146, 50);
@@ -411,7 +414,7 @@
             this.cboTypeDepense.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboTypeDepense.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTypeDepense.FormattingEnabled = true;
-            this.cboTypeDepense.Location = new System.Drawing.Point(289, 555);
+            this.cboTypeDepense.Location = new System.Drawing.Point(289, 456);
             this.cboTypeDepense.Margin = new System.Windows.Forms.Padding(2);
             this.cboTypeDepense.Name = "cboTypeDepense";
             this.cboTypeDepense.Size = new System.Drawing.Size(357, 36);
@@ -420,7 +423,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(47, 558);
+            this.label6.Location = new System.Drawing.Point(47, 459);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(186, 28);
@@ -469,7 +472,7 @@
             this.tbcEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.tbcEvnmt.Name = "tbcEvnmt";
             this.tbcEvnmt.Padding = new System.Windows.Forms.Padding(2);
-            this.tbcEvnmt.Size = new System.Drawing.Size(766, 681);
+            this.tbcEvnmt.Size = new System.Drawing.Size(733, 638);
             this.tbcEvnmt.TabIndex = 2;
             this.tbcEvnmt.Text = "Nouvel évènement";
             this.tbcEvnmt.UseVisualStyleBackColor = true;
@@ -488,12 +491,12 @@
             this.txtCommentaires.Margin = new System.Windows.Forms.Padding(2);
             this.txtCommentaires.Multiline = true;
             this.txtCommentaires.Name = "txtCommentaires";
-            this.txtCommentaires.Size = new System.Drawing.Size(591, 270);
+            this.txtCommentaires.Size = new System.Drawing.Size(645, 252);
             this.txtCommentaires.TabIndex = 14;
             // 
             // btnValidEvnmt
             // 
-            this.btnValidEvnmt.Location = new System.Drawing.Point(585, 612);
+            this.btnValidEvnmt.Location = new System.Drawing.Point(551, 559);
             this.btnValidEvnmt.Margin = new System.Windows.Forms.Padding(2);
             this.btnValidEvnmt.Name = "btnValidEvnmt";
             this.btnValidEvnmt.Size = new System.Drawing.Size(146, 50);
@@ -504,7 +507,7 @@
             // 
             // btnAnnulNouvE
             // 
-            this.btnAnnulNouvE.Location = new System.Drawing.Point(405, 612);
+            this.btnAnnulNouvE.Location = new System.Drawing.Point(371, 559);
             this.btnAnnulNouvE.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnulNouvE.Name = "btnAnnulNouvE";
             this.btnAnnulNouvE.Size = new System.Drawing.Size(146, 50);

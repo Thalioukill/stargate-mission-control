@@ -40,10 +40,10 @@
             // 
             // picMission
             // 
-            this.picMission.Location = new System.Drawing.Point(30, 17);
+            this.picMission.Location = new System.Drawing.Point(27, 24);
             this.picMission.Name = "picMission";
-            this.picMission.Size = new System.Drawing.Size(213, 187);
-            this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picMission.Size = new System.Drawing.Size(197, 170);
+            this.picMission.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picMission.TabIndex = 1;
             this.picMission.TabStop = false;
             // 

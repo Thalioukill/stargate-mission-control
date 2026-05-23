@@ -51,7 +51,6 @@
             this.tsmiMission = new System.Windows.Forms.ToolStripMenuItem();
             this.tmsiPlanete = new System.Windows.Forms.ToolStripMenuItem();
             this.tmsiAliens = new System.Windows.Forms.ToolStripMenuItem();
-            this.statistiquesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plPlanetes = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.lblPlanetes = new System.Windows.Forms.Label();
@@ -145,7 +144,7 @@
             this.plMissions.Controls.Add(this.grpFiltres);
             this.plMissions.Controls.Add(this.label21);
             this.plMissions.Controls.Add(this.flpMissions);
-            this.plMissions.Location = new System.Drawing.Point(393, 30);
+            this.plMissions.Location = new System.Drawing.Point(393, 27);
             this.plMissions.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.plMissions.Name = "plMissions";
             this.plMissions.Size = new System.Drawing.Size(1493, 1030);
@@ -313,79 +312,78 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Kristen ITC", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("Kristen ITC", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(29, 22);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(297, 45);
+            this.label21.Size = new System.Drawing.Size(312, 45);
             this.label21.TabIndex = 3;
             this.label21.Text = "Tableau de Bord";
             // 
             // msMenu
             // 
+            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
             this.msMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.msMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiTableauDeBord,
             this.tsmiMission,
             this.tmsiPlanete,
-            this.tmsiAliens,
-            this.statistiquesToolStripMenuItem});
+            this.tmsiAliens});
             this.msMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.MinimumSize = new System.Drawing.Size(267, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.msMenu.Size = new System.Drawing.Size(267, 752);
+            this.msMenu.Size = new System.Drawing.Size(295, 1060);
             this.msMenu.Stretch = false;
             this.msMenu.TabIndex = 0;
             this.msMenu.Text = "menuStrip1";
             // 
             // tsmiTableauDeBord
             // 
-            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.Transparent;
-            this.tsmiTableauDeBord.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmiTableauDeBord.Margin = new System.Windows.Forms.Padding(15, 95, 2, 1);
+            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.tsmiTableauDeBord.Checked = true;
+            this.tsmiTableauDeBord.CheckOnClick = true;
+            this.tsmiTableauDeBord.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmiTableauDeBord.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiTableauDeBord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
+            this.tsmiTableauDeBord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsmiTableauDeBord.Margin = new System.Windows.Forms.Padding(15, 160, 2, 1);
             this.tsmiTableauDeBord.Name = "tsmiTableauDeBord";
-            this.tsmiTableauDeBord.Size = new System.Drawing.Size(213, 34);
-            this.tsmiTableauDeBord.Text = "Tableau de bord";
+            this.tsmiTableauDeBord.Size = new System.Drawing.Size(271, 34);
+            this.tsmiTableauDeBord.Text = "★ Tableau de bord  ";
             this.tsmiTableauDeBord.Click += new System.EventHandler(this.tsmiTableauDeBord_Click);
             // 
             // tsmiMission
             // 
             this.tsmiMission.BackColor = System.Drawing.Color.Transparent;
-            this.tsmiMission.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiMission.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmiMission.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
             this.tsmiMission.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
             this.tsmiMission.Name = "tsmiMission";
-            this.tsmiMission.Size = new System.Drawing.Size(227, 34);
-            this.tsmiMission.Text = "Créer une mission";
+            this.tsmiMission.Size = new System.Drawing.Size(271, 34);
+            this.tsmiMission.Text = "★ Créer une mission";
             this.tsmiMission.Click += new System.EventHandler(this.tsmiMission_Click);
             // 
             // tmsiPlanete
             // 
-            this.tmsiPlanete.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmsiPlanete.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmsiPlanete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
             this.tmsiPlanete.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
             this.tmsiPlanete.Name = "tmsiPlanete";
-            this.tmsiPlanete.Size = new System.Drawing.Size(123, 34);
-            this.tmsiPlanete.Text = "Planètes";
+            this.tmsiPlanete.Size = new System.Drawing.Size(270, 34);
+            this.tmsiPlanete.Text = "★ Planètes              ";
             this.tmsiPlanete.Click += new System.EventHandler(this.tmsiPlanete_Click);
             // 
             // tmsiAliens
             // 
-            this.tmsiAliens.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmsiAliens.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmsiAliens.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
             this.tmsiAliens.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
             this.tmsiAliens.Name = "tmsiAliens";
-            this.tmsiAliens.Size = new System.Drawing.Size(97, 34);
-            this.tmsiAliens.Text = "Aliens";
+            this.tmsiAliens.Size = new System.Drawing.Size(266, 34);
+            this.tmsiAliens.Text = "★ Aliens                 ";
             this.tmsiAliens.Click += new System.EventHandler(this.tmsiAliens_Click);
-            // 
-            // statistiquesToolStripMenuItem
-            // 
-            this.statistiquesToolStripMenuItem.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statistiquesToolStripMenuItem.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
-            this.statistiquesToolStripMenuItem.Name = "statistiquesToolStripMenuItem";
-            this.statistiquesToolStripMenuItem.Size = new System.Drawing.Size(162, 34);
-            this.statistiquesToolStripMenuItem.Text = "Statistiques";
-            this.statistiquesToolStripMenuItem.Click += new System.EventHandler(this.statistiquesToolStripMenuItem_Click);
             // 
             // plPlanetes
             // 
@@ -403,11 +401,11 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Kristen ITC", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Kristen ITC", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(29, 22);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(153, 42);
+            this.label22.Size = new System.Drawing.Size(180, 45);
             this.label22.TabIndex = 4;
             this.label22.Text = "Planètes ";
             // 
@@ -451,11 +449,11 @@
             this.grpFiltre.Controls.Add(this.label19);
             this.grpFiltre.Controls.Add(this.label20);
             this.grpFiltre.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltre.Location = new System.Drawing.Point(38, 67);
+            this.grpFiltre.Location = new System.Drawing.Point(36, 100);
             this.grpFiltre.Margin = new System.Windows.Forms.Padding(5);
             this.grpFiltre.Name = "grpFiltre";
             this.grpFiltre.Padding = new System.Windows.Forms.Padding(5);
-            this.grpFiltre.Size = new System.Drawing.Size(758, 906);
+            this.grpFiltre.Size = new System.Drawing.Size(758, 872);
             this.grpFiltre.TabIndex = 3;
             this.grpFiltre.TabStop = false;
             this.grpFiltre.Text = "Filtres";
@@ -484,7 +482,7 @@
             // 
             // btnReinitialiser
             // 
-            this.btnReinitialiser.Location = new System.Drawing.Point(43, 845);
+            this.btnReinitialiser.Location = new System.Drawing.Point(39, 821);
             this.btnReinitialiser.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiser.Name = "btnReinitialiser";
             this.btnReinitialiser.Size = new System.Drawing.Size(225, 51);
@@ -495,7 +493,7 @@
             // 
             // btnRechercher
             // 
-            this.btnRechercher.Location = new System.Drawing.Point(541, 834);
+            this.btnRechercher.Location = new System.Drawing.Point(540, 821);
             this.btnRechercher.Margin = new System.Windows.Forms.Padding(5);
             this.btnRechercher.Name = "btnRechercher";
             this.btnRechercher.Size = new System.Drawing.Size(188, 51);
@@ -579,7 +577,7 @@
             // 
             // txtMaxGrav
             // 
-            this.txtMaxGrav.Location = new System.Drawing.Point(194, 338);
+            this.txtMaxGrav.Location = new System.Drawing.Point(199, 333);
             this.txtMaxGrav.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaxGrav.Name = "txtMaxGrav";
             this.txtMaxGrav.Size = new System.Drawing.Size(175, 35);
@@ -589,7 +587,7 @@
             // 
             // txtMinGrav
             // 
-            this.txtMinGrav.Location = new System.Drawing.Point(194, 285);
+            this.txtMinGrav.Location = new System.Drawing.Point(199, 280);
             this.txtMinGrav.Margin = new System.Windows.Forms.Padding(5);
             this.txtMinGrav.Name = "txtMinGrav";
             this.txtMinGrav.Size = new System.Drawing.Size(175, 35);
@@ -600,7 +598,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(129, 292);
+            this.label5.Location = new System.Drawing.Point(134, 287);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 28);
@@ -610,7 +608,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(127, 340);
+            this.label7.Location = new System.Drawing.Point(132, 335);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 28);
@@ -878,11 +876,11 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Kristen ITC", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("Kristen ITC", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(29, 22);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(110, 42);
+            this.label23.Size = new System.Drawing.Size(128, 45);
             this.label23.TabIndex = 8;
             this.label23.Text = "Aliens";
             // 
@@ -1137,9 +1135,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 752);
-            this.Controls.Add(this.plPlanetes);
+            this.ClientSize = new System.Drawing.Size(1924, 1060);
             this.Controls.Add(this.plAliens);
+            this.Controls.Add(this.plPlanetes);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.plMissions);
             this.Name = "FrmAccueil";
@@ -1224,7 +1222,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.FlowLayoutPanel flpPlanete;
         private System.Windows.Forms.Label lblPlanetes;
-        private System.Windows.Forms.ToolStripMenuItem statistiquesToolStripMenuItem;
         private System.Windows.Forms.GroupBox grpFiltresAlliees;
         private System.Windows.Forms.Button btnReinitialiserBienveillance;
         private System.Windows.Forms.Button btnReinitialiserCouleurAlliees;

@@ -41,6 +41,7 @@ namespace Formulaire_principal
             chargerEspeces();
             charger_planetes();
 
+            msMenu.Renderer = new MyRenderer();
 
 
             /* Vérification de la connection : 
@@ -332,12 +333,56 @@ namespace Formulaire_principal
         }
 
 
+
         // =======> Code TABLEAU DE BORD
 
         private void tsmiTableauDeBord_Click(object sender, EventArgs e)
         {
             ActualiserPanel(plMissions);
             ActualiserAffichage();
+        }
+
+        private class MyRenderer : ToolStripProfessionalRenderer
+        {
+            public MyRenderer() : base(new MyColors()) { }
+
+            protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+            {
+                if (e.Item.Selected) // Si la souris survole l'élément
+                {
+                    // On définit la couleur du texte au survol (ex: Blanc ou Noir selon le contraste)
+                    e.TextColor = Color.FromArgb(229, 255, 204); // Blanc en RGB
+                }
+                else
+                {
+                    // On définit la couleur du texte au repos
+                    e.TextColor = Color.FromArgb(0, 51, 25);
+                }
+                base.OnRenderItemText(e);
+            }
+        }
+
+        // La table des couleurs qui gère le FOND (Background)
+        private class MyColors : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected
+            {
+                get { return Color.FromArgb(30, 75, 0); }
+            }
+            public override Color MenuItemSelectedGradientBegin
+            {
+                get { return Color.FromArgb(0, 51, 25); } 
+            }
+            public override Color MenuItemSelectedGradientEnd
+            {
+                get { return Color.FromArgb(102, 204, 0); }
+            }
+
+            // Pour supprimer la bordure moche autour de la sélection
+            public override Color MenuItemBorder
+            {
+                get { return Color.Transparent; }
+            }
         }
 
         // La méthode qui reçoit la délégation du clic

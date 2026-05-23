@@ -49,6 +49,10 @@ namespace Formulaire_principal
             ChargerCboInformateur();
             ChargerCboTypeDepense();
 
+            ColorerMotCle(rtbFeuilleDeRoute, "DataBaz", Color.BlueViolet);
+            ColorerMotCle(rtbFeuilleDeRoute, "Captures", Color.OrangeRed);
+            ColorerMotCle(rtbFeuilleDeRoute, "Informateur", Color.ForestGreen);
+            ColorerMotCle(rtbFeuilleDeRoute, "Dépenses", Color.IndianRed);
 
 
 
@@ -138,6 +142,29 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        public void ColorerMotCle(RichTextBox rtb, string mot, Color couleur)
+        {
+            int index = 0;
+            // On cherche toutes les occurrences du mot dans le texte
+            while ((index = rtb.Find(mot, index, RichTextBoxFinds.None)) != -1)
+            {
+                //On sélectionne le mot trouvé
+                rtb.Select(index, mot.Length);
+
+                // On lui donne la couleur souhaitée
+                rtb.SelectionColor = couleur;
+
+                rtb.SelectionFont = new Font(rtb.Font, FontStyle.Bold);
+
+                // On passe à la suite du texte pour trouver l'occurrence suivante
+                index += mot.Length;
+            }
+
+            // IMPORTANT : On remet le curseur à la fin et on réinitialise la couleur
+            rtb.SelectionStart = rtb.Text.Length;
+            rtb.SelectionColor = rtb.ForeColor;
         }
 
         private void AfficherEquipage()
