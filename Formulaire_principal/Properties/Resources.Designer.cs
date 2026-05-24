@@ -103,6 +103,26 @@ namespace Formulaire_principal.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap oeil {
+            get {
+                object obj = ResourceManager.GetObject("oeil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oeil1 {
+            get {
+                object obj = ResourceManager.GetObject("oeil1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap supprimer {
             get {
                 object obj = ResourceManager.GetObject("supprimer", resourceCulture);
