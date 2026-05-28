@@ -1149,6 +1149,7 @@
             this.Controls.Add(this.plAliens);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.plMissions);
+            this.Controls.Add(this.plPlanetes);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "FrmAccueil";
