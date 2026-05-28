@@ -74,12 +74,12 @@ namespace Formulaire_principal
                     if (valide)
                     {
                         MettreaJourDS();
-                        MessageBox.Show("Accès autorisé, mot de passe incorect", "Authentification");
+                        MessageBox.Show("Accès autorisé", "Authentification");
                         this.DialogResult = DialogResult.OK;
                     }
                     else
                     {
-                        MessageBox.Show("Accès refusé", "Authentification");
+                        MessageBox.Show("Accès refusé, mot de passe incorect", "Authentification");
                         txtMdp.Text = "";
                     }
                 }

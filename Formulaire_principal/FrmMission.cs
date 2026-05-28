@@ -125,10 +125,10 @@ namespace Formulaire_principal
             //si < 0 alors instance précède value
             //si = 0 alors instance à la même position que value en terme de trie
             //si > 0 alors instance est après value
-            else if (dtpDepart.Value.Date.CompareTo(dtpRetour.Value.Date) > 0)
+            else if (dtpDepart.Value.Date.CompareTo(dtpRetour.Value.Date) >= 0)
             {
 
-                MessageBox.Show("La date de départ ne peut pas être après la date de retour, et la date de retour ne peut pas être avant la date de départ !");
+                MessageBox.Show("La date de départ ne peut pas être après la date de retour, la date de retour ne peut pas être avant la date de départ, et les missions sur un jour n'existent pas !");
 
             }
             else if (txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
@@ -386,39 +386,47 @@ namespace Formulaire_principal
 
         private void btnAddMembre_Click(object sender, EventArgs e)
         {
-            //On ajoute le membre sélectionné dans cboMembres dans lstbMembres sous forme de ListItemMembre
-            //On vérifie s'il reste des membres à ajouter
-            int reste = int.Parse(lblreste.Text);
-            if (reste > 0)
+            if(cboMembres.SelectedIndex == -1)
             {
-                List<string> values = new List<string>();
-                ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
-                for (int i = 0; i < lstbMembres.Items.Count; i++)
-                {
-                    values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
-                }
-                if (!values.Contains(li.Value))
-                {
-                    reste -= 1;
-                    lblreste.Text = reste.ToString();
-                    lstbMembres.Items.Add(li);
-                }
-                else
-                {
-                    MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
-                }
+                MessageBox.Show("Veuillez entrer un membre valide");
             }
             else
             {
-                MessageBox.Show("Tous les membres ont déjà été ajoutés !");
-                
+                //On ajoute le membre sélectionné dans cboMembres dans lstbMembres sous forme de ListItemMembre
+                //On vérifie s'il reste des membres à ajouter
+                int reste = int.Parse(lblreste.Text);
+                if (reste > 0)
+                {
+                    List<string> values = new List<string>();
+                    ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
+                    for (int i = 0; i < lstbMembres.Items.Count; i++)
+                    {
+                        values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
+                    }
+                    if (!values.Contains(li.Value))
+                    {
+                        reste -= 1;
+                        lblreste.Text = reste.ToString();
+                        lstbMembres.Items.Add(li);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{cboMembres.Text} déjà présent dans la liste !");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Tous les membres ont déjà été ajoutés !");
+
+                }
             }
+            
             
         }
 
         private void btnRefaire_Click(object sender, EventArgs e)
         {
-            if(lstbPartis.Items.Count == 0)
+            if (lstbPartis.Items.Count == 0)
             {
                 MessageBox.Show("Aucun modèle d'équipe disponible !");
             }
@@ -431,22 +439,46 @@ namespace Formulaire_principal
                 //On vérifie si on a demandé assez de membre dans la mission pour refaire l'équipe ou s'il reste des membres à ajouter
                 if (reste2 >= lstbPartis.Items.Count + 1 && (reste - lstbPartis.Items.Count) > 0)
                 {
-                    //On retire tout de lstbMembres sauf le chef à l'index 0
-                    while (lstbMembres.Items.Count > 1)
+                    bool valide = true;
+                    //On mets les valeurs de nos ListItemMembre de lstbMembres dans une liste
+                    List<string> values = new List<string>();
+                    for (int i = 0; i < lstbMembres.Items.Count; i++)
                     {
-                        lstbMembres.Items.RemoveAt(1);
+                        values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
                     }
-                    ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
-                    lstbMembres.Items.Add(li);
-                    reste --;
-                    reste -= lstbPartis.Items.Count;
-                    lblreste.Text = reste.ToString();
-                    foreach (ListItemMembre li2 in lstbPartis.Items)
+
+                    //On peut comparer pour chaque valeur de lstbPartis si elle ne correspond pas à une valeur de notre liste
+                    //Sinon, membre déjà présent
+                    foreach (ListItemMembre lim in lstbPartis.Items)
                     {
-
-                        lstbMembres.Items.Add(li2);
-
+                        if (values.Contains(lim.Value))
+                        {
+                            MessageBox.Show($"Impossible de refaire la même équipe, un membre est déjà présent dans les membres ajoutés !");
+                            valide = false;
+                            break;
+                        }
                     }
+
+                    if(valide)
+                    {
+                        //On retire tout de lstbMembres sauf le chef à l'index 0
+                        while (lstbMembres.Items.Count > 1)
+                        {
+                            lstbMembres.Items.RemoveAt(1);
+                        }
+                        ListItemMembre li = new ListItemMembre { Name = cboMembres.Text, Value = cboMembres.SelectedValue.ToString() };
+                        lstbMembres.Items.Add(li);
+                        reste--;
+                        reste -= lstbPartis.Items.Count;
+                        lblreste.Text = reste.ToString();
+                        foreach (ListItemMembre li2 in lstbPartis.Items)
+                        {
+
+                            lstbMembres.Items.Add(li2);
+
+                        }
+                    }
+                    
                 }
 
                 else
@@ -454,9 +486,6 @@ namespace Formulaire_principal
                     MessageBox.Show("Impossible de refaire la même équipe (trop de membres) !");
                 }
             }
-            
-            
-            
         }
 
         private void btnvalidMembres_Click(object sender, EventArgs e)
@@ -482,34 +511,35 @@ namespace Formulaire_principal
                 {
                     MessageBox.Show(err.Message);
                 }
+                //On insère nos membres dans la base 
+                for (int i = 1; i < lstbMembres.Items.Count; i++)
+                {
+
+                    try
+                    {
+
+                        string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
+                            (@nomPlanete, @numeroMission, @matriculeMembre)";
+
+
+
+                        SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                        cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
+                        cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                        cmd.Parameters.AddWithValue("matriculeMembre", ((ListItemMembre)lstbMembres.Items[i]).Value);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException err)
+                    {
+                        MessageBox.Show(err.Message);
+                    }
+                }
+                MessageBox.Show("Membres ajoutés !");
+                PartieTroisUtilisable();
             }
             
 
-            //On insère nos membres dans la base 
-            for (int i = 1; i < lstbMembres.Items.Count; i++)
-            {
-                
-                try
-                {
-
-                    string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
-                            (@nomPlanete, @numeroMission, @matriculeMembre)";
-
-                    
-
-                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                    cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
-                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
-                    cmd.Parameters.AddWithValue("matriculeMembre", ((ListItemMembre)lstbMembres.Items[i]).Value);
-                    cmd.ExecuteNonQuery();
-                }
-                catch(SQLiteException err)
-                {
-                    MessageBox.Show(err.Message);
-                }
-            }
-            MessageBox.Show("Membres ajoutés !");
-            PartieTroisUtilisable();
+            
         }
 
         private void btnAddSelect_Click(object sender, EventArgs e)
@@ -598,47 +628,57 @@ namespace Formulaire_principal
 
         private void btnAddCapture_Click(object sender, EventArgs e)
         {
-            bool ajouter = true;
-            int quantite = Convert.ToInt32(nud1.Value);
-
-            if(nud1.Value == 0)
+            if(cboCaptures.SelectedIndex == -1)
             {
-                MessageBox.Show("Veuillez choisir une quantité de capture pour ajouter l'objectif !");
+                MessageBox.Show("Entrez une espèce valide !");
             }
             else
             {
-                //On balaie la listebox lstbCaptures pour vérif si notre espèce choisie est déjà dedans
-            for (int i = 0; i < lstbCaptures.Items.Count; i++)
-            {
-                ListItemCapture li = (ListItemCapture)lstbCaptures.Items[i];
-                if (li.Value == int.Parse(cboCaptures.SelectedValue.ToString()))
-                {
-                    //Si oui, on augmente sa quantité voulue*
-                    int nouvelleq = li.Quantite + quantite;
-                    if(nouvelleq > 200)
-                    {
-                        MessageBox.Show("Ca fait beaucoup là non ?");
-                    }
-                    else
-                    {
-                        li.Quantite += quantite;
+                bool ajouter = true;
+                int quantite = Convert.ToInt32(nud1.Value);
 
-                        li.Name = cboCaptures.Text + "--> objectif de capture : " + li.Quantite.ToString();
-                        //Dans ce cas pas besoin d'ajouter l'espèce à la liste
-                        lstbCaptures.Items[i] = li;
+                if (nud1.Value == 0)
+                {
+                    MessageBox.Show("Veuillez choisir une quantité de capture pour ajouter l'objectif !");
+                }
+                else
+                {
+                    //On balaie la listebox lstbCaptures pour vérif si notre espèce choisie est déjà dedans
+                    for (int i = 0; i < lstbCaptures.Items.Count; i++)
+                    {
+                        ListItemCapture li = (ListItemCapture)lstbCaptures.Items[i];
+                        if (li.Value == int.Parse(cboCaptures.SelectedValue.ToString()))
+                        {
+                            //Si oui, on augmente sa quantité voulue*
+                            int nouvelleq = li.Quantite + quantite;
+                            if (nouvelleq > 100)
+                            {
+                                MessageBox.Show("Ca fait beaucoup là non ?");
+                                nud1.Value = 0;
+                                ajouter = false;
+                            }
+                            else
+                            {
+                                li.Quantite += quantite;
+
+                                li.Name = cboCaptures.Text + "--> objectif de capture : " + li.Quantite.ToString();
+                                //Dans ce cas pas besoin d'ajouter l'espèce à la liste
+                                lstbCaptures.Items[i] = li;
+                                nud1.Value = 0;
+                                ajouter = false;
+                            }
+                        }
+                    }
+                    if (ajouter)
+                    {
+                        string texte = cboCaptures.Text + "--> objectif de capture : " + nud1.Value.ToString();
+                        ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()), Quantite = Convert.ToInt32(nud1.Value) };
+                        lstbCaptures.Items.Add(li);
                         nud1.Value = 0;
-                        ajouter = false;
                     }
                 }
-            }  
-            if(ajouter)
-            {
-                string texte = cboCaptures.Text + "--> objectif de capture : " + nud1.Value.ToString();
-                ListItemCapture li = new ListItemCapture { Name = texte, Value = int.Parse(cboCaptures.SelectedValue.ToString()), Quantite = Convert.ToInt32(nud1.Value) };
-                lstbCaptures.Items.Add(li);
-                nud1.Value = 0;
             }
-            }
+            
             
             
         }
