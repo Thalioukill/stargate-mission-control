@@ -19,13 +19,21 @@ namespace Formulaire_principal
         public InfoPlanete(string nom, string temperature, string gravite, string dataBazON, string especes, string pourcentages, string missions)
         {
             InitializeComponent();
-            lblNom.Text = nom;
-            lblTemperature.Text = temperature;
-            lblGravite.Text = gravite;
-            lblDataBaz.Text = dataBazON;
-            lblEspeces.Text = especes;
-            lblPourcentage.Text = pourcentages;
-            lblMission.Text = missions;
+            lblNom.Text = "Nom : " + nom;
+            lblTemperature.Text = "Température : " + temperature;
+            lblGravite.Text = "Gravité : " + gravite;
+            if(dataBazON == "1")
+            {
+                dataBazON = "Présent";
+            }
+            else
+            {
+                dataBazON = "Non présent";
+            }
+            lblDataBaz.Text = "DataBAZ : " + dataBazON;
+            lblEspeces.Text = "Espèces : " + especes;
+            lblPourcentage.Text = "Pourcentage : " + pourcentages;
+            lblMission.Text = "Nombres de missions effectuées : " + missions;
             if (nom != string.Empty)
             {
                 picPlanete.Image = Image.FromFile("../../Images/Missions/" + nom + ".jpg");

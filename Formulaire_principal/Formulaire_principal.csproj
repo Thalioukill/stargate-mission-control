@@ -193,6 +193,12 @@
     <Compile Include="InfoAlien.Designer.cs">
       <DependentUpon>InfoAlien.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoEnnemis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoEnnemis.Designer.cs">
+      <DependentUpon>InfoEnnemis.cs</DependentUpon>
+    </Compile>
     <Compile Include="InfoPlanete.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InfoAlien.resx">
       <DependentUpon>InfoAlien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoEnnemis.resx">
+      <DependentUpon>InfoEnnemis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InfoPlanete.resx">
       <DependentUpon>InfoPlanete.cs</DependentUpon>

@@ -609,7 +609,7 @@ namespace Formulaire_principal
                     string arme = dr["typeArme"].ToString();
                     string image = nomAlien + ".jpg";
 
-                    InfoAlien info = new InfoAlien(nomAlien, agressivite, couleur, planete, arme, image);
+                    InfoEnnemis info = new InfoEnnemis(nomAlien, agressivite, couleur, planete, arme, image);
                     flp2.Controls.Add(info);
                 }
                 if(flp2.Controls.Count == 0)
@@ -690,48 +690,68 @@ namespace Formulaire_principal
 
         private void btnRechercherAlliees_Click(object sender, EventArgs e)
         {
-            chargerAliensAlliees();
+            if (cboBienveillance.SelectedIndex == -1 && cboBienveillance.Text != "")
+            {
+                MessageBox.Show("Veuillez sélectionner un taux de bienveillance valide");
+            }
+            else if (cboCouleurAlliees.SelectedIndex == -1 && cboCouleurAlliees.Text != "")
+            {
+                MessageBox.Show("Veuillez sélectionner une couleur valide");
+            }
+            else 
+            {
+                chargerAliensAlliees();
+            }
         }
 
         private void btnReinitialiserCouleurAlliees_Click(object sender, EventArgs e)
         {
             cboCouleurAlliees.SelectedIndex = -1;
-            chargerAliensAlliees();
+            cboCouleurAlliees.Text = "";
         }
 
         private void btnReinitialiserBienveillance_Click(object sender, EventArgs e)
         {
             cboBienveillance.SelectedIndex = -1;
-            chargerAliensAlliees();
+            cboBienveillance.Text = "";
         }
 
         private void btnRechercherEnnemis_Click(object sender, EventArgs e)
         {
-            chargerAliensEnnemis();
+            if (cboAgressivite.SelectedIndex == -1 && cboAgressivite.Text != "")
+            {
+                MessageBox.Show("Veuillez sélectionner un taux d'agressivité valide");
+            }
+            else if (cboCouleurEnnemis.SelectedIndex == -1 && cboCouleurEnnemis.Text != "")
+            {
+                MessageBox.Show("Veuillez sélectionner une couleur valide");
+            }
+            else if (cboTypeArme.SelectedIndex == -1 && cboTypeArme.Text != "")
+            {
+                MessageBox.Show("Veuillez sélectionner un type d'arme valide");
+            }
+            else
+            {
+                chargerAliensEnnemis();
+            }
         }
 
         private void btnReinitialiserCouleurEnnemis_Click(object sender, EventArgs e)
         {
             cboCouleurEnnemis.SelectedIndex = -1;
-            chargerAliensEnnemis();
+            cboCouleurEnnemis.Text = ""; 
         }
 
         private void btnTypeArme_Click(object sender, EventArgs e)
         {
             cboTypeArme.SelectedIndex = -1;
-            chargerAliensEnnemis();
+            cboTypeArme.Text = "";
         }
 
         private void btnAgressivité_Click(object sender, EventArgs e)
         {
             cboAgressivite.SelectedIndex = -1;
-            chargerAliensEnnemis();
-        }
-
-        private void btnReinitialiserCouleurAlliees_Click_1(object sender, EventArgs e)
-        {
-            cboCouleurAlliees.SelectedIndex = -1;
-            chargerAliensAlliees();
+            cboAgressivite.Text = "";
         }
 
         private void txtNomAlliees_KeyPress(object sender, KeyPressEventArgs e)
@@ -1146,6 +1166,15 @@ namespace Formulaire_principal
         private void statistiquesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtNom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if(char.IsDigit(e.KeyChar) || char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
         }
     }
 }

@@ -21,11 +21,11 @@ namespace Formulaire_principal
         public InfoAlien(string nom, string bienveillance, string couleur, string panete, string instrument, string nomalien)
         {
             InitializeComponent();
-            lblNomAlliees.Text = nom;
-            lblBienveillance.Text = bienveillance;
-            lblCouleurAlliees.Text = couleur;
-            lblPlaneteAlliees.Text = panete;
-            lblInstrument.Text = instrument;
+            lblNomAlliees.Text = "Nom : " + nom;
+            lblBienveillance.Text = "Bienveillance : " + bienveillance;
+            lblCouleurAlliees.Text = "Couleur : " + couleur;
+            lblPlaneteAlliees.Text = "Planète d'origine : " + panete;
+            lblInstrument.Text = "Instrument favoris : " + instrument;
             if (nomalien != string.Empty)
             {
                 string path = "../../Images/Aliens/" + nomalien;
