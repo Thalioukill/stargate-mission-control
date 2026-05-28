@@ -367,15 +367,15 @@ namespace Formulaire_principal
         {
             public override Color MenuItemSelected
             {
-                get { return Color.FromArgb(30, 75, 0); }
+                get { return Color.FromArgb(102, 0, 255); }
             }
             public override Color MenuItemSelectedGradientBegin
             {
-                get { return Color.FromArgb(0, 51, 25); } 
+                get { return Color.FromArgb(102, 0, 255); } 
             }
             public override Color MenuItemSelectedGradientEnd
             {
-                get { return Color.FromArgb(102, 204, 0); }
+                get { return Color.FromArgb(223, 115, 255); }
             }
 
             // Pour supprimer la bordure moche autour de la sélection

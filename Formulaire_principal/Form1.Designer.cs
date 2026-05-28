@@ -321,7 +321,7 @@
             // 
             // msMenu
             // 
-            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
             this.msMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.msMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -341,7 +341,7 @@
             // 
             // tsmiTableauDeBord
             // 
-            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
             this.tsmiTableauDeBord.Checked = true;
             this.tsmiTableauDeBord.CheckOnClick = true;
             this.tsmiTableauDeBord.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -405,7 +405,7 @@
             this.label22.Location = new System.Drawing.Point(29, 22);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(180, 45);
+            this.label22.Size = new System.Drawing.Size(176, 45);
             this.label22.TabIndex = 4;
             this.label22.Text = "Planètes ";
             // 
@@ -880,7 +880,7 @@
             this.label23.Location = new System.Drawing.Point(29, 22);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(128, 45);
+            this.label23.Size = new System.Drawing.Size(127, 45);
             this.label23.TabIndex = 8;
             this.label23.Text = "Aliens";
             // 
@@ -888,6 +888,7 @@
             // 
             this.groupBox3.Controls.Add(this.lblErreur2);
             this.groupBox3.Controls.Add(this.flp2);
+            this.groupBox3.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(754, 111);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
@@ -914,16 +915,17 @@
             this.flp2.AutoScroll = true;
             this.flp2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp2.Location = new System.Drawing.Point(5, 20);
+            this.flp2.Location = new System.Drawing.Point(5, 33);
             this.flp2.Margin = new System.Windows.Forms.Padding(5);
             this.flp2.Name = "flp2";
-            this.flp2.Size = new System.Drawing.Size(702, 378);
+            this.flp2.Size = new System.Drawing.Size(702, 365);
             this.flp2.TabIndex = 0;
             // 
             // grpAlliees
             // 
             this.grpAlliees.Controls.Add(this.lblErreur);
             this.grpAlliees.Controls.Add(this.flp1);
+            this.grpAlliees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAlliees.Location = new System.Drawing.Point(27, 111);
             this.grpAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.grpAlliees.Name = "grpAlliees";
@@ -950,10 +952,10 @@
             this.flp1.AutoScroll = true;
             this.flp1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp1.Location = new System.Drawing.Point(5, 20);
+            this.flp1.Location = new System.Drawing.Point(5, 33);
             this.flp1.Margin = new System.Windows.Forms.Padding(5);
             this.flp1.Name = "flp1";
-            this.flp1.Size = new System.Drawing.Size(698, 443);
+            this.flp1.Size = new System.Drawing.Size(698, 430);
             this.flp1.TabIndex = 0;
             // 
             // grpFiltresEnnemis
@@ -1023,10 +1025,10 @@
             // btnReinitialiserEnnemis
             // 
             this.btnReinitialiserEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(893, 221);
+            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(475, 172);
             this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiserEnnemis.Name = "btnReinitialiserEnnemis";
-            this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(207, 67);
+            this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(207, 44);
             this.btnReinitialiserEnnemis.TabIndex = 12;
             this.btnReinitialiserEnnemis.Text = "Tout réinitialiser";
             this.btnReinitialiserEnnemis.UseVisualStyleBackColor = true;
@@ -1099,10 +1101,10 @@
             // btnRechercherEnnemis
             // 
             this.btnRechercherEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRechercherEnnemis.Location = new System.Drawing.Point(915, 310);
+            this.btnRechercherEnnemis.Location = new System.Drawing.Point(475, 234);
             this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.btnRechercherEnnemis.Name = "btnRechercherEnnemis";
-            this.btnRechercherEnnemis.Size = new System.Drawing.Size(185, 67);
+            this.btnRechercherEnnemis.Size = new System.Drawing.Size(185, 45);
             this.btnRechercherEnnemis.TabIndex = 2;
             this.btnRechercherEnnemis.Text = "Rechercher";
             this.btnRechercherEnnemis.UseVisualStyleBackColor = true;

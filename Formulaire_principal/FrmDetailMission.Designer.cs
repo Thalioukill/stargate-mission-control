@@ -82,7 +82,7 @@
             // 
             this.lblNomMission.AutoSize = true;
             this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomMission.ForeColor = System.Drawing.Color.Goldenrod;
+            this.lblNomMission.ForeColor = System.Drawing.Color.MediumOrchid;
             this.lblNomMission.Location = new System.Drawing.Point(617, 32);
             this.lblNomMission.Name = "lblNomMission";
             this.lblNomMission.Size = new System.Drawing.Size(157, 42);
