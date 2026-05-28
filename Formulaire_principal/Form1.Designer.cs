@@ -189,7 +189,7 @@
             this.lblBd.Name = "lblBd";
             this.lblBd.Size = new System.Drawing.Size(118, 17);
             this.lblBd.TabIndex = 11;
-            this.lblBd.Text = "Budget maximum :";
+            this.lblBd.Text = "Budget maximum : ";
             // 
             // txtBudgetMax
             // 
@@ -214,6 +214,7 @@
             this.cboPlanete.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboPlanete.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPlanete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
             this.cboPlanete.Location = new System.Drawing.Point(532, 72);
             this.cboPlanete.Name = "cboPlanete";
@@ -237,6 +238,7 @@
             this.cboChefMission.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboChefMission.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboChefMission.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cboChefMission.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChefMission.FormattingEnabled = true;
             this.cboChefMission.Location = new System.Drawing.Point(302, 72);
             this.cboChefMission.Name = "cboChefMission";
@@ -308,7 +310,7 @@
             // 
             // msMenu
             // 
-            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
+            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(131)))), ((int)(((byte)(255)))));
             this.msMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.msMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -328,12 +330,12 @@
             // 
             // tsmiTableauDeBord
             // 
-            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
+            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(131)))), ((int)(((byte)(255)))));
             this.tsmiTableauDeBord.Checked = true;
             this.tsmiTableauDeBord.CheckOnClick = true;
             this.tsmiTableauDeBord.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsmiTableauDeBord.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmiTableauDeBord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
+            this.tsmiTableauDeBord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.tsmiTableauDeBord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.tsmiTableauDeBord.Margin = new System.Windows.Forms.Padding(15, 160, 2, 1);
             this.tsmiTableauDeBord.Name = "tsmiTableauDeBord";
@@ -345,8 +347,8 @@
             // 
             this.tsmiMission.BackColor = System.Drawing.Color.Transparent;
             this.tsmiMission.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmiMission.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
-            this.tsmiMission.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
+            this.tsmiMission.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.tsmiMission.Margin = new System.Windows.Forms.Padding(15, 70, 2, 1);
             this.tsmiMission.Name = "tsmiMission";
             this.tsmiMission.Size = new System.Drawing.Size(231, 31);
             this.tsmiMission.Text = "★ Créer une mission";
@@ -355,8 +357,8 @@
             // tmsiPlanete
             // 
             this.tmsiPlanete.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tmsiPlanete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
-            this.tmsiPlanete.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
+            this.tmsiPlanete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.tmsiPlanete.Margin = new System.Windows.Forms.Padding(15, 70, 2, 1);
             this.tmsiPlanete.Name = "tmsiPlanete";
             this.tmsiPlanete.Size = new System.Drawing.Size(233, 31);
             this.tmsiPlanete.Text = "★ Planètes              ";
@@ -365,8 +367,8 @@
             // tmsiAliens
             // 
             this.tmsiAliens.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tmsiAliens.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(25)))));
-            this.tmsiAliens.Margin = new System.Windows.Forms.Padding(15, 50, 2, 1);
+            this.tmsiAliens.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.tmsiAliens.Margin = new System.Windows.Forms.Padding(15, 70, 2, 1);
             this.tmsiAliens.Name = "tmsiAliens";
             this.tmsiAliens.Size = new System.Drawing.Size(231, 31);
             this.tmsiAliens.Text = "★ Aliens                 ";
@@ -1145,7 +1147,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1557, 901);
             this.Controls.Add(this.plAliens);
-            this.Controls.Add(this.plPlanetes);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.plMissions);
             this.DoubleBuffered = true;
