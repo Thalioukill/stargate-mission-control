@@ -39,6 +39,8 @@ namespace Formulaire_principal
                 picMission.Image = Image.FromFile("../../Images/Missions/"+nomImage);
             }
 
+            this.Paint += new PaintEventHandler(UserControl_Paint);
+
             // On stocke ls informations propres à la mission
             this.planete = nomPlanete;
             this.numero = numeroMission;
@@ -62,6 +64,43 @@ namespace Formulaire_principal
                 return idChef;
             }
         }
+
+        public DateTime DateDepart { get; set; }
+        public DateTime DateRetour { get; set; }
+
+        private void UserControl_Paint(object sender, PaintEventArgs e)
+        {
+            // Couleurs et date d'aujourd'hui pour comparer
+            Color couleurMission;
+            DateTime aujourdhui = DateTime.Now;
+
+            // on cherche le statut => en cours, à venir ou passé
+            if (DateDepart > aujourdhui)
+            {
+                // MISSION À VENIR : Bleu électrique (Actif mais pas encore lancé)
+                couleurMission = Color.FromArgb(0, 102, 204);
+            }
+            else if (aujourdhui >= DateDepart && aujourdhui <= DateRetour)
+            {
+                // MISSION EN COURS : Vert
+                couleurMission = Color.FromArgb(0, 200, 83);
+            }
+            else
+            {
+                // MISSION PASSÉE : Gris sombre ou Rouge bordeaux
+                couleurMission = Color.FromArgb(64, 64, 64);
+            }
+
+            // Dessin du cadre permanent
+            // épaisseur de 4 pour que ce soit bien visible sur le fond 
+            using (Pen p = new Pen(couleurMission, 7))
+            {
+                e.Graphics.DrawRectangle(p, 0, 0, this.Width - 1, this.Height - 1);
+            }
+        }
+
+
+
 
         public UserControl_Missions()
         {

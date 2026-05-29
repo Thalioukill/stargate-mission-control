@@ -114,7 +114,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.lblNbJours);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.lblBudget);
@@ -123,7 +122,7 @@
             this.Controls.Add(this.lblNomMission);
             this.Controls.Add(this.picMission);
             this.Name = "UserControl_Missions";
-            this.Size = new System.Drawing.Size(1401, 214);
+            this.Size = new System.Drawing.Size(1405, 218);
             this.Load += new System.EventHandler(this.UserControl_Missions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).EndInit();
             this.ResumeLayout(false);
