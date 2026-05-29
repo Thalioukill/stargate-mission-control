@@ -28,19 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpAuthentification = new System.Windows.Forms.GroupBox();
-            this.btnOeil = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnValider = new System.Windows.Forms.Button();
             this.txtMdp = new System.Windows.Forms.TextBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLog = new System.Windows.Forms.Label();
+            this.ttValid = new System.Windows.Forms.ToolTip(this.components);
+            this.ttVoirMdp = new System.Windows.Forms.ToolTip(this.components);
+            this.btnOeil = new System.Windows.Forms.Button();
+            this.btnValider = new System.Windows.Forms.Button();
             this.grpAuthentification.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpAuthentification
             // 
+            this.grpAuthentification.BackColor = System.Drawing.Color.Transparent;
             this.grpAuthentification.Controls.Add(this.btnOeil);
             this.grpAuthentification.Controls.Add(this.label2);
             this.grpAuthentification.Controls.Add(this.btnValider);
@@ -48,6 +52,7 @@
             this.grpAuthentification.Controls.Add(this.txtLogin);
             this.grpAuthentification.Controls.Add(this.label1);
             this.grpAuthentification.Controls.Add(this.lblLog);
+            this.grpAuthentification.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAuthentification.Location = new System.Drawing.Point(73, 73);
             this.grpAuthentification.Name = "grpAuthentification";
             this.grpAuthentification.Size = new System.Drawing.Size(931, 593);
@@ -55,75 +60,84 @@
             this.grpAuthentification.TabStop = false;
             this.grpAuthentification.Text = "Authentification";
             // 
-            // btnOeil
-            // 
-            this.btnOeil.Location = new System.Drawing.Point(761, 206);
-            this.btnOeil.Name = "btnOeil";
-            this.btnOeil.Size = new System.Drawing.Size(81, 61);
-            this.btnOeil.TabIndex = 6;
-            this.btnOeil.UseVisualStyleBackColor = true;
-            this.btnOeil.Click += new System.EventHandler(this.btnOeil_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(381, 74);
+            this.label2.Location = new System.Drawing.Point(348, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(210, 31);
+            this.label2.Size = new System.Drawing.Size(281, 44);
             this.label2.TabIndex = 5;
             this.label2.Text = "Accès restreint";
             // 
-            // btnValider
-            // 
-            this.btnValider.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValider.Location = new System.Drawing.Point(563, 350);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(175, 55);
-            this.btnValider.TabIndex = 4;
-            this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
-            // 
             // txtMdp
             // 
-            this.txtMdp.Location = new System.Drawing.Point(293, 221);
+            this.txtMdp.Location = new System.Drawing.Point(293, 266);
             this.txtMdp.Name = "txtMdp";
-            this.txtMdp.Size = new System.Drawing.Size(445, 31);
+            this.txtMdp.Size = new System.Drawing.Size(497, 51);
             this.txtMdp.TabIndex = 3;
             this.txtMdp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMdp_KeyPress);
+            this.txtMdp.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMdp_KeyUp);
             // 
             // txtLogin
             // 
             this.txtLogin.Location = new System.Drawing.Point(293, 155);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(445, 31);
+            this.txtLogin.Size = new System.Drawing.Size(497, 51);
             this.txtLogin.TabIndex = 2;
+            this.txtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLogin_KeyDown);
             this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogin_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 221);
+            this.label1.Location = new System.Drawing.Point(16, 269);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 25);
+            this.label1.Size = new System.Drawing.Size(232, 44);
             this.label1.TabIndex = 1;
             this.label1.Text = "Mot de passe";
             // 
             // lblLog
             // 
             this.lblLog.AutoSize = true;
-            this.lblLog.Location = new System.Drawing.Point(67, 157);
+            this.lblLog.Location = new System.Drawing.Point(16, 162);
             this.lblLog.Name = "lblLog";
-            this.lblLog.Size = new System.Drawing.Size(65, 25);
+            this.lblLog.Size = new System.Drawing.Size(107, 44);
             this.lblLog.TabIndex = 0;
             this.lblLog.Text = "Login";
+            // 
+            // btnOeil
+            // 
+            this.btnOeil.BackgroundImage = global::Formulaire_principal.Properties.Resources.oeil1;
+            this.btnOeil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOeil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOeil.Location = new System.Drawing.Point(824, 261);
+            this.btnOeil.Name = "btnOeil";
+            this.btnOeil.Size = new System.Drawing.Size(81, 61);
+            this.btnOeil.TabIndex = 6;
+            this.ttVoirMdp.SetToolTip(this.btnOeil, "Voir le mot de passe");
+            this.btnOeil.UseVisualStyleBackColor = true;
+            this.btnOeil.Click += new System.EventHandler(this.btnOeil_Click);
+            // 
+            // btnValider
+            // 
+            this.btnValider.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValider.Location = new System.Drawing.Point(685, 393);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Size = new System.Drawing.Size(105, 88);
+            this.btnValider.TabIndex = 4;
+            this.ttValid.SetToolTip(this.btnValider, "Valider");
+            this.btnValider.UseVisualStyleBackColor = true;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_mission;
             this.ClientSize = new System.Drawing.Size(1081, 740);
             this.Controls.Add(this.grpAuthentification);
             this.Name = "FrmLogin";
@@ -145,5 +159,7 @@
         private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnOeil;
+        private System.Windows.Forms.ToolTip ttValid;
+        private System.Windows.Forms.ToolTip ttVoirMdp;
     }
 }

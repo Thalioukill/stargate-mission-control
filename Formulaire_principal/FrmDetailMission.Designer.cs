@@ -243,8 +243,10 @@
             // 
             // dtpContact
             // 
-            this.dtpContact.Location = new System.Drawing.Point(189, 72);
             this.dtpContact.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpContact.CustomFormat = "dd/MM/yyyy";
+            this.dtpContact.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpContact.Location = new System.Drawing.Point(283, 112);
             this.dtpContact.Name = "dtpContact";
             this.dtpContact.Size = new System.Drawing.Size(257, 35);
             this.dtpContact.TabIndex = 19;
@@ -256,6 +258,7 @@
             this.txtSomme.Name = "txtSomme";
             this.txtSomme.Size = new System.Drawing.Size(137, 35);
             this.txtSomme.TabIndex = 18;
+            this.txtSomme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSomme_KeyDown);
             this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSomme_KeyPress);
             // 
             // txtAppreciation
@@ -363,8 +366,10 @@
             // 
             // dtpDepense
             // 
-            this.dtpDepense.Location = new System.Drawing.Point(189, 72);
             this.dtpDepense.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpDepense.CustomFormat = "dd/MM/yyyy";
+            this.dtpDepense.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDepense.Location = new System.Drawing.Point(283, 112);
             this.dtpDepense.Name = "dtpDepense";
             this.dtpDepense.Size = new System.Drawing.Size(257, 35);
             this.dtpDepense.TabIndex = 19;
@@ -376,6 +381,7 @@
             this.txtMontant.Name = "txtMontant";
             this.txtMontant.Size = new System.Drawing.Size(257, 35);
             this.txtMontant.TabIndex = 18;
+            this.txtMontant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMontant_KeyDown);
             this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
             // txtMotif

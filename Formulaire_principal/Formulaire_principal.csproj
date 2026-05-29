@@ -291,6 +291,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Fonds_ecran\fond_acceuil.png" />
+    <None Include="Images\Fonds_ecran\fond_mission.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Boutons\ajouter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Boutons\supprimer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Boutons\valider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Fonds_ecran\globe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Fonds_ecran\deco_frmMission.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Missions\oeil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Boutons\oeil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

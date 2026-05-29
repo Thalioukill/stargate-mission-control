@@ -22,9 +22,9 @@ namespace Formulaire_principal
         public FrmLogin()
         {
             InitializeComponent();
-            btnOeil.BackgroundImage = Image.FromFile("../../Images/Missions/oeil.png");
+            //btnOeil.BackgroundImage = Image.FromFile("../../Images/Missions/oeil.png");
             //Pour que l'image occupe tout le bouton
-            btnOeil.BackgroundImageLayout = ImageLayout.Stretch;
+            //btnOeil.BackgroundImageLayout = ImageLayout.Stretch;
             txtMdp.UseSystemPasswordChar = true;
         }
 
@@ -79,9 +79,13 @@ namespace Formulaire_principal
                     }
                     else
                     {
-                        MessageBox.Show("Accès refusé", "Authentification");
+                        MessageBox.Show("Accès refusé, mot de passe incorect", "Authentification");
                         txtMdp.Text = "";
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Accès refusé, login inexistant", "Authentification");
                 }
             }
             catch (Exception err)
@@ -126,9 +130,24 @@ namespace Formulaire_principal
             {
                 ds.Tables["Admin"].Clear();
             }
-            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Mission", co);
+            SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Admin", co);
             da.Fill(ds, "Admin");
         }
 
+        private void txtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Down)
+            {
+                txtMdp.Focus();
+            }
+        }
+
+        private void txtMdp_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                txtLogin.Focus();
+            }
+        }
     }
 }

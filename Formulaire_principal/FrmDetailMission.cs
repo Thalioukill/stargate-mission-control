@@ -308,6 +308,7 @@ namespace Formulaire_principal
             cboInformateur.DataSource = ds.Tables["Informateur"];
             cboInformateur.DisplayMember = "nom";
             cboInformateur.ValueMember = "nomCode";
+            cboInformateur.SelectedIndex = -1;
 
         }
 
@@ -316,41 +317,54 @@ namespace Formulaire_principal
             cboTypeDepense.DataSource = ds.Tables["TypeDepense"];
             cboTypeDepense.DisplayMember = "libelle";
             cboTypeDepense.ValueMember = "id";
+            cboTypeDepense.SelectedIndex = -1;
         }
 
         private void btnValidNouvC_Click(object sender, EventArgs e)
         {
-            try
+            if(txtSomme.Text == "" || txtAppreciation.Text == "")
             {
-                //Mode connecté pour ajouter dans la bse
-                string sql = @"INSERT INTO Contact (nomPlanete, numeroMission, dateC, sommeVersee, appreciation, nomCodeInformateur)
+                MessageBox.Show("Veuillez remplir tous les champs pour insérer un nouveau contact");
+            }
+            else if(cboInformateur.SelectedIndex == -1)
+            {
+                MessageBox.Show("Veuillez sélectionner un informateur");
+            }
+            else
+            {
+                try
+                {
+                    //Mode connecté pour ajouter dans la bse
+                    string sql = @"INSERT INTO Contact (nomPlanete, numeroMission, dateC, sommeVersee, appreciation, nomCodeInformateur)
                        VALUES (@nomPlanete, @numeroMission, @dateC, @sommeVersee, @appreciation, @nomCodeInformateur)";
-                SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                cmd.Parameters.AddWithValue("@numeroMission", idNumero);
-                cmd.Parameters.AddWithValue("@dateC", dtpContact.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@sommeVersee", txtSomme.Text);
-                cmd.Parameters.AddWithValue("@appreciation", txtAppreciation.Text);
-                cmd.Parameters.AddWithValue("@nomCodeInformateur", cboInformateur.SelectedValue.ToString());
-                cmd.ExecuteNonQuery();
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                    cmd.Parameters.AddWithValue("@dateC", dtpContact.Value.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@sommeVersee", txtSomme.Text);
+                    cmd.Parameters.AddWithValue("@appreciation", txtAppreciation.Text);
+                    cmd.Parameters.AddWithValue("@nomCodeInformateur", cboInformateur.SelectedValue.ToString());
+                    cmd.ExecuteNonQuery();
 
-                //Mode déconnecté pour mettre à jour le data set
-                DataRow maRow = ds.Tables["Contact"].NewRow();
-                maRow["nomPlanete"] = idPlanete;
-                maRow["numeroMission"] = idNumero;
-                maRow["dateC"] = dtpContact.Value;
-                maRow["sommeVersee"] = txtSomme.Text;
-                maRow["appreciation"] = txtAppreciation.Text;
-                maRow["nomCodeInformateur"] = cboInformateur.SelectedValue.ToString();
-                ds.Tables["Contact"].Rows.Add(maRow);
+                    //Mode déconnecté pour mettre à jour le data set
+                    DataRow maRow = ds.Tables["Contact"].NewRow();
+                    maRow["nomPlanete"] = idPlanete;
+                    maRow["numeroMission"] = idNumero;
+                    maRow["dateC"] = dtpContact.Value;
+                    maRow["sommeVersee"] = txtSomme.Text;
+                    maRow["appreciation"] = txtAppreciation.Text;
+                    maRow["nomCodeInformateur"] = cboInformateur.SelectedValue.ToString();
+                    ds.Tables["Contact"].Rows.Add(maRow);
 
-                MessageBox.Show("Nouveau contact ajouté !");
-                RAZContact();
+                    MessageBox.Show("Nouveau contact ajouté !");
+                    RAZContact();
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
+            
 
         }
 
@@ -369,47 +383,58 @@ namespace Formulaire_principal
 
         private void btnValidDepense_Click(object sender, EventArgs e)
         {
-            try
+            if (txtMontant.Text == "" || txtMotif.Text == "")
             {
-                //Calcul du max pour l'id des dépenses en mode connecté
-                string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
-                       AND numeroMission = @numeroMission";
-                SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
-                cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
-
-                int maxIdDep = Convert.ToInt32(cmdMax.ExecuteScalar());
-
-                //Ajout à la base en mode connecté
-                string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
-                       VALUES (@nomPlanete, @numeroMission, @id, @dateD, @montant, @motif, @idTypeDepense)";
-                SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                cmd.Parameters.AddWithValue("@numeroMission", idNumero);
-                cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
-                cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
-                cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
-                cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
-                cmd.ExecuteNonQuery();
-
-                //Mise à jour du data set en mode déconnecté
-                DataRow maRow = ds.Tables["Depense"].NewRow();
-                maRow["nomPlanete"] = idPlanete;
-                maRow["numeroMission"] = idNumero;
-                maRow["id"] = maxIdDep + 1;
-                maRow["dateD"] = dtpDepense.Value;
-                maRow["montant"] = txtMontant.Text;
-                maRow["motif"] = txtMotif.Text;
-                maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
-                ds.Tables["Depense"].Rows.Add(maRow);
-
-                MessageBox.Show("Nouvelle dépense ajoutée !");
-                RAZDepense();
+                MessageBox.Show("Veuillez remplir tous les champs pour insérer un nouveau contact");
             }
-            catch (SQLiteException err)
+            else if (cboTypeDepense.SelectedIndex == -1)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Veuillez sélectionner un type de dépense");
+            }
+            else
+            {
+                try
+                {
+                    //Calcul du max pour l'id des dépenses en mode connecté
+                    string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
+                           AND numeroMission = @numeroMission";
+                    SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
+                    cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
+
+                    int maxIdDep = Convert.ToInt32(cmdMax.ExecuteScalar());
+
+                    //Ajout à la base en mode connecté
+                    string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
+                           VALUES (@nomPlanete, @numeroMission, @id, @dateD, @montant, @motif, @idTypeDepense)";
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                    cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
+                    cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
+                    cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
+                    cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
+                    cmd.ExecuteNonQuery();
+
+                    //Mise à jour du data set en mode déconnecté
+                    DataRow maRow = ds.Tables["Depense"].NewRow();
+                    maRow["nomPlanete"] = idPlanete;
+                    maRow["numeroMission"] = idNumero;
+                    maRow["id"] = maxIdDep + 1;
+                    maRow["dateD"] = dtpDepense.Value;
+                    maRow["montant"] = txtMontant.Text;
+                    maRow["motif"] = txtMotif.Text;
+                    maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
+                    ds.Tables["Depense"].Rows.Add(maRow);
+
+                    MessageBox.Show("Nouvelle dépense ajoutée !");
+                    RAZDepense();
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
 
         }
@@ -428,33 +453,41 @@ namespace Formulaire_principal
 
         private void btnValidEvnmt_Click(object sender, EventArgs e)
         {
-            try
+            if (txtCommentaires.Text == "")
             {
-                //Ajout à la base en mode connecté
-                string sql = @"INSERT INTO JournalDeBord (nomPlanete, numero, dateJ, commentaires)
+                MessageBox.Show("Veuillez écrire un évènement à inscrire dans le journal de bord.");
+            }
+            else
+            {
+                try
+                {
+                    //Ajout à la base en mode connecté
+                    string sql = @"INSERT INTO JournalDeBord (nomPlanete, numero, dateJ, commentaires)
                        VALUES (@nomPlanete, @numero, @dateJ, @commentaires)";
-                SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                cmd.Parameters.AddWithValue("@numero", idNumero);
-                cmd.Parameters.AddWithValue("@dateJ", dtpEvnmt.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@commentaires", txtCommentaires.Text);
-                cmd.ExecuteNonQuery();
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmd.Parameters.AddWithValue("@numero", idNumero);
+                    cmd.Parameters.AddWithValue("@dateJ", dtpEvnmt.Value.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@commentaires", txtCommentaires.Text);
+                    cmd.ExecuteNonQuery();
 
-                //Mise à jour du data set en mode déconnecté
-                DataRow maRow = ds.Tables["JournalDeBord"].NewRow();
-                maRow["nomPlanete"] = idPlanete;
-                maRow["numero"] = idNumero;
-                maRow["dateJ"] = dtpEvnmt.Value;
-                maRow["commentaires"] = txtCommentaires.Text;
-                ds.Tables["JournalDeBord"].Rows.Add(maRow);
+                    //Mise à jour du data set en mode déconnecté
+                    DataRow maRow = ds.Tables["JournalDeBord"].NewRow();
+                    maRow["nomPlanete"] = idPlanete;
+                    maRow["numero"] = idNumero;
+                    maRow["dateJ"] = dtpEvnmt.Value;
+                    maRow["commentaires"] = txtCommentaires.Text;
+                    ds.Tables["JournalDeBord"].Rows.Add(maRow);
 
-                MessageBox.Show("Nouvel évènement ajoutée !");
-                RAZEvenement();
+                    MessageBox.Show("Nouvel évènement ajoutée !");
+                    RAZEvenement();
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
+            
 
         }
 
@@ -496,6 +529,22 @@ namespace Formulaire_principal
                 e.Handled = false;
             }
             if (e.KeyChar == 13)
+            {
+                txtMotif.Focus();
+            }
+        }
+
+        private void txtSomme_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                txtAppreciation.Focus();
+            }
+        }
+
+        private void txtMontant_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
             {
                 txtMotif.Focus();
             }
