@@ -780,7 +780,8 @@ namespace Formulaire_principal
                             me.matricule = mi.matriculeMembre
                             WHERE me.matricule LIKE 'M%' AND me.matricule NOT IN 
                             (SELECT matriculeChef FROM Mission 
-                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE);";
+                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)
+                                ORDER BY me.nom ASC;";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -807,7 +808,8 @@ namespace Formulaire_principal
                                 (SELECT matriculeMembre FROM Composer co
                                 JOIN Mission mi ON co.nomPlanete = mi.nomPlanete 
                                 AND co.numeroMission = mi.numero
-                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)";
+                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)
+                                ORDER BY me.nom ASC;";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -821,7 +823,8 @@ namespace Formulaire_principal
                                 (SELECT matriculeMembre FROM Composer co
                                 JOIN Mission mi ON co.nomPlanete = mi.nomPlanete 
                                 AND co.numeroMission = mi.numero
-                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)";
+                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)
+                                ORDER BY me.nom ASC;";
                 SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
                 DataTable dtMilitaires = new DataTable();
                 da2.Fill(dtMilitaires);

@@ -63,14 +63,6 @@ namespace Formulaire_principal.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fond_acceuil
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("fond_acceuil", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
         internal static System.Drawing.Bitmap ajouter {
             get {
                 object obj = ResourceManager.GetObject("ajouter", resourceCulture);
@@ -84,6 +76,16 @@ namespace Formulaire_principal.Properties {
         internal static System.Drawing.Bitmap deco_frmMission {
             get {
                 object obj = ResourceManager.GetObject("deco_frmMission", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fond_acceuil {
+            get {
+                object obj = ResourceManager.GetObject("fond_acceuil", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -124,6 +126,26 @@ namespace Formulaire_principal.Properties {
         internal static System.Drawing.Bitmap oeil1 {
             get {
                 object obj = ResourceManager.GetObject("oeil1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap raz {
+            get {
+                object obj = ResourceManager.GetObject("raz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap recherche {
+            get {
+                object obj = ResourceManager.GetObject("recherche", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
