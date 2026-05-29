@@ -91,6 +91,7 @@
             // 
             // picMission
             // 
+            this.picMission.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picMission.Location = new System.Drawing.Point(25, 29);
             this.picMission.Name = "picMission";
             this.picMission.Size = new System.Drawing.Size(168, 154);
@@ -243,10 +244,10 @@
             // 
             // dtpContact
             // 
-            this.dtpContact.Margin = new System.Windows.Forms.Padding(2);
             this.dtpContact.CustomFormat = "dd/MM/yyyy";
             this.dtpContact.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpContact.Location = new System.Drawing.Point(283, 112);
+            this.dtpContact.Margin = new System.Windows.Forms.Padding(2);
             this.dtpContact.Name = "dtpContact";
             this.dtpContact.Size = new System.Drawing.Size(257, 35);
             this.dtpContact.TabIndex = 19;
@@ -366,10 +367,10 @@
             // 
             // dtpDepense
             // 
-            this.dtpDepense.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDepense.CustomFormat = "dd/MM/yyyy";
             this.dtpDepense.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDepense.Location = new System.Drawing.Point(283, 112);
+            this.dtpDepense.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDepense.Name = "dtpDepense";
             this.dtpDepense.Size = new System.Drawing.Size(257, 35);
             this.dtpDepense.TabIndex = 19;

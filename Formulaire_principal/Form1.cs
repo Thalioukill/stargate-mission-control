@@ -476,12 +476,14 @@ namespace Formulaire_principal
                         string matriculeChef = dr["matriculeChef"].ToString();
                         string budget = dr["budget"].ToString();
                         string image = dr["nomPlanete"] + ".jpg";
+                        DateTime aujourdhui = DateTime.Now;
+                        
 
                         // Instanciation du User Control
                         UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
                         // DATES (pour la couleur du cadre)
-                        uc.DateDepart = Convert.ToDateTime(dr["dateDepart"]);
-                        uc.DateRetour = Convert.ToDateTime(dr["dateRetour"]);
+                        uc.DateDepart = dateDepart;
+                        uc.DateRetour = dateRetour;
 
                         // délégué 
                         uc.details = OuvrirDetailMission;
@@ -528,10 +530,6 @@ namespace Formulaire_principal
         {
             ActualiserAffichage();
         }
-
-
-
-
 
         // =======>  Code partie ALIENS
 

@@ -20,6 +20,10 @@ namespace Formulaire_principal
         private string planete;
         private string numero;
         public string idChef;
+        private DateTime dateDepart;
+        private DateTime dateRetour;
+        private Color couleurCadre = Color.Gray; // cuoleur par défaut
+
 
         // instance du délgate accessible depuis le formulaire parent
         public afficherMission details;
@@ -65,38 +69,66 @@ namespace Formulaire_principal
             }
         }
 
-        public DateTime DateDepart { get; set; }
-        public DateTime DateRetour { get; set; }
+        public DateTime DateDepart 
+        { 
+            get { 
+                return dateDepart; 
+            }
+            set { 
+                dateDepart = value; // On stocke la valeur reçue dans la variable privée
+                mettreAJourStatut(); // On lance la logique de couleur et de statut
+                } 
+        }
+
+        public DateTime DateRetour
+        {
+            get
+            {
+                return dateRetour;
+            }
+            set
+            {
+                dateRetour = value;
+                mettreAJourStatut();
+            }
+        }
 
         private void UserControl_Paint(object sender, PaintEventArgs e)
         {
-            // Couleurs et date d'aujourd'hui pour comparer
-            Color couleurMission;
-            DateTime aujourdhui = DateTime.Now;
-
-            // on cherche le statut => en cours, à venir ou passé
-            if (DateDepart > aujourdhui)
-            {
-                // MISSION À VENIR : Bleu électrique (Actif mais pas encore lancé)
-                couleurMission = Color.FromArgb(0, 102, 204);
-            }
-            else if (aujourdhui >= DateDepart && aujourdhui <= DateRetour)
-            {
-                // MISSION EN COURS : Vert
-                couleurMission = Color.FromArgb(0, 200, 83);
-            }
-            else
-            {
-                // MISSION PASSÉE : Gris sombre ou Rouge bordeaux
-                couleurMission = Color.FromArgb(64, 64, 64);
-            }
-
             // Dessin du cadre permanent
-            // épaisseur de 4 pour que ce soit bien visible sur le fond 
-            using (Pen p = new Pen(couleurMission, 7))
+            // épaisseur de74 pour que ce soit bien visible sur le fond 
+            using (Pen p = new Pen(couleurCadre, 7))
             {
                 e.Graphics.DrawRectangle(p, 0, 0, this.Width - 1, this.Height - 1);
             }
+        }
+
+
+        private void mettreAJourStatut()
+        {
+            DateTime aujourdhui = DateTime.Now;
+
+            if (dateDepart > aujourdhui)
+            {
+                lblStatusMission.Text = "Statut : À VENIR";
+                couleurCadre = Color.FromArgb(81, 225, 255);
+            }
+            else if (aujourdhui >= dateDepart && aujourdhui <= dateRetour)
+            {
+                lblStatusMission.Text = "Statut : EN COURS";
+                couleurCadre = Color.FromArgb(255, 148, 241);
+            }
+            else
+            {
+                lblStatusMission.Text = "Statut : PASSÉE";
+                couleurCadre = Color.FromArgb(113, 6, 255);
+            }
+
+            // couleur au texte = couleur du label
+            lblStatusMission.ForeColor = couleurCadre;
+
+            // appel à Paint
+            this.Invalidate();
         }
 
 

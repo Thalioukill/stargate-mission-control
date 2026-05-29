@@ -35,11 +35,13 @@
             this.lblBudget = new System.Windows.Forms.Label();
             this.btnDetails = new System.Windows.Forms.Button();
             this.lblNbJours = new System.Windows.Forms.Label();
+            this.lblStatusMission = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
             this.SuspendLayout();
             // 
             // picMission
             // 
+            this.picMission.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picMission.Location = new System.Drawing.Point(27, 24);
             this.picMission.Name = "picMission";
             this.picMission.Size = new System.Drawing.Size(197, 170);
@@ -49,19 +51,19 @@
             // 
             // lblNomMission
             // 
-            this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomMission.ForeColor = System.Drawing.Color.Black;
-            this.lblNomMission.Location = new System.Drawing.Point(274, 39);
+            this.lblNomMission.Location = new System.Drawing.Point(257, 24);
             this.lblNomMission.Name = "lblNomMission";
-            this.lblNomMission.Size = new System.Drawing.Size(411, 25);
+            this.lblNomMission.Size = new System.Drawing.Size(411, 38);
             this.lblNomMission.TabIndex = 2;
-            this.lblNomMission.Text = "Mission : ";
+            this.lblNomMission.Text = "★ Mission : ";
             // 
             // lblDate
             // 
             this.lblDate.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDate.Location = new System.Drawing.Point(720, 39);
+            this.lblDate.Location = new System.Drawing.Point(729, 88);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(400, 44);
             this.lblDate.TabIndex = 3;
@@ -71,7 +73,7 @@
             // 
             this.lblChefMission.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChefMission.ForeColor = System.Drawing.Color.Black;
-            this.lblChefMission.Location = new System.Drawing.Point(274, 96);
+            this.lblChefMission.Location = new System.Drawing.Point(257, 88);
             this.lblChefMission.Name = "lblChefMission";
             this.lblChefMission.Size = new System.Drawing.Size(394, 49);
             this.lblChefMission.TabIndex = 4;
@@ -81,7 +83,7 @@
             // 
             this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBudget.ForeColor = System.Drawing.Color.Black;
-            this.lblBudget.Location = new System.Drawing.Point(274, 145);
+            this.lblBudget.Location = new System.Drawing.Point(257, 145);
             this.lblBudget.Name = "lblBudget";
             this.lblBudget.Size = new System.Drawing.Size(411, 59);
             this.lblBudget.TabIndex = 5;
@@ -104,16 +106,26 @@
             // 
             this.lblNbJours.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNbJours.ForeColor = System.Drawing.Color.Black;
-            this.lblNbJours.Location = new System.Drawing.Point(720, 96);
+            this.lblNbJours.Location = new System.Drawing.Point(729, 145);
             this.lblNbJours.Name = "lblNbJours";
             this.lblNbJours.Size = new System.Drawing.Size(450, 56);
             this.lblNbJours.TabIndex = 7;
             this.lblNbJours.Text = "Nombre de jours de la mission : ";
             // 
+            // lblStatusMission
+            // 
+            this.lblStatusMission.AutoSize = true;
+            this.lblStatusMission.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusMission.Location = new System.Drawing.Point(731, 34);
+            this.lblStatusMission.Name = "lblStatusMission";
+            this.lblStatusMission.Size = new System.Drawing.Size(0, 28);
+            this.lblStatusMission.TabIndex = 8;
+            // 
             // UserControl_Missions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblStatusMission);
             this.Controls.Add(this.lblNbJours);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.lblBudget);
@@ -124,8 +136,10 @@
             this.Name = "UserControl_Missions";
             this.Size = new System.Drawing.Size(1405, 218);
             this.Load += new System.EventHandler(this.UserControl_Missions_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.UserControl_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,5 +151,6 @@
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Button btnDetails;
         private System.Windows.Forms.Label lblNbJours;
+        private System.Windows.Forms.Label lblStatusMission;
     }
 }
