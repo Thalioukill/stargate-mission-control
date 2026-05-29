@@ -55,6 +55,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.lblPlanetes = new System.Windows.Forms.Label();
             this.grpFiltre = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnReinitialiserEspeces = new System.Windows.Forms.Button();
             this.btnReinitialiserDataBaz = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
@@ -116,7 +117,6 @@
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.ttRAZ = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label7 = new System.Windows.Forms.Label();
             this.plMissions.SuspendLayout();
             this.grpFiltres.SuspendLayout();
             this.msMenu.SuspendLayout();
@@ -136,7 +136,7 @@
             this.flpMissions.Location = new System.Drawing.Point(40, 123);
             this.flpMissions.Margin = new System.Windows.Forms.Padding(6);
             this.flpMissions.Name = "flpMissions";
-            this.flpMissions.Size = new System.Drawing.Size(2172, 1131);
+            this.flpMissions.Size = new System.Drawing.Size(2172, 1017);
             this.flpMissions.TabIndex = 4;
             // 
             // plMissions
@@ -165,24 +165,25 @@
             this.grpFiltres.Controls.Add(this.rdbPasse);
             this.grpFiltres.Controls.Add(this.label1);
             this.grpFiltres.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltres.Location = new System.Drawing.Point(40, 1288);
+            this.grpFiltres.Location = new System.Drawing.Point(40, 1154);
             this.grpFiltres.Margin = new System.Windows.Forms.Padding(6);
             this.grpFiltres.Name = "grpFiltres";
             this.grpFiltres.Padding = new System.Windows.Forms.Padding(6);
-            this.grpFiltres.Size = new System.Drawing.Size(2154, 217);
+            this.grpFiltres.Size = new System.Drawing.Size(2154, 351);
             this.grpFiltres.TabIndex = 5;
             this.grpFiltres.TabStop = false;
             this.grpFiltres.Text = "Filtres";
             // 
             // btnRecherche
             // 
+            this.btnRecherche.BackgroundImage = global::Formulaire_principal.Properties.Resources.recherche;
+            this.btnRecherche.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecherche.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecherche.Location = new System.Drawing.Point(376, 40);
+            this.btnRecherche.Location = new System.Drawing.Point(2037, 53);
             this.btnRecherche.Margin = new System.Windows.Forms.Padding(6);
             this.btnRecherche.Name = "btnRecherche";
-            this.btnRecherche.Size = new System.Drawing.Size(150, 56);
+            this.btnRecherche.Size = new System.Drawing.Size(86, 81);
             this.btnRecherche.TabIndex = 12;
-            this.btnRecherche.Text = "Rechercher";
             this.btnRecherche.UseVisualStyleBackColor = true;
             this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
             // 
@@ -232,13 +233,14 @@
             // 
             // btnRAZ
             // 
+            this.btnRAZ.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz1;
+            this.btnRAZ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRAZ.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRAZ.Location = new System.Drawing.Point(604, 29);
+            this.btnRAZ.Location = new System.Drawing.Point(2037, 196);
             this.btnRAZ.Margin = new System.Windows.Forms.Padding(6);
             this.btnRAZ.Name = "btnRAZ";
-            this.btnRAZ.Size = new System.Drawing.Size(150, 56);
+            this.btnRAZ.Size = new System.Drawing.Size(86, 81);
             this.btnRAZ.TabIndex = 6;
-            this.btnRAZ.Text = "RAZ";
             this.ttRAZ.SetToolTip(this.btnRAZ, "Remise à zéro des filtres");
             this.btnRAZ.UseVisualStyleBackColor = true;
             this.btnRAZ.Click += new System.EventHandler(this.btnRAZ_Click);
@@ -462,6 +464,16 @@
             this.grpFiltre.TabIndex = 3;
             this.grpFiltre.TabStop = false;
             this.grpFiltre.Text = "Filtres";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(192, 526);
+            this.label7.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 44);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Max";
             // 
             // btnReinitialiserEspeces
             // 
@@ -762,7 +774,7 @@
             // 
             // btnReinitialiserBienveillance
             // 
-            this.btnReinitialiserBienveillance.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserBienveillance.BackgroundImage")));
+            this.btnReinitialiserBienveillance.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
             this.btnReinitialiserBienveillance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserBienveillance.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserBienveillance.Location = new System.Drawing.Point(478, 381);
@@ -775,7 +787,7 @@
             // 
             // btnReinitialiserCouleurAlliees
             // 
-            this.btnReinitialiserCouleurAlliees.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserCouleurAlliees.BackgroundImage")));
+            this.btnReinitialiserCouleurAlliees.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
             this.btnReinitialiserCouleurAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserCouleurAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserCouleurAlliees.Location = new System.Drawing.Point(478, 238);
@@ -788,13 +800,14 @@
             // 
             // btnReinitialiserAlliees
             // 
+            this.btnReinitialiserAlliees.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz_vrai;
+            this.btnReinitialiserAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserAlliees.Location = new System.Drawing.Point(622, 244);
+            this.btnReinitialiserAlliees.Location = new System.Drawing.Point(869, 238);
             this.btnReinitialiserAlliees.Margin = new System.Windows.Forms.Padding(8);
             this.btnReinitialiserAlliees.Name = "btnReinitialiserAlliees";
-            this.btnReinitialiserAlliees.Size = new System.Drawing.Size(298, 69);
+            this.btnReinitialiserAlliees.Size = new System.Drawing.Size(86, 81);
             this.btnReinitialiserAlliees.TabIndex = 11;
-            this.btnReinitialiserAlliees.Text = "Tout réinitialiser";
             this.btnReinitialiserAlliees.UseVisualStyleBackColor = true;
             this.btnReinitialiserAlliees.Click += new System.EventHandler(this.btnReinitialiserAlliees_Click);
             // 
@@ -811,13 +824,14 @@
             // 
             // btnRechercherAlliees
             // 
+            this.btnRechercherAlliees.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnRechercherAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercherAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRechercherAlliees.Location = new System.Drawing.Point(634, 385);
+            this.btnRechercherAlliees.Location = new System.Drawing.Point(869, 381);
             this.btnRechercherAlliees.Margin = new System.Windows.Forms.Padding(8);
             this.btnRechercherAlliees.Name = "btnRechercherAlliees";
-            this.btnRechercherAlliees.Size = new System.Drawing.Size(278, 69);
+            this.btnRechercherAlliees.Size = new System.Drawing.Size(86, 81);
             this.btnRechercherAlliees.TabIndex = 2;
-            this.btnRechercherAlliees.Text = "Rechercher";
             this.btnRechercherAlliees.UseVisualStyleBackColor = true;
             this.btnRechercherAlliees.Click += new System.EventHandler(this.btnRechercherAlliees_Click);
             // 
@@ -996,7 +1010,7 @@
             // 
             // btnAgressivité
             // 
-            this.btnAgressivité.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgressivité.BackgroundImage")));
+            this.btnAgressivité.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
             this.btnAgressivité.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAgressivité.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgressivité.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1010,7 +1024,7 @@
             // 
             // btnTypeArme
             // 
-            this.btnTypeArme.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTypeArme.BackgroundImage")));
+            this.btnTypeArme.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
             this.btnTypeArme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTypeArme.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTypeArme.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1024,7 +1038,7 @@
             // 
             // btnReinitialiserCouleurEnnemis
             // 
-            this.btnReinitialiserCouleurEnnemis.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserCouleurEnnemis.BackgroundImage")));
+            this.btnReinitialiserCouleurEnnemis.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
             this.btnReinitialiserCouleurEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserCouleurEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1038,14 +1052,15 @@
             // 
             // btnReinitialiserEnnemis
             // 
+            this.btnReinitialiserEnnemis.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz_vrai;
+            this.btnReinitialiserEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(712, 269);
+            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(897, 344);
             this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(8);
             this.btnReinitialiserEnnemis.Name = "btnReinitialiserEnnemis";
-            this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(310, 69);
+            this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(86, 81);
             this.btnReinitialiserEnnemis.TabIndex = 12;
-            this.btnReinitialiserEnnemis.Text = "Tout réinitialiser";
             this.btnReinitialiserEnnemis.UseVisualStyleBackColor = true;
             this.btnReinitialiserEnnemis.Click += new System.EventHandler(this.btnReinitialiserEnnemis_Click);
             // 
@@ -1119,14 +1134,15 @@
             // 
             // btnRechercherEnnemis
             // 
+            this.btnRechercherEnnemis.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnRechercherEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercherEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercherEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRechercherEnnemis.Location = new System.Drawing.Point(712, 365);
+            this.btnRechercherEnnemis.Location = new System.Drawing.Point(897, 493);
             this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(8);
             this.btnRechercherEnnemis.Name = "btnRechercherEnnemis";
-            this.btnRechercherEnnemis.Size = new System.Drawing.Size(278, 69);
+            this.btnRechercherEnnemis.Size = new System.Drawing.Size(86, 81);
             this.btnRechercherEnnemis.TabIndex = 2;
-            this.btnRechercherEnnemis.Text = "Rechercher";
             this.btnRechercherEnnemis.UseVisualStyleBackColor = true;
             this.btnRechercherEnnemis.Click += new System.EventHandler(this.btnRechercherEnnemis_Click);
             // 
@@ -1154,16 +1170,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(192, 526);
-            this.label7.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 44);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "Max";
             // 
             // FrmAccueil
             // 

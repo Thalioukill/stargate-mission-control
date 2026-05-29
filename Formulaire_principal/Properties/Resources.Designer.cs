@@ -143,9 +143,49 @@ namespace Formulaire_principal.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap raz_vrai {
+            get {
+                object obj = ResourceManager.GetObject("raz_vrai", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap raz1 {
+            get {
+                object obj = ResourceManager.GetObject("raz1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap recherche {
             get {
                 object obj = ResourceManager.GetObject("recherche", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reinitialiser {
+            get {
+                object obj = ResourceManager.GetObject("Reinitialiser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reinitialiser3 {
+            get {
+                object obj = ResourceManager.GetObject("reinitialiser3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
