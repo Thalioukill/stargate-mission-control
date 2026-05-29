@@ -63,9 +63,14 @@ namespace Formulaire_principal.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fond_acceuil {
-            get {
+        internal static System.Drawing.Bitmap fond_acceuil
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("fond_acceuil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         internal static System.Drawing.Bitmap ajouter {
             get {
                 object obj = ResourceManager.GetObject("ajouter", resourceCulture);

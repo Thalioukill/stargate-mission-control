@@ -335,30 +335,6 @@ namespace Formulaire_principal
 
 
         // =======> Code TABLEAU DE BORD
-        private void btnMission_Click(object sender, EventArgs e)
-        {
-            FrmLogin flog = new FrmLogin();
-            DialogResult drLog = flog.ShowDialog();
-
-            if (drLog == DialogResult.OK)
-            {
-                FrmMission fm = new FrmMission();
-                DialogResult drMiss = fm.ShowDialog();
-                if (drMiss == DialogResult.OK)
-                {
-                    MessageBox.Show("Mission créée");
-                }
-                if (drMiss == DialogResult.Cancel)
-                {
-                    MessageBox.Show("Echec de la création de la mission");
-                }
-            }
-
-            if (drLog == DialogResult.Cancel)
-            {
-                MessageBox.Show("Opération annulée");
-            }
-        }
 
         private void tsmiTableauDeBord_Click(object sender, EventArgs e)
         {
@@ -1183,8 +1159,28 @@ namespace Formulaire_principal
             plAliens.Visible = false;
             plMissions.Visible = false;
             plPlanetes.Visible = false;
-            FrmMission fdm = new FrmMission();
-            DialogResult dr = fdm.ShowDialog();
+
+            FrmLogin flog = new FrmLogin();
+            DialogResult drLog = flog.ShowDialog();
+
+            if (drLog == DialogResult.OK)
+            {
+                FrmMission fm = new FrmMission();
+                DialogResult drMiss = fm.ShowDialog();
+                if (drMiss == DialogResult.OK)
+                {
+                    MessageBox.Show("Mission créée");
+                }
+                if (drMiss == DialogResult.Cancel)
+                {
+                    MessageBox.Show("Echec de la création de la mission");
+                }
+            }
+
+            if (drLog == DialogResult.Cancel)
+            {
+                MessageBox.Show("Opération annulée");
+            }
         }
 
         private void statistiquesToolStripMenuItem_Click(object sender, EventArgs e)
