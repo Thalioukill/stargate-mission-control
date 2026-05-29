@@ -463,6 +463,7 @@ namespace Formulaire_principal
                 {
                     while (dr.Read()) // Parcours de toutes les missions
                     {
+
                         // Récupération des données
                         string nom = dr["nomPlanete"].ToString();
                         string numero = dr["numero"].ToString();
@@ -478,6 +479,9 @@ namespace Formulaire_principal
 
                         // Instanciation du User Control
                         UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
+                        // DATES (pour la couleur du cadre)
+                        uc.DateDepart = Convert.ToDateTime(dr["dateDepart"]);
+                        uc.DateRetour = Convert.ToDateTime(dr["dateRetour"]);
 
                         // délégué 
                         uc.details = OuvrirDetailMission;
