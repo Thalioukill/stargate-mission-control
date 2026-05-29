@@ -774,14 +774,15 @@ namespace Formulaire_principal
             //entrain de faire une mission !
             try
             {
-                string sql = @"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
+                string sql = $@"SELECT (me.nom || ' ' || me.prenom || ' - ' || mi.grade) 
                             AS nomComplet, me.matricule FROM Membre me
                             JOIN Militaire mi ON
                             me.matricule = mi.matriculeMembre
                             WHERE me.matricule LIKE 'M%' AND me.matricule NOT IN 
                             (SELECT matriculeChef FROM Mission 
-                                WHERE dateDepart <= CURRENT_DATE AND dateRetour >= CURRENT_DATE)
+                                WHERE dateDepart <= {dtpDepart.Value.ToString("yyyy-MM-dd")} AND dateRetour >= {dtpDepart.Value.ToString("yyyy-MM-dd")})
                                 ORDER BY me.nom ASC;";
+                //Pour n'avoir que les chefs qui sont disponibles quand ma mission commence.
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

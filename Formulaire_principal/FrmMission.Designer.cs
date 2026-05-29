@@ -84,6 +84,7 @@
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
+            this.lblChoixChef = new System.Windows.Forms.Label();
             this.grpNouvelleMission.SuspendLayout();
             this.pnlSection1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.erpPersonnePartis)).BeginInit();
@@ -109,6 +110,7 @@
             // pnlSection1
             // 
             this.pnlSection1.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSection1.Controls.Add(this.lblChoixChef);
             this.pnlSection1.Controls.Add(this.btnValidMission);
             this.pnlSection1.Controls.Add(this.lblEuros);
             this.pnlSection1.Controls.Add(this.txtBudget);
@@ -155,7 +157,7 @@
             this.lblEuros.AutoSize = true;
             this.lblEuros.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEuros.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblEuros.Location = new System.Drawing.Point(697, 1239);
+            this.lblEuros.Location = new System.Drawing.Point(697, 1274);
             this.lblEuros.Name = "lblEuros";
             this.lblEuros.Size = new System.Drawing.Size(38, 44);
             this.lblEuros.TabIndex = 59;
@@ -163,7 +165,7 @@
             // 
             // txtBudget
             // 
-            this.txtBudget.Location = new System.Drawing.Point(539, 1232);
+            this.txtBudget.Location = new System.Drawing.Point(539, 1271);
             this.txtBudget.Name = "txtBudget";
             this.txtBudget.Size = new System.Drawing.Size(93, 51);
             this.txtBudget.TabIndex = 58;
@@ -175,7 +177,7 @@
             this.lblBudget.AutoSize = true;
             this.lblBudget.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBudget.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBudget.Location = new System.Drawing.Point(59, 1232);
+            this.lblBudget.Location = new System.Drawing.Point(60, 1274);
             this.lblBudget.Name = "lblBudget";
             this.lblBudget.Size = new System.Drawing.Size(133, 44);
             this.lblBudget.TabIndex = 57;
@@ -186,7 +188,7 @@
             this.lblTonnes.AutoSize = true;
             this.lblTonnes.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTonnes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTonnes.Location = new System.Drawing.Point(697, 1132);
+            this.lblTonnes.Location = new System.Drawing.Point(697, 1181);
             this.lblTonnes.Name = "lblTonnes";
             this.lblTonnes.Size = new System.Drawing.Size(133, 44);
             this.lblTonnes.TabIndex = 56;
@@ -194,7 +196,7 @@
             // 
             // txtobjDataBaz
             // 
-            this.txtobjDataBaz.Location = new System.Drawing.Point(539, 1129);
+            this.txtobjDataBaz.Location = new System.Drawing.Point(539, 1174);
             this.txtobjDataBaz.Name = "txtobjDataBaz";
             this.txtobjDataBaz.Size = new System.Drawing.Size(93, 51);
             this.txtobjDataBaz.TabIndex = 55;
@@ -206,7 +208,7 @@
             this.lblObjDataBaz.AutoSize = true;
             this.lblObjDataBaz.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblObjDataBaz.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblObjDataBaz.Location = new System.Drawing.Point(63, 1129);
+            this.lblObjDataBaz.Location = new System.Drawing.Point(63, 1181);
             this.lblObjDataBaz.Name = "lblObjDataBaz";
             this.lblObjDataBaz.Size = new System.Drawing.Size(300, 44);
             this.lblObjDataBaz.TabIndex = 54;
@@ -217,7 +219,7 @@
             this.lblPersonnes.AutoSize = true;
             this.lblPersonnes.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPersonnes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPersonnes.Location = new System.Drawing.Point(697, 1025);
+            this.lblPersonnes.Location = new System.Drawing.Point(697, 1073);
             this.lblPersonnes.Name = "lblPersonnes";
             this.lblPersonnes.Size = new System.Drawing.Size(179, 44);
             this.lblPersonnes.TabIndex = 53;
@@ -225,7 +227,7 @@
             // 
             // txtnbMembres
             // 
-            this.txtnbMembres.Location = new System.Drawing.Point(539, 1018);
+            this.txtnbMembres.Location = new System.Drawing.Point(539, 1070);
             this.txtnbMembres.Name = "txtnbMembres";
             this.txtnbMembres.Size = new System.Drawing.Size(93, 51);
             this.txtnbMembres.TabIndex = 52;
@@ -237,7 +239,7 @@
             this.lblNbMembres.AutoSize = true;
             this.lblNbMembres.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNbMembres.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNbMembres.Location = new System.Drawing.Point(63, 1021);
+            this.lblNbMembres.Location = new System.Drawing.Point(66, 1070);
             this.lblNbMembres.Name = "lblNbMembres";
             this.lblNbMembres.Size = new System.Drawing.Size(339, 44);
             this.lblNbMembres.TabIndex = 51;
@@ -245,7 +247,7 @@
             // 
             // txtfeuilleRoute
             // 
-            this.txtfeuilleRoute.Location = new System.Drawing.Point(539, 732);
+            this.txtfeuilleRoute.Location = new System.Drawing.Point(539, 807);
             this.txtfeuilleRoute.Multiline = true;
             this.txtfeuilleRoute.Name = "txtfeuilleRoute";
             this.txtfeuilleRoute.Size = new System.Drawing.Size(660, 217);
@@ -257,7 +259,7 @@
             this.lblFDR.AutoSize = true;
             this.lblFDR.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFDR.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFDR.Location = new System.Drawing.Point(60, 735);
+            this.lblFDR.Location = new System.Drawing.Point(60, 810);
             this.lblFDR.Name = "lblFDR";
             this.lblFDR.Size = new System.Drawing.Size(268, 44);
             this.lblFDR.TabIndex = 49;
@@ -267,7 +269,7 @@
             // 
             this.dtpRetour.CustomFormat = "dd/MM/yyyy";
             this.dtpRetour.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpRetour.Location = new System.Drawing.Point(539, 621);
+            this.dtpRetour.Location = new System.Drawing.Point(539, 461);
             this.dtpRetour.Name = "dtpRetour";
             this.dtpRetour.Size = new System.Drawing.Size(309, 51);
             this.dtpRetour.TabIndex = 48;
@@ -276,7 +278,7 @@
             // 
             this.dtpDepart.CustomFormat = "dd/MM/yyyy";
             this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDepart.Location = new System.Drawing.Point(539, 514);
+            this.dtpDepart.Location = new System.Drawing.Point(539, 370);
             this.dtpDepart.Name = "dtpDepart";
             this.dtpDepart.Size = new System.Drawing.Size(309, 51);
             this.dtpDepart.TabIndex = 47;
@@ -286,7 +288,7 @@
             this.lblDateRetour.AutoSize = true;
             this.lblDateRetour.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateRetour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblDateRetour.Location = new System.Drawing.Point(59, 626);
+            this.lblDateRetour.Location = new System.Drawing.Point(66, 466);
             this.lblDateRetour.Name = "lblDateRetour";
             this.lblDateRetour.Size = new System.Drawing.Size(211, 44);
             this.lblDateRetour.TabIndex = 46;
@@ -297,7 +299,7 @@
             this.lblDateDepart.AutoSize = true;
             this.lblDateDepart.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateDepart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblDateDepart.Location = new System.Drawing.Point(60, 519);
+            this.lblDateDepart.Location = new System.Drawing.Point(63, 370);
             this.lblDateDepart.Name = "lblDateDepart";
             this.lblDateDepart.Size = new System.Drawing.Size(214, 44);
             this.lblDateDepart.TabIndex = 45;
@@ -308,7 +310,7 @@
             this.lblParam.AutoSize = true;
             this.lblParam.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblParam.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblParam.Location = new System.Drawing.Point(29, 418);
+            this.lblParam.Location = new System.Drawing.Point(60, 584);
             this.lblParam.Name = "lblParam";
             this.lblParam.Size = new System.Drawing.Size(440, 44);
             this.lblParam.TabIndex = 44;
@@ -321,16 +323,16 @@
             this.lblChef.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblChef.Location = new System.Drawing.Point(29, 289);
             this.lblChef.Name = "lblChef";
-            this.lblChef.Size = new System.Drawing.Size(466, 44);
+            this.lblChef.Size = new System.Drawing.Size(327, 44);
             this.lblChef.TabIndex = 43;
-            this.lblChef.Text = "2 - Choix du chef de mission";
+            this.lblChef.Text = "2 - Choix de la date";
             // 
             // cboChef
             // 
             this.cboChef.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboChef.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboChef.FormattingEnabled = true;
-            this.cboChef.Location = new System.Drawing.Point(549, 286);
+            this.cboChef.Location = new System.Drawing.Point(539, 682);
             this.cboChef.Name = "cboChef";
             this.cboChef.Size = new System.Drawing.Size(650, 52);
             this.cboChef.TabIndex = 3;
@@ -644,12 +646,20 @@
             this.lblAffect.TabIndex = 6;
             this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
+            // lblChoixChef
+            // 
+            this.lblChoixChef.AutoSize = true;
+            this.lblChoixChef.Location = new System.Drawing.Point(60, 682);
+            this.lblChoixChef.Name = "lblChoixChef";
+            this.lblChoixChef.Size = new System.Drawing.Size(249, 44);
+            this.lblChoixChef.TabIndex = 61;
+            this.lblChoixChef.Text = "Choix du chef";
+            // 
             // FrmMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_mission;
             this.ClientSize = new System.Drawing.Size(2669, 1499);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
@@ -730,5 +740,6 @@
         private System.Windows.Forms.ToolTip ttValidCapture;
         private System.Windows.Forms.ToolTip ttValidMembre;
         private System.Windows.Forms.ErrorProvider erpPersonnePartis;
+        private System.Windows.Forms.Label lblChoixChef;
     }
 }
