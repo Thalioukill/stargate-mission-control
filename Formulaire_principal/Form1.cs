@@ -350,12 +350,12 @@ namespace Formulaire_principal
             {
                 if (e.Item.Selected) // Si la souris survole l'élément
                 {
-                    // On définit la couleur du texte au survol (ex: Blanc ou Noir selon le contraste)
+                    //définit la couleur du texte au survol (équivaent de mouveOver)
                     e.TextColor = Color.FromArgb(229, 255, 204); // Blanc en RGB
                 }
                 else
                 {
-                    // On définit la couleur du texte au repos
+                    // couleur du texte au repos
                     e.TextColor = Color.FromArgb(0, 51, 25);
                 }
                 base.OnRenderItemText(e);
@@ -420,17 +420,27 @@ namespace Formulaire_principal
             // On vide systématiquement avant de recalculer
             flpMissions.Controls.Clear();
 
+            // pour compter le nombre de missions
+            int nbMissions = 0;
+            lblNombreMissionsTrouvees.Text = "";
+
+            // on remet l'affichage à zéro
+            lblNombreMissionsTrouvees.ForeColor = SystemColors.ControlText;
+            lblNombreMissionsTrouvees.Font = new Font(lblNombreMissionsTrouvees.Font, FontStyle.Regular);
+
+
             string condition = " WHERE 1=1"; // astuce pour ajouter des AND facilement
 
             // filtre status de la mission dans la groupBox
+            // on utilise localtime parce que sinon ca ne prends pas en compte les heures... (test à 0h45 et ca créer des soucis..)
             if (rdbPasse.Checked) { 
-                condition += " AND dateRetour < date('now')"; 
+                condition += " AND date(dateRetour) < date('now', 'localtime')"; 
             }
             else if (rdbEnCours.Checked) { 
-                condition += " AND dateDepart <= date('now') AND dateRetour >= date('now')"; 
+                condition += " AND date(dateDepart) <= date('now', 'localtime') AND date(dateRetour) >= date('now', 'localtime')"; 
             }
             else if (rdbAVenir.Checked) { 
-                condition += " AND dateDepart > date('now')"; 
+                condition += " AND date(dateDepart) > date('now','localtime')"; 
             }
 
             // Filtre chef
@@ -451,9 +461,15 @@ namespace Formulaire_principal
                 condition += " AND budget <= '"+txtBudgetMax.Text+"'";
             }
 
+            // filtre durée avec le NumericUpDown
+            if (nupNbMissions.Value > 0)
+            {
+                condition += " AND (julianday(dateRetour) - julianday(dateDepart)) >= " + nupNbMissions.Value;
+            }
+
             // inner join entre Mission et membre pour ne pas avoir plusieurs fois le meme nom et prénom de chef de mission
             string requeteFinale = "SELECT Mission.*, Membre.nom, Membre.prenom FROM Mission INNER JOIN Membre ON Mission.matriculeChef = Membre.matricule " + condition + " ORDER BY Mission.dateDepart DESC";
-
+            
             try
             {
                 SQLiteCommand cmdRechercheMissions = new SQLiteCommand(requeteFinale, this.co);
@@ -463,11 +479,11 @@ namespace Formulaire_principal
                 {
                     while (dr.Read()) // Parcours de toutes les missions
                     {
-
                         // Récupération des données
                         string nom = dr["nomPlanete"].ToString();
                         string numero = dr["numero"].ToString();
-                        string date = dr["dateDepart"].ToString().Replace("-", "/") + " - " + dr["dateRetour"].ToString().Replace("-", "/");
+                        // on doit d'abord convertir le tout en DateTime et ensuite formater la sortie.
+                        string date = Convert.ToDateTime(dr["dateDepart"]).ToString("dd/MM/yyyy") + " - "+ Convert.ToDateTime(dr["dateRetour"]).ToString("dd/MM/yyyy");
                         string chef = dr["prenom"]+ " " + dr["nom"];
                         DateTime dateDepart = DateTime.Parse(dr["dateDepart"].ToString());
                         DateTime dateRetour = DateTime.Parse(dr["dateRetour"].ToString());
@@ -491,11 +507,22 @@ namespace Formulaire_principal
 
                         // ajout au conteneur (FlowLayoutPanel)
                         flpMissions.Controls.Add(uc);
+                        nbMissions++;
+                    }
+                    if(nbMissions > 0)
+                    {
+                        lblNombreMissionsTrouvees.Text = "Nombre de missions trouvées : "+nbMissions.ToString();
                     }
                 }
                 else
                 {
                     MessageBox.Show("Aucune mission ne correspond à vos critères.");
+                    lblNombreMissionsTrouvees.Text = "Aucune mission trouvée...";
+                    // Changer la couleur en rouge
+                    lblNombreMissionsTrouvees.ForeColor = Color.FromArgb(255, 50, 50);
+
+                    // Mettre en gras
+                    lblNombreMissionsTrouvees.Font = new Font(lblNombreMissionsTrouvees.Font, FontStyle.Bold);
                 }
             }
             catch (Exception ex)
@@ -530,6 +557,41 @@ namespace Formulaire_principal
         {
             ActualiserAffichage();
         }
+
+
+        private void cbo_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ComboBox cbo = (ComboBox)sender;
+
+            if (cbo.SelectedIndex != -1)
+            {
+                ActualiserAffichage();
+            }
+
+        }
+
+        //J'ai sélectionné les 3 radioButtons du tableau de bord et j'ai fais en sorte de tous les abonner (pour la propriété CheckedChange) à cette méthode que j'ai écrite
+        private void btn_CheckedChanged(object sender, EventArgs e)
+        {
+            // on caste le sender en radiobutton
+            RadioButton rdb = (RadioButton)sender;
+            if (rdb.Checked)
+            {
+                ActualiserAffichage();
+            }
+
+        }
+
+        private void nupNbMissions_KeyDown(object sender, KeyEventArgs e)
+        {
+            // si l'utilisateur tape sur entrée
+            if (e.KeyCode == Keys.Enter)
+            {
+                ActualiserAffichage();
+            }
+        }
+
+
 
         // =======>  Code partie ALIENS
 
@@ -1197,6 +1259,11 @@ namespace Formulaire_principal
             {
                 e.Handled = false;
             }
+        }
+
+        private void lblNbMission_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

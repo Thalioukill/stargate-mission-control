@@ -106,7 +106,8 @@ namespace Formulaire_principal
 
         private void mettreAJourStatut()
         {
-            DateTime aujourdhui = DateTime.Now;
+            // DateTime.Now renvoie aussi des heures et minutes et ca pose des problèmes pour les missions en cours/passées...
+            DateTime aujourdhui = DateTime.Today;
 
             if (dateDepart > aujourdhui)
             {
