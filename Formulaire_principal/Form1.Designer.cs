@@ -807,7 +807,7 @@
             this.plAliens.Location = new System.Drawing.Point(376, 27);
             this.plAliens.Margin = new System.Windows.Forms.Padding(4);
             this.plAliens.Name = "plAliens";
-            this.plAliens.Size = new System.Drawing.Size(1521, 58);
+            this.plAliens.Size = new System.Drawing.Size(1521, 977);
             this.plAliens.TabIndex = 1;
             // 
             // label23
