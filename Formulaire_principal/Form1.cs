@@ -140,6 +140,13 @@ namespace Formulaire_principal
 
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
+
+                // On crée une nouvelle ligne manuellement pour l'option "Tous"
+                DataRow ligneTous = dt.NewRow();
+                ligneTous["matricule"] = "TOUS"; // Valeur mémorisée neutre
+                ligneTous["nomComplet"] = "Tous les chefs"; // Texte affiché
+                dt.Rows.InsertAt(ligneTous, 0); // On l'insère à l'index 0 (le début)
+
                 cboChefMission.DataSource = dt;
                 cboChefMission.ValueMember = "matricule";
                 cboChefMission.DisplayMember = "nomComplet";
@@ -149,8 +156,7 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(err.Message);
             }
-            cboChefMission.SelectedIndex = -1;
-
+            cboChefMission.SelectedIndex = 0; // On sélectionne tous les chefs par défaut
 
             // ComboBox pour les noms de planetes
             string remplirCboPlanete = $"SELECT nomPlanete FROM Mission ORDER BY nomPlanete";
@@ -161,8 +167,14 @@ namespace Formulaire_principal
 
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
+
+                DataRow ligneToutesP = dt.NewRow();
+                ligneToutesP["nomPlanete"] = "Toutes les planètes";
+                dt.Rows.InsertAt(ligneToutesP, 0);
+
                 cboPlanete.DataSource = dt;
                 cboPlanete.ValueMember = "nomPlanete";
+                cboPlanete.DisplayMember = "nomPlanete";
 
             }
             catch (SQLiteException err)
@@ -170,7 +182,7 @@ namespace Formulaire_principal
                 MessageBox.Show(err.Message);
             }
 
-            cboPlanete.SelectedIndex = -1;
+            cboPlanete.SelectedIndex = 0;
         }
 
         private void AfficherBudgetMax()
@@ -422,13 +434,13 @@ namespace Formulaire_principal
 
             // pour compter le nombre de missions
             int nbMissions = 0;
-            lblNombreMissionsTrouvees.Text = "";
+            grpNbMissionsTrouvees.Text = "";
 
             // on remet l'affichage à zéro
-            lblNombreMissionsTrouvees.ForeColor = SystemColors.ControlText;
-            lblNombreMissionsTrouvees.Font = new Font(lblNombreMissionsTrouvees.Font, FontStyle.Regular);
+            grpNbMissionsTrouvees.ForeColor = SystemColors.ControlText;
+            grpNbMissionsTrouvees.Font = new Font(grpNbMissionsTrouvees.Font, FontStyle.Regular);
 
-
+            // si le rdbRAZ est coché on ne change rien, on ajoute aucun filtre...
             string condition = " WHERE 1=1"; // astuce pour ajouter des AND facilement
 
             // filtre status de la mission dans la groupBox
@@ -444,21 +456,21 @@ namespace Formulaire_principal
             }
 
             // Filtre chef
-            if (cboChefMission.SelectedIndex != -1)
+            if (cboChefMission.SelectedIndex > 0)
             {
                 condition += " AND matriculeChef = '" + cboChefMission.SelectedValue + "'"; // On utilise le champ mémorisé
             }
 
             // Filtre Planète 
-            if (cboPlanete.SelectedIndex != -1)
+            if (cboPlanete.SelectedIndex > 0)
             {
                 condition += " AND nomPlanete = '" + cboPlanete.Text + "'";
             }
 
             // filtre budget
-            if (!string.IsNullOrEmpty(txtBudgetMax.Text))
+            if (!string.IsNullOrEmpty(txtBudgetMin.Text))
             {
-                condition += " AND budget <= '"+txtBudgetMax.Text+"'";
+                condition += " AND budget >= '"+txtBudgetMin.Text+"'";
             }
 
             // filtre durée avec le NumericUpDown
@@ -511,18 +523,18 @@ namespace Formulaire_principal
                     }
                     if(nbMissions > 0)
                     {
-                        lblNombreMissionsTrouvees.Text = "Nombre de missions trouvées : "+nbMissions.ToString();
+                        grpNbMissionsTrouvees.Text = "Nombre de missions trouvées : "+nbMissions.ToString();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Aucune mission ne correspond à vos critères.");
-                    lblNombreMissionsTrouvees.Text = "Aucune mission trouvée...";
+                    MessageBox.Show("Erreur : Aucune mission ne correspond à vos critères.", "Filtre invalide", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    grpNbMissionsTrouvees.Text = "Aucune mission trouvée...";
                     // Changer la couleur en rouge
-                    lblNombreMissionsTrouvees.ForeColor = Color.FromArgb(255, 50, 50);
+                    grpNbMissionsTrouvees.ForeColor = Color.FromArgb(255, 50, 50);
 
                     // Mettre en gras
-                    lblNombreMissionsTrouvees.Font = new Font(lblNombreMissionsTrouvees.Font, FontStyle.Bold);
+                    grpNbMissionsTrouvees.Font = new Font(grpNbMissionsTrouvees.Font, FontStyle.Bold);
                 }
             }
             catch (Exception ex)
@@ -536,10 +548,11 @@ namespace Formulaire_principal
             rdbPasse.Checked = false;
             rdbEnCours.Checked = false;
             rdbAVenir.Checked = false;
-            cboChefMission.SelectedIndex = -1;
-            cboPlanete.SelectedIndex = -1;
-            txtBudgetMax.Text = string.Empty;
+            cboChefMission.SelectedIndex = 0;
+            cboPlanete.SelectedIndex = 0;
+            txtBudgetMin.Text = string.Empty;
             lblBd.Text = "Budget maximum : ";
+            rdbRAZ.Checked = true;
 
             ActualiserAffichage(); // On recharge tout
         }
@@ -570,7 +583,7 @@ namespace Formulaire_principal
 
         }
 
-        //J'ai sélectionné les 3 radioButtons du tableau de bord et j'ai fais en sorte de tous les abonner (pour la propriété CheckedChange) à cette méthode que j'ai écrite
+        //J'ai sélectionné les 4 radioButtons du tableau de bord et j'ai fais en sorte de tous les abonner (pour la propriété CheckedChange) à cette méthode que j'ai écrite
         private void btn_CheckedChanged(object sender, EventArgs e)
         {
             // on caste le sender en radiobutton
@@ -587,7 +600,16 @@ namespace Formulaire_principal
             // si l'utilisateur tape sur entrée
             if (e.KeyCode == Keys.Enter)
             {
-                ActualiserAffichage();
+                // On vérifie la valeur avant de lancer la recherche
+                if (nupNbMissions.Value < 1)
+                {
+                    MessageBox.Show("Erreur : il faut choisir au moins 1 jour pour filtrer les missions.", "Filtre invalide", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    // Si c'est bon, on actualise le tableau de bord
+                    ActualiserAffichage();
+                }
             }
         }
 
