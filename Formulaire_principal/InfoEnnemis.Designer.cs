@@ -41,9 +41,9 @@
             // 
             this.lblArme.AutoSize = true;
             this.lblArme.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArme.Location = new System.Drawing.Point(3, 226);
+            this.lblArme.Location = new System.Drawing.Point(137, 131);
             this.lblArme.Name = "lblArme";
-            this.lblArme.Size = new System.Drawing.Size(49, 19);
+            this.lblArme.Size = new System.Drawing.Size(57, 24);
             this.lblArme.TabIndex = 11;
             this.lblArme.Text = "label5";
             // 
@@ -51,9 +51,9 @@
             // 
             this.lblPlaneteEnnemis.AutoSize = true;
             this.lblPlaneteEnnemis.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaneteEnnemis.Location = new System.Drawing.Point(3, 209);
+            this.lblPlaneteEnnemis.Location = new System.Drawing.Point(137, 97);
             this.lblPlaneteEnnemis.Name = "lblPlaneteEnnemis";
-            this.lblPlaneteEnnemis.Size = new System.Drawing.Size(49, 19);
+            this.lblPlaneteEnnemis.Size = new System.Drawing.Size(57, 24);
             this.lblPlaneteEnnemis.TabIndex = 10;
             this.lblPlaneteEnnemis.Text = "label4";
             // 
@@ -61,9 +61,9 @@
             // 
             this.lblCouleurEnnemis.AutoSize = true;
             this.lblCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCouleurEnnemis.Location = new System.Drawing.Point(3, 192);
+            this.lblCouleurEnnemis.Location = new System.Drawing.Point(137, 64);
             this.lblCouleurEnnemis.Name = "lblCouleurEnnemis";
-            this.lblCouleurEnnemis.Size = new System.Drawing.Size(48, 19);
+            this.lblCouleurEnnemis.Size = new System.Drawing.Size(57, 24);
             this.lblCouleurEnnemis.TabIndex = 9;
             this.lblCouleurEnnemis.Text = "label3";
             // 
@@ -71,9 +71,9 @@
             // 
             this.lblAgressivite.AutoSize = true;
             this.lblAgressivite.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgressivite.Location = new System.Drawing.Point(3, 175);
+            this.lblAgressivite.Location = new System.Drawing.Point(137, 32);
             this.lblAgressivite.Name = "lblAgressivite";
-            this.lblAgressivite.Size = new System.Drawing.Size(49, 19);
+            this.lblAgressivite.Size = new System.Drawing.Size(58, 24);
             this.lblAgressivite.TabIndex = 8;
             this.lblAgressivite.Text = "label2";
             // 
@@ -81,9 +81,9 @@
             // 
             this.lblNomEnnemis.AutoSize = true;
             this.lblNomEnnemis.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomEnnemis.Location = new System.Drawing.Point(3, 158);
+            this.lblNomEnnemis.Location = new System.Drawing.Point(137, 3);
             this.lblNomEnnemis.Name = "lblNomEnnemis";
-            this.lblNomEnnemis.Size = new System.Drawing.Size(48, 19);
+            this.lblNomEnnemis.Size = new System.Drawing.Size(57, 24);
             this.lblNomEnnemis.TabIndex = 7;
             this.lblNomEnnemis.Text = "label1";
             // 
@@ -97,8 +97,7 @@
             // 
             // InfoEnnemis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.lblArme);
             this.Controls.Add(this.lblPlaneteEnnemis);
             this.Controls.Add(this.lblCouleurEnnemis);
@@ -106,7 +105,7 @@
             this.Controls.Add(this.lblNomEnnemis);
             this.Controls.Add(this.picEnnemis);
             this.Name = "InfoEnnemis";
-            this.Size = new System.Drawing.Size(179, 245);
+            this.Size = new System.Drawing.Size(456, 183);
             this.Load += new System.EventHandler(this.InfoEnnemis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picEnnemis)).EndInit();
             this.ResumeLayout(false);

@@ -41,9 +41,9 @@
             // 
             this.lblNomAlliees.AutoSize = true;
             this.lblNomAlliees.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomAlliees.Location = new System.Drawing.Point(3, 158);
+            this.lblNomAlliees.Location = new System.Drawing.Point(137, 3);
             this.lblNomAlliees.Name = "lblNomAlliees";
-            this.lblNomAlliees.Size = new System.Drawing.Size(48, 19);
+            this.lblNomAlliees.Size = new System.Drawing.Size(57, 24);
             this.lblNomAlliees.TabIndex = 1;
             this.lblNomAlliees.Text = "label1";
             // 
@@ -51,9 +51,9 @@
             // 
             this.lblBienveillance.AutoSize = true;
             this.lblBienveillance.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienveillance.Location = new System.Drawing.Point(3, 175);
+            this.lblBienveillance.Location = new System.Drawing.Point(136, 33);
             this.lblBienveillance.Name = "lblBienveillance";
-            this.lblBienveillance.Size = new System.Drawing.Size(49, 19);
+            this.lblBienveillance.Size = new System.Drawing.Size(58, 24);
             this.lblBienveillance.TabIndex = 2;
             this.lblBienveillance.Text = "label2";
             // 
@@ -61,9 +61,9 @@
             // 
             this.lblCouleurAlliees.AutoSize = true;
             this.lblCouleurAlliees.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCouleurAlliees.Location = new System.Drawing.Point(3, 192);
+            this.lblCouleurAlliees.Location = new System.Drawing.Point(137, 68);
             this.lblCouleurAlliees.Name = "lblCouleurAlliees";
-            this.lblCouleurAlliees.Size = new System.Drawing.Size(48, 19);
+            this.lblCouleurAlliees.Size = new System.Drawing.Size(57, 24);
             this.lblCouleurAlliees.TabIndex = 3;
             this.lblCouleurAlliees.Text = "label3";
             // 
@@ -71,9 +71,9 @@
             // 
             this.lblPlaneteAlliees.AutoSize = true;
             this.lblPlaneteAlliees.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaneteAlliees.Location = new System.Drawing.Point(3, 209);
+            this.lblPlaneteAlliees.Location = new System.Drawing.Point(138, 99);
             this.lblPlaneteAlliees.Name = "lblPlaneteAlliees";
-            this.lblPlaneteAlliees.Size = new System.Drawing.Size(49, 19);
+            this.lblPlaneteAlliees.Size = new System.Drawing.Size(57, 24);
             this.lblPlaneteAlliees.TabIndex = 4;
             this.lblPlaneteAlliees.Text = "label4";
             // 
@@ -81,9 +81,9 @@
             // 
             this.lblInstrument.AutoSize = true;
             this.lblInstrument.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInstrument.Location = new System.Drawing.Point(3, 226);
+            this.lblInstrument.Location = new System.Drawing.Point(137, 131);
             this.lblInstrument.Name = "lblInstrument";
-            this.lblInstrument.Size = new System.Drawing.Size(49, 19);
+            this.lblInstrument.Size = new System.Drawing.Size(57, 24);
             this.lblInstrument.TabIndex = 5;
             this.lblInstrument.Text = "label5";
             // 
@@ -97,8 +97,7 @@
             // 
             // InfoAlien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.lblInstrument);
             this.Controls.Add(this.lblPlaneteAlliees);
             this.Controls.Add(this.lblCouleurAlliees);
@@ -106,7 +105,7 @@
             this.Controls.Add(this.lblNomAlliees);
             this.Controls.Add(this.picAlliees);
             this.Name = "InfoAlien";
-            this.Size = new System.Drawing.Size(179, 245);
+            this.Size = new System.Drawing.Size(456, 183);
             this.Load += new System.EventHandler(this.InfoAlien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAlliees)).EndInit();
             this.ResumeLayout(false);

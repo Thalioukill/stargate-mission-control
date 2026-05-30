@@ -88,8 +88,6 @@
             this.plAliens = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
             this.grpFiltresAlliees = new System.Windows.Forms.GroupBox();
-            this.btnReinitialiserBienveillance = new System.Windows.Forms.Button();
-            this.btnReinitialiserCouleurAlliees = new System.Windows.Forms.Button();
             this.btnReinitialiserAlliees = new System.Windows.Forms.Button();
             this.cboBienveillance = new System.Windows.Forms.ComboBox();
             this.btnRechercherAlliees = new System.Windows.Forms.Button();
@@ -105,9 +103,6 @@
             this.lblErreur = new System.Windows.Forms.Label();
             this.flp1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFiltresEnnemis = new System.Windows.Forms.GroupBox();
-            this.btnAgressivité = new System.Windows.Forms.Button();
-            this.btnTypeArme = new System.Windows.Forms.Button();
-            this.btnReinitialiserCouleurEnnemis = new System.Windows.Forms.Button();
             this.btnReinitialiserEnnemis = new System.Windows.Forms.Button();
             this.cboAgressivite = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -137,10 +132,9 @@
             // flpMissions
             // 
             this.flpMissions.AutoScroll = true;
-            this.flpMissions.Location = new System.Drawing.Point(27, 421);
-            this.flpMissions.Margin = new System.Windows.Forms.Padding(4);
+            this.flpMissions.Location = new System.Drawing.Point(20, 342);
             this.flpMissions.Name = "flpMissions";
-            this.flpMissions.Size = new System.Drawing.Size(1448, 528);
+            this.flpMissions.Size = new System.Drawing.Size(1086, 429);
             this.flpMissions.TabIndex = 4;
             // 
             // plMissions
@@ -149,17 +143,17 @@
             this.plMissions.Controls.Add(this.grpFiltres);
             this.plMissions.Controls.Add(this.label21);
             this.plMissions.Controls.Add(this.flpMissions);
-            this.plMissions.Location = new System.Drawing.Point(376, 27);
-            this.plMissions.Margin = new System.Windows.Forms.Padding(4);
+            this.plMissions.Location = new System.Drawing.Point(282, 22);
             this.plMissions.Name = "plMissions";
-            this.plMissions.Size = new System.Drawing.Size(1521, 976);
+            this.plMissions.Size = new System.Drawing.Size(1141, 793);
             this.plMissions.TabIndex = 0;
             // 
             // lblNombreMissionsTrouvees
             // 
             this.lblNombreMissionsTrouvees.AutoSize = true;
             this.lblNombreMissionsTrouvees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreMissionsTrouvees.Location = new System.Drawing.Point(27, 374);
+            this.lblNombreMissionsTrouvees.Location = new System.Drawing.Point(20, 304);
+            this.lblNombreMissionsTrouvees.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNombreMissionsTrouvees.Name = "lblNombreMissionsTrouvees";
             this.lblNombreMissionsTrouvees.Size = new System.Drawing.Size(0, 28);
             this.lblNombreMissionsTrouvees.TabIndex = 6;
@@ -181,11 +175,9 @@
             this.grpFiltres.Controls.Add(this.rdbPasse);
             this.grpFiltres.Controls.Add(this.label1);
             this.grpFiltres.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltres.Location = new System.Drawing.Point(27, 103);
-            this.grpFiltres.Margin = new System.Windows.Forms.Padding(4);
+            this.grpFiltres.Location = new System.Drawing.Point(20, 84);
             this.grpFiltres.Name = "grpFiltres";
-            this.grpFiltres.Padding = new System.Windows.Forms.Padding(4);
-            this.grpFiltres.Size = new System.Drawing.Size(1448, 225);
+            this.grpFiltres.Size = new System.Drawing.Size(1086, 183);
             this.grpFiltres.TabIndex = 5;
             this.grpFiltres.TabStop = false;
             this.grpFiltres.Text = "Filtres";
@@ -193,7 +185,8 @@
             // lblNbMission
             // 
             this.lblNbMission.AutoSize = true;
-            this.lblNbMission.Location = new System.Drawing.Point(1132, 81);
+            this.lblNbMission.Location = new System.Drawing.Point(849, 66);
+            this.lblNbMission.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNbMission.Name = "lblNbMission";
             this.lblNbMission.Size = new System.Drawing.Size(278, 28);
             this.lblNbMission.TabIndex = 14;
@@ -202,14 +195,15 @@
             // 
             // nupNbMissions
             // 
-            this.nupNbMissions.Location = new System.Drawing.Point(1137, 123);
+            this.nupNbMissions.Location = new System.Drawing.Point(853, 100);
+            this.nupNbMissions.Margin = new System.Windows.Forms.Padding(2);
             this.nupNbMissions.Maximum = new decimal(new int[] {
             365,
             0,
             0,
             0});
             this.nupNbMissions.Name = "nupNbMissions";
-            this.nupNbMissions.Size = new System.Drawing.Size(120, 35);
+            this.nupNbMissions.Size = new System.Drawing.Size(90, 35);
             this.nupNbMissions.TabIndex = 13;
             this.nupNbMissions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nupNbMissions_KeyDown);
             // 
@@ -218,10 +212,9 @@
             this.btnRecherche.BackgroundImage = global::Formulaire_principal.Properties.Resources.recherche;
             this.btnRecherche.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecherche.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecherche.Location = new System.Drawing.Point(991, 112);
-            this.btnRecherche.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRecherche.Location = new System.Drawing.Point(743, 91);
             this.btnRecherche.Name = "btnRecherche";
-            this.btnRecherche.Size = new System.Drawing.Size(57, 52);
+            this.btnRecherche.Size = new System.Drawing.Size(43, 42);
             this.btnRecherche.TabIndex = 12;
             this.btnRecherche.UseVisualStyleBackColor = true;
             this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
@@ -230,8 +223,7 @@
             // 
             this.lblBd.AutoSize = true;
             this.lblBd.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBd.Location = new System.Drawing.Point(728, 80);
-            this.lblBd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBd.Location = new System.Drawing.Point(546, 65);
             this.lblBd.Name = "lblBd";
             this.lblBd.Size = new System.Drawing.Size(197, 28);
             this.lblBd.TabIndex = 11;
@@ -240,18 +232,16 @@
             // txtBudgetMax
             // 
             this.txtBudgetMax.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtBudgetMax.Location = new System.Drawing.Point(733, 123);
-            this.txtBudgetMax.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBudgetMax.Location = new System.Drawing.Point(550, 100);
             this.txtBudgetMax.Name = "txtBudgetMax";
-            this.txtBudgetMax.Size = new System.Drawing.Size(236, 35);
+            this.txtBudgetMax.Size = new System.Drawing.Size(178, 35);
             this.txtBudgetMax.TabIndex = 9;
             this.txtBudgetMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudgetMax_KeyPress);
             // 
             // lblPlanete
             // 
             this.lblPlanete.AutoSize = true;
-            this.lblPlanete.Location = new System.Drawing.Point(342, 143);
-            this.lblPlanete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlanete.Location = new System.Drawing.Point(256, 116);
             this.lblPlanete.Name = "lblPlanete";
             this.lblPlanete.Size = new System.Drawing.Size(97, 28);
             this.lblPlanete.TabIndex = 8;
@@ -264,10 +254,9 @@
             this.cboPlanete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
-            this.cboPlanete.Location = new System.Drawing.Point(346, 175);
-            this.cboPlanete.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPlanete.Location = new System.Drawing.Point(260, 142);
             this.cboPlanete.Name = "cboPlanete";
-            this.cboPlanete.Size = new System.Drawing.Size(291, 36);
+            this.cboPlanete.Size = new System.Drawing.Size(219, 36);
             this.cboPlanete.TabIndex = 7;
             this.cboPlanete.SelectionChangeCommitted += new System.EventHandler(this.cbo_SelectionChangeCommitted);
             // 
@@ -276,10 +265,9 @@
             this.btnRAZ.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz1;
             this.btnRAZ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRAZ.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRAZ.Location = new System.Drawing.Point(1369, 163);
-            this.btnRAZ.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRAZ.Location = new System.Drawing.Point(1027, 132);
             this.btnRAZ.Name = "btnRAZ";
-            this.btnRAZ.Size = new System.Drawing.Size(57, 52);
+            this.btnRAZ.Size = new System.Drawing.Size(43, 42);
             this.btnRAZ.TabIndex = 6;
             this.ttRAZ.SetToolTip(this.btnRAZ, "Remise à zéro des filtres");
             this.btnRAZ.UseVisualStyleBackColor = true;
@@ -292,18 +280,16 @@
             this.cboChefMission.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cboChefMission.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChefMission.FormattingEnabled = true;
-            this.cboChefMission.Location = new System.Drawing.Point(346, 86);
-            this.cboChefMission.Margin = new System.Windows.Forms.Padding(4);
+            this.cboChefMission.Location = new System.Drawing.Point(260, 70);
             this.cboChefMission.Name = "cboChefMission";
-            this.cboChefMission.Size = new System.Drawing.Size(291, 36);
+            this.cboChefMission.Size = new System.Drawing.Size(219, 36);
             this.cboChefMission.TabIndex = 5;
             this.cboChefMission.SelectionChangeCommitted += new System.EventHandler(this.cbo_SelectionChangeCommitted);
             // 
             // lblChefMission
             // 
             this.lblChefMission.AutoSize = true;
-            this.lblChefMission.Location = new System.Drawing.Point(341, 54);
-            this.lblChefMission.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblChefMission.Location = new System.Drawing.Point(256, 44);
             this.lblChefMission.Name = "lblChefMission";
             this.lblChefMission.Size = new System.Drawing.Size(181, 28);
             this.lblChefMission.TabIndex = 4;
@@ -313,8 +299,7 @@
             // 
             this.rdbAVenir.AutoSize = true;
             this.rdbAVenir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdbAVenir.Location = new System.Drawing.Point(65, 176);
-            this.rdbAVenir.Margin = new System.Windows.Forms.Padding(4);
+            this.rdbAVenir.Location = new System.Drawing.Point(49, 143);
             this.rdbAVenir.Name = "rdbAVenir";
             this.rdbAVenir.Size = new System.Drawing.Size(106, 32);
             this.rdbAVenir.TabIndex = 3;
@@ -326,8 +311,7 @@
             // 
             this.rdbEnCours.AutoSize = true;
             this.rdbEnCours.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdbEnCours.Location = new System.Drawing.Point(65, 128);
-            this.rdbEnCours.Margin = new System.Windows.Forms.Padding(4);
+            this.rdbEnCours.Location = new System.Drawing.Point(49, 104);
             this.rdbEnCours.Name = "rdbEnCours";
             this.rdbEnCours.Size = new System.Drawing.Size(120, 32);
             this.rdbEnCours.TabIndex = 2;
@@ -339,8 +323,7 @@
             // 
             this.rdbPasse.AutoSize = true;
             this.rdbPasse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdbPasse.Location = new System.Drawing.Point(65, 84);
-            this.rdbPasse.Margin = new System.Windows.Forms.Padding(4);
+            this.rdbPasse.Location = new System.Drawing.Point(49, 68);
             this.rdbPasse.Name = "rdbPasse";
             this.rdbPasse.Size = new System.Drawing.Size(107, 32);
             this.rdbPasse.TabIndex = 1;
@@ -351,7 +334,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 46);
+            this.label1.Location = new System.Drawing.Point(4, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 28);
             this.label1.TabIndex = 0;
@@ -361,7 +345,8 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Kristen ITC", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(29, 22);
+            this.label21.Location = new System.Drawing.Point(22, 18);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(312, 45);
             this.label21.TabIndex = 3;
@@ -379,10 +364,10 @@
             this.tmsiAliens});
             this.msMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.msMenu.Location = new System.Drawing.Point(0, 0);
-            this.msMenu.MinimumSize = new System.Drawing.Size(267, 0);
+            this.msMenu.MinimumSize = new System.Drawing.Size(200, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Padding = new System.Windows.Forms.Padding(7, 4, 0, 4);
-            this.msMenu.Size = new System.Drawing.Size(295, 1016);
+            this.msMenu.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
+            this.msMenu.Size = new System.Drawing.Size(293, 826);
             this.msMenu.Stretch = false;
             this.msMenu.TabIndex = 0;
             this.msMenu.Text = "menuStrip1";
@@ -439,10 +424,10 @@
             this.plPlanetes.Controls.Add(this.lblPlanetes);
             this.plPlanetes.Controls.Add(this.grpFiltre);
             this.plPlanetes.Controls.Add(this.flpPlanete);
-            this.plPlanetes.Location = new System.Drawing.Point(376, 27);
-            this.plPlanetes.Margin = new System.Windows.Forms.Padding(5);
+            this.plPlanetes.Location = new System.Drawing.Point(282, 22);
+            this.plPlanetes.Margin = new System.Windows.Forms.Padding(4);
             this.plPlanetes.Name = "plPlanetes";
-            this.plPlanetes.Size = new System.Drawing.Size(1521, 975);
+            this.plPlanetes.Size = new System.Drawing.Size(1141, 792);
             this.plPlanetes.TabIndex = 2;
             this.plPlanetes.Visible = false;
             // 
@@ -450,8 +435,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Kristen ITC", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(29, 22);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(22, 18);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(176, 45);
             this.label22.TabIndex = 4;
@@ -461,8 +445,8 @@
             // 
             this.lblPlanetes.AutoSize = true;
             this.lblPlanetes.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlanetes.Location = new System.Drawing.Point(820, 42);
-            this.lblPlanetes.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPlanetes.Location = new System.Drawing.Point(615, 34);
+            this.lblPlanetes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlanetes.Name = "lblPlanetes";
             this.lblPlanetes.Size = new System.Drawing.Size(106, 28);
             this.lblPlanetes.TabIndex = 0;
@@ -497,11 +481,11 @@
             this.grpFiltre.Controls.Add(this.label19);
             this.grpFiltre.Controls.Add(this.label20);
             this.grpFiltre.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltre.Location = new System.Drawing.Point(32, 79);
-            this.grpFiltre.Margin = new System.Windows.Forms.Padding(5);
+            this.grpFiltre.Location = new System.Drawing.Point(24, 64);
+            this.grpFiltre.Margin = new System.Windows.Forms.Padding(4);
             this.grpFiltre.Name = "grpFiltre";
-            this.grpFiltre.Padding = new System.Windows.Forms.Padding(5);
-            this.grpFiltre.Size = new System.Drawing.Size(757, 854);
+            this.grpFiltre.Padding = new System.Windows.Forms.Padding(4);
+            this.grpFiltre.Size = new System.Drawing.Size(568, 694);
             this.grpFiltre.TabIndex = 3;
             this.grpFiltre.TabStop = false;
             this.grpFiltre.Text = "Filtres";
@@ -509,8 +493,8 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(128, 337);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Location = new System.Drawing.Point(96, 274);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 28);
             this.label7.TabIndex = 27;
@@ -521,10 +505,10 @@
             this.btnReinitialiserEspeces.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserEspeces.BackgroundImage")));
             this.btnReinitialiserEspeces.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserEspeces.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserEspeces.Location = new System.Drawing.Point(461, 690);
-            this.btnReinitialiserEspeces.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReinitialiserEspeces.Location = new System.Drawing.Point(346, 561);
+            this.btnReinitialiserEspeces.Margin = new System.Windows.Forms.Padding(4);
             this.btnReinitialiserEspeces.Name = "btnReinitialiserEspeces";
-            this.btnReinitialiserEspeces.Size = new System.Drawing.Size(71, 61);
+            this.btnReinitialiserEspeces.Size = new System.Drawing.Size(53, 50);
             this.btnReinitialiserEspeces.TabIndex = 26;
             this.btnReinitialiserEspeces.UseVisualStyleBackColor = true;
             this.btnReinitialiserEspeces.Click += new System.EventHandler(this.btnReinitialiserEspeces_Click);
@@ -534,10 +518,10 @@
             this.btnReinitialiserDataBaz.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReinitialiserDataBaz.BackgroundImage")));
             this.btnReinitialiserDataBaz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserDataBaz.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserDataBaz.Location = new System.Drawing.Point(461, 392);
-            this.btnReinitialiserDataBaz.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReinitialiserDataBaz.Location = new System.Drawing.Point(346, 318);
+            this.btnReinitialiserDataBaz.Margin = new System.Windows.Forms.Padding(4);
             this.btnReinitialiserDataBaz.Name = "btnReinitialiserDataBaz";
-            this.btnReinitialiserDataBaz.Size = new System.Drawing.Size(71, 61);
+            this.btnReinitialiserDataBaz.Size = new System.Drawing.Size(53, 50);
             this.btnReinitialiserDataBaz.TabIndex = 25;
             this.btnReinitialiserDataBaz.UseVisualStyleBackColor = true;
             this.btnReinitialiserDataBaz.Click += new System.EventHandler(this.btnReinitialiserDataBaz_Click);
@@ -548,10 +532,10 @@
             this.btnReinitialiser.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz;
             this.btnReinitialiser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiser.Location = new System.Drawing.Point(561, 776);
-            this.btnReinitialiser.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReinitialiser.Location = new System.Drawing.Point(421, 630);
+            this.btnReinitialiser.Margin = new System.Windows.Forms.Padding(4);
             this.btnReinitialiser.Name = "btnReinitialiser";
-            this.btnReinitialiser.Size = new System.Drawing.Size(71, 61);
+            this.btnReinitialiser.Size = new System.Drawing.Size(53, 50);
             this.btnReinitialiser.TabIndex = 24;
             this.btnReinitialiser.UseVisualStyleBackColor = false;
             this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
@@ -561,10 +545,10 @@
             this.btnRechercher.BackgroundImage = global::Formulaire_principal.Properties.Resources.recherche;
             this.btnRechercher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercher.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRechercher.Location = new System.Drawing.Point(664, 776);
-            this.btnRechercher.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRechercher.Location = new System.Drawing.Point(498, 630);
+            this.btnRechercher.Margin = new System.Windows.Forms.Padding(4);
             this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(71, 61);
+            this.btnRechercher.Size = new System.Drawing.Size(53, 50);
             this.btnRechercher.TabIndex = 23;
             this.btnRechercher.UseVisualStyleBackColor = true;
             this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
@@ -572,28 +556,28 @@
             // flpEspece
             // 
             this.flpEspece.AutoScroll = true;
-            this.flpEspece.Location = new System.Drawing.Point(51, 500);
-            this.flpEspece.Margin = new System.Windows.Forms.Padding(5);
+            this.flpEspece.Location = new System.Drawing.Point(38, 406);
+            this.flpEspece.Margin = new System.Windows.Forms.Padding(4);
             this.flpEspece.Name = "flpEspece";
-            this.flpEspece.Size = new System.Drawing.Size(677, 134);
+            this.flpEspece.Size = new System.Drawing.Size(508, 109);
             this.flpEspece.TabIndex = 22;
             // 
             // txtMaxMission
             // 
-            this.txtMaxMission.Location = new System.Drawing.Point(195, 751);
-            this.txtMaxMission.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMaxMission.Location = new System.Drawing.Point(146, 610);
+            this.txtMaxMission.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaxMission.Name = "txtMaxMission";
-            this.txtMaxMission.Size = new System.Drawing.Size(239, 35);
+            this.txtMaxMission.Size = new System.Drawing.Size(180, 35);
             this.txtMaxMission.TabIndex = 21;
             this.txtMaxMission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaxMission_KeyDown);
             this.txtMaxMission.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaxMission_KeyPress);
             // 
             // txtMinMission
             // 
-            this.txtMinMission.Location = new System.Drawing.Point(195, 702);
-            this.txtMinMission.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMinMission.Location = new System.Drawing.Point(146, 570);
+            this.txtMinMission.Margin = new System.Windows.Forms.Padding(4);
             this.txtMinMission.Name = "txtMinMission";
-            this.txtMinMission.Size = new System.Drawing.Size(239, 35);
+            this.txtMinMission.Size = new System.Drawing.Size(180, 35);
             this.txtMinMission.TabIndex = 20;
             this.txtMinMission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMinMission_KeyDown);
             this.txtMinMission.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinMission_KeyPress);
@@ -601,8 +585,8 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(45, 702);
-            this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label11.Location = new System.Drawing.Point(34, 570);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(120, 28);
             this.label11.TabIndex = 19;
@@ -611,8 +595,8 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(46, 751);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label12.Location = new System.Drawing.Point(34, 610);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(119, 28);
             this.label12.TabIndex = 18;
@@ -621,8 +605,8 @@
             // rdbSans
             // 
             this.rdbSans.AutoSize = true;
-            this.rdbSans.Location = new System.Drawing.Point(309, 408);
-            this.rdbSans.Margin = new System.Windows.Forms.Padding(5);
+            this.rdbSans.Location = new System.Drawing.Point(232, 332);
+            this.rdbSans.Margin = new System.Windows.Forms.Padding(4);
             this.rdbSans.Name = "rdbSans";
             this.rdbSans.Size = new System.Drawing.Size(77, 32);
             this.rdbSans.TabIndex = 17;
@@ -633,8 +617,8 @@
             // rdbAvec
             // 
             this.rdbAvec.AutoSize = true;
-            this.rdbAvec.Location = new System.Drawing.Point(199, 408);
-            this.rdbAvec.Margin = new System.Windows.Forms.Padding(5);
+            this.rdbAvec.Location = new System.Drawing.Point(149, 332);
+            this.rdbAvec.Margin = new System.Windows.Forms.Padding(4);
             this.rdbAvec.Name = "rdbAvec";
             this.rdbAvec.Size = new System.Drawing.Size(85, 32);
             this.rdbAvec.TabIndex = 16;
@@ -644,20 +628,20 @@
             // 
             // txtMaxGrav
             // 
-            this.txtMaxGrav.Location = new System.Drawing.Point(199, 332);
-            this.txtMaxGrav.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMaxGrav.Location = new System.Drawing.Point(149, 270);
+            this.txtMaxGrav.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaxGrav.Name = "txtMaxGrav";
-            this.txtMaxGrav.Size = new System.Drawing.Size(175, 35);
+            this.txtMaxGrav.Size = new System.Drawing.Size(132, 35);
             this.txtMaxGrav.TabIndex = 15;
             this.txtMaxGrav.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaxGrav_KeyDown);
             this.txtMaxGrav.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaxGrav_KeyPress);
             // 
             // txtMinGrav
             // 
-            this.txtMinGrav.Location = new System.Drawing.Point(199, 280);
-            this.txtMinGrav.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMinGrav.Location = new System.Drawing.Point(149, 228);
+            this.txtMinGrav.Margin = new System.Windows.Forms.Padding(4);
             this.txtMinGrav.Name = "txtMinGrav";
-            this.txtMinGrav.Size = new System.Drawing.Size(175, 35);
+            this.txtMinGrav.Size = new System.Drawing.Size(132, 35);
             this.txtMinGrav.TabIndex = 14;
             this.txtMinGrav.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMinGrav_KeyDown);
             this.txtMinGrav.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinGrav_KeyPress);
@@ -665,8 +649,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(133, 287);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Location = new System.Drawing.Point(100, 233);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 28);
             this.label5.TabIndex = 13;
@@ -674,20 +658,20 @@
             // 
             // txtMaxTemp
             // 
-            this.txtMaxTemp.Location = new System.Drawing.Point(199, 196);
-            this.txtMaxTemp.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMaxTemp.Location = new System.Drawing.Point(149, 159);
+            this.txtMaxTemp.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaxTemp.Name = "txtMaxTemp";
-            this.txtMaxTemp.Size = new System.Drawing.Size(175, 35);
+            this.txtMaxTemp.Size = new System.Drawing.Size(132, 35);
             this.txtMaxTemp.TabIndex = 11;
             this.txtMaxTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaxTemp_KeyDown);
             this.txtMaxTemp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaxTemp_KeyPress);
             // 
             // txtMinTemp
             // 
-            this.txtMinTemp.Location = new System.Drawing.Point(199, 148);
-            this.txtMinTemp.Margin = new System.Windows.Forms.Padding(5);
+            this.txtMinTemp.Location = new System.Drawing.Point(149, 120);
+            this.txtMinTemp.Margin = new System.Windows.Forms.Padding(4);
             this.txtMinTemp.Name = "txtMinTemp";
-            this.txtMinTemp.Size = new System.Drawing.Size(175, 35);
+            this.txtMinTemp.Size = new System.Drawing.Size(132, 35);
             this.txtMinTemp.TabIndex = 10;
             this.txtMinTemp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMinTemp_KeyDown);
             this.txtMinTemp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinTemp_KeyPress);
@@ -695,8 +679,8 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(129, 150);
-            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label13.Location = new System.Drawing.Point(97, 122);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(51, 28);
             this.label13.TabIndex = 9;
@@ -705,8 +689,8 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(129, 196);
-            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label14.Location = new System.Drawing.Point(97, 159);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(56, 28);
             this.label14.TabIndex = 8;
@@ -714,10 +698,10 @@
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(179, 48);
-            this.txtNom.Margin = new System.Windows.Forms.Padding(5);
+            this.txtNom.Location = new System.Drawing.Point(134, 39);
+            this.txtNom.Margin = new System.Windows.Forms.Padding(4);
             this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(276, 35);
+            this.txtNom.Size = new System.Drawing.Size(208, 35);
             this.txtNom.TabIndex = 7;
             this.txtNom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNom_KeyDown);
             this.txtNom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNom_KeyPress);
@@ -725,8 +709,8 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(45, 467);
-            this.label15.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label15.Location = new System.Drawing.Point(34, 379);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(102, 28);
             this.label15.TabIndex = 6;
@@ -735,8 +719,8 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(45, 256);
-            this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label16.Location = new System.Drawing.Point(34, 208);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(98, 28);
             this.label16.TabIndex = 5;
@@ -745,8 +729,8 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(48, 408);
-            this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label17.Location = new System.Drawing.Point(36, 332);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(108, 28);
             this.label17.TabIndex = 4;
@@ -755,8 +739,8 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(37, 113);
-            this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label18.Location = new System.Drawing.Point(28, 92);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(151, 28);
             this.label18.TabIndex = 3;
@@ -765,8 +749,8 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(45, 657);
-            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label19.Location = new System.Drawing.Point(34, 534);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(319, 28);
             this.label19.TabIndex = 2;
@@ -775,8 +759,8 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(37, 48);
-            this.label20.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label20.Location = new System.Drawing.Point(28, 39);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(70, 28);
             this.label20.TabIndex = 0;
@@ -785,10 +769,10 @@
             // flpPlanete
             // 
             this.flpPlanete.AutoScroll = true;
-            this.flpPlanete.Location = new System.Drawing.Point(819, 93);
-            this.flpPlanete.Margin = new System.Windows.Forms.Padding(5);
+            this.flpPlanete.Location = new System.Drawing.Point(614, 76);
+            this.flpPlanete.Margin = new System.Windows.Forms.Padding(4);
             this.flpPlanete.Name = "flpPlanete";
-            this.flpPlanete.Size = new System.Drawing.Size(659, 880);
+            this.flpPlanete.Size = new System.Drawing.Size(494, 715);
             this.flpPlanete.TabIndex = 2;
             // 
             // plAliens
@@ -798,18 +782,16 @@
             this.plAliens.Controls.Add(this.groupBox3);
             this.plAliens.Controls.Add(this.grpAlliees);
             this.plAliens.Controls.Add(this.grpFiltresEnnemis);
-            this.plAliens.Location = new System.Drawing.Point(376, 482);
-            this.plAliens.Margin = new System.Windows.Forms.Padding(4);
+            this.plAliens.Location = new System.Drawing.Point(282, 22);
             this.plAliens.Name = "plAliens";
-            this.plAliens.Size = new System.Drawing.Size(1521, 520);
+            this.plAliens.Size = new System.Drawing.Size(1141, 790);
             this.plAliens.TabIndex = 1;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Kristen ITC", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(29, 22);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(22, 18);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(127, 45);
             this.label23.TabIndex = 8;
@@ -817,8 +799,6 @@
             // 
             // grpFiltresAlliees
             // 
-            this.grpFiltresAlliees.Controls.Add(this.btnReinitialiserBienveillance);
-            this.grpFiltresAlliees.Controls.Add(this.btnReinitialiserCouleurAlliees);
             this.grpFiltresAlliees.Controls.Add(this.btnReinitialiserAlliees);
             this.grpFiltresAlliees.Controls.Add(this.cboBienveillance);
             this.grpFiltresAlliees.Controls.Add(this.btnRechercherAlliees);
@@ -828,50 +808,24 @@
             this.grpFiltresAlliees.Controls.Add(this.cboCouleurAlliees);
             this.grpFiltresAlliees.Controls.Add(this.txtNomAlliees);
             this.grpFiltresAlliees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltresAlliees.Location = new System.Drawing.Point(27, 596);
-            this.grpFiltresAlliees.Margin = new System.Windows.Forms.Padding(5);
+            this.grpFiltresAlliees.Location = new System.Drawing.Point(4, 64);
+            this.grpFiltresAlliees.Margin = new System.Windows.Forms.Padding(4);
             this.grpFiltresAlliees.Name = "grpFiltresAlliees";
-            this.grpFiltresAlliees.Padding = new System.Windows.Forms.Padding(5);
-            this.grpFiltresAlliees.Size = new System.Drawing.Size(708, 360);
+            this.grpFiltresAlliees.Padding = new System.Windows.Forms.Padding(4);
+            this.grpFiltresAlliees.Size = new System.Drawing.Size(560, 261);
             this.grpFiltresAlliees.TabIndex = 4;
             this.grpFiltresAlliees.TabStop = false;
             this.grpFiltresAlliees.Text = "Filtres";
-            // 
-            // btnReinitialiserBienveillance
-            // 
-            this.btnReinitialiserBienveillance.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
-            this.btnReinitialiserBienveillance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReinitialiserBienveillance.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserBienveillance.Location = new System.Drawing.Point(319, 244);
-            this.btnReinitialiserBienveillance.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReinitialiserBienveillance.Name = "btnReinitialiserBienveillance";
-            this.btnReinitialiserBienveillance.Size = new System.Drawing.Size(56, 52);
-            this.btnReinitialiserBienveillance.TabIndex = 13;
-            this.btnReinitialiserBienveillance.UseVisualStyleBackColor = true;
-            this.btnReinitialiserBienveillance.Click += new System.EventHandler(this.btnReinitialiserBienveillance_Click);
-            // 
-            // btnReinitialiserCouleurAlliees
-            // 
-            this.btnReinitialiserCouleurAlliees.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
-            this.btnReinitialiserCouleurAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReinitialiserCouleurAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserCouleurAlliees.Location = new System.Drawing.Point(319, 152);
-            this.btnReinitialiserCouleurAlliees.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReinitialiserCouleurAlliees.Name = "btnReinitialiserCouleurAlliees";
-            this.btnReinitialiserCouleurAlliees.Size = new System.Drawing.Size(57, 52);
-            this.btnReinitialiserCouleurAlliees.TabIndex = 12;
-            this.btnReinitialiserCouleurAlliees.UseVisualStyleBackColor = true;
-            this.btnReinitialiserCouleurAlliees.Click += new System.EventHandler(this.btnReinitialiserCouleurAlliees_Click);
             // 
             // btnReinitialiserAlliees
             // 
             this.btnReinitialiserAlliees.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz_vrai;
             this.btnReinitialiserAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserAlliees.Location = new System.Drawing.Point(579, 152);
-            this.btnReinitialiserAlliees.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReinitialiserAlliees.Location = new System.Drawing.Point(509, 209);
+            this.btnReinitialiserAlliees.Margin = new System.Windows.Forms.Padding(4);
             this.btnReinitialiserAlliees.Name = "btnReinitialiserAlliees";
-            this.btnReinitialiserAlliees.Size = new System.Drawing.Size(57, 52);
+            this.btnReinitialiserAlliees.Size = new System.Drawing.Size(43, 42);
             this.btnReinitialiserAlliees.TabIndex = 11;
             this.btnReinitialiserAlliees.UseVisualStyleBackColor = true;
             this.btnReinitialiserAlliees.Click += new System.EventHandler(this.btnReinitialiserAlliees_Click);
@@ -881,21 +835,22 @@
             this.cboBienveillance.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboBienveillance.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBienveillance.FormattingEnabled = true;
-            this.cboBienveillance.Location = new System.Drawing.Point(11, 250);
-            this.cboBienveillance.Margin = new System.Windows.Forms.Padding(5);
+            this.cboBienveillance.Location = new System.Drawing.Point(272, 59);
+            this.cboBienveillance.Margin = new System.Windows.Forms.Padding(4);
             this.cboBienveillance.Name = "cboBienveillance";
-            this.cboBienveillance.Size = new System.Drawing.Size(297, 36);
+            this.cboBienveillance.Size = new System.Drawing.Size(224, 36);
             this.cboBienveillance.TabIndex = 9;
+            this.cboBienveillance.SelectedIndexChanged += new System.EventHandler(this.cboBienveillance_SelectedIndexChanged);
             // 
             // btnRechercherAlliees
             // 
             this.btnRechercherAlliees.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnRechercherAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercherAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRechercherAlliees.Location = new System.Drawing.Point(579, 244);
-            this.btnRechercherAlliees.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRechercherAlliees.Location = new System.Drawing.Point(458, 208);
+            this.btnRechercherAlliees.Margin = new System.Windows.Forms.Padding(4);
             this.btnRechercherAlliees.Name = "btnRechercherAlliees";
-            this.btnRechercherAlliees.Size = new System.Drawing.Size(57, 52);
+            this.btnRechercherAlliees.Size = new System.Drawing.Size(43, 42);
             this.btnRechercherAlliees.TabIndex = 2;
             this.btnRechercherAlliees.UseVisualStyleBackColor = true;
             this.btnRechercherAlliees.Click += new System.EventHandler(this.btnRechercherAlliees_Click);
@@ -903,8 +858,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 216);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(272, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(139, 28);
             this.label4.TabIndex = 7;
@@ -913,8 +868,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 124);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(11, 105);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 28);
             this.label2.TabIndex = 4;
@@ -923,8 +878,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 31);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Location = new System.Drawing.Point(11, 32);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 28);
             this.label3.TabIndex = 3;
@@ -935,18 +890,19 @@
             this.cboCouleurAlliees.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboCouleurAlliees.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCouleurAlliees.FormattingEnabled = true;
-            this.cboCouleurAlliees.Location = new System.Drawing.Point(11, 155);
-            this.cboCouleurAlliees.Margin = new System.Windows.Forms.Padding(5);
+            this.cboCouleurAlliees.Location = new System.Drawing.Point(9, 137);
+            this.cboCouleurAlliees.Margin = new System.Windows.Forms.Padding(4);
             this.cboCouleurAlliees.Name = "cboCouleurAlliees";
-            this.cboCouleurAlliees.Size = new System.Drawing.Size(297, 36);
+            this.cboCouleurAlliees.Size = new System.Drawing.Size(224, 36);
             this.cboCouleurAlliees.TabIndex = 1;
+            this.cboCouleurAlliees.SelectedIndexChanged += new System.EventHandler(this.cboCouleurAlliees_SelectedIndexChanged);
             // 
             // txtNomAlliees
             // 
-            this.txtNomAlliees.Location = new System.Drawing.Point(8, 64);
-            this.txtNomAlliees.Margin = new System.Windows.Forms.Padding(5);
+            this.txtNomAlliees.Location = new System.Drawing.Point(9, 59);
+            this.txtNomAlliees.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomAlliees.Name = "txtNomAlliees";
-            this.txtNomAlliees.Size = new System.Drawing.Size(297, 35);
+            this.txtNomAlliees.Size = new System.Drawing.Size(224, 35);
             this.txtNomAlliees.TabIndex = 0;
             this.txtNomAlliees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomAlliees_KeyPress);
             // 
@@ -955,11 +911,11 @@
             this.groupBox3.Controls.Add(this.lblErreur2);
             this.groupBox3.Controls.Add(this.flp2);
             this.groupBox3.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(755, 111);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox3.Location = new System.Drawing.Point(572, 334);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox3.Size = new System.Drawing.Size(725, 404);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(564, 452);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informations sur les races ennemis";
@@ -968,8 +924,7 @@
             // 
             this.lblErreur2.AutoSize = true;
             this.lblErreur2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErreur2.Location = new System.Drawing.Point(73, 216);
-            this.lblErreur2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblErreur2.Location = new System.Drawing.Point(100, 225);
             this.lblErreur2.Name = "lblErreur2";
             this.lblErreur2.Size = new System.Drawing.Size(365, 20);
             this.lblErreur2.TabIndex = 1;
@@ -980,11 +935,10 @@
             // 
             this.flp2.AutoScroll = true;
             this.flp2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp2.Location = new System.Drawing.Point(5, 33);
-            this.flp2.Margin = new System.Windows.Forms.Padding(5);
+            this.flp2.Location = new System.Drawing.Point(4, 32);
+            this.flp2.Margin = new System.Windows.Forms.Padding(4);
             this.flp2.Name = "flp2";
-            this.flp2.Size = new System.Drawing.Size(715, 366);
+            this.flp2.Size = new System.Drawing.Size(556, 416);
             this.flp2.TabIndex = 0;
             // 
             // grpAlliees
@@ -992,11 +946,11 @@
             this.grpAlliees.Controls.Add(this.lblErreur);
             this.grpAlliees.Controls.Add(this.flp1);
             this.grpAlliees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAlliees.Location = new System.Drawing.Point(27, 111);
-            this.grpAlliees.Margin = new System.Windows.Forms.Padding(5);
+            this.grpAlliees.Location = new System.Drawing.Point(4, 334);
+            this.grpAlliees.Margin = new System.Windows.Forms.Padding(4);
             this.grpAlliees.Name = "grpAlliees";
-            this.grpAlliees.Padding = new System.Windows.Forms.Padding(5);
-            this.grpAlliees.Size = new System.Drawing.Size(708, 468);
+            this.grpAlliees.Padding = new System.Windows.Forms.Padding(4);
+            this.grpAlliees.Size = new System.Drawing.Size(560, 452);
             this.grpAlliees.TabIndex = 5;
             this.grpAlliees.TabStop = false;
             this.grpAlliees.Text = "Informations sur les races alliées";
@@ -1005,8 +959,7 @@
             // 
             this.lblErreur.AutoSize = true;
             this.lblErreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErreur.Location = new System.Drawing.Point(73, 216);
-            this.lblErreur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblErreur.Location = new System.Drawing.Point(100, 225);
             this.lblErreur.Name = "lblErreur";
             this.lblErreur.Size = new System.Drawing.Size(365, 20);
             this.lblErreur.TabIndex = 0;
@@ -1017,18 +970,14 @@
             // 
             this.flp1.AutoScroll = true;
             this.flp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flp1.Location = new System.Drawing.Point(5, 33);
-            this.flp1.Margin = new System.Windows.Forms.Padding(5);
+            this.flp1.Location = new System.Drawing.Point(4, 32);
+            this.flp1.Margin = new System.Windows.Forms.Padding(4);
             this.flp1.Name = "flp1";
-            this.flp1.Size = new System.Drawing.Size(698, 430);
+            this.flp1.Size = new System.Drawing.Size(552, 416);
             this.flp1.TabIndex = 0;
             // 
             // grpFiltresEnnemis
             // 
-            this.grpFiltresEnnemis.Controls.Add(this.btnAgressivité);
-            this.grpFiltresEnnemis.Controls.Add(this.btnTypeArme);
-            this.grpFiltresEnnemis.Controls.Add(this.btnReinitialiserCouleurEnnemis);
             this.grpFiltresEnnemis.Controls.Add(this.btnReinitialiserEnnemis);
             this.grpFiltresEnnemis.Controls.Add(this.cboAgressivite);
             this.grpFiltresEnnemis.Controls.Add(this.label6);
@@ -1039,57 +988,15 @@
             this.grpFiltresEnnemis.Controls.Add(this.btnRechercherEnnemis);
             this.grpFiltresEnnemis.Controls.Add(this.cboCouleurEnnemis);
             this.grpFiltresEnnemis.Controls.Add(this.txtNomEnnemis);
-            this.grpFiltresEnnemis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltresEnnemis.Location = new System.Drawing.Point(755, 524);
-            this.grpFiltresEnnemis.Margin = new System.Windows.Forms.Padding(5);
+            this.grpFiltresEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpFiltresEnnemis.Location = new System.Drawing.Point(572, 66);
+            this.grpFiltresEnnemis.Margin = new System.Windows.Forms.Padding(4);
             this.grpFiltresEnnemis.Name = "grpFiltresEnnemis";
-            this.grpFiltresEnnemis.Padding = new System.Windows.Forms.Padding(5);
-            this.grpFiltresEnnemis.Size = new System.Drawing.Size(725, 429);
+            this.grpFiltresEnnemis.Padding = new System.Windows.Forms.Padding(4);
+            this.grpFiltresEnnemis.Size = new System.Drawing.Size(564, 259);
             this.grpFiltresEnnemis.TabIndex = 6;
             this.grpFiltresEnnemis.TabStop = false;
             this.grpFiltresEnnemis.Text = "Filtres";
-            // 
-            // btnAgressivité
-            // 
-            this.btnAgressivité.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
-            this.btnAgressivité.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAgressivité.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgressivité.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgressivité.Location = new System.Drawing.Point(349, 344);
-            this.btnAgressivité.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAgressivité.Name = "btnAgressivité";
-            this.btnAgressivité.Size = new System.Drawing.Size(57, 52);
-            this.btnAgressivité.TabIndex = 15;
-            this.btnAgressivité.UseVisualStyleBackColor = true;
-            this.btnAgressivité.Click += new System.EventHandler(this.btnAgressivité_Click);
-            // 
-            // btnTypeArme
-            // 
-            this.btnTypeArme.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
-            this.btnTypeArme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTypeArme.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTypeArme.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTypeArme.Location = new System.Drawing.Point(349, 250);
-            this.btnTypeArme.Margin = new System.Windows.Forms.Padding(5);
-            this.btnTypeArme.Name = "btnTypeArme";
-            this.btnTypeArme.Size = new System.Drawing.Size(57, 52);
-            this.btnTypeArme.TabIndex = 14;
-            this.btnTypeArme.UseVisualStyleBackColor = true;
-            this.btnTypeArme.Click += new System.EventHandler(this.btnTypeArme_Click);
-            // 
-            // btnReinitialiserCouleurEnnemis
-            // 
-            this.btnReinitialiserCouleurEnnemis.BackgroundImage = global::Formulaire_principal.Properties.Resources.reinitialiser3;
-            this.btnReinitialiserCouleurEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReinitialiserCouleurEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReinitialiserCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReinitialiserCouleurEnnemis.Location = new System.Drawing.Point(349, 164);
-            this.btnReinitialiserCouleurEnnemis.Margin = new System.Windows.Forms.Padding(5);
-            this.btnReinitialiserCouleurEnnemis.Name = "btnReinitialiserCouleurEnnemis";
-            this.btnReinitialiserCouleurEnnemis.Size = new System.Drawing.Size(57, 52);
-            this.btnReinitialiserCouleurEnnemis.TabIndex = 14;
-            this.btnReinitialiserCouleurEnnemis.UseVisualStyleBackColor = true;
-            this.btnReinitialiserCouleurEnnemis.Click += new System.EventHandler(this.btnReinitialiserCouleurEnnemis_Click);
             // 
             // btnReinitialiserEnnemis
             // 
@@ -1097,10 +1004,10 @@
             this.btnReinitialiserEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(598, 220);
-            this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(513, 206);
+            this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(4);
             this.btnReinitialiserEnnemis.Name = "btnReinitialiserEnnemis";
-            this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(57, 52);
+            this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(43, 42);
             this.btnReinitialiserEnnemis.TabIndex = 12;
             this.btnReinitialiserEnnemis.UseVisualStyleBackColor = true;
             this.btnReinitialiserEnnemis.Click += new System.EventHandler(this.btnReinitialiserEnnemis_Click);
@@ -1111,18 +1018,19 @@
             this.cboAgressivite.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAgressivite.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAgressivite.FormattingEnabled = true;
-            this.cboAgressivite.Location = new System.Drawing.Point(39, 353);
-            this.cboAgressivite.Margin = new System.Windows.Forms.Padding(5);
+            this.cboAgressivite.Location = new System.Drawing.Point(271, 71);
+            this.cboAgressivite.Margin = new System.Windows.Forms.Padding(4);
             this.cboAgressivite.Name = "cboAgressivite";
-            this.cboAgressivite.Size = new System.Drawing.Size(297, 36);
+            this.cboAgressivite.Size = new System.Drawing.Size(224, 36);
             this.cboAgressivite.TabIndex = 10;
+            this.cboAgressivite.SelectedIndexChanged += new System.EventHandler(this.cboAgressivite_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(36, 312);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Location = new System.Drawing.Point(269, 38);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 28);
             this.label6.TabIndex = 8;
@@ -1132,8 +1040,8 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(32, 220);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label8.Location = new System.Drawing.Point(269, 111);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 28);
             this.label8.TabIndex = 6;
@@ -1145,18 +1053,19 @@
             this.cboTypeArme.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTypeArme.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTypeArme.FormattingEnabled = true;
-            this.cboTypeArme.Location = new System.Drawing.Point(40, 255);
-            this.cboTypeArme.Margin = new System.Windows.Forms.Padding(5);
+            this.cboTypeArme.Location = new System.Drawing.Point(275, 139);
+            this.cboTypeArme.Margin = new System.Windows.Forms.Padding(4);
             this.cboTypeArme.Name = "cboTypeArme";
-            this.cboTypeArme.Size = new System.Drawing.Size(297, 36);
+            this.cboTypeArme.Size = new System.Drawing.Size(224, 36);
             this.cboTypeArme.TabIndex = 5;
+            this.cboTypeArme.SelectedIndexChanged += new System.EventHandler(this.cboTypeArme_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(36, 134);
-            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label9.Location = new System.Drawing.Point(8, 111);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 28);
             this.label9.TabIndex = 4;
@@ -1166,8 +1075,8 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(33, 44);
-            this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label10.Location = new System.Drawing.Point(8, 38);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(108, 28);
             this.label10.TabIndex = 3;
@@ -1179,10 +1088,10 @@
             this.btnRechercherEnnemis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercherEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercherEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRechercherEnnemis.Location = new System.Drawing.Point(598, 316);
-            this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRechercherEnnemis.Location = new System.Drawing.Point(462, 206);
+            this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(4);
             this.btnRechercherEnnemis.Name = "btnRechercherEnnemis";
-            this.btnRechercherEnnemis.Size = new System.Drawing.Size(57, 52);
+            this.btnRechercherEnnemis.Size = new System.Drawing.Size(43, 42);
             this.btnRechercherEnnemis.TabIndex = 2;
             this.btnRechercherEnnemis.UseVisualStyleBackColor = true;
             this.btnRechercherEnnemis.Click += new System.EventHandler(this.btnRechercherEnnemis_Click);
@@ -1193,20 +1102,22 @@
             this.cboCouleurEnnemis.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCouleurEnnemis.FormattingEnabled = true;
-            this.cboCouleurEnnemis.Location = new System.Drawing.Point(40, 172);
-            this.cboCouleurEnnemis.Margin = new System.Windows.Forms.Padding(5);
+            this.cboCouleurEnnemis.Location = new System.Drawing.Point(11, 142);
+            this.cboCouleurEnnemis.Margin = new System.Windows.Forms.Padding(4);
             this.cboCouleurEnnemis.Name = "cboCouleurEnnemis";
-            this.cboCouleurEnnemis.Size = new System.Drawing.Size(297, 36);
+            this.cboCouleurEnnemis.Size = new System.Drawing.Size(224, 36);
             this.cboCouleurEnnemis.TabIndex = 1;
+            this.cboCouleurEnnemis.SelectedIndexChanged += new System.EventHandler(this.cboCouleurEnnemis_SelectedIndexChanged);
             // 
             // txtNomEnnemis
             // 
             this.txtNomEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomEnnemis.Location = new System.Drawing.Point(40, 86);
-            this.txtNomEnnemis.Margin = new System.Windows.Forms.Padding(5);
+            this.txtNomEnnemis.Location = new System.Drawing.Point(13, 72);
+            this.txtNomEnnemis.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomEnnemis.Name = "txtNomEnnemis";
-            this.txtNomEnnemis.Size = new System.Drawing.Size(297, 35);
+            this.txtNomEnnemis.Size = new System.Drawing.Size(224, 35);
             this.txtNomEnnemis.TabIndex = 0;
+            this.txtNomEnnemis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomEnnemis_KeyPress);
             // 
             // errorProvider1
             // 
@@ -1214,17 +1125,17 @@
             // 
             // FrmAccueil
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_acceuil;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1923, 1016);
+            this.ClientSize = new System.Drawing.Size(1442, 826);
             this.Controls.Add(this.plAliens);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.plMissions);
             this.Controls.Add(this.plPlanetes);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "FrmAccueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accueil Stargate";
@@ -1308,8 +1219,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpPlanete;
         private System.Windows.Forms.Label lblPlanetes;
         private System.Windows.Forms.GroupBox grpFiltresAlliees;
-        private System.Windows.Forms.Button btnReinitialiserBienveillance;
-        private System.Windows.Forms.Button btnReinitialiserCouleurAlliees;
         private System.Windows.Forms.Button btnReinitialiserAlliees;
         private System.Windows.Forms.ComboBox cboBienveillance;
         private System.Windows.Forms.Button btnRechercherAlliees;
@@ -1319,9 +1228,6 @@
         private System.Windows.Forms.ComboBox cboCouleurAlliees;
         private System.Windows.Forms.TextBox txtNomAlliees;
         private System.Windows.Forms.GroupBox grpFiltresEnnemis;
-        private System.Windows.Forms.Button btnAgressivité;
-        private System.Windows.Forms.Button btnTypeArme;
-        private System.Windows.Forms.Button btnReinitialiserCouleurEnnemis;
         private System.Windows.Forms.Button btnReinitialiserEnnemis;
         private System.Windows.Forms.ComboBox cboAgressivite;
         private System.Windows.Forms.Label label6;

@@ -606,11 +606,11 @@ namespace Formulaire_principal
             lblErreur.Visible = false;
             errorProvider1.Clear();
             string filtre = $"nom LIKE '%{txtNomAlliees.Text}%'";
-            if (cboBienveillance.SelectedIndex != -1)
+            if (cboBienveillance.SelectedIndex != -1 && cboBienveillance.Text != "Toutes")
             {
                 filtre += $" AND degreBienveillance = '{cboBienveillance.Text}'";
             }
-            if (cboCouleurAlliees.SelectedIndex != -1)
+            if (cboCouleurAlliees.SelectedIndex != -1 && cboCouleurAlliees.Text != "Toutes")
             {
                 filtre += $" AND couleur = '{cboCouleurAlliees.Text}'";
             }
@@ -645,15 +645,15 @@ namespace Formulaire_principal
             {
                 string filtre = $"nom LIKE '%{txtNomEnnemis.Text.Replace("'", "''")}%'";
 
-                if (cboAgressivite.SelectedIndex != -1)
+                if (cboAgressivite.SelectedIndex != -1 && cboAgressivite.Text != "Toutes")
                 {
                     filtre += $" AND degreAgressivite = '{cboAgressivite.Text}'";
                 }
-                if (cboCouleurEnnemis.SelectedIndex != -1)
+                if (cboCouleurEnnemis.SelectedIndex != -1 && cboCouleurEnnemis.Text != "Toutes")
                 {
                     filtre += $" AND couleur = '{cboCouleurEnnemis.Text}'";
                 }
-                if (cboTypeArme.SelectedIndex != -1)
+                if (cboTypeArme.SelectedIndex != -1 && cboTypeArme.Text != "Toutes")
                 {
                     filtre += $" AND typeArme = '{cboTypeArme.Text}'";
                 }
@@ -692,39 +692,62 @@ namespace Formulaire_principal
         {
             try
             {
-
+                List<string> listeCouleurs = new List<string>();
+                List<string> listeArmes = new List<string>();
+                List<string> listeAgressivite = new List<string>();
+                List<string> listeBienveillance = new List<string>();
                 foreach (DataRow dr in ds.Tables["Espece"].Rows)
                 {
                     string coul = dr["couleur"].ToString();
-                    if (!string.IsNullOrEmpty(coul) && !cboCouleurAlliees.Items.Contains(coul))
+                    if (!string.IsNullOrEmpty(coul) && !listeCouleurs.Contains(coul))
                     {
-                        cboCouleurAlliees.Items.Add(coul);
-                        cboCouleurEnnemis.Items.Add(coul);
+                        listeCouleurs.Add(coul);
                     }
                 }
+
                 foreach (DataRow dr in ds.Tables["Ennemi"].Rows)
                 {
                     string arme = dr["typeArme"].ToString();
                     string ag = dr["degreAgressivite"].ToString();
 
-                    if (!string.IsNullOrEmpty(arme) && !cboTypeArme.Items.Contains(arme))
+                    if (!string.IsNullOrEmpty(arme) && !listeArmes.Contains(arme))
                     {
-                        cboTypeArme.Items.Add(arme);
+                        listeArmes.Add(arme);
                     }
-                    if (!string.IsNullOrEmpty(ag) && !cboAgressivite.Items.Contains(ag))
+                    if (!string.IsNullOrEmpty(ag) && !listeAgressivite.Contains(ag))
                     {
-                        cboAgressivite.Items.Add(ag);
+                        listeAgressivite.Add(ag);
                     }
                 }
+
                 foreach (DataRow dr in ds.Tables["Allie"].Rows)
                 {
                     string bv = dr["degreBienveillance"].ToString();
 
-                    if (!string.IsNullOrEmpty(bv) && !cboBienveillance.Items.Contains(bv))
+                    if (!string.IsNullOrEmpty(bv) && !listeBienveillance.Contains(bv))
                     {
-                        cboBienveillance.Items.Add(bv);
+                        listeBienveillance.Add(bv);
                     }
                 }
+                listeCouleurs.Sort();
+                listeArmes.Sort();
+                listeAgressivite.Sort();
+                listeBienveillance.Sort();
+                cboCouleurAlliees.Items.Add("Toutes");
+                cboCouleurEnnemis.Items.Add("Toutes");
+                cboTypeArme.Items.Add("Toutes");
+                cboAgressivite.Items.Add("Toutes");
+                cboBienveillance.Items.Add("Toutes");
+                cboCouleurAlliees.Items.AddRange(listeCouleurs.ToArray());
+                cboCouleurEnnemis.Items.AddRange(listeCouleurs.ToArray());
+                cboTypeArme.Items.AddRange(listeArmes.ToArray());
+                cboAgressivite.Items.AddRange(listeAgressivite.ToArray());
+                cboBienveillance.Items.AddRange(listeBienveillance.ToArray());
+                cboCouleurAlliees.SelectedIndex = 0;
+                cboCouleurEnnemis.SelectedIndex = 0;
+                cboTypeArme.SelectedIndex = 0;
+                cboAgressivite.SelectedIndex = 0;
+                cboBienveillance.SelectedIndex = 0;
                 chargerAliensAlliees();
                 chargerAliensEnnemis();
             }
@@ -737,17 +760,17 @@ namespace Formulaire_principal
         private void btnReinitialiserAlliees_Click(object sender, EventArgs e)
         {
             txtNomAlliees.Text = "";
-            cboBienveillance.SelectedIndex = -1;
-            cboCouleurAlliees.SelectedIndex = -1;
+            cboBienveillance.SelectedIndex = 0;
+            cboCouleurAlliees.SelectedIndex = 0;
             chargerAliensAlliees();
         }
 
         private void btnReinitialiserEnnemis_Click(object sender, EventArgs e)
         {
             txtNomEnnemis.Text = "";
-            cboAgressivite.SelectedIndex = -1;
-            cboCouleurEnnemis.SelectedIndex = -1;
-            cboTypeArme.SelectedIndex = -1;
+            cboAgressivite.SelectedIndex = 0;
+            cboCouleurEnnemis.SelectedIndex = 0;
+            cboTypeArme.SelectedIndex = 0;
             chargerAliensEnnemis();
 
         }
@@ -830,6 +853,7 @@ namespace Formulaire_principal
             {
                 e.Handled = true;
                 btnRechercherAlliees.PerformClick();
+                chargerAliensAlliees();
             }
         }
 
@@ -845,6 +869,7 @@ namespace Formulaire_principal
             {
                 e.Handled = true;
                 btnRechercherEnnemis.PerformClick();
+                chargerAliensEnnemis();
             }
         }
 
@@ -1264,6 +1289,31 @@ namespace Formulaire_principal
         private void lblNbMission_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboCouleurAlliees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chargerAliensAlliees();
+        }
+
+        private void cboBienveillance_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chargerAliensAlliees();
+        }
+
+        private void cboAgressivite_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chargerAliensEnnemis();
+        }
+
+        private void cboTypeArme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chargerAliensEnnemis();
+        }
+
+        private void cboCouleurEnnemis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chargerAliensEnnemis();
         }
     }
 }
