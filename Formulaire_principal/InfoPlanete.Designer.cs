@@ -44,7 +44,7 @@
             this.picPlanete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.picPlanete.Location = new System.Drawing.Point(3, 3);
             this.picPlanete.Name = "picPlanete";
-            this.picPlanete.Size = new System.Drawing.Size(161, 138);
+            this.picPlanete.Size = new System.Drawing.Size(172, 168);
             this.picPlanete.TabIndex = 0;
             this.picPlanete.TabStop = false;
             // 
@@ -52,9 +52,9 @@
             // 
             this.lblNom.AutoSize = true;
             this.lblNom.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNom.Location = new System.Drawing.Point(3, 144);
+            this.lblNom.Location = new System.Drawing.Point(181, 3);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(48, 19);
+            this.lblNom.Size = new System.Drawing.Size(57, 24);
             this.lblNom.TabIndex = 1;
             this.lblNom.Text = "label1";
             // 
@@ -62,9 +62,9 @@
             // 
             this.lblTemperature.AutoSize = true;
             this.lblTemperature.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTemperature.Location = new System.Drawing.Point(3, 163);
+            this.lblTemperature.Location = new System.Drawing.Point(181, 27);
             this.lblTemperature.Name = "lblTemperature";
-            this.lblTemperature.Size = new System.Drawing.Size(49, 19);
+            this.lblTemperature.Size = new System.Drawing.Size(58, 24);
             this.lblTemperature.TabIndex = 2;
             this.lblTemperature.Text = "label2";
             // 
@@ -72,9 +72,9 @@
             // 
             this.lblGravite.AutoSize = true;
             this.lblGravite.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGravite.Location = new System.Drawing.Point(4, 182);
+            this.lblGravite.Location = new System.Drawing.Point(182, 51);
             this.lblGravite.Name = "lblGravite";
-            this.lblGravite.Size = new System.Drawing.Size(48, 19);
+            this.lblGravite.Size = new System.Drawing.Size(57, 24);
             this.lblGravite.TabIndex = 3;
             this.lblGravite.Text = "label3";
             // 
@@ -82,9 +82,9 @@
             // 
             this.lblDataBaz.AutoSize = true;
             this.lblDataBaz.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataBaz.Location = new System.Drawing.Point(4, 201);
+            this.lblDataBaz.Location = new System.Drawing.Point(182, 75);
             this.lblDataBaz.Name = "lblDataBaz";
-            this.lblDataBaz.Size = new System.Drawing.Size(49, 19);
+            this.lblDataBaz.Size = new System.Drawing.Size(57, 24);
             this.lblDataBaz.TabIndex = 4;
             this.lblDataBaz.Text = "label4";
             // 
@@ -92,9 +92,9 @@
             // 
             this.lblEspeces.AutoSize = true;
             this.lblEspeces.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEspeces.Location = new System.Drawing.Point(4, 220);
+            this.lblEspeces.Location = new System.Drawing.Point(182, 99);
             this.lblEspeces.Name = "lblEspeces";
-            this.lblEspeces.Size = new System.Drawing.Size(49, 19);
+            this.lblEspeces.Size = new System.Drawing.Size(57, 24);
             this.lblEspeces.TabIndex = 5;
             this.lblEspeces.Text = "label5";
             // 
@@ -102,9 +102,9 @@
             // 
             this.lblPourcentage.AutoSize = true;
             this.lblPourcentage.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPourcentage.Location = new System.Drawing.Point(4, 239);
+            this.lblPourcentage.Location = new System.Drawing.Point(181, 123);
             this.lblPourcentage.Name = "lblPourcentage";
-            this.lblPourcentage.Size = new System.Drawing.Size(49, 19);
+            this.lblPourcentage.Size = new System.Drawing.Size(57, 24);
             this.lblPourcentage.TabIndex = 6;
             this.lblPourcentage.Text = "label6";
             // 
@@ -112,9 +112,9 @@
             // 
             this.lblMission.AutoSize = true;
             this.lblMission.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMission.Location = new System.Drawing.Point(4, 258);
+            this.lblMission.Location = new System.Drawing.Point(181, 147);
             this.lblMission.Name = "lblMission";
-            this.lblMission.Size = new System.Drawing.Size(49, 19);
+            this.lblMission.Size = new System.Drawing.Size(58, 24);
             this.lblMission.TabIndex = 7;
             this.lblMission.Text = "label7";
             // 
@@ -131,7 +131,7 @@
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.picPlanete);
             this.Name = "InfoPlanete";
-            this.Size = new System.Drawing.Size(258, 290);
+            this.Size = new System.Drawing.Size(630, 212);
             this.Load += new System.EventHandler(this.InfoPlanete_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picPlanete)).EndInit();
             this.ResumeLayout(false);

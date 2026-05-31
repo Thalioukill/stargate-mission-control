@@ -283,14 +283,14 @@ namespace Formulaire_principal
             //MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
 
             string sqlAllies = @"SELECT e.nom, a.degreBienveillance, e.couleur, a.instrumentMusique, e.id as idEspece,
-                            GROUP_CONCAT(h.nomPlanete, '/') as Planetes
+                            GROUP_CONCAT(h.nomPlanete, ' / ') as Planetes
                             FROM Allie a
                             JOIN Espece e ON e.id = a.idEspece
                             LEFT JOIN Habiter h ON h.idEspece = e.id
                             GROUP BY e.nom";
 
             string sqlEnnemis = @"SELECT e.nom, en.degreAgressivite, e.couleur, en.typeArme, e.id as idEspece,
-                             GROUP_CONCAT(h.nomPlanete, '/') as Planetes
+                             GROUP_CONCAT(h.nomPlanete, ' / ') as Planetes
                              FROM Ennemi en
                              JOIN Espece e ON e.id = en.idEspece
                              LEFT JOIN Habiter h ON h.idEspece = e.id
@@ -305,8 +305,8 @@ namespace Formulaire_principal
             daEnnemis.Fill(ds, "TableEnnemis");
 
             string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, 
-                    GROUP_CONCAT(e.nom, '/') as Especes, 
-                    GROUP_CONCAT(h.pourcentage, '/') as Pourcentages, 
+                    GROUP_CONCAT(e.nom, ' / ') as Especes, 
+                    GROUP_CONCAT(h.pourcentage, ' / ') as Pourcentages, 
                     stats_m.nbMissions
                     FROM Planete p
                     LEFT JOIN Habiter h ON h.nomPlanete = p.nom
@@ -912,6 +912,14 @@ namespace Formulaire_principal
                 {
                     string nom = dr["nom"].ToString();
                     CheckboxEspeces cb = new CheckboxEspeces(nom);
+                    cb.Tag = dr["id"];
+                    var checkBoxInterne = cb.Controls.OfType<CheckBox>().FirstOrDefault();
+                    if (checkBoxInterne != null)
+                    {
+                        checkBoxInterne.CheckedChanged += (s, e) => charger_planetes();
+                        checkBoxInterne.Font = new Font("Kristen ITC", 12, FontStyle.Regular);
+                    }
+                    cb.Margin = new Padding(3, 0, 3, 0);
                     flpEspece.Controls.Add(cb);
                 }
             }
@@ -1020,6 +1028,9 @@ namespace Formulaire_principal
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
                 txtMaxTemp.Focus();
             }
         }
@@ -1038,6 +1049,9 @@ namespace Formulaire_principal
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
                 txtMinGrav.Focus();
             }
         }
@@ -1069,6 +1083,9 @@ namespace Formulaire_principal
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
                 txtMaxGrav.Focus();
             }
         }
@@ -1100,6 +1117,9 @@ namespace Formulaire_principal
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
                 txtMinMission.Focus();
             }
         }
@@ -1127,6 +1147,9 @@ namespace Formulaire_principal
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
                 txtMaxMission.Focus();
             }
         }
@@ -1137,6 +1160,12 @@ namespace Formulaire_principal
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
             }
         }
 
@@ -1306,6 +1335,12 @@ namespace Formulaire_principal
             {
                 e.Handled = false;
             }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                    e.Handled = true;
+                    btnRechercher.PerformClick();
+                    charger_planetes();
+            }
         }
 
         private void lblNbMission_Click(object sender, EventArgs e)
@@ -1336,6 +1371,16 @@ namespace Formulaire_principal
         private void cboCouleurEnnemis_SelectedIndexChanged(object sender, EventArgs e)
         {
             chargerAliensEnnemis();
+        }
+
+        private void rdbSans_Click(object sender, EventArgs e)
+        {
+            charger_planetes();
+        }
+
+        private void rdbAvec_Click(object sender, EventArgs e)
+        {
+            charger_planetes();
         }
     }
 }

@@ -41,7 +41,7 @@
             // 
             this.lblArme.AutoSize = true;
             this.lblArme.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArme.Location = new System.Drawing.Point(137, 131);
+            this.lblArme.Location = new System.Drawing.Point(183, 163);
             this.lblArme.Name = "lblArme";
             this.lblArme.Size = new System.Drawing.Size(57, 24);
             this.lblArme.TabIndex = 11;
@@ -51,7 +51,7 @@
             // 
             this.lblPlaneteEnnemis.AutoSize = true;
             this.lblPlaneteEnnemis.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaneteEnnemis.Location = new System.Drawing.Point(137, 97);
+            this.lblPlaneteEnnemis.Location = new System.Drawing.Point(183, 123);
             this.lblPlaneteEnnemis.Name = "lblPlaneteEnnemis";
             this.lblPlaneteEnnemis.Size = new System.Drawing.Size(57, 24);
             this.lblPlaneteEnnemis.TabIndex = 10;
@@ -61,7 +61,7 @@
             // 
             this.lblCouleurEnnemis.AutoSize = true;
             this.lblCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCouleurEnnemis.Location = new System.Drawing.Point(137, 64);
+            this.lblCouleurEnnemis.Location = new System.Drawing.Point(183, 87);
             this.lblCouleurEnnemis.Name = "lblCouleurEnnemis";
             this.lblCouleurEnnemis.Size = new System.Drawing.Size(57, 24);
             this.lblCouleurEnnemis.TabIndex = 9;
@@ -71,7 +71,7 @@
             // 
             this.lblAgressivite.AutoSize = true;
             this.lblAgressivite.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgressivite.Location = new System.Drawing.Point(137, 32);
+            this.lblAgressivite.Location = new System.Drawing.Point(182, 53);
             this.lblAgressivite.Name = "lblAgressivite";
             this.lblAgressivite.Size = new System.Drawing.Size(58, 24);
             this.lblAgressivite.TabIndex = 8;
@@ -81,7 +81,7 @@
             // 
             this.lblNomEnnemis.AutoSize = true;
             this.lblNomEnnemis.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomEnnemis.Location = new System.Drawing.Point(137, 3);
+            this.lblNomEnnemis.Location = new System.Drawing.Point(183, 19);
             this.lblNomEnnemis.Name = "lblNomEnnemis";
             this.lblNomEnnemis.Size = new System.Drawing.Size(57, 24);
             this.lblNomEnnemis.TabIndex = 7;
@@ -89,9 +89,9 @@
             // 
             // picEnnemis
             // 
-            this.picEnnemis.Location = new System.Drawing.Point(3, 3);
+            this.picEnnemis.Location = new System.Drawing.Point(14, 9);
             this.picEnnemis.Name = "picEnnemis";
-            this.picEnnemis.Size = new System.Drawing.Size(128, 152);
+            this.picEnnemis.Size = new System.Drawing.Size(150, 184);
             this.picEnnemis.TabIndex = 6;
             this.picEnnemis.TabStop = false;
             // 
@@ -105,8 +105,9 @@
             this.Controls.Add(this.lblNomEnnemis);
             this.Controls.Add(this.picEnnemis);
             this.Name = "InfoEnnemis";
-            this.Size = new System.Drawing.Size(456, 183);
+            this.Size = new System.Drawing.Size(522, 204);
             this.Load += new System.EventHandler(this.InfoEnnemis_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.InfoEnnemis_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picEnnemis)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
