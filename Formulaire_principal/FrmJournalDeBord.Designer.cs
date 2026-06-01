@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grpEvenements = new System.Windows.Forms.GroupBox();
+            this.lblApres = new System.Windows.Forms.Label();
+            this.lblAvant = new System.Windows.Forms.Label();
+            this.lblNavigation = new System.Windows.Forms.Label();
             this.flpAffichage = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateEvenement = new System.Windows.Forms.Label();
             this.lblCommentaire = new System.Windows.Forms.Label();
@@ -62,9 +65,6 @@
             this.rdbInformateurMoinsPayees = new System.Windows.Forms.RadioButton();
             this.rdbInf = new System.Windows.Forms.RadioButton();
             this.lblFIN = new System.Windows.Forms.Label();
-            this.lblNavigation = new System.Windows.Forms.Label();
-            this.lblAvant = new System.Windows.Forms.Label();
-            this.lblApres = new System.Windows.Forms.Label();
             this.grpEvenements.SuspendLayout();
             this.flpAffichage.SuspendLayout();
             this.grpDepensesEffectues.SuspendLayout();
@@ -94,6 +94,34 @@
             this.grpEvenements.TabIndex = 0;
             this.grpEvenements.TabStop = false;
             this.grpEvenements.Text = "Evénements du journal :";
+            // 
+            // lblApres
+            // 
+            this.lblApres.AutoSize = true;
+            this.lblApres.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApres.Location = new System.Drawing.Point(407, 43);
+            this.lblApres.Name = "lblApres";
+            this.lblApres.Size = new System.Drawing.Size(0, 24);
+            this.lblApres.TabIndex = 6;
+            // 
+            // lblAvant
+            // 
+            this.lblAvant.AutoSize = true;
+            this.lblAvant.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvant.Location = new System.Drawing.Point(232, 43);
+            this.lblAvant.Name = "lblAvant";
+            this.lblAvant.Size = new System.Drawing.Size(0, 24);
+            this.lblAvant.TabIndex = 5;
+            // 
+            // lblNavigation
+            // 
+            this.lblNavigation.AutoSize = true;
+            this.lblNavigation.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNavigation.Location = new System.Drawing.Point(17, 43);
+            this.lblNavigation.Name = "lblNavigation";
+            this.lblNavigation.Size = new System.Drawing.Size(57, 24);
+            this.lblNavigation.TabIndex = 4;
+            this.lblNavigation.Text = "label1";
             // 
             // flpAffichage
             // 
@@ -214,9 +242,9 @@
             this.dgvDepenses.AllowUserToDeleteRows = false;
             this.dgvDepenses.AllowUserToResizeColumns = false;
             this.dgvDepenses.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -255,8 +283,8 @@
             this.dgvBilan.AllowUserToDeleteRows = false;
             this.dgvBilan.AllowUserToResizeColumns = false;
             this.dgvBilan.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -326,16 +354,16 @@
             // 
             // chartBudget
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartBudget.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartBudget.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chartBudget.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartBudget.Legends.Add(legend1);
             this.chartBudget.Location = new System.Drawing.Point(22, 24);
             this.chartBudget.Name = "chartBudget";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartBudget.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartBudget.Series.Add(series1);
             this.chartBudget.Size = new System.Drawing.Size(353, 313);
             this.chartBudget.TabIndex = 11;
             this.chartBudget.Text = "chart1";
@@ -426,39 +454,12 @@
             this.lblFIN.TabIndex = 15;
             this.lblFIN.Text = "FIN";
             // 
-            // lblNavigation
-            // 
-            this.lblNavigation.AutoSize = true;
-            this.lblNavigation.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNavigation.Location = new System.Drawing.Point(17, 43);
-            this.lblNavigation.Name = "lblNavigation";
-            this.lblNavigation.Size = new System.Drawing.Size(57, 24);
-            this.lblNavigation.TabIndex = 4;
-            this.lblNavigation.Text = "label1";
-            // 
-            // lblAvant
-            // 
-            this.lblAvant.AutoSize = true;
-            this.lblAvant.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvant.Location = new System.Drawing.Point(232, 43);
-            this.lblAvant.Name = "lblAvant";
-            this.lblAvant.Size = new System.Drawing.Size(0, 24);
-            this.lblAvant.TabIndex = 5;
-            // 
-            // lblApres
-            // 
-            this.lblApres.AutoSize = true;
-            this.lblApres.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApres.Location = new System.Drawing.Point(407, 43);
-            this.lblApres.Name = "lblApres";
-            this.lblApres.Size = new System.Drawing.Size(0, 24);
-            this.lblApres.TabIndex = 6;
-            // 
             // FrmJournalDeBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(934, 1261);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblEtatBudget);

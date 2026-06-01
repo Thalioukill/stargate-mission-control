@@ -126,6 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.lblStatusMission);
             this.Controls.Add(this.lblNbJours);
             this.Controls.Add(this.btnDetails);

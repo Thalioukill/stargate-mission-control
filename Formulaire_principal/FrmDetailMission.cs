@@ -106,17 +106,17 @@ namespace Formulaire_principal
                 if (rMission != null)
                 {
                     this.lblNomMission.Text += idPlanete + idNumero;
-                    this.lblDateDepart.Text += rMission["dateDepart"].ToString();
                     this.dateDepart = rMission["dateDepart"].ToString();
-                    this.lblDateRetour.Text += rMission["dateRetour"].ToString();
                     this.dateArrivee = rMission["dateRetour"].ToString();
 
                     DateTime dtDepart = DateTime.Parse(this.dateDepart);
                     DateTime dtRetour = DateTime.Parse(this.dateArrivee);
 
-                    TimeSpan difference = dtRetour.Date - dtDepart.Date;
-                    // on rajoute 1 pour qu'une mission sur un meme jour marque le nombre de jours de mission à 1
-                    this.nbJours = difference.Days+1;
+                    this.lblDates.Text += dtDepart.ToString("dd/MM/yyyy")+" - "+ dtRetour.ToString("dd/MM/yyyy");
+
+                    TimeSpan diff = dtRetour.Subtract(dtDepart);
+                    string nbJours = diff.Days.ToString() + " jours";
+                    this.lblNbJours.Text += nbJours;
 
                     this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString();
                     this.txtFeuilleRoute = rMission["feuilleDeRoute"].ToString();
@@ -134,8 +134,19 @@ namespace Formulaire_principal
                         totalDepenses += Convert.ToDouble(d["montant"]);
                     }
 
-                    this.lblBudget.Text += $"{budgetInitial}€";
-                    this.lblSoldeApresDepenses.Text += budgetInitial - totalDepenses+ "€";
+                    this.lblBudget.Text += $"{budgetInitial} $";
+                    double bugetApresDepenses = budgetInitial - totalDepenses;
+
+                    if(bugetApresDepenses < (budgetInitial / 4))
+                    {
+                        lblSoldeApresDepenses.ForeColor = Color.FromArgb(255, 96, 96);
+                    }
+                    else
+                    {
+                        lblSoldeApresDepenses.ForeColor = Color.FromArgb(114, 201, 106);
+                    }
+
+                    this.lblSoldeApresDepenses.Text += budgetInitial - totalDepenses+ " $";
                 }
             }
             catch (SQLiteException e)
@@ -254,12 +265,11 @@ namespace Formulaire_principal
 
                     lbl.Text = tabInfosEnnemi[0]["nom"].ToString() + " --> " + captures + " prise(s)";
 
-
                     lbl.AutoSize = true; // Pour que le label s'adapte à la longueur du texte
                     lbl.Margin = new Padding(5); // Pour aérer l'affichage dans le panel
-                    lbl.Font = new Font(lbl.Font, FontStyle.Bold);
+                    lbl.Font = new Font("Kristen ITC", 12, FontStyle.Bold);
 
-                    // attribution de la couleur grâce à une méthode de conversion
+                    // on donne la bonne couleur grâce à une méthode de conversion
                     lbl.ForeColor = ConvertirNomCouleur(nomCouleur);
 
                     //AJOUT AU PANEL

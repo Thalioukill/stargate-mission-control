@@ -62,12 +62,13 @@
             this.flpPlanete = new System.Windows.Forms.FlowLayoutPanel();
             this.lblPlanetes = new System.Windows.Forms.Label();
             this.grpFiltre = new System.Windows.Forms.GroupBox();
+            this.grpEspeces = new System.Windows.Forms.GroupBox();
+            this.flpEspece = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRechercher = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnReinitialiserEspeces = new System.Windows.Forms.Button();
             this.btnReinitialiserDataBaz = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
-            this.flpEspece = new System.Windows.Forms.FlowLayoutPanel();
             this.txtMaxMission = new System.Windows.Forms.TextBox();
             this.txtMinMission = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -117,7 +118,6 @@
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.ttRAZ = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grpEspeces = new System.Windows.Forms.GroupBox();
             this.plMissions.SuspendLayout();
             this.grpNbMissionsTrouvees.SuspendLayout();
             this.grpFiltres.SuspendLayout();
@@ -126,13 +126,13 @@
             this.plPlanetes.SuspendLayout();
             this.grpPlanetes.SuspendLayout();
             this.grpFiltre.SuspendLayout();
+            this.grpEspeces.SuspendLayout();
             this.plAliens.SuspendLayout();
             this.grpFiltresAlliees.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.grpAlliees.SuspendLayout();
             this.grpFiltresEnnemis.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.grpEspeces.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpMissions
@@ -146,7 +146,7 @@
             // 
             // plMissions
             // 
-            this.plMissions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.plMissions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.plMissions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.plMissions.Controls.Add(this.grpNbMissionsTrouvees);
             this.plMissions.Controls.Add(this.grpFiltres);
@@ -154,7 +154,7 @@
             this.plMissions.Location = new System.Drawing.Point(376, 27);
             this.plMissions.Margin = new System.Windows.Forms.Padding(4);
             this.plMissions.Name = "plMissions";
-            this.plMissions.Size = new System.Drawing.Size(1521, 977);
+            this.plMissions.Size = new System.Drawing.Size(1521, 975);
             this.plMissions.TabIndex = 0;
             // 
             // grpNbMissionsTrouvees
@@ -172,6 +172,7 @@
             // 
             // grpFiltres
             // 
+            this.grpFiltres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.grpFiltres.Controls.Add(this.btnValiderNbJoursMission);
             this.grpFiltres.Controls.Add(this.btnValiderNbJoursMin);
             this.grpFiltres.Controls.Add(this.rdbRAZ);
@@ -488,7 +489,7 @@
             // 
             // plPlanetes
             // 
-            this.plPlanetes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.plPlanetes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.plPlanetes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.plPlanetes.Controls.Add(this.grpPlanetes);
             this.plPlanetes.Controls.Add(this.lblPlanetes);
@@ -534,6 +535,7 @@
             // 
             // grpFiltre
             // 
+            this.grpFiltre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.grpFiltre.Controls.Add(this.grpEspeces);
             this.grpFiltre.Controls.Add(this.btnRechercher);
             this.grpFiltre.Controls.Add(this.label7);
@@ -568,6 +570,25 @@
             this.grpFiltre.TabIndex = 3;
             this.grpFiltre.TabStop = false;
             this.grpFiltre.Text = "Filtres";
+            // 
+            // grpEspeces
+            // 
+            this.grpEspeces.Controls.Add(this.flpEspece);
+            this.grpEspeces.Location = new System.Drawing.Point(38, 453);
+            this.grpEspeces.Name = "grpEspeces";
+            this.grpEspeces.Size = new System.Drawing.Size(403, 176);
+            this.grpEspeces.TabIndex = 28;
+            this.grpEspeces.TabStop = false;
+            this.grpEspeces.Text = "Espèces :";
+            // 
+            // flpEspece
+            // 
+            this.flpEspece.AutoScroll = true;
+            this.flpEspece.Location = new System.Drawing.Point(8, 35);
+            this.flpEspece.Margin = new System.Windows.Forms.Padding(5);
+            this.flpEspece.Name = "flpEspece";
+            this.flpEspece.Size = new System.Drawing.Size(387, 134);
+            this.flpEspece.TabIndex = 22;
             // 
             // btnRechercher
             // 
@@ -631,15 +652,6 @@
             this.btnReinitialiser.TabIndex = 24;
             this.btnReinitialiser.UseVisualStyleBackColor = false;
             this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
-            // 
-            // flpEspece
-            // 
-            this.flpEspece.AutoScroll = true;
-            this.flpEspece.Location = new System.Drawing.Point(8, 35);
-            this.flpEspece.Margin = new System.Windows.Forms.Padding(5);
-            this.flpEspece.Name = "flpEspece";
-            this.flpEspece.Size = new System.Drawing.Size(387, 134);
-            this.flpEspece.TabIndex = 22;
             // 
             // txtMaxMission
             // 
@@ -839,7 +851,7 @@
             // 
             // plAliens
             // 
-            this.plAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.plAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.plAliens.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.plAliens.Controls.Add(this.lblAliens);
             this.plAliens.Controls.Add(this.grpFiltresAlliees);
@@ -849,7 +861,7 @@
             this.plAliens.Location = new System.Drawing.Point(376, 27);
             this.plAliens.Margin = new System.Windows.Forms.Padding(4);
             this.plAliens.Name = "plAliens";
-            this.plAliens.Size = new System.Drawing.Size(1521, 977);
+            this.plAliens.Size = new System.Drawing.Size(1521, 975);
             this.plAliens.TabIndex = 1;
             // 
             // lblAliens
@@ -865,6 +877,7 @@
             // 
             // grpFiltresAlliees
             // 
+            this.grpFiltresAlliees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.grpFiltresAlliees.Controls.Add(this.btnReinitialiserAlliees);
             this.grpFiltresAlliees.Controls.Add(this.cboBienveillance);
             this.grpFiltresAlliees.Controls.Add(this.btnRechercherAlliees);
@@ -1046,6 +1059,7 @@
             // 
             // grpFiltresEnnemis
             // 
+            this.grpFiltresEnnemis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.grpFiltresEnnemis.Controls.Add(this.btnReinitialiserEnnemis);
             this.grpFiltresEnnemis.Controls.Add(this.cboAgressivite);
             this.grpFiltresEnnemis.Controls.Add(this.label6);
@@ -1191,16 +1205,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // grpEspeces
-            // 
-            this.grpEspeces.Controls.Add(this.flpEspece);
-            this.grpEspeces.Location = new System.Drawing.Point(38, 453);
-            this.grpEspeces.Name = "grpEspeces";
-            this.grpEspeces.Size = new System.Drawing.Size(403, 176);
-            this.grpEspeces.TabIndex = 28;
-            this.grpEspeces.TabStop = false;
-            this.grpEspeces.Text = "Espèces :";
-            // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1232,6 +1236,7 @@
             this.grpPlanetes.ResumeLayout(false);
             this.grpFiltre.ResumeLayout(false);
             this.grpFiltre.PerformLayout();
+            this.grpEspeces.ResumeLayout(false);
             this.plAliens.ResumeLayout(false);
             this.plAliens.PerformLayout();
             this.grpFiltresAlliees.ResumeLayout(false);
@@ -1243,7 +1248,6 @@
             this.grpFiltresEnnemis.ResumeLayout(false);
             this.grpFiltresEnnemis.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.grpEspeces.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

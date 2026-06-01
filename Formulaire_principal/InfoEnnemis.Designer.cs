@@ -98,6 +98,7 @@
             // InfoEnnemis
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.lblArme);
             this.Controls.Add(this.lblPlaneteEnnemis);
             this.Controls.Add(this.lblCouleurEnnemis);

@@ -98,6 +98,7 @@
             // InfoAlien
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.lblInstrument);
             this.Controls.Add(this.lblPlaneteAlliees);
             this.Controls.Add(this.lblCouleurAlliees);

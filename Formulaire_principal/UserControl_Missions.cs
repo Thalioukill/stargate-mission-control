@@ -29,6 +29,11 @@ namespace Formulaire_principal
         public afficherMission details;
         public afficherMission stats;
 
+        public UserControl_Missions()
+        {
+            InitializeComponent();
+        }
+
         public UserControl_Missions(string nomPlanete, string numeroMission, string date, string nbJours, string chef, string matriculeChef, string budget, string nomImage)
         {
             InitializeComponent();
@@ -112,17 +117,17 @@ namespace Formulaire_principal
             if (dateDepart > aujourdhui)
             {
                 lblStatusMission.Text = "Statut : À VENIR";
-                couleurCadre = Color.FromArgb(81, 225, 255);
+                couleurCadre = Color.FromArgb(228, 138, 255); // 81, 225, 255
             }
             else if (aujourdhui >= dateDepart && aujourdhui <= dateRetour)
             {
                 lblStatusMission.Text = "Statut : EN COURS";
-                couleurCadre = Color.FromArgb(255, 148, 241);
+                couleurCadre = Color.FromArgb(131, 164, 255);// 255, 148, 241
             }
             else
             {
                 lblStatusMission.Text = "Statut : PASSÉE";
-                couleurCadre = Color.FromArgb(113, 6, 255);
+                couleurCadre = Color.FromArgb(230, 146, 255); // 113, 6, 255 // -> 148, 102, 255
             }
 
             // couleur au texte = couleur du label
@@ -130,14 +135,6 @@ namespace Formulaire_principal
 
             // appel à Paint
             this.Invalidate();
-        }
-
-
-
-
-        public UserControl_Missions()
-        {
-            InitializeComponent();
         }
 
         private void UserControl_Missions_Load(object sender, EventArgs e)

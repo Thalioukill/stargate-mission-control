@@ -36,10 +36,11 @@
             // 
             // picMembre
             // 
-            this.picMembre.Location = new System.Drawing.Point(16, 26);
+            this.picMembre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picMembre.Location = new System.Drawing.Point(43, 25);
             this.picMembre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picMembre.Name = "picMembre";
-            this.picMembre.Size = new System.Drawing.Size(238, 129);
+            this.picMembre.Size = new System.Drawing.Size(151, 129);
             this.picMembre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMembre.TabIndex = 0;
             this.picMembre.TabStop = false;
@@ -49,29 +50,30 @@
             this.lblNom.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNom.Location = new System.Drawing.Point(13, 175);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(163, 23);
+            this.lblNom.Size = new System.Drawing.Size(230, 30);
             this.lblNom.TabIndex = 1;
             this.lblNom.Text = "Nom : ";
             // 
             // lbl
             // 
             this.lbl.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl.Location = new System.Drawing.Point(13, 209);
+            this.lbl.Location = new System.Drawing.Point(13, 219);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(241, 83);
+            this.lbl.Size = new System.Drawing.Size(230, 73);
             this.lbl.TabIndex = 3;
             // 
             // UserControl_MembresMission
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.picMembre);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UserControl_MembresMission";
-            this.Size = new System.Drawing.Size(265, 302);
+            this.Size = new System.Drawing.Size(246, 302);
             this.Load += new System.EventHandler(this.UserControl_MembresMission_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMembre)).EndInit();
             this.ResumeLayout(false);

@@ -193,7 +193,7 @@ namespace Formulaire_principal
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(remplirBudgetMax, this.co);
-                lblBd.Text += cmd.ExecuteScalar().ToString();
+                lblBd.Text += cmd.ExecuteScalar().ToString()+" $";
             }
             catch (Exception err)
             {
@@ -387,7 +387,7 @@ namespace Formulaire_principal
             }
             public override Color MenuItemSelectedGradientEnd
             {
-                get { return Color.FromArgb(223, 115, 255); }
+                get { return Color.FromArgb(233, 160, 255); }
             }
 
             // Pour supprimer la bordure moche autour de la sélection
