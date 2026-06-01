@@ -41,7 +41,7 @@
             // 
             this.lblNomAlliees.AutoSize = true;
             this.lblNomAlliees.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomAlliees.Location = new System.Drawing.Point(137, 3);
+            this.lblNomAlliees.Location = new System.Drawing.Point(183, 19);
             this.lblNomAlliees.Name = "lblNomAlliees";
             this.lblNomAlliees.Size = new System.Drawing.Size(57, 24);
             this.lblNomAlliees.TabIndex = 1;
@@ -51,7 +51,7 @@
             // 
             this.lblBienveillance.AutoSize = true;
             this.lblBienveillance.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienveillance.Location = new System.Drawing.Point(136, 33);
+            this.lblBienveillance.Location = new System.Drawing.Point(183, 54);
             this.lblBienveillance.Name = "lblBienveillance";
             this.lblBienveillance.Size = new System.Drawing.Size(58, 24);
             this.lblBienveillance.TabIndex = 2;
@@ -61,7 +61,7 @@
             // 
             this.lblCouleurAlliees.AutoSize = true;
             this.lblCouleurAlliees.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCouleurAlliees.Location = new System.Drawing.Point(137, 68);
+            this.lblCouleurAlliees.Location = new System.Drawing.Point(183, 88);
             this.lblCouleurAlliees.Name = "lblCouleurAlliees";
             this.lblCouleurAlliees.Size = new System.Drawing.Size(57, 24);
             this.lblCouleurAlliees.TabIndex = 3;
@@ -71,7 +71,7 @@
             // 
             this.lblPlaneteAlliees.AutoSize = true;
             this.lblPlaneteAlliees.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaneteAlliees.Location = new System.Drawing.Point(138, 99);
+            this.lblPlaneteAlliees.Location = new System.Drawing.Point(183, 125);
             this.lblPlaneteAlliees.Name = "lblPlaneteAlliees";
             this.lblPlaneteAlliees.Size = new System.Drawing.Size(57, 24);
             this.lblPlaneteAlliees.TabIndex = 4;
@@ -81,7 +81,7 @@
             // 
             this.lblInstrument.AutoSize = true;
             this.lblInstrument.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInstrument.Location = new System.Drawing.Point(137, 131);
+            this.lblInstrument.Location = new System.Drawing.Point(183, 163);
             this.lblInstrument.Name = "lblInstrument";
             this.lblInstrument.Size = new System.Drawing.Size(57, 24);
             this.lblInstrument.TabIndex = 5;
@@ -89,9 +89,9 @@
             // 
             // picAlliees
             // 
-            this.picAlliees.Location = new System.Drawing.Point(3, 3);
+            this.picAlliees.Location = new System.Drawing.Point(14, 9);
             this.picAlliees.Name = "picAlliees";
-            this.picAlliees.Size = new System.Drawing.Size(128, 152);
+            this.picAlliees.Size = new System.Drawing.Size(150, 184);
             this.picAlliees.TabIndex = 0;
             this.picAlliees.TabStop = false;
             // 
@@ -105,8 +105,9 @@
             this.Controls.Add(this.lblNomAlliees);
             this.Controls.Add(this.picAlliees);
             this.Name = "InfoAlien";
-            this.Size = new System.Drawing.Size(456, 183);
+            this.Size = new System.Drawing.Size(522, 204);
             this.Load += new System.EventHandler(this.InfoAlien_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.InfoAlien_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picAlliees)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

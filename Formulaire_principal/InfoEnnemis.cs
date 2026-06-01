@@ -13,6 +13,7 @@ namespace Formulaire_principal
 {
     public partial class InfoEnnemis : UserControl
     {
+        private Color couleurCadre = Color.Black;
         public InfoEnnemis()
         {
             InitializeComponent();
@@ -41,11 +42,48 @@ namespace Formulaire_principal
                     picEnnemis.Image = Image.FromFile(path);
                 }
             }
-
+            switch (couleur) 
+            {
+                case "Pourpre":
+                    couleurCadre = Color.Red;
+                    break;
+                case "Vert":
+                    couleurCadre = Color.Green;
+                    break;
+                case "Bleu":
+                    couleurCadre = Color.Blue;
+                    break;
+                case "Orange":
+                    couleurCadre = Color.Orange;
+                    break;
+                case "Gris":
+                    couleurCadre = Color.Gray;
+                    break;
+                case "Marron":
+                    couleurCadre = Color.Brown;
+                    break;
+                case "Violet":
+                    couleurCadre = Color.Purple;
+                    break;
+                case "Rose":
+                    couleurCadre = Color.Pink;
+                    break;
+                default:
+                    couleurCadre = Color.Black;
+                    break;
+            }
         }
 
         private void InfoEnnemis_Load(object sender, EventArgs e)
         {
+        }
+
+        private void InfoEnnemis_Paint(object sender, PaintEventArgs e)
+        {
+            using (Pen p = new Pen(couleurCadre, 7))
+            {
+                e.Graphics.DrawRectangle(p, 0, 0, this.Width - 1, this.Height - 1);
+            }
         }
     }
 }

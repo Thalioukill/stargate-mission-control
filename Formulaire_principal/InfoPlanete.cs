@@ -32,7 +32,7 @@ namespace Formulaire_principal
             }
             lblDataBaz.Text = "DataBAZ : " + dataBazON;
             lblEspeces.Text = "Espèces : " + especes;
-            lblPourcentage.Text = "Pourcentage : " + pourcentages;
+            lblPourcentage.Text = "Taux d'espèces : " + pourcentages;
             lblMission.Text = "Nombres de missions effectuées : " + missions;
             if (nom != string.Empty)
             {
