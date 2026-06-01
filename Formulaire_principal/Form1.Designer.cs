@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAccueil));
             this.flpMissions = new System.Windows.Forms.FlowLayoutPanel();
             this.plMissions = new System.Windows.Forms.Panel();
+            this.grpNbMissionsTrouvees = new System.Windows.Forms.GroupBox();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
             this.rdbRAZ = new System.Windows.Forms.RadioButton();
             this.lblNbMission = new System.Windows.Forms.Label();
@@ -115,8 +116,9 @@
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.ttRAZ = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grpNbMissionsTrouvees = new System.Windows.Forms.GroupBox();
+            this.btnValiderNbJoursMin = new System.Windows.Forms.Button();
             this.plMissions.SuspendLayout();
+            this.grpNbMissionsTrouvees.SuspendLayout();
             this.grpFiltres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupNbMissions)).BeginInit();
             this.msMenu.SuspendLayout();
@@ -128,7 +130,6 @@
             this.grpAlliees.SuspendLayout();
             this.grpFiltresEnnemis.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.grpNbMissionsTrouvees.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpMissions
@@ -142,17 +143,31 @@
             // 
             // plMissions
             // 
+            this.plMissions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(234)))), ((int)(((byte)(246)))));
+            this.plMissions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.plMissions.Controls.Add(this.grpNbMissionsTrouvees);
             this.plMissions.Controls.Add(this.grpFiltres);
             this.plMissions.Controls.Add(this.label21);
             this.plMissions.Location = new System.Drawing.Point(376, 27);
             this.plMissions.Margin = new System.Windows.Forms.Padding(4);
             this.plMissions.Name = "plMissions";
-            this.plMissions.Size = new System.Drawing.Size(1521, 976);
+            this.plMissions.Size = new System.Drawing.Size(1521, 974);
             this.plMissions.TabIndex = 0;
+            // 
+            // grpNbMissionsTrouvees
+            // 
+            this.grpNbMissionsTrouvees.Controls.Add(this.flpMissions);
+            this.grpNbMissionsTrouvees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpNbMissionsTrouvees.Location = new System.Drawing.Point(27, 397);
+            this.grpNbMissionsTrouvees.Name = "grpNbMissionsTrouvees";
+            this.grpNbMissionsTrouvees.Size = new System.Drawing.Size(1448, 551);
+            this.grpNbMissionsTrouvees.TabIndex = 7;
+            this.grpNbMissionsTrouvees.TabStop = false;
+            this.grpNbMissionsTrouvees.Text = "Nombre de missions trouvées : ";
             // 
             // grpFiltres
             // 
+            this.grpFiltres.Controls.Add(this.btnValiderNbJoursMin);
             this.grpFiltres.Controls.Add(this.rdbRAZ);
             this.grpFiltres.Controls.Add(this.lblNbMission);
             this.grpFiltres.Controls.Add(this.nupNbMissions);
@@ -210,7 +225,7 @@
             0,
             0});
             this.nupNbMissions.Name = "nupNbMissions";
-            this.nupNbMissions.Size = new System.Drawing.Size(120, 35);
+            this.nupNbMissions.Size = new System.Drawing.Size(80, 35);
             this.nupNbMissions.TabIndex = 13;
             this.nupNbMissions.Value = new decimal(new int[] {
             1,
@@ -221,13 +236,13 @@
             // 
             // btnRecherche
             // 
-            this.btnRecherche.BackgroundImage = global::Formulaire_principal.Properties.Resources.recherche;
+            this.btnRecherche.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnRecherche.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecherche.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecherche.Location = new System.Drawing.Point(992, 153);
+            this.btnRecherche.Location = new System.Drawing.Point(978, 161);
             this.btnRecherche.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecherche.Name = "btnRecherche";
-            this.btnRecherche.Size = new System.Drawing.Size(57, 52);
+            this.btnRecherche.Size = new System.Drawing.Size(41, 41);
             this.btnRecherche.TabIndex = 12;
             this.btnRecherche.UseVisualStyleBackColor = true;
             this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
@@ -245,6 +260,7 @@
             // 
             // txtBudgetMin
             // 
+            this.txtBudgetMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBudgetMin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtBudgetMin.Location = new System.Drawing.Point(734, 164);
             this.txtBudgetMin.Margin = new System.Windows.Forms.Padding(4);
@@ -279,7 +295,7 @@
             // 
             // btnRAZ
             // 
-            this.btnRAZ.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz1;
+            this.btnRAZ.BackgroundImage = global::Formulaire_principal.Properties.Resources.raz_vrai;
             this.btnRAZ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRAZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRAZ.Location = new System.Drawing.Point(1370, 194);
@@ -375,7 +391,8 @@
             // 
             // msMenu
             // 
-            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(131)))), ((int)(((byte)(255)))));
+            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(152)))), ((int)(((byte)(246)))));
+            this.msMenu.BackgroundImage = global::Formulaire_principal.Properties.Resources.Fond_menuStrip;
             this.msMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.msMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -395,7 +412,7 @@
             // 
             // tsmiTableauDeBord
             // 
-            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(131)))), ((int)(((byte)(255)))));
+            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(152)))), ((int)(((byte)(246)))));
             this.tsmiTableauDeBord.Checked = true;
             this.tsmiTableauDeBord.CheckOnClick = true;
             this.tsmiTableauDeBord.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -441,6 +458,7 @@
             // 
             // plPlanetes
             // 
+            this.plPlanetes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(234)))), ((int)(((byte)(246)))));
             this.plPlanetes.Controls.Add(this.label22);
             this.plPlanetes.Controls.Add(this.lblPlanetes);
             this.plPlanetes.Controls.Add(this.grpFiltre);
@@ -799,6 +817,8 @@
             // 
             // plAliens
             // 
+            this.plAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(234)))), ((int)(((byte)(246)))));
+            this.plAliens.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.plAliens.Controls.Add(this.label23);
             this.plAliens.Controls.Add(this.grpFiltresAlliees);
             this.plAliens.Controls.Add(this.groupBox3);
@@ -807,7 +827,7 @@
             this.plAliens.Location = new System.Drawing.Point(376, 27);
             this.plAliens.Margin = new System.Windows.Forms.Padding(4);
             this.plAliens.Name = "plAliens";
-            this.plAliens.Size = new System.Drawing.Size(1521, 977);
+            this.plAliens.Size = new System.Drawing.Size(1521, 975);
             this.plAliens.TabIndex = 1;
             // 
             // label23
@@ -1149,22 +1169,23 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // grpNbMissionsTrouvees
+            // btnValiderNbJoursMin
             // 
-            this.grpNbMissionsTrouvees.Controls.Add(this.flpMissions);
-            this.grpNbMissionsTrouvees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpNbMissionsTrouvees.Location = new System.Drawing.Point(27, 397);
-            this.grpNbMissionsTrouvees.Name = "grpNbMissionsTrouvees";
-            this.grpNbMissionsTrouvees.Size = new System.Drawing.Size(1448, 551);
-            this.grpNbMissionsTrouvees.TabIndex = 7;
-            this.grpNbMissionsTrouvees.TabStop = false;
-            this.grpNbMissionsTrouvees.Text = "Nombre de missions trouvées : ";
+            this.btnValiderNbJoursMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnValiderNbJoursMin.BackgroundImage")));
+            this.btnValiderNbJoursMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValiderNbJoursMin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValiderNbJoursMin.Location = new System.Drawing.Point(1214, 163);
+            this.btnValiderNbJoursMin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnValiderNbJoursMin.Name = "btnValiderNbJoursMin";
+            this.btnValiderNbJoursMin.Size = new System.Drawing.Size(41, 41);
+            this.btnValiderNbJoursMin.TabIndex = 16;
+            this.btnValiderNbJoursMin.UseVisualStyleBackColor = true;
             // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_acceuil;
+            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_acceuil1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1923, 1017);
             this.Controls.Add(this.plAliens);
@@ -1180,6 +1201,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.plMissions.ResumeLayout(false);
             this.plMissions.PerformLayout();
+            this.grpNbMissionsTrouvees.ResumeLayout(false);
             this.grpFiltres.ResumeLayout(false);
             this.grpFiltres.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupNbMissions)).EndInit();
@@ -1200,7 +1222,6 @@
             this.grpFiltresEnnemis.ResumeLayout(false);
             this.grpFiltresEnnemis.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.grpNbMissionsTrouvees.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1293,6 +1314,7 @@
         private System.Windows.Forms.NumericUpDown nupNbMissions;
         private System.Windows.Forms.RadioButton rdbRAZ;
         private System.Windows.Forms.GroupBox grpNbMissionsTrouvees;
+        private System.Windows.Forms.Button btnValiderNbJoursMin;
     }
 }
 
