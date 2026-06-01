@@ -35,7 +35,7 @@ namespace Formulaire_principal
             this.lblNomMission.Text += nomPlanete+numeroMission;
             this.lblDate.Text += date;
             this.lblChefMission.Text += chef;
-            this.lblBudget.Text += budget;
+            this.lblBudget.Text += budget + " $";
             this.lblNbJours.Text += nbJours;
 
             if (nomImage != string.Empty)

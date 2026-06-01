@@ -20,8 +20,8 @@ namespace Formulaire_principal
         {
             InitializeComponent();
             lblNom.Text = "Nom : " + nom;
-            lblTemperature.Text = "Température : " + temperature;
-            lblGravite.Text = "Gravité : " + gravite;
+            lblTemperature.Text = "Température : " + temperature + " °C";
+            lblGravite.Text = "Gravité : " + gravite+ " G";
             if(dataBazON == "1")
             {
                 dataBazON = "Présent";

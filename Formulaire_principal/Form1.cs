@@ -383,7 +383,7 @@ namespace Formulaire_principal
             }
             public override Color MenuItemSelectedGradientBegin
             {
-                get { return Color.FromArgb(102, 0, 255); } 
+                get { return Color.FromArgb(120, 114, 255); } 
             }
             public override Color MenuItemSelectedGradientEnd
             {
@@ -552,6 +552,7 @@ namespace Formulaire_principal
             cboPlanete.SelectedIndex = 0;
             txtBudgetMin.Text = string.Empty;
             lblBd.Text = "Budget maximum : ";
+            nupNbMissions.Value = 1;
             rdbRAZ.Checked = true;
 
             ActualiserAffichage(); // On recharge tout
@@ -595,22 +596,20 @@ namespace Formulaire_principal
 
         }
 
-        private void nupNbMissions_KeyDown(object sender, KeyEventArgs e)
+        private void btnValiderNbJoursMission_Click(object sender, EventArgs e)
         {
-            // si l'utilisateur tape sur entrée
-            if (e.KeyCode == Keys.Enter)
+            // On vérifie la valeur avant de lancer la recherche
+            if (nupNbMissions.Value < 1)
             {
-                // On vérifie la valeur avant de lancer la recherche
-                if (nupNbMissions.Value < 1)
-                {
-                    MessageBox.Show("Erreur : il faut choisir au moins 1 jour pour filtrer les missions.", "Filtre invalide", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    // Si c'est bon, on actualise le tableau de bord
-                    ActualiserAffichage();
-                }
+                MessageBox.Show("Erreur : il faut choisir au moins 1 jour pour filtrer les missions.", "ERREUR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nupNbMissions.Value = 1;
             }
+            else
+            {
+                // Si c'est bon, on actualise le tableau de bord
+                ActualiserAffichage();
+            }
+
         }
 
 
@@ -987,11 +986,11 @@ namespace Formulaire_principal
                 foreach (DataRow dr in rows)
                 {
                     string nom = dr["nom"].ToString();
-                    string temp = dr["temperature"] == DBNull.Value ? "Température inconnue" : dr["temperature"].ToString();
-                    string grav = dr["gravite"] == DBNull.Value ? "Gravité inconnue" : dr["gravite"].ToString();
+                    string temp = dr["temperature"] == DBNull.Value ? "inconnue" : dr["temperature"].ToString();
+                    string grav = dr["gravite"] == DBNull.Value ? "inconnue" : dr["gravite"].ToString();
                     string dbz = dr["dataBazON"] == DBNull.Value ? "Aucune information" : dr["dataBazON"].ToString();
-                    string esp = dr["Especes"] == DBNull.Value ? "Espèces inconnues" : dr["Especes"].ToString();
-                    string pct = dr["Pourcentages"] == DBNull.Value ? "Taux d'espèces inconnue" : dr["Pourcentages"].ToString();
+                    string esp = dr["Especes"] == DBNull.Value ? "inconnues" : dr["Especes"].ToString();
+                    string pct = dr["Pourcentages"] == DBNull.Value ? "inconnue" : dr["Pourcentages"].ToString();
 
                     int nbMissions = 0;
                     if (dr["nbMissions"] != DBNull.Value)
