@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
@@ -72,7 +73,7 @@ namespace Formulaire_principal
         {
             //Chargement des comboBoxs cboPlanete et cboChef au démarrage de l'application
             RemplirCboPlanete();
-            RemplirCboChef();
+            erpCboChef.SetError(cboChef, "Veuillez valider une date de départ et une de date de retour avant de chosir un chef");
             cboPlanete.SelectedIndex = -1;
             cboChef.SelectedIndex = -1;
         }
@@ -108,6 +109,33 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void btnValidDate_Click(object sender, EventArgs e)
+        {
+            //instance.CompareTo(object value)
+            //si < 0 alors instance précède value
+            //si = 0 alors instance à la même position que value en terme de trie
+            //si > 0 alors instance est après value
+            if (dtpDepart.Value.Date.CompareTo(dtpRetour.Value.Date) >= 0)
+            {
+
+                MessageBox.Show("La date de départ ne peut pas être après la date de retour, la date de retour ne peut pas être avant la date de départ, et les missions sur un jour n'existent pas !");
+
+            }
+            else
+            {
+                MessageBox.Show("Dates validées ! Vous pouvez maintenant chosir un chef disponible sur cette plage de temps !");
+                dtpDepart.Enabled = false;
+                dtpRetour.Enabled = false;
+                lblDate.ForeColor = SystemColors.ControlDark;
+                lblDateDepart.ForeColor = SystemColors.ControlDark;
+                lblDateRetour.ForeColor = SystemColors.ControlDark;
+                btnValidDate.BackgroundImage = Image.FromFile("../../Images/Boutons/valider_desac.png");
+                RemplirCboChef();
+                erpCboChef.Clear();
+            }
+
         }
 
 
@@ -159,6 +187,15 @@ namespace Formulaire_principal
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
 
+                    
+
+                    //progressBar1.Visible = true;
+                    //progressBar1.Style = ProgressBarStyle.Continuous;
+                    //On force l'affichage avant le chargement
+                    Application.DoEvents();
+
+                    //Début du chargement
+
                     //On insère d'office le chef de mission dans la listBox lstbMembres sous forme de ListItemMembre
                     //(Il fera forcément parti des membres de la mission)
                     ListItemMembre li = new ListItemMembre { Name = cboChef.Text, Value = cboChef.SelectedValue.ToString() };
@@ -168,15 +205,18 @@ namespace Formulaire_principal
                     //Le reste des membres à affecter
                     lblreste.Text = (int.Parse(txtnbMembres.Text) - 1).ToString();
 
-                    //On rempli les prochaines comboBoxs
+                    //On remplit les prochaines comboBoxs
                     RemplirCboMembres();
                     cboMembres.SelectedIndex = -1;
                     cboMembres_SelectedIndexChanged(sender, e);
                     RemplirCboCapture();
                     cboCaptures.SelectedIndex = -1;
-
-                    //On rends la partie 4 utilisable et on désactive la partie 2 - 3
                     PartieDeuxUtilisable();
+
+                    //Fin du chargement
+
+
+                    //progressBar1.Visible = false;
 
                 }
                 catch (SQLiteException err)
@@ -941,6 +981,21 @@ namespace Formulaire_principal
 
             MessageBox.Show($"Tout est bon de notre côté, tous les détails de la mission {cboPlanete.Text}{lblNum.Text} ont été validés !");
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnAccueil_Click(object sender, EventArgs e)
+        {
+            DialogResult reponse = MessageBox.Show(
+                "Vous allez retourner à l'accueil et annuler la création de la mission. Etes-vous sûr de vous ?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (reponse == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

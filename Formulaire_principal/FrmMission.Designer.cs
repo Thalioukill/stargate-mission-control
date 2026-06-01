@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.grpNouvelleMission = new System.Windows.Forms.GroupBox();
             this.pnlSection1 = new System.Windows.Forms.Panel();
+            this.btnValidDate = new System.Windows.Forms.Button();
+            this.lblChoixChef = new System.Windows.Forms.Label();
             this.btnValidMission = new System.Windows.Forms.Button();
             this.lblEuros = new System.Windows.Forms.Label();
             this.txtBudget = new System.Windows.Forms.TextBox();
@@ -48,7 +50,7 @@
             this.lblDateRetour = new System.Windows.Forms.Label();
             this.lblDateDepart = new System.Windows.Forms.Label();
             this.lblParam = new System.Windows.Forms.Label();
-            this.lblChef = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.cboChef = new System.Windows.Forms.ComboBox();
             this.lblNum = new System.Windows.Forms.Label();
             this.lblNomMission = new System.Windows.Forms.Label();
@@ -68,6 +70,9 @@
             this.ttValidCapture = new System.Windows.Forms.ToolTip(this.components);
             this.btnValidObj = new System.Windows.Forms.Button();
             this.erpPersonnePartis = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttValidDate = new System.Windows.Forms.ToolTip(this.components);
+            this.erpCboChef = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnAccueil = new System.Windows.Forms.Button();
             this.grpPrecisions = new System.Windows.Forms.GroupBox();
             this.pnlSection3 = new System.Windows.Forms.Panel();
             this.lstbCaptures = new System.Windows.Forms.ListBox();
@@ -84,10 +89,11 @@
             this.cboMembres = new System.Windows.Forms.ComboBox();
             this.lblreste = new System.Windows.Forms.Label();
             this.lblAffect = new System.Windows.Forms.Label();
-            this.lblChoixChef = new System.Windows.Forms.Label();
+            this.ttAccueil = new System.Windows.Forms.ToolTip(this.components);
             this.grpNouvelleMission.SuspendLayout();
             this.pnlSection1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.erpPersonnePartis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpCboChef)).BeginInit();
             this.grpPrecisions.SuspendLayout();
             this.pnlSection3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).BeginInit();
@@ -110,6 +116,7 @@
             // pnlSection1
             // 
             this.pnlSection1.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSection1.Controls.Add(this.btnValidDate);
             this.pnlSection1.Controls.Add(this.lblChoixChef);
             this.pnlSection1.Controls.Add(this.btnValidMission);
             this.pnlSection1.Controls.Add(this.lblEuros);
@@ -128,7 +135,7 @@
             this.pnlSection1.Controls.Add(this.lblDateRetour);
             this.pnlSection1.Controls.Add(this.lblDateDepart);
             this.pnlSection1.Controls.Add(this.lblParam);
-            this.pnlSection1.Controls.Add(this.lblChef);
+            this.pnlSection1.Controls.Add(this.lblDate);
             this.pnlSection1.Controls.Add(this.cboChef);
             this.pnlSection1.Controls.Add(this.lblNum);
             this.pnlSection1.Controls.Add(this.lblNomMission);
@@ -138,6 +145,28 @@
             this.pnlSection1.Name = "pnlSection1";
             this.pnlSection1.Size = new System.Drawing.Size(1250, 1397);
             this.pnlSection1.TabIndex = 0;
+            // 
+            // btnValidDate
+            // 
+            this.btnValidDate.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValidDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidDate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidDate.Location = new System.Drawing.Point(1084, 444);
+            this.btnValidDate.Name = "btnValidDate";
+            this.btnValidDate.Size = new System.Drawing.Size(105, 88);
+            this.btnValidDate.TabIndex = 62;
+            this.ttValidDate.SetToolTip(this.btnValidDate, "Valider les dates");
+            this.btnValidDate.UseVisualStyleBackColor = true;
+            this.btnValidDate.Click += new System.EventHandler(this.btnValidDate_Click);
+            // 
+            // lblChoixChef
+            // 
+            this.lblChoixChef.AutoSize = true;
+            this.lblChoixChef.Location = new System.Drawing.Point(60, 682);
+            this.lblChoixChef.Name = "lblChoixChef";
+            this.lblChoixChef.Size = new System.Drawing.Size(249, 44);
+            this.lblChoixChef.TabIndex = 61;
+            this.lblChoixChef.Text = "Choix du chef";
             // 
             // btnValidMission
             // 
@@ -309,23 +338,23 @@
             // 
             this.lblParam.AutoSize = true;
             this.lblParam.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblParam.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblParam.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblParam.Location = new System.Drawing.Point(60, 584);
             this.lblParam.Name = "lblParam";
             this.lblParam.Size = new System.Drawing.Size(440, 44);
             this.lblParam.TabIndex = 44;
             this.lblParam.Text = "3- Paramètres de la mission";
             // 
-            // lblChef
+            // lblDate
             // 
-            this.lblChef.AutoSize = true;
-            this.lblChef.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChef.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblChef.Location = new System.Drawing.Point(29, 289);
-            this.lblChef.Name = "lblChef";
-            this.lblChef.Size = new System.Drawing.Size(327, 44);
-            this.lblChef.TabIndex = 43;
-            this.lblChef.Text = "2 - Choix de la date";
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.Color.MediumBlue;
+            this.lblDate.Location = new System.Drawing.Point(29, 289);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(327, 44);
+            this.lblDate.TabIndex = 43;
+            this.lblDate.Text = "2 - Choix de la date";
             // 
             // cboChef
             // 
@@ -341,6 +370,7 @@
             // 
             this.lblNum.AutoSize = true;
             this.lblNum.Font = new System.Drawing.Font("Kristen ITC", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNum.ForeColor = System.Drawing.Color.Red;
             this.lblNum.Location = new System.Drawing.Point(814, 38);
             this.lblNum.Name = "lblNum";
             this.lblNum.Size = new System.Drawing.Size(129, 51);
@@ -351,6 +381,7 @@
             // 
             this.lblNomMission.AutoSize = true;
             this.lblNomMission.Font = new System.Drawing.Font("Kristen ITC", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomMission.ForeColor = System.Drawing.Color.Red;
             this.lblNomMission.Location = new System.Drawing.Point(31, 38);
             this.lblNomMission.Name = "lblNomMission";
             this.lblNomMission.Size = new System.Drawing.Size(129, 51);
@@ -373,6 +404,7 @@
             // 
             this.lblChoix.AutoSize = true;
             this.lblChoix.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChoix.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblChoix.Location = new System.Drawing.Point(32, 153);
             this.lblChoix.Name = "lblChoix";
             this.lblChoix.Size = new System.Drawing.Size(370, 44);
@@ -463,6 +495,22 @@
             // 
             this.erpPersonnePartis.ContainerControl = this;
             // 
+            // erpCboChef
+            // 
+            this.erpCboChef.ContainerControl = this;
+            // 
+            // btnAccueil
+            // 
+            this.btnAccueil.BackgroundImage = global::Formulaire_principal.Properties.Resources.maison2;
+            this.btnAccueil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAccueil.Location = new System.Drawing.Point(2675, 30);
+            this.btnAccueil.Name = "btnAccueil";
+            this.btnAccueil.Size = new System.Drawing.Size(105, 88);
+            this.btnAccueil.TabIndex = 2;
+            this.ttAccueil.SetToolTip(this.btnAccueil, "Retourner à l\'acceuil");
+            this.btnAccueil.UseVisualStyleBackColor = true;
+            this.btnAccueil.Click += new System.EventHandler(this.btnAccueil_Click);
+            // 
             // grpPrecisions
             // 
             this.grpPrecisions.BackColor = System.Drawing.Color.Transparent;
@@ -523,7 +571,7 @@
             // lblObjCapture
             // 
             this.lblObjCapture.AutoSize = true;
-            this.lblObjCapture.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblObjCapture.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblObjCapture.Location = new System.Drawing.Point(41, 23);
             this.lblObjCapture.Name = "lblObjCapture";
             this.lblObjCapture.Size = new System.Drawing.Size(396, 44);
@@ -639,28 +687,21 @@
             // 
             this.lblAffect.AutoSize = true;
             this.lblAffect.BackColor = System.Drawing.Color.Transparent;
-            this.lblAffect.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblAffect.ForeColor = System.Drawing.Color.MediumBlue;
             this.lblAffect.Location = new System.Drawing.Point(41, 13);
             this.lblAffect.Name = "lblAffect";
             this.lblAffect.Size = new System.Drawing.Size(769, 44);
             this.lblAffect.TabIndex = 6;
             this.lblAffect.Text = "4 - Affectation des membres - reste à affecter :";
             // 
-            // lblChoixChef
-            // 
-            this.lblChoixChef.AutoSize = true;
-            this.lblChoixChef.Location = new System.Drawing.Point(60, 682);
-            this.lblChoixChef.Name = "lblChoixChef";
-            this.lblChoixChef.Size = new System.Drawing.Size(249, 44);
-            this.lblChoixChef.TabIndex = 61;
-            this.lblChoixChef.Text = "Choix du chef";
-            // 
             // FrmMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2669, 1499);
+            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_mission;
+            this.ClientSize = new System.Drawing.Size(2792, 1499);
+            this.Controls.Add(this.btnAccueil);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
             this.DoubleBuffered = true;
@@ -672,6 +713,7 @@
             this.pnlSection1.ResumeLayout(false);
             this.pnlSection1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.erpPersonnePartis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpCboChef)).EndInit();
             this.grpPrecisions.ResumeLayout(false);
             this.pnlSection3.ResumeLayout(false);
             this.pnlSection3.PerformLayout();
@@ -722,7 +764,7 @@
         private System.Windows.Forms.Label lblDateRetour;
         private System.Windows.Forms.Label lblDateDepart;
         private System.Windows.Forms.Label lblParam;
-        private System.Windows.Forms.Label lblChef;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.ComboBox cboChef;
         private System.Windows.Forms.Panel pnlSection3;
         private System.Windows.Forms.Button btnSuppSelectCapt;
@@ -741,5 +783,10 @@
         private System.Windows.Forms.ToolTip ttValidMembre;
         private System.Windows.Forms.ErrorProvider erpPersonnePartis;
         private System.Windows.Forms.Label lblChoixChef;
+        private System.Windows.Forms.Button btnValidDate;
+        private System.Windows.Forms.ToolTip ttValidDate;
+        private System.Windows.Forms.ErrorProvider erpCboChef;
+        private System.Windows.Forms.Button btnAccueil;
+        private System.Windows.Forms.ToolTip ttAccueil;
     }
 }
