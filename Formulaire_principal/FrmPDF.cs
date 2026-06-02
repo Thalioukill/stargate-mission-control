@@ -133,7 +133,7 @@ namespace Formulaire_principal
 
                 section.AddParagraph("-------------------------------------------------------------------------------------------", "MonTexte");
 
-                section.AddParagraph($"Journal de bord ", "MonSousTitre");
+                section.AddParagraph($"Journal de bord\n", "MonSousTitre");
                 if (evenements.Count == 0)
                 {
                     section.AddParagraph("Aucun événement n'a été ajouté à la mission.", "MonTexte");
@@ -150,7 +150,7 @@ namespace Formulaire_principal
 
                 int i = 0;
 
-                section.AddParagraph($"Bilan des captures\n\n", "MonSousTitre");
+                section.AddParagraph($"Bilan des captures\n", "MonSousTitre");
                 if (captures.Count == 0)
                 {
                     section.AddParagraph("Aucun objectif de capture n'a été ajouté à la mission.", "MonTexte");

@@ -112,9 +112,13 @@ namespace Formulaire_principal
                     DateTime dtDepart = DateTime.Parse(this.dateDepart);
                     DateTime dtRetour = DateTime.Parse(this.dateArrivee);
 
+                    this.dateDepart = dtDepart.ToString("dd/MM/yyyy");
+                    this.dateArrivee = dtRetour.ToString("dd/MM/yyyy");
+
                     this.lblDates.Text += dtDepart.ToString("dd/MM/yyyy")+" - "+ dtRetour.ToString("dd/MM/yyyy");
 
                     TimeSpan diff = dtRetour.Subtract(dtDepart);
+                    this.nbJours = diff.Days;
                     string nbJours = diff.Days.ToString() + " jours";
                     this.lblNbJours.Text += nbJours;
 

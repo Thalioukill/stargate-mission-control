@@ -124,6 +124,18 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(err.Message);
             }
+
+            this.evenements.Clear();
+
+            // On parcourt toutes les lignes du journal de bord liées à cette mission
+            foreach (DataRowView drv in this.bsJournal)
+            {
+                string dateEvent = drv["dateJ"].ToString();
+                dateEvent = DateTime.Parse(dateEvent).ToString("dd/MM/yyyy");
+                string comm = drv["commentaires"].ToString();
+
+                this.evenements.Add($"Date : {dateEvent}\nDétail : {comm}");
+            }
         }
 
         // ===> Code du compteur d'évènement du Journal de Bord
