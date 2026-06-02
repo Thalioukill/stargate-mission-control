@@ -627,13 +627,27 @@ namespace Formulaire_principal
             lblErreur.Visible = false;
             errorProvider1.Clear();
             string filtre = $"nom LIKE '%{txtNomAlliees.Text}%'";
-            if (cboBienveillance.SelectedIndex != -1 && cboBienveillance.Text != "Toutes")
+            if (cboBienveillance.Text != "Toutes")
             {
-                filtre += $" AND degreBienveillance = '{cboBienveillance.Text}'";
+                if (cboBienveillance.Items.Contains(cboBienveillance.Text)) 
+                {
+                    filtre += $" AND degreBienveillance = '{cboBienveillance.Text}'";
+                }
+                else 
+                {
+                    filtre += $" AND 1=0";
+                }
             }
-            if (cboCouleurAlliees.SelectedIndex != -1 && cboCouleurAlliees.Text != "Toutes")
+            if (cboCouleurAlliees.Text != "Toutes")
             {
-                filtre += $" AND couleur = '{cboCouleurAlliees.Text}'";
+                if(cboCouleurAlliees.Items.Contains(cboCouleurAlliees.Text))
+                {
+                    filtre += $" AND couleur = '{cboCouleurAlliees.Text}'";
+                }
+                else
+                {
+                    filtre += $" AND 1=0";
+                }
             }
 
             DataRow[] rows = ds.Tables["TableAllies"].Select(filtre);
@@ -666,17 +680,38 @@ namespace Formulaire_principal
             {
                 string filtre = $"nom LIKE '%{txtNomEnnemis.Text.Replace("'", "''")}%'";
 
-                if (cboAgressivite.SelectedIndex != -1 && cboAgressivite.Text != "Toutes")
+                if (cboAgressivite.Text != "Toutes")
                 {
-                    filtre += $" AND degreAgressivite = '{cboAgressivite.Text}'";
+                    if(cboAgressivite.Items.Contains(cboAgressivite.Text))
+                    {
+                        filtre += $" AND degreAgressivite = '{cboAgressivite.Text}'";
+                    }
+                    else
+                    {
+                        filtre += $" AND 1=0";
+                    }
                 }
-                if (cboCouleurEnnemis.SelectedIndex != -1 && cboCouleurEnnemis.Text != "Toutes")
+                if (cboCouleurEnnemis.Text != "Toutes")
                 {
-                    filtre += $" AND couleur = '{cboCouleurEnnemis.Text}'";
+                    if(cboCouleurEnnemis.Items.Contains(cboCouleurEnnemis.Text))
+                    {
+                        filtre += $" AND couleur = '{cboCouleurEnnemis.Text}'";
+                    }
+                    else
+                    {
+                        filtre += $" AND 1=0";
+                    }
                 }
-                if (cboTypeArme.SelectedIndex != -1 && cboTypeArme.Text != "Toutes")
+                if (cboTypeArme.Text != "Toutes")
                 {
-                    filtre += $" AND typeArme = '{cboTypeArme.Text}'";
+                    if(cboTypeArme.Items.Contains(cboTypeArme.Text))
+                    {
+                        filtre += $" AND typeArme = '{cboTypeArme.Text}'";
+                    }
+                    else
+                    {
+                        filtre += $" AND 1=0";
+                    }
                 }
 
                 DataRow[] rows = ds.Tables["TableEnnemis"].Select(filtre);
@@ -933,6 +968,8 @@ namespace Formulaire_principal
         {
             try
             {
+                lblErreur3.Visible = false;
+                errorProvider1.Clear();
                 flpPlanete.Controls.Clear();
                 string filtre = $"nom LIKE '%{txtNom.Text}%'";
 
@@ -1005,6 +1042,11 @@ namespace Formulaire_principal
                         InfoPlanete info = new InfoPlanete(nom, temp, grav, dbz, esp, pct, nbMissions.ToString());
                         flpPlanete.Controls.Add(info);
                     }
+                }
+                if(flpPlanete.Controls.Count == 0)
+                {
+                    lblErreur3.Visible = true;
+                    errorProvider1.SetError(lblErreur3, "Veuillez réinitialiser les filtres.");
                 }
             }
             catch (SQLiteException err)
@@ -1380,6 +1422,56 @@ namespace Formulaire_principal
         private void rdbAvec_Click(object sender, EventArgs e)
         {
             charger_planetes();
+        }
+
+        private void cboCouleurAlliees_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                chargerAliensAlliees();
+            }
+        }
+
+        private void cboBienveillance_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                chargerAliensAlliees();
+            }
+        }
+
+        private void cboCouleurEnnemis_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                chargerAliensEnnemis();
+            }
+        }
+
+        private void cboTypeArme_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                chargerAliensEnnemis();
+            }
+        }
+
+        private void cboAgressivite_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                chargerAliensEnnemis();
+            }
         }
     }
 }

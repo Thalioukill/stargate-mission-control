@@ -46,27 +46,35 @@ namespace Formulaire_principal
             {
                 case "Pourpre":
                     couleurCadre = Color.Red;
+                    lblCouleurEnnemis.ForeColor = Color.Red;
                     break;
                 case "Vert":
                     couleurCadre = Color.Green;
+                    lblCouleurEnnemis.ForeColor = Color.Green;
                     break;
                 case "Bleu":
                     couleurCadre = Color.Blue;
+                    lblCouleurEnnemis.ForeColor = Color.Blue;
                     break;
                 case "Orange":
                     couleurCadre = Color.Orange;
+                    lblCouleurEnnemis.ForeColor = Color.Orange;
                     break;
                 case "Gris":
                     couleurCadre = Color.Gray;
+                    lblCouleurEnnemis.ForeColor = Color.Gray;
                     break;
                 case "Marron":
                     couleurCadre = Color.Brown;
+                    lblCouleurEnnemis.ForeColor = Color.Brown;
                     break;
                 case "Violet":
                     couleurCadre = Color.Purple;
+                    lblCouleurEnnemis.ForeColor = Color.Purple;
                     break;
                 case "Rose":
                     couleurCadre = Color.Pink;
+                    lblCouleurEnnemis.ForeColor = Color.Pink;
                     break;
                 default:
                     couleurCadre = Color.Black;

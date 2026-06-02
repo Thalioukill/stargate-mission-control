@@ -64,7 +64,7 @@
             // 
             this.lblTemperature.AutoSize = true;
             this.lblTemperature.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTemperature.Location = new System.Drawing.Point(242, 65);
+            this.lblTemperature.Location = new System.Drawing.Point(243, 65);
             this.lblTemperature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTemperature.Name = "lblTemperature";
             this.lblTemperature.Size = new System.Drawing.Size(58, 24);
@@ -75,7 +75,7 @@
             // 
             this.lblGravite.AutoSize = true;
             this.lblGravite.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGravite.Location = new System.Drawing.Point(243, 99);
+            this.lblGravite.Location = new System.Drawing.Point(243, 105);
             this.lblGravite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGravite.Name = "lblGravite";
             this.lblGravite.Size = new System.Drawing.Size(57, 24);
@@ -86,7 +86,7 @@
             // 
             this.lblDataBaz.AutoSize = true;
             this.lblDataBaz.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataBaz.Location = new System.Drawing.Point(243, 135);
+            this.lblDataBaz.Location = new System.Drawing.Point(243, 148);
             this.lblDataBaz.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDataBaz.Name = "lblDataBaz";
             this.lblDataBaz.Size = new System.Drawing.Size(57, 24);
@@ -97,7 +97,7 @@
             // 
             this.lblEspeces.AutoSize = true;
             this.lblEspeces.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEspeces.Location = new System.Drawing.Point(243, 168);
+            this.lblEspeces.Location = new System.Drawing.Point(497, 65);
             this.lblEspeces.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEspeces.Name = "lblEspeces";
             this.lblEspeces.Size = new System.Drawing.Size(57, 24);
@@ -108,7 +108,7 @@
             // 
             this.lblPourcentage.AutoSize = true;
             this.lblPourcentage.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPourcentage.Location = new System.Drawing.Point(497, 65);
+            this.lblPourcentage.Location = new System.Drawing.Point(497, 105);
             this.lblPourcentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPourcentage.Name = "lblPourcentage";
             this.lblPourcentage.Size = new System.Drawing.Size(57, 24);
@@ -118,7 +118,7 @@
             // lblMission
             // 
             this.lblMission.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMission.Location = new System.Drawing.Point(497, 99);
+            this.lblMission.Location = new System.Drawing.Point(497, 148);
             this.lblMission.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMission.Name = "lblMission";
             this.lblMission.Size = new System.Drawing.Size(262, 68);
