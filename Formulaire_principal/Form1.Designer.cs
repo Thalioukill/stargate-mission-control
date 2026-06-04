@@ -153,7 +153,7 @@
             this.plMissions.Controls.Add(this.lblTableauDeBord);
             this.plMissions.Location = new System.Drawing.Point(282, 22);
             this.plMissions.Name = "plMissions";
-            this.plMissions.Size = new System.Drawing.Size(1141, 94);
+            this.plMissions.Size = new System.Drawing.Size(1141, 792);
             this.plMissions.TabIndex = 0;
             // 
             // grpNbMissionsTrouvees
@@ -867,7 +867,7 @@
             this.plAliens.Controls.Add(this.grpFiltresEnnemis);
             this.plAliens.Location = new System.Drawing.Point(282, 22);
             this.plAliens.Name = "plAliens";
-            this.plAliens.Size = new System.Drawing.Size(1141, 79);
+            this.plAliens.Size = new System.Drawing.Size(1141, 792);
             this.plAliens.TabIndex = 1;
             // 
             // lblAliens
