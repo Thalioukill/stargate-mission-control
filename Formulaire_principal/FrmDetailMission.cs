@@ -425,43 +425,65 @@ namespace Formulaire_principal
             {
                 try
                 {
-                    //Calcul du max pour l'id des dépenses en mode connecté
-                    string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
+                    //Vérif si la nouvelle dépense ne dépasse pas le budget
+                    string sqlBudg = @"SELECT budget FROM Mission WHERE nomPlanete = @nomPlanete AND numero = @numero";
+                    SQLiteCommand cmdBudg = new SQLiteCommand(sqlBudg, co);
+                    cmdBudg.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmdBudg.Parameters.AddWithValue("@numero", idNumero);
+                    int budget = Convert.ToInt32(cmdBudg.ExecuteScalar());
+                    if (budget - int.Parse(txtMontant.Text) < 0)
+                    {
+                        MessageBox.Show("Impossible d'ajouter la dépense, vous allez être dans le rouge !");
+                        RAZDepense();
+                    }
+                    else
+                    {
+                        try
+                        {
+                            //Calcul du max pour l'id des dépenses en mode connecté
+                            string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
                            AND numeroMission = @numeroMission";
-                    SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
-                    cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
+                            SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
+                            cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                            cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
 
-                    int maxIdDep = Convert.ToInt32(cmdMax.ExecuteScalar());
+                            object result = cmdMax.ExecuteScalar();
+                            int maxIdDep = (result == null || result == DBNull.Value) ? 0 : Convert.ToInt32(result);
 
-                    //Ajout à la base en mode connecté
-                    string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
+                            //Ajout à la base en mode connecté
+                            string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
                            VALUES (@nomPlanete, @numeroMission, @id, @dateD, @montant, @motif, @idTypeDepense)";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
-                    cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
-                    cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
-                    cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
-                    cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
-                    cmd.ExecuteNonQuery();
+                            SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                            cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                            cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                            cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
+                            cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
+                            cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
+                            cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
+                            cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
+                            cmd.ExecuteNonQuery();
 
-                    //Mise à jour du data set en mode déconnecté
-                    DataRow maRow = ds.Tables["Depense"].NewRow();
-                    maRow["nomPlanete"] = idPlanete;
-                    maRow["numeroMission"] = idNumero;
-                    maRow["id"] = maxIdDep + 1;
-                    maRow["dateD"] = dtpDepense.Value;
-                    maRow["montant"] = txtMontant.Text;
-                    maRow["motif"] = txtMotif.Text;
-                    maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
-                    ds.Tables["Depense"].Rows.Add(maRow);
+                            //Mise à jour du data set en mode déconnecté
+                            DataRow maRow = ds.Tables["Depense"].NewRow();
+                            maRow["nomPlanete"] = idPlanete;
+                            maRow["numeroMission"] = idNumero;
+                            maRow["id"] = maxIdDep + 1;
+                            maRow["dateD"] = dtpDepense.Value;
+                            maRow["montant"] = txtMontant.Text;
+                            maRow["motif"] = txtMotif.Text;
+                            maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
+                            ds.Tables["Depense"].Rows.Add(maRow);
 
-                    MessageBox.Show("Nouvelle dépense ajoutée !");
-                    RAZDepense();
-                    AfficherDetailsMission();
+                            MessageBox.Show("Nouvelle dépense ajoutée !");
+                            RAZDepense();
+                            AfficherDetailsMission();
 
+                        }
+                        catch (SQLiteException err)
+                        {
+                            MessageBox.Show(err.Message);
+                        }
+                    }
                 }
                 catch (SQLiteException err)
                 {

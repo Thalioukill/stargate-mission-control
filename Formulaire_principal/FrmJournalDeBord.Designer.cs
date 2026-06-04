@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grpEvenements = new System.Windows.Forms.GroupBox();
             this.lblApres = new System.Windows.Forms.Label();
             this.lblAvant = new System.Windows.Forms.Label();
@@ -45,10 +46,12 @@
             this.btnBefore = new System.Windows.Forms.Button();
             this.btnDepart = new System.Windows.Forms.Button();
             this.grpDepensesEffectues = new System.Windows.Forms.GroupBox();
-            this.lblTotDepenses = new System.Windows.Forms.Label();
+            this.lblBudgetInitial = new System.Windows.Forms.Label();
+            this.lblBudgetActuel = new System.Windows.Forms.Label();
             this.rrdDepensesMax = new System.Windows.Forms.RadioButton();
             this.rdbListeDepenses = new System.Windows.Forms.RadioButton();
             this.dgvDepenses = new System.Windows.Forms.DataGridView();
+            this.lblPasDeResultat = new System.Windows.Forms.Label();
             this.lblTotSommes = new System.Windows.Forms.Label();
             this.btnEditerPDF = new System.Windows.Forms.Button();
             this.dgvBilan = new System.Windows.Forms.DataGridView();
@@ -65,6 +68,7 @@
             this.rdbInformateurMoinsPayees = new System.Windows.Forms.RadioButton();
             this.rdbInf = new System.Windows.Forms.RadioButton();
             this.lblFIN = new System.Windows.Forms.Label();
+            this.errorProviderMembresMissions = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpEvenements.SuspendLayout();
             this.flpAffichage.SuspendLayout();
             this.grpDepensesEffectues.SuspendLayout();
@@ -75,6 +79,7 @@
             this.panel1.SuspendLayout();
             this.grpInformateurs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInformateurs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMembresMissions)).BeginInit();
             this.SuspendLayout();
             // 
             // grpEvenements
@@ -190,10 +195,12 @@
             // 
             // grpDepensesEffectues
             // 
-            this.grpDepensesEffectues.Controls.Add(this.lblTotDepenses);
+            this.grpDepensesEffectues.Controls.Add(this.lblBudgetInitial);
+            this.grpDepensesEffectues.Controls.Add(this.lblBudgetActuel);
             this.grpDepensesEffectues.Controls.Add(this.rrdDepensesMax);
             this.grpDepensesEffectues.Controls.Add(this.rdbListeDepenses);
             this.grpDepensesEffectues.Controls.Add(this.dgvDepenses);
+            this.grpDepensesEffectues.Controls.Add(this.lblPasDeResultat);
             this.grpDepensesEffectues.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpDepensesEffectues.Location = new System.Drawing.Point(11, 1160);
             this.grpDepensesEffectues.Name = "grpDepensesEffectues";
@@ -202,15 +209,27 @@
             this.grpDepensesEffectues.TabStop = false;
             this.grpDepensesEffectues.Text = "DEPENSES :";
             // 
-            // lblTotDepenses
+            // lblBudgetInitial
             // 
-            this.lblTotDepenses.AutoSize = true;
-            this.lblTotDepenses.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotDepenses.Location = new System.Drawing.Point(505, 65);
-            this.lblTotDepenses.Name = "lblTotDepenses";
-            this.lblTotDepenses.Size = new System.Drawing.Size(204, 24);
-            this.lblTotDepenses.TabIndex = 4;
-            this.lblTotDepenses.Text = "★ Total des dépenses : ";
+            this.lblBudgetInitial.AutoSize = true;
+            this.lblBudgetInitial.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudgetInitial.Location = new System.Drawing.Point(541, 31);
+            this.lblBudgetInitial.Name = "lblBudgetInitial";
+            this.lblBudgetInitial.Size = new System.Drawing.Size(157, 24);
+            this.lblBudgetInitial.TabIndex = 9;
+            this.lblBudgetInitial.Text = "★ Budget initial : ";
+            this.lblBudgetInitial.Visible = false;
+            // 
+            // lblBudgetActuel
+            // 
+            this.lblBudgetActuel.AutoSize = true;
+            this.lblBudgetActuel.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudgetActuel.Location = new System.Drawing.Point(541, 68);
+            this.lblBudgetActuel.Name = "lblBudgetActuel";
+            this.lblBudgetActuel.Size = new System.Drawing.Size(158, 24);
+            this.lblBudgetActuel.TabIndex = 4;
+            this.lblBudgetActuel.Text = "★ Budget actuel :";
+            this.lblBudgetActuel.Visible = false;
             // 
             // rrdDepensesMax
             // 
@@ -242,9 +261,9 @@
             this.dgvDepenses.AllowUserToDeleteRows = false;
             this.dgvDepenses.AllowUserToResizeColumns = false;
             this.dgvDepenses.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -255,6 +274,16 @@
             this.dgvDepenses.RowTemplate.Height = 24;
             this.dgvDepenses.Size = new System.Drawing.Size(819, 220);
             this.dgvDepenses.TabIndex = 6;
+            // 
+            // lblPasDeResultat
+            // 
+            this.lblPasDeResultat.AutoSize = true;
+            this.lblPasDeResultat.Location = new System.Drawing.Point(305, 272);
+            this.lblPasDeResultat.Name = "lblPasDeResultat";
+            this.lblPasDeResultat.Size = new System.Drawing.Size(68, 28);
+            this.lblPasDeResultat.TabIndex = 10;
+            this.lblPasDeResultat.Text = "TEST";
+            this.lblPasDeResultat.Visible = false;
             // 
             // lblTotSommes
             // 
@@ -283,8 +312,8 @@
             this.dgvBilan.AllowUserToDeleteRows = false;
             this.dgvBilan.AllowUserToResizeColumns = false;
             this.dgvBilan.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -354,16 +383,16 @@
             // 
             // chartBudget
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartBudget.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBudget.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartBudget.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartBudget.Legends.Add(legend2);
             this.chartBudget.Location = new System.Drawing.Point(22, 24);
             this.chartBudget.Name = "chartBudget";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartBudget.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartBudget.Series.Add(series2);
             this.chartBudget.Size = new System.Drawing.Size(353, 313);
             this.chartBudget.TabIndex = 11;
             this.chartBudget.Text = "chart1";
@@ -388,7 +417,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(894, 1074);
             this.panel1.TabIndex = 15;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // grpInformateurs
             // 
@@ -454,13 +482,17 @@
             this.lblFIN.TabIndex = 15;
             this.lblFIN.Text = "FIN";
             // 
+            // errorProviderMembresMissions
+            // 
+            this.errorProviderMembresMissions.ContainerControl = this;
+            // 
             // FrmJournalDeBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(934, 1261);
+            this.ClientSize = new System.Drawing.Size(934, 1175);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblEtatBudget);
             this.Controls.Add(this.chartBudget);
@@ -487,6 +519,7 @@
             this.grpInformateurs.ResumeLayout(false);
             this.grpInformateurs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInformateurs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMembresMissions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,7 +535,7 @@
         private System.Windows.Forms.Button btnDepart;
         private System.Windows.Forms.GroupBox grpDepensesEffectues;
         private System.Windows.Forms.Label lblTotSommes;
-        private System.Windows.Forms.Label lblTotDepenses;
+        private System.Windows.Forms.Label lblBudgetActuel;
         private System.Windows.Forms.Button btnEditerPDF;
         private System.Windows.Forms.Label lblDateEvenement;
         private System.Windows.Forms.Label lblCommentaire;
@@ -526,5 +559,8 @@
         private System.Windows.Forms.Label lblNavigation;
         private System.Windows.Forms.Label lblApres;
         private System.Windows.Forms.Label lblAvant;
+        private System.Windows.Forms.Label lblBudgetInitial;
+        private System.Windows.Forms.ErrorProvider errorProviderMembresMissions;
+        private System.Windows.Forms.Label lblPasDeResultat;
     }
 }

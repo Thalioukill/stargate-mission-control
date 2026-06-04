@@ -127,7 +127,7 @@ namespace Formulaire_principal
             else
             {
                 lblStatusMission.Text = "Statut : PASSÉE";
-                couleurCadre = Color.FromArgb(230, 146, 255); // 113, 6, 255 // -> 148, 102, 255
+                couleurCadre = Color.FromArgb(148, 102, 255); // 113, 6, 255 // -> 148, 102, 255
             }
 
             // couleur au texte = couleur du label
