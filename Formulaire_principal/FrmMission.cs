@@ -737,7 +737,7 @@ namespace Formulaire_principal
                     int id = ((ListItemCapture)lstbCaptures.Items[i]).Value;
                     int quant = ((ListItemCapture)lstbCaptures.Items[i]).Quantite;
 
-                    string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
+                    string sql = @"INSERT INTO ObjectifCapture (nomPlanete,numeroMission,idEspeceEnnemi,objectif)
                             VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql, co);
@@ -745,7 +745,7 @@ namespace Formulaire_principal
                     cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
                     cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
                     cmd.Parameters.AddWithValue("@idEspeceEnnemi", id);
-                    cmd.Parameters.AddWithValue("@nombre", quant);
+                    cmd.Parameters.AddWithValue("@objectif", quant);
 
                     cmd.ExecuteNonQuery();
                     
@@ -886,8 +886,9 @@ namespace Formulaire_principal
         {
             try
             {
-                string sql = @"SELECT (nom || ' - ' || couleur) AS nomComplet, 
-                                id FROM Espece";
+                string sql = @"SELECT(e.nom || ' - ' || e.couleur) AS nomComplet, e.id
+                               FROM Espece e
+                               JOIN Ennemi en ON e.id = en.idEspece";
 
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
                 DataTable dt = new DataTable();
@@ -952,30 +953,35 @@ namespace Formulaire_principal
             ds.EnforceConstraints = false;
 
             //On vide les tables qu'on a changé du data set et on mets les nouvelles à la place
-            
+
             if (ds.Tables.Contains("Composer"))
             {
                 ds.Tables["Composer"].Clear();
             }
-            string sqlComp = "SELECT * FROM Composer";
-            SQLiteDataAdapter da2 = new SQLiteDataAdapter(sqlComp, co);
-            da2.Fill(ds, "Composer");
+            
 
             if (ds.Tables.Contains("Capturer"))
             {
                 ds.Tables["Capturer"].Clear();
             }
-            string sqlCapt = "SELECT * FROM Capturer";
-            SQLiteDataAdapter da3 = new SQLiteDataAdapter(sqlCapt, co);
-            da3.Fill(ds, "Capturer");
+          
 
             if (ds.Tables.Contains("Mission"))
             {
                 ds.Tables["Mission"].Clear();
             }
+
             string sqlMiss = "SELECT * FROM Mission";
             SQLiteDataAdapter da = new SQLiteDataAdapter(sqlMiss, co);
             da.Fill(ds, "Mission");
+
+            string sqlComp = "SELECT * FROM Composer";
+            SQLiteDataAdapter da2 = new SQLiteDataAdapter(sqlComp, co);
+            da2.Fill(ds, "Composer");
+
+            string sqlCapt = "SELECT * FROM Capturer";
+            SQLiteDataAdapter da3 = new SQLiteDataAdapter(sqlCapt, co);
+            da3.Fill(ds, "Capturer");
 
             ds.EnforceConstraints = avantEnforce;
 
@@ -989,7 +995,7 @@ namespace Formulaire_principal
                 "Vous allez retourner à l'accueil et annuler la création de la mission. Etes-vous sûr de vous ?",
                 "Confirmation",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
+                MessageBoxIcon.Warning
             );
 
             if (reponse == DialogResult.Yes)

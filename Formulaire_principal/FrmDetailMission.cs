@@ -48,6 +48,8 @@ namespace Formulaire_principal
             AfficherObjectifs();
             ChargerCboInformateur();
             ChargerCboTypeDepense();
+            ChargerCboCapture();
+            ChargerCboNego();
 
             ColorerMotCle(rtbFeuilleDeRoute, "DataBaz", Color.BlueViolet);
             ColorerMotCle(rtbFeuilleDeRoute, "Captures", Color.OrangeRed);
@@ -334,6 +336,40 @@ namespace Formulaire_principal
             cboTypeDepense.SelectedIndex = -1;
         }
 
+        private void ChargerCboCapture()
+        {
+            if (ds.Tables.Contains("EnnemiCombo"))
+            {
+                ds.Tables["EnnemiCombo"].Clear();
+            }
+            string sql = @"SELECT (e.nom || ' - ' || e.couleur) AS nomComplet, e.id 
+                            FROM Espece e
+                            JOIN Ennemi en ON e.id = en.idEspece";
+            SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+            da.Fill(ds, "EnnemiCombo");
+            cboCaptures.DataSource = ds.Tables["EnnemiCombo"];
+            cboCaptures.DisplayMember = "nomComplet";
+            cboCaptures.ValueMember = "id";
+            cboCaptures.SelectedIndex = -1;
+        }
+
+        private void ChargerCboNego()
+        {
+            if (ds.Tables.Contains("NegocierCombo"))
+            {
+                ds.Tables["NegocierCombo"].Clear();
+            }
+            string sql = @"SELECT (e.nom || ' - ' || e.couleur) AS nomComplet, e.id 
+                            FROM Espece e
+                            JOIN Allie a ON e.id = a.idEspece";
+            SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
+            da.Fill(ds, "NegocierCombo");
+            cboCaptures.DataSource = ds.Tables["NegocierCombo"];
+            cboCaptures.DisplayMember = "nomComplet";
+            cboCaptures.ValueMember = "id";
+            cboCaptures.SelectedIndex = -1;
+        }
+
         private void btnValidNouvC_Click(object sender, EventArgs e)
         {
             if(txtSomme.Text == "" || txtAppreciation.Text == "")
@@ -409,41 +445,63 @@ namespace Formulaire_principal
             {
                 try
                 {
-                    //Calcul du max pour l'id des dépenses en mode connecté
-                    string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
+                    //Vérif si la nouvelle dépense ne dépasse pas le budget
+                    string sqlBudg = @"SELECT budget FROM Mission WHERE nomPlanete = @nomPlanete AND numero = @numero";
+                    SQLiteCommand cmdBudg = new SQLiteCommand(sqlBudg, co);
+                    cmdBudg.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmdBudg.Parameters.AddWithValue("@numero", idNumero);
+                    int budget = Convert.ToInt32(cmdBudg.ExecuteScalar());
+                    if(budget - int.Parse(txtMontant.Text) < 0)
+                    {
+                        MessageBox.Show("Impossible d'ajouter la dépense, vous allez être dans le rouge !");
+                        RAZDepense();
+                    }
+                    else
+                    {
+                        try
+                        {
+                            //Calcul du max pour l'id des dépenses en mode connecté
+                            string sqlMax = @"SELECT MAX(id) FROM Depense WHERE nomPlanete = @nomPlanete
                            AND numeroMission = @numeroMission";
-                    SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
-                    cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
+                            SQLiteCommand cmdMax = new SQLiteCommand(sqlMax, co);
+                            cmdMax.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                            cmdMax.Parameters.AddWithValue("@numeroMission", idNumero);
 
-                    int maxIdDep = Convert.ToInt32(cmdMax.ExecuteScalar());
+                            object result = cmdMax.ExecuteScalar();
+                            int maxIdDep = (result == null || result == DBNull.Value) ? 0 : Convert.ToInt32(result);
 
-                    //Ajout à la base en mode connecté
-                    string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
+                            //Ajout à la base en mode connecté
+                            string sql = @"INSERT INTO Depense (nomPlanete, numeroMission, id, dateD, montant, motif, idTypeDepense)
                            VALUES (@nomPlanete, @numeroMission, @id, @dateD, @montant, @motif, @idTypeDepense)";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
-                    cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
-                    cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
-                    cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
-                    cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
-                    cmd.ExecuteNonQuery();
+                            SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                            cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                            cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                            cmd.Parameters.AddWithValue("@id", maxIdDep + 1);
+                            cmd.Parameters.AddWithValue("@dateD", dtpDepense.Value.ToString("yyyy-MM-dd"));
+                            cmd.Parameters.AddWithValue("@montant", txtMontant.Text);
+                            cmd.Parameters.AddWithValue("@motif", txtMotif.Text);
+                            cmd.Parameters.AddWithValue("@idTypeDepense", cboTypeDepense.SelectedValue.ToString());
+                            cmd.ExecuteNonQuery();
 
-                    //Mise à jour du data set en mode déconnecté
-                    DataRow maRow = ds.Tables["Depense"].NewRow();
-                    maRow["nomPlanete"] = idPlanete;
-                    maRow["numeroMission"] = idNumero;
-                    maRow["id"] = maxIdDep + 1;
-                    maRow["dateD"] = dtpDepense.Value;
-                    maRow["montant"] = txtMontant.Text;
-                    maRow["motif"] = txtMotif.Text;
-                    maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
-                    ds.Tables["Depense"].Rows.Add(maRow);
+                            //Mise à jour du data set en mode déconnecté
+                            DataRow maRow = ds.Tables["Depense"].NewRow();
+                            maRow["nomPlanete"] = idPlanete;
+                            maRow["numeroMission"] = idNumero;
+                            maRow["id"] = maxIdDep + 1;
+                            maRow["dateD"] = dtpDepense.Value;
+                            maRow["montant"] = txtMontant.Text;
+                            maRow["motif"] = txtMotif.Text;
+                            maRow["idTypeDepense"] = cboTypeDepense.SelectedValue.ToString();
+                            ds.Tables["Depense"].Rows.Add(maRow);
 
-                    MessageBox.Show("Nouvelle dépense ajoutée !");
-                    RAZDepense();
+                            MessageBox.Show("Nouvelle dépense ajoutée !");
+                            RAZDepense();
+                        }
+                        catch (SQLiteException err)
+                        {
+                            MessageBox.Show(err.Message);
+                        }
+                    } 
                 }
                 catch (SQLiteException err)
                 {
@@ -561,6 +619,144 @@ namespace Formulaire_principal
             if (e.KeyCode == Keys.Down)
             {
                 txtMotif.Focus();
+            }
+        }
+
+        private void btnValidCapture_Click(object sender, EventArgs e)
+        {
+            if (cboCaptures.SelectedIndex == -1)
+            {
+                MessageBox.Show("Entrez une espèce valide !");
+            }
+            else if(nudCapture.Value <= 0)
+            {
+                MessageBox.Show("Entrez une quantité positive !");
+            }
+            else
+            {
+                try
+                {
+                    //Ajout à la base en mode connecté
+                    string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
+                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
+
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+
+                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmd.Parameters.AddWithValue("numeroMission", idNumero);
+                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
+                    cmd.Parameters.AddWithValue("@nombre", nudCapture.Value);
+
+                    cmd.ExecuteNonQuery();
+
+                    //Mise à jour du data set en mode déconnecté
+                    DataRow maRow = ds.Tables["Ennemi"].NewRow();
+                    maRow["nomPlanete"] = idPlanete;
+                    maRow["numero"] = idNumero;
+                    maRow["idEspeceEnnemi"] = cboCaptures.SelectedValue;
+                    maRow["nombre"] = nudCapture.Value;
+                    ds.Tables["Ennemi"].Rows.Add(maRow);
+
+                    MessageBox.Show("Nouvelle capture ajoutée !");
+                    RAZCapture();
+
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+
+        }
+
+        private void RAZCapture()
+        {
+            cboCaptures.SelectedIndex = -1;
+        }
+
+        private void btnRAZCaptures_Click(object sender, EventArgs e)
+        {
+            RAZCapture();
+        }
+
+        private void btnValidNego_Click(object sender, EventArgs e)
+        {
+            if (cboNego.SelectedIndex == -1)
+            {
+                MessageBox.Show("Entrez une espèce valide !");
+            }
+            
+            else
+            {
+                try
+                {
+                    //Ajout à la base en mode connecté
+                    string sql = @"INSERT INTO Negocier (nomPlanete,numeroMission,idEspeceAllie,qteDataBaz)
+                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@qteDataBaz)";
+
+                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+
+                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmd.Parameters.AddWithValue("numeroMission", idNumero);
+                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
+                    cmd.Parameters.AddWithValue("@qteDataBaz", int.Parse(txtDataBaz.Text));
+
+                    cmd.ExecuteNonQuery();
+
+                    //Mise à jour du data set en mode déconnecté
+                    DataRow maRow = ds.Tables["Negocier"].NewRow();
+                    maRow["nomPlanete"] = idPlanete;
+                    maRow["numero"] = idNumero;
+                    maRow["idEspeceEnnemi"] = cboCaptures.SelectedValue;
+                    maRow["idEspeceAllie"] = nudCapture.Value;
+                    ds.Tables["qteDataBaz"].Rows.Add(maRow);
+
+                    MessageBox.Show("Nouvelle négociation ajoutée !");
+                    RAZNego();
+
+                }
+                catch (SQLiteException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+
+        private void txtDataBaz_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //On refuse tout
+            e.Handled = true;
+
+            //On réouvre si chiffre ou contrôle uniquement
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void RAZNego()
+        {
+            cboNego.SelectedIndex = -1;
+        }
+
+        private void btnRazNego_Click(object sender, EventArgs e)
+        {
+            RAZNego();
+        }
+
+        private void btnRetourAcceuil_Click(object sender, EventArgs e)
+        {
+            DialogResult reponse = MessageBox.Show(
+                "Vous allez retourner sur le tableau de bord. Etes-vous sûr de vous ?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (reponse == DialogResult.Yes)
+            {
+                this.Close();
             }
         }
     }
