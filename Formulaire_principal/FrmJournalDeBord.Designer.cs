@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grpEvenements = new System.Windows.Forms.GroupBox();
             this.lblApres = new System.Windows.Forms.Label();
             this.lblAvant = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@
             this.btnBefore = new System.Windows.Forms.Button();
             this.btnDepart = new System.Windows.Forms.Button();
             this.grpDepensesEffectues = new System.Windows.Forms.GroupBox();
+            this.lblTotalDepenses = new System.Windows.Forms.Label();
             this.lblBudgetInitial = new System.Windows.Forms.Label();
             this.lblBudgetActuel = new System.Windows.Forms.Label();
             this.rrdDepensesMax = new System.Windows.Forms.RadioButton();
@@ -56,10 +57,12 @@
             this.btnEditerPDF = new System.Windows.Forms.Button();
             this.dgvBilan = new System.Windows.Forms.DataGridView();
             this.grpBilan = new System.Windows.Forms.GroupBox();
+            this.rdbReussiteObjectifs = new System.Windows.Forms.RadioButton();
             this.lblStatsCaptures = new System.Windows.Forms.Label();
             this.rdbCapturesEnnemies = new System.Windows.Forms.RadioButton();
-            this.rdbRenta = new System.Windows.Forms.RadioButton();
+            this.rdbTauxInvestissement = new System.Windows.Forms.RadioButton();
             this.flpGraphiques = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblPasInfosCaptures_renta = new System.Windows.Forms.Label();
             this.chartBudget = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblEtatBudget = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -67,6 +70,7 @@
             this.dgvInformateurs = new System.Windows.Forms.DataGridView();
             this.rdbInformateurMoinsPayees = new System.Windows.Forms.RadioButton();
             this.rdbInf = new System.Windows.Forms.RadioButton();
+            this.lblPasDinformateurs = new System.Windows.Forms.Label();
             this.lblFIN = new System.Windows.Forms.Label();
             this.errorProviderMembresMissions = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpEvenements.SuspendLayout();
@@ -195,6 +199,7 @@
             // 
             // grpDepensesEffectues
             // 
+            this.grpDepensesEffectues.Controls.Add(this.lblTotalDepenses);
             this.grpDepensesEffectues.Controls.Add(this.lblBudgetInitial);
             this.grpDepensesEffectues.Controls.Add(this.lblBudgetActuel);
             this.grpDepensesEffectues.Controls.Add(this.rrdDepensesMax);
@@ -209,11 +214,21 @@
             this.grpDepensesEffectues.TabStop = false;
             this.grpDepensesEffectues.Text = "DEPENSES :";
             // 
+            // lblTotalDepenses
+            // 
+            this.lblTotalDepenses.AutoSize = true;
+            this.lblTotalDepenses.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDepenses.Location = new System.Drawing.Point(6, 49);
+            this.lblTotalDepenses.Name = "lblTotalDepenses";
+            this.lblTotalDepenses.Size = new System.Drawing.Size(230, 24);
+            this.lblTotalDepenses.TabIndex = 11;
+            this.lblTotalDepenses.Text = "★  Total sommes versées : ";
+            // 
             // lblBudgetInitial
             // 
             this.lblBudgetInitial.AutoSize = true;
             this.lblBudgetInitial.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBudgetInitial.Location = new System.Drawing.Point(541, 31);
+            this.lblBudgetInitial.Location = new System.Drawing.Point(546, 49);
             this.lblBudgetInitial.Name = "lblBudgetInitial";
             this.lblBudgetInitial.Size = new System.Drawing.Size(157, 24);
             this.lblBudgetInitial.TabIndex = 9;
@@ -224,17 +239,17 @@
             // 
             this.lblBudgetActuel.AutoSize = true;
             this.lblBudgetActuel.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBudgetActuel.Location = new System.Drawing.Point(541, 68);
+            this.lblBudgetActuel.Location = new System.Drawing.Point(546, 86);
             this.lblBudgetActuel.Name = "lblBudgetActuel";
-            this.lblBudgetActuel.Size = new System.Drawing.Size(158, 24);
+            this.lblBudgetActuel.Size = new System.Drawing.Size(168, 24);
             this.lblBudgetActuel.TabIndex = 4;
-            this.lblBudgetActuel.Text = "★ Budget actuel :";
+            this.lblBudgetActuel.Text = "★ Budget actuel :  ";
             this.lblBudgetActuel.Visible = false;
             // 
             // rrdDepensesMax
             // 
             this.rrdDepensesMax.AutoSize = true;
-            this.rrdDepensesMax.Location = new System.Drawing.Point(15, 125);
+            this.rrdDepensesMax.Location = new System.Drawing.Point(8, 164);
             this.rrdDepensesMax.Name = "rrdDepensesMax";
             this.rrdDepensesMax.Size = new System.Drawing.Size(585, 32);
             this.rrdDepensesMax.TabIndex = 8;
@@ -246,7 +261,7 @@
             // 
             this.rdbListeDepenses.AutoSize = true;
             this.rdbListeDepenses.Checked = true;
-            this.rdbListeDepenses.Location = new System.Drawing.Point(15, 60);
+            this.rdbListeDepenses.Location = new System.Drawing.Point(8, 99);
             this.rdbListeDepenses.Name = "rdbListeDepenses";
             this.rdbListeDepenses.Size = new System.Drawing.Size(344, 32);
             this.rdbListeDepenses.TabIndex = 7;
@@ -261,13 +276,13 @@
             this.dgvDepenses.AllowUserToDeleteRows = false;
             this.dgvDepenses.AllowUserToResizeColumns = false;
             this.dgvDepenses.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDepenses.Location = new System.Drawing.Point(15, 189);
+            this.dgvDepenses.Location = new System.Drawing.Point(8, 228);
             this.dgvDepenses.Name = "dgvDepenses";
             this.dgvDepenses.ReadOnly = true;
             this.dgvDepenses.RowHeadersWidth = 51;
@@ -278,7 +293,9 @@
             // lblPasDeResultat
             // 
             this.lblPasDeResultat.AutoSize = true;
-            this.lblPasDeResultat.Location = new System.Drawing.Point(305, 272);
+            this.lblPasDeResultat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            this.lblPasDeResultat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(21)))), ((int)(((byte)(64)))));
+            this.lblPasDeResultat.Location = new System.Drawing.Point(42, 299);
             this.lblPasDeResultat.Name = "lblPasDeResultat";
             this.lblPasDeResultat.Size = new System.Drawing.Size(68, 28);
             this.lblPasDeResultat.TabIndex = 10;
@@ -312,8 +329,8 @@
             this.dgvBilan.AllowUserToDeleteRows = false;
             this.dgvBilan.AllowUserToResizeColumns = false;
             this.dgvBilan.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -327,11 +344,13 @@
             // 
             // grpBilan
             // 
+            this.grpBilan.Controls.Add(this.rdbReussiteObjectifs);
             this.grpBilan.Controls.Add(this.lblStatsCaptures);
             this.grpBilan.Controls.Add(this.rdbCapturesEnnemies);
-            this.grpBilan.Controls.Add(this.rdbRenta);
+            this.grpBilan.Controls.Add(this.rdbTauxInvestissement);
             this.grpBilan.Controls.Add(this.dgvBilan);
             this.grpBilan.Controls.Add(this.flpGraphiques);
+            this.grpBilan.Controls.Add(this.lblPasInfosCaptures_renta);
             this.grpBilan.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBilan.Location = new System.Drawing.Point(3, 391);
             this.grpBilan.Name = "grpBilan";
@@ -339,6 +358,19 @@
             this.grpBilan.TabIndex = 7;
             this.grpBilan.TabStop = false;
             this.grpBilan.Text = "BILAN :";
+            // 
+            // rdbReussiteObjectifs
+            // 
+            this.rdbReussiteObjectifs.AutoSize = true;
+            this.rdbReussiteObjectifs.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbReussiteObjectifs.Location = new System.Drawing.Point(445, 91);
+            this.rdbReussiteObjectifs.Name = "rdbReussiteObjectifs";
+            this.rdbReussiteObjectifs.Size = new System.Drawing.Size(308, 32);
+            this.rdbReussiteObjectifs.TabIndex = 16;
+            this.rdbReussiteObjectifs.TabStop = true;
+            this.rdbReussiteObjectifs.Text = "Réussite objectifs (Databaz)";
+            this.rdbReussiteObjectifs.UseVisualStyleBackColor = true;
+            this.rdbReussiteObjectifs.CheckedChanged += new System.EventHandler(this.rdbReussiteObjectifs_CheckedChanged);
             // 
             // lblStatsCaptures
             // 
@@ -362,16 +394,16 @@
             this.rdbCapturesEnnemies.UseVisualStyleBackColor = true;
             this.rdbCapturesEnnemies.CheckedChanged += new System.EventHandler(this.rdbCapturesEnnemies_CheckedChanged);
             // 
-            // rdbRenta
+            // rdbTauxInvestissement
             // 
-            this.rdbRenta.AutoSize = true;
-            this.rdbRenta.Location = new System.Drawing.Point(16, 91);
-            this.rdbRenta.Name = "rdbRenta";
-            this.rdbRenta.Size = new System.Drawing.Size(241, 32);
-            this.rdbRenta.TabIndex = 7;
-            this.rdbRenta.Text = "Rentabilité (DataBaz)";
-            this.rdbRenta.UseVisualStyleBackColor = true;
-            this.rdbRenta.CheckedChanged += new System.EventHandler(this.rdbRenta_CheckedChanged);
+            this.rdbTauxInvestissement.AutoSize = true;
+            this.rdbTauxInvestissement.Location = new System.Drawing.Point(16, 91);
+            this.rdbTauxInvestissement.Name = "rdbTauxInvestissement";
+            this.rdbTauxInvestissement.Size = new System.Drawing.Size(347, 32);
+            this.rdbTauxInvestissement.TabIndex = 7;
+            this.rdbTauxInvestissement.Text = "Taux d\'investissement (Databaz)";
+            this.rdbTauxInvestissement.UseVisualStyleBackColor = true;
+            this.rdbTauxInvestissement.CheckedChanged += new System.EventHandler(this.rdbRenta_CheckedChanged);
             // 
             // flpGraphiques
             // 
@@ -381,18 +413,28 @@
             this.flpGraphiques.Size = new System.Drawing.Size(843, 291);
             this.flpGraphiques.TabIndex = 10;
             // 
+            // lblPasInfosCaptures_renta
+            // 
+            this.lblPasInfosCaptures_renta.AutoSize = true;
+            this.lblPasInfosCaptures_renta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(21)))), ((int)(((byte)(64)))));
+            this.lblPasInfosCaptures_renta.Location = new System.Drawing.Point(199, 265);
+            this.lblPasInfosCaptures_renta.Name = "lblPasInfosCaptures_renta";
+            this.lblPasInfosCaptures_renta.Size = new System.Drawing.Size(89, 28);
+            this.lblPasInfosCaptures_renta.TabIndex = 15;
+            this.lblPasInfosCaptures_renta.Text = "Erreur :";
+            // 
             // chartBudget
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartBudget.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartBudget.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartBudget.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartBudget.Legends.Add(legend1);
             this.chartBudget.Location = new System.Drawing.Point(22, 24);
             this.chartBudget.Name = "chartBudget";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartBudget.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartBudget.Series.Add(series1);
             this.chartBudget.Size = new System.Drawing.Size(353, 313);
             this.chartBudget.TabIndex = 11;
             this.chartBudget.Text = "chart1";
@@ -424,6 +466,7 @@
             this.grpInformateurs.Controls.Add(this.rdbInformateurMoinsPayees);
             this.grpInformateurs.Controls.Add(this.rdbInf);
             this.grpInformateurs.Controls.Add(this.lblTotSommes);
+            this.grpInformateurs.Controls.Add(this.lblPasDinformateurs);
             this.grpInformateurs.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpInformateurs.Location = new System.Drawing.Point(11, 19);
             this.grpInformateurs.Name = "grpInformateurs";
@@ -472,6 +515,17 @@
             this.rdbInf.Text = "Contacts avec Informateurs ";
             this.rdbInf.UseVisualStyleBackColor = true;
             this.rdbInf.CheckedChanged += new System.EventHandler(this.rdbInf_CheckedChanged);
+            // 
+            // lblPasDinformateurs
+            // 
+            this.lblPasDinformateurs.AutoSize = true;
+            this.lblPasDinformateurs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            this.lblPasDinformateurs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(21)))), ((int)(((byte)(64)))));
+            this.lblPasDinformateurs.Location = new System.Drawing.Point(42, 174);
+            this.lblPasDinformateurs.Name = "lblPasDinformateurs";
+            this.lblPasDinformateurs.Size = new System.Drawing.Size(95, 28);
+            this.lblPasDinformateurs.TabIndex = 4;
+            this.lblPasDinformateurs.Text = "Erreur : ";
             // 
             // lblFIN
             // 
@@ -555,12 +609,16 @@
         private System.Windows.Forms.RadioButton rdbListeDepenses;
         private System.Windows.Forms.DataGridView dgvInformateurs;
         private System.Windows.Forms.RadioButton rdbCapturesEnnemies;
-        private System.Windows.Forms.RadioButton rdbRenta;
+        private System.Windows.Forms.RadioButton rdbTauxInvestissement;
         private System.Windows.Forms.Label lblNavigation;
         private System.Windows.Forms.Label lblApres;
         private System.Windows.Forms.Label lblAvant;
         private System.Windows.Forms.Label lblBudgetInitial;
         private System.Windows.Forms.ErrorProvider errorProviderMembresMissions;
         private System.Windows.Forms.Label lblPasDeResultat;
+        private System.Windows.Forms.Label lblTotalDepenses;
+        private System.Windows.Forms.Label lblPasDinformateurs;
+        private System.Windows.Forms.Label lblPasInfosCaptures_renta;
+        private System.Windows.Forms.RadioButton rdbReussiteObjectifs;
     }
 }
