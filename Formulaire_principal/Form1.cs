@@ -255,6 +255,8 @@ namespace Formulaire_principal
             //on affecte ce tableau à la propriété PrimaryKey de la table
             dtCapturer.PrimaryKey = clesCapturer;
 
+            // Clé prim de Composer
+
         }
 
         private void RemplirDataSet()
@@ -306,7 +308,7 @@ namespace Formulaire_principal
 
             string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, 
                     GROUP_CONCAT(e.nom, ' / ') as Especes, 
-                    GROUP_CONCAT(h.pourcentage, ' / ') as Pourcentages, 
+                    GROUP_CONCAT(h.pourcentage, '% / ') as Pourcentages, 
                     stats_m.nbMissions
                     FROM Planete p
                     LEFT JOIN Habiter h ON h.nomPlanete = p.nom
@@ -659,7 +661,7 @@ namespace Formulaire_principal
                 string coul = dr["couleur"].ToString();
                 string planete = dr["Planetes"] == DBNull.Value ? "Origine inconnue" : dr["Planetes"].ToString();
                 string inst = dr["instrumentMusique"].ToString();
-                string image = nom + ".jpg";
+                string image = nom + ".png";
 
                 InfoAlien info = new InfoAlien(nom, bien, coul, planete, inst, image);
                 flp1.Controls.Add(info);
@@ -727,7 +729,7 @@ namespace Formulaire_principal
                         : dr["Planetes"].ToString();
 
                     string arme = dr["typeArme"].ToString();
-                    string image = nomAlien + ".jpg";
+                    string image = nomAlien + ".png";
 
                     InfoEnnemis info = new InfoEnnemis(nomAlien, agressivite, couleur, planete, arme, image);
                     flp2.Controls.Add(info);
@@ -1424,7 +1426,7 @@ namespace Formulaire_principal
             charger_planetes();
         }
 
-        private void cboCouleurAlliees_KeyDown(object sender, KeyEventArgs e)
+        private void AliensAllies_KeyDown(object sender, KeyEventArgs e) 
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -1434,37 +1436,7 @@ namespace Formulaire_principal
             }
         }
 
-        private void cboBienveillance_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                chargerAliensAlliees();
-            }
-        }
-
-        private void cboCouleurEnnemis_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                chargerAliensEnnemis();
-            }
-        }
-
-        private void cboTypeArme_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                chargerAliensEnnemis();
-            }
-        }
-
-        private void cboAgressivite_KeyDown(object sender, KeyEventArgs e)
+        private void AliensEnnemis_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

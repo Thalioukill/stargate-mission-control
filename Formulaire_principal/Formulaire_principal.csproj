@@ -145,6 +145,12 @@
     <Compile Include="FrmAliens.Designer.cs">
       <DependentUpon>FrmAliens.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDetailPlanete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetailPlanete.Designer.cs">
+      <DependentUpon>FrmDetailPlanete.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmJournalDeBord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetailPlanete.resx">
+      <DependentUpon>FrmDetailPlanete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

@@ -28,26 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picPlanete = new System.Windows.Forms.PictureBox();
             this.lblNom = new System.Windows.Forms.Label();
             this.lblTemperature = new System.Windows.Forms.Label();
             this.lblGravite = new System.Windows.Forms.Label();
             this.lblDataBaz = new System.Windows.Forms.Label();
             this.lblEspeces = new System.Windows.Forms.Label();
-            this.lblPourcentage = new System.Windows.Forms.Label();
             this.lblMission = new System.Windows.Forms.Label();
+            this.picPlanete = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picPlanete)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picPlanete
-            // 
-            this.picPlanete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPlanete.Location = new System.Drawing.Point(26, 22);
-            this.picPlanete.Margin = new System.Windows.Forms.Padding(4);
-            this.picPlanete.Name = "picPlanete";
-            this.picPlanete.Size = new System.Drawing.Size(197, 170);
-            this.picPlanete.TabIndex = 0;
-            this.picPlanete.TabStop = false;
             // 
             // lblNom
             // 
@@ -59,6 +48,7 @@
             this.lblNom.Size = new System.Drawing.Size(71, 28);
             this.lblNom.TabIndex = 1;
             this.lblNom.Text = "label1";
+            this.lblNom.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // lblTemperature
             // 
@@ -70,6 +60,7 @@
             this.lblTemperature.Size = new System.Drawing.Size(58, 24);
             this.lblTemperature.TabIndex = 2;
             this.lblTemperature.Text = "label2";
+            this.lblTemperature.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // lblGravite
             // 
@@ -81,6 +72,7 @@
             this.lblGravite.Size = new System.Drawing.Size(57, 24);
             this.lblGravite.TabIndex = 3;
             this.lblGravite.Text = "label3";
+            this.lblGravite.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // lblDataBaz
             // 
@@ -92,6 +84,7 @@
             this.lblDataBaz.Size = new System.Drawing.Size(57, 24);
             this.lblDataBaz.TabIndex = 4;
             this.lblDataBaz.Text = "label4";
+            this.lblDataBaz.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // lblEspeces
             // 
@@ -103,46 +96,49 @@
             this.lblEspeces.Size = new System.Drawing.Size(57, 24);
             this.lblEspeces.TabIndex = 5;
             this.lblEspeces.Text = "label5";
-            // 
-            // lblPourcentage
-            // 
-            this.lblPourcentage.AutoSize = true;
-            this.lblPourcentage.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPourcentage.Location = new System.Drawing.Point(497, 105);
-            this.lblPourcentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPourcentage.Name = "lblPourcentage";
-            this.lblPourcentage.Size = new System.Drawing.Size(57, 24);
-            this.lblPourcentage.TabIndex = 6;
-            this.lblPourcentage.Text = "label6";
+            this.lblEspeces.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // lblMission
             // 
             this.lblMission.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMission.Location = new System.Drawing.Point(497, 148);
+            this.lblMission.Location = new System.Drawing.Point(497, 105);
             this.lblMission.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMission.Name = "lblMission";
             this.lblMission.Size = new System.Drawing.Size(262, 68);
             this.lblMission.TabIndex = 7;
             this.lblMission.Text = "label7";
+            this.lblMission.Click += new System.EventHandler(this.InfoPlanete_Click);
+            // 
+            // picPlanete
+            // 
+            this.picPlanete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picPlanete.Location = new System.Drawing.Point(26, 22);
+            this.picPlanete.Margin = new System.Windows.Forms.Padding(4);
+            this.picPlanete.Name = "picPlanete";
+            this.picPlanete.Size = new System.Drawing.Size(197, 170);
+            this.picPlanete.TabIndex = 0;
+            this.picPlanete.TabStop = false;
+            this.picPlanete.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // InfoPlanete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.lblMission);
-            this.Controls.Add(this.lblPourcentage);
             this.Controls.Add(this.lblEspeces);
             this.Controls.Add(this.lblDataBaz);
             this.Controls.Add(this.lblGravite);
             this.Controls.Add(this.lblTemperature);
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.picPlanete);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InfoPlanete";
-            this.Size = new System.Drawing.Size(791, 216);
+            this.Size = new System.Drawing.Size(795, 220);
             this.Load += new System.EventHandler(this.InfoPlanete_Load);
+            this.Click += new System.EventHandler(this.InfoPlanete_Click);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.InfoPlanete_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picPlanete)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,7 +153,6 @@
         private System.Windows.Forms.Label lblGravite;
         private System.Windows.Forms.Label lblDataBaz;
         private System.Windows.Forms.Label lblEspeces;
-        private System.Windows.Forms.Label lblPourcentage;
         private System.Windows.Forms.Label lblMission;
     }
 }

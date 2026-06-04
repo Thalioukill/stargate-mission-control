@@ -426,7 +426,7 @@
             // 
             // msMenu
             // 
-            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(152)))), ((int)(((byte)(246)))));
+            this.msMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(120)))), ((int)(((byte)(255)))));
             this.msMenu.BackgroundImage = global::Formulaire_principal.Properties.Resources.Fond_menuStrip;
             this.msMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.msMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -449,7 +449,7 @@
             // 
             // tsmiTableauDeBord
             // 
-            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(152)))), ((int)(((byte)(246)))));
+            this.tsmiTableauDeBord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(120)))), ((int)(((byte)(255)))));
             this.tsmiTableauDeBord.Checked = true;
             this.tsmiTableauDeBord.CheckOnClick = true;
             this.tsmiTableauDeBord.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -943,7 +943,7 @@
             this.cboBienveillance.Size = new System.Drawing.Size(444, 52);
             this.cboBienveillance.TabIndex = 9;
             this.cboBienveillance.SelectedIndexChanged += new System.EventHandler(this.cboBienveillance_SelectedIndexChanged);
-            this.cboBienveillance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboBienveillance_KeyDown);
+            this.cboBienveillance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensAllies_KeyDown);
             // 
             // btnRechercherAlliees
             // 
@@ -999,7 +999,7 @@
             this.cboCouleurAlliees.Size = new System.Drawing.Size(444, 52);
             this.cboCouleurAlliees.TabIndex = 1;
             this.cboCouleurAlliees.SelectedIndexChanged += new System.EventHandler(this.cboCouleurAlliees_SelectedIndexChanged);
-            this.cboCouleurAlliees.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCouleurAlliees_KeyDown);
+            this.cboCouleurAlliees.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensAllies_KeyDown);
             // 
             // txtNomAlliees
             // 
@@ -1131,7 +1131,7 @@
             this.cboAgressivite.Size = new System.Drawing.Size(444, 52);
             this.cboAgressivite.TabIndex = 10;
             this.cboAgressivite.SelectedIndexChanged += new System.EventHandler(this.cboAgressivite_SelectedIndexChanged);
-            this.cboAgressivite.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboAgressivite_KeyDown);
+            this.cboAgressivite.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensEnnemis_KeyDown);
             // 
             // label6
             // 
@@ -1167,7 +1167,7 @@
             this.cboTypeArme.Size = new System.Drawing.Size(444, 52);
             this.cboTypeArme.TabIndex = 5;
             this.cboTypeArme.SelectedIndexChanged += new System.EventHandler(this.cboTypeArme_SelectedIndexChanged);
-            this.cboTypeArme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboTypeArme_KeyDown);
+            this.cboTypeArme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensEnnemis_KeyDown);
             // 
             // label9
             // 
@@ -1217,7 +1217,7 @@
             this.cboCouleurEnnemis.Size = new System.Drawing.Size(444, 52);
             this.cboCouleurEnnemis.TabIndex = 1;
             this.cboCouleurEnnemis.SelectedIndexChanged += new System.EventHandler(this.cboCouleurEnnemis_SelectedIndexChanged);
-            this.cboCouleurEnnemis.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCouleurEnnemis_KeyDown);
+            this.cboCouleurEnnemis.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensEnnemis_KeyDown);
             // 
             // txtNomEnnemis
             // 
