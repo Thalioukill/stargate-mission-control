@@ -93,6 +93,13 @@ namespace Formulaire_principal
 
         private void AfficherDetailsMission()
         {
+            lblNomMission.Text = "";
+            lblDates.Text = "";
+            lblNbJours.Text = "";
+            rtbFeuilleDeRoute.Text = "";
+            lblSoldeApresDepenses.Text = "";
+            lblBudget.Text = "";
+
             try
             {
                 // Récupération des infos de la mission dans le DataSet
@@ -100,6 +107,7 @@ namespace Formulaire_principal
                 string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
                 DataRow rMission = MesDatas.DsGlobal.Tables["Composer"].Select(filtre);
                 */
+
                 // la méthode Find ne fonctionne que si on a mis en place les clés primaires dans le DataSet
                 DataRow rMission = ds.Tables["Mission"].Rows.Find(new object[] { idPlanete, idNumero });
 
@@ -115,12 +123,12 @@ namespace Formulaire_principal
                     this.dateDepart = dtDepart.ToString("dd/MM/yyyy");
                     this.dateArrivee = dtRetour.ToString("dd/MM/yyyy");
 
-                    this.lblDates.Text += dtDepart.ToString("dd/MM/yyyy")+" - "+ dtRetour.ToString("dd/MM/yyyy");
+                    this.lblDates.Text = "Dates : "+ dtDepart.ToString("dd/MM/yyyy")+" - "+ dtRetour.ToString("dd/MM/yyyy");
 
                     TimeSpan diff = dtRetour.Subtract(dtDepart);
                     this.nbJours = diff.Days;
                     string nbJours = diff.Days.ToString() + " jours";
-                    this.lblNbJours.Text += nbJours;
+                    this.lblNbJours.Text = "Nombre de jours : "+ nbJours;
 
                     this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString();
                     this.txtFeuilleRoute = rMission["feuilleDeRoute"].ToString();
@@ -129,34 +137,43 @@ namespace Formulaire_principal
                     // Calcul du budget (Budget initial - Somme des dépenses) 
                     double budgetInitial = Convert.ToDouble(rMission["budget"]);
 
-                    // On filtre les dépenses de cette mission dans la table locale
-                    DataRow[] depenses = ds.Tables["Depense"].Select($"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
-                    double totalDepenses = 0;
+                    double bugetApresDepenses = CalculerSoldeApresDepenses(budgetInitial);
 
-                    foreach (DataRow d in depenses)
-                    {
-                        totalDepenses += Convert.ToDouble(d["montant"]);
-                    }
-
-                    this.lblBudget.Text += $"{budgetInitial} $";
-                    double bugetApresDepenses = budgetInitial - totalDepenses;
-
-                    if(bugetApresDepenses < (budgetInitial / 4))
-                    {
-                        lblSoldeApresDepenses.ForeColor = Color.FromArgb(255, 96, 96);
-                    }
-                    else
-                    {
-                        lblSoldeApresDepenses.ForeColor = Color.FromArgb(114, 201, 106);
-                    }
-
-                    this.lblSoldeApresDepenses.Text += budgetInitial - totalDepenses+ " $";
+                    this.lblSoldeApresDepenses.Text = "Solde après dépenses : "+bugetApresDepenses.ToString() + " $";
                 }
             }
             catch (SQLiteException e)
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+
+        public double CalculerSoldeApresDepenses(double budgetInitial)
+        {
+
+            // On filtre les dépenses de cette mission dans la table locale
+            DataRow[] depenses = ds.Tables["Depense"].Select($"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
+            double totalDepenses = 0;
+
+            foreach (DataRow d in depenses)
+            {
+                totalDepenses += Convert.ToDouble(d["montant"]);
+            }
+
+            this.lblBudget.Text = $"Budget : {budgetInitial} $";
+            double bugetApresDepenses = budgetInitial - totalDepenses;
+
+            if (bugetApresDepenses < (budgetInitial / 4))
+            {
+                lblSoldeApresDepenses.ForeColor = Color.FromArgb(255, 96, 96);
+            }
+            else
+            {
+                lblSoldeApresDepenses.ForeColor = Color.FromArgb(114, 201, 106);
+            }
+
+            return bugetApresDepenses;
         }
 
         public void ColorerMotCle(RichTextBox rtb, string mot, Color couleur)
@@ -336,11 +353,11 @@ namespace Formulaire_principal
 
         private void btnValidNouvC_Click(object sender, EventArgs e)
         {
-            if(txtSomme.Text == "" || txtAppreciation.Text == "")
+            if (txtSomme.Text == "" || txtAppreciation.Text == "")
             {
                 MessageBox.Show("Veuillez remplir tous les champs pour insérer un nouveau contact");
             }
-            else if(cboInformateur.SelectedIndex == -1)
+            else if (cboInformateur.SelectedIndex == -1)
             {
                 MessageBox.Show("Veuillez sélectionner un informateur");
             }
@@ -372,14 +389,13 @@ namespace Formulaire_principal
 
                     MessageBox.Show("Nouveau contact ajouté !");
                     RAZContact();
+                    AfficherDetailsMission();
                 }
                 catch (SQLiteException err)
                 {
                     MessageBox.Show(err.Message);
                 }
-            }
-            
-
+            } 
         }
 
         private void RAZContact()
@@ -444,6 +460,8 @@ namespace Formulaire_principal
 
                     MessageBox.Show("Nouvelle dépense ajoutée !");
                     RAZDepense();
+                    AfficherDetailsMission();
+
                 }
                 catch (SQLiteException err)
                 {
@@ -495,6 +513,7 @@ namespace Formulaire_principal
 
                     MessageBox.Show("Nouvel évènement ajoutée !");
                     RAZEvenement();
+                    AfficherDetailsMission();
                 }
                 catch (SQLiteException err)
                 {

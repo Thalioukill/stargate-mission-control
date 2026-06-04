@@ -255,6 +255,8 @@ namespace Formulaire_principal
             //on affecte ce tableau à la propriété PrimaryKey de la table
             dtCapturer.PrimaryKey = clesCapturer;
 
+            // Clé prim de Composer
+
         }
 
         private void RemplirDataSet()
