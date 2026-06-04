@@ -316,7 +316,7 @@ namespace Formulaire_principal
             }
 
             // Affichage dans labels
-            lblBudgetActuel.Text += $" {totalD}$";
+            lblTotSommes.Text += $" {totalC}$";
             this.sommeVersee = Convert.ToInt32(totalC); // Stockage pour le PDF
         }
 
@@ -582,6 +582,7 @@ namespace Formulaire_principal
 
         public void GetDepensesMaximales()
         {
+            lblPasDeResultat.Visible = false;
             // on creer une colonne MontantTri pour l'utiliser comme filtre après...
             string sql = $@"SELECT d.dateD || ' - ' || d.motif || ' - ' || d.montant || '€' AS 'Dépenses les plus importantes', m.nomPlanete AS 'Mission', chef.prenom || ' ' || chef.nom AS 'Chef de mission', d.montant AS 'MontantTri'
                    FROM Depense d JOIN Mission m ON d.nomPlanete = m.nomPlanete AND d.numeroMission = m.numero
@@ -706,7 +707,7 @@ namespace Formulaire_principal
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
 
-                if (dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0 && dt.Rows[0]["Investi en DataBaz ($)"] != DBNull.Value)
                 {
 
                     dgvBilan.DataSource = dt;
@@ -840,7 +841,7 @@ namespace Formulaire_principal
                     // Mise à jour des labels de budget avec la première ligne du résultat
 
                     lblBudgetInitial.Text = "★ Budget initial : "+dt.Rows[0]["Budget Initial"].ToString() + " $";
-                    lblBudgetActuel.Text = "★ Budget actuel :"+dt.Rows[0]["Budget Actuel"].ToString() + " $";
+                    lblBudgetActuel.Text = "★ Budget actuel : "+dt.Rows[0]["Budget Actuel"].ToString() + " $";
 
 
                     dgvDepenses.DataSource = dt;
@@ -869,7 +870,7 @@ namespace Formulaire_principal
                     lblBudgetActuel.Text = "★ Budget actuel : N/C";
 
                     // On remplit l'ErrorProvider pour avertir l'utilisateur
-                    lblPasDeResultat.Text = "Accès refusé : Les détails financiers sont réservés aux missions disposant d'un équipage de plus de 10 membres.";
+                    lblPasDeResultat.Text = "Accès refusé : Les détails financiers sont réservés aux missions \ndisposant d'un équipage de plus de 10 membres.";
                     lblPasDeResultat.Visible = true;
                     lblPasDeResultat.ForeColor = Color.FromArgb(255, 21, 64);
                 }

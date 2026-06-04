@@ -241,9 +241,9 @@
             this.lblBudgetActuel.Font = new System.Drawing.Font("Kristen ITC", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBudgetActuel.Location = new System.Drawing.Point(546, 86);
             this.lblBudgetActuel.Name = "lblBudgetActuel";
-            this.lblBudgetActuel.Size = new System.Drawing.Size(168, 24);
+            this.lblBudgetActuel.Size = new System.Drawing.Size(163, 24);
             this.lblBudgetActuel.TabIndex = 4;
-            this.lblBudgetActuel.Text = "★ Budget actuel :  ";
+            this.lblBudgetActuel.Text = "★ Budget actuel : ";
             this.lblBudgetActuel.Visible = false;
             // 
             // rrdDepensesMax
