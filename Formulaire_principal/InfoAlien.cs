@@ -36,12 +36,6 @@ namespace Formulaire_principal
                     picAlliees.SizeMode = PictureBoxSizeMode.Zoom;
                     picAlliees.Image = Image.FromFile(path);
                 }
-                else
-                {
-                    path = "../../Images/Aliens/link.jpg";
-                    picAlliees.SizeMode = PictureBoxSizeMode.Zoom;
-                    picAlliees.Image = Image.FromFile(path);
-                }
             }
             switch (couleur)
             {

@@ -35,12 +35,6 @@ namespace Formulaire_principal
                     picEnnemis.SizeMode = PictureBoxSizeMode.Zoom;
                     picEnnemis.Image = Image.FromFile(path);
                 }
-                else
-                {
-                    path = "../../Images/Aliens/link.jpg";
-                    picEnnemis.SizeMode = PictureBoxSizeMode.Zoom;
-                    picEnnemis.Image = Image.FromFile(path);
-                }
             }
             switch (couleur) 
             {
