@@ -153,7 +153,7 @@
             this.plMissions.Controls.Add(this.lblTableauDeBord);
             this.plMissions.Location = new System.Drawing.Point(282, 22);
             this.plMissions.Name = "plMissions";
-            this.plMissions.Size = new System.Drawing.Size(1141, 793);
+            this.plMissions.Size = new System.Drawing.Size(1141, 94);
             this.plMissions.TabIndex = 0;
             // 
             // grpNbMissionsTrouvees
@@ -701,6 +701,7 @@
             // rdbSans
             // 
             this.rdbSans.AutoSize = true;
+            this.rdbSans.ForeColor = System.Drawing.Color.Red;
             this.rdbSans.Location = new System.Drawing.Point(232, 314);
             this.rdbSans.Margin = new System.Windows.Forms.Padding(4);
             this.rdbSans.Name = "rdbSans";
@@ -714,6 +715,7 @@
             // rdbAvec
             // 
             this.rdbAvec.AutoSize = true;
+            this.rdbAvec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.rdbAvec.Location = new System.Drawing.Point(149, 314);
             this.rdbAvec.Margin = new System.Windows.Forms.Padding(4);
             this.rdbAvec.Name = "rdbAvec";
@@ -865,7 +867,7 @@
             this.plAliens.Controls.Add(this.grpFiltresEnnemis);
             this.plAliens.Location = new System.Drawing.Point(282, 22);
             this.plAliens.Name = "plAliens";
-            this.plAliens.Size = new System.Drawing.Size(1141, 792);
+            this.plAliens.Size = new System.Drawing.Size(1141, 79);
             this.plAliens.TabIndex = 1;
             // 
             // lblAliens

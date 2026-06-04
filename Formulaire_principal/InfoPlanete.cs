@@ -25,14 +25,23 @@ namespace Formulaire_principal
             if(dataBazON == "1")
             {
                 dataBazON = "Présent";
+                lblDataBaz.ForeColor = Color.Green;
             }
             else
             {
                 dataBazON = "Non présent";
+                lblDataBaz.ForeColor = Color.Red;
             }
             lblDataBaz.Text = "DataBAZ : " + dataBazON;
             lblEspeces.Text = "Espèces : " + especes;
-            lblPourcentage.Text = "Taux d'espèces : " + pourcentages;
+            if (pourcentages == "inconnue")
+            {
+                lblPourcentage.Text = "Taux d'espèces : " + pourcentages;
+            }
+            else 
+            {
+                lblPourcentage.Text = "Taux d'espèces : " + pourcentages + "%";
+            }
             lblMission.Text = "Nombres de missions effectuées : " + missions;
             if (nom != string.Empty)
             {

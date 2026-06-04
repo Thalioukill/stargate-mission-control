@@ -306,7 +306,7 @@ namespace Formulaire_principal
 
             string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, 
                     GROUP_CONCAT(e.nom, ' / ') as Especes, 
-                    GROUP_CONCAT(h.pourcentage, ' / ') as Pourcentages, 
+                    GROUP_CONCAT(h.pourcentage, '% / ') as Pourcentages, 
                     stats_m.nbMissions
                     FROM Planete p
                     LEFT JOIN Habiter h ON h.nomPlanete = p.nom
