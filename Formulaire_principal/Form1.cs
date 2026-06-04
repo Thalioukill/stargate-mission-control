@@ -1424,7 +1424,7 @@ namespace Formulaire_principal
             charger_planetes();
         }
 
-        private void cboCouleurAlliees_KeyDown(object sender, KeyEventArgs e)
+        private void AliensAllies_KeyDown(object sender, KeyEventArgs e) 
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -1434,37 +1434,7 @@ namespace Formulaire_principal
             }
         }
 
-        private void cboBienveillance_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                chargerAliensAlliees();
-            }
-        }
-
-        private void cboCouleurEnnemis_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                chargerAliensEnnemis();
-            }
-        }
-
-        private void cboTypeArme_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                chargerAliensEnnemis();
-            }
-        }
-
-        private void cboAgressivite_KeyDown(object sender, KeyEventArgs e)
+        private void AliensEnnemis_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

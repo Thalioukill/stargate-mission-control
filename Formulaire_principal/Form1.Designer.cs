@@ -925,7 +925,7 @@
             this.cboBienveillance.Size = new System.Drawing.Size(224, 36);
             this.cboBienveillance.TabIndex = 9;
             this.cboBienveillance.SelectedIndexChanged += new System.EventHandler(this.cboBienveillance_SelectedIndexChanged);
-            this.cboBienveillance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboBienveillance_KeyDown);
+            this.cboBienveillance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensAllies_KeyDown);
             // 
             // btnRechercherAlliees
             // 
@@ -981,7 +981,7 @@
             this.cboCouleurAlliees.Size = new System.Drawing.Size(224, 36);
             this.cboCouleurAlliees.TabIndex = 1;
             this.cboCouleurAlliees.SelectedIndexChanged += new System.EventHandler(this.cboCouleurAlliees_SelectedIndexChanged);
-            this.cboCouleurAlliees.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCouleurAlliees_KeyDown);
+            this.cboCouleurAlliees.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensAllies_KeyDown);
             // 
             // txtNomAlliees
             // 
@@ -1111,7 +1111,7 @@
             this.cboAgressivite.Size = new System.Drawing.Size(224, 36);
             this.cboAgressivite.TabIndex = 10;
             this.cboAgressivite.SelectedIndexChanged += new System.EventHandler(this.cboAgressivite_SelectedIndexChanged);
-            this.cboAgressivite.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboAgressivite_KeyDown);
+            this.cboAgressivite.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensEnnemis_KeyDown);
             // 
             // label6
             // 
@@ -1147,7 +1147,7 @@
             this.cboTypeArme.Size = new System.Drawing.Size(224, 36);
             this.cboTypeArme.TabIndex = 5;
             this.cboTypeArme.SelectedIndexChanged += new System.EventHandler(this.cboTypeArme_SelectedIndexChanged);
-            this.cboTypeArme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboTypeArme_KeyDown);
+            this.cboTypeArme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensEnnemis_KeyDown);
             // 
             // label9
             // 
@@ -1197,7 +1197,7 @@
             this.cboCouleurEnnemis.Size = new System.Drawing.Size(224, 36);
             this.cboCouleurEnnemis.TabIndex = 1;
             this.cboCouleurEnnemis.SelectedIndexChanged += new System.EventHandler(this.cboCouleurEnnemis_SelectedIndexChanged);
-            this.cboCouleurEnnemis.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCouleurEnnemis_KeyDown);
+            this.cboCouleurEnnemis.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AliensEnnemis_KeyDown);
             // 
             // txtNomEnnemis
             // 
