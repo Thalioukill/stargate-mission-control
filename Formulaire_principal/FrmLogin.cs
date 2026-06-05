@@ -62,7 +62,9 @@ namespace Formulaire_principal
             try
             {
                 //Récupération du mot de passe en fonction du login
-                string sql = $"SELECT mdp FROM Admin WHERE login = '{txtLogin.Text}'";
+                string sql = "SELECT mdp FROM Admin WHERE login = @login";
+                cmd.Parameters.AddWithValue("@login", txtLogin.Text);
+
                 SQLiteCommand cmd = new SQLiteCommand(sql, Connexion.Connec);
                 object resultat = cmd.ExecuteScalar();
                 //Test si la requête a renvoyé un résultat non null

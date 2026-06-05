@@ -542,9 +542,9 @@ namespace Formulaire_principal
                     string sql = @"INSERT INTO Composer (nomPlanete,numeroMission,matriculeMembre) VALUES
                             (@nomPlanete, @numeroMission, @matriculeMembre)";
                     SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                    cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
-                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
-                    cmd.Parameters.AddWithValue("matriculeMembre", cboChef.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
+                    cmd.Parameters.AddWithValue("@numeroMission", lblNum.Text);
+                    cmd.Parameters.AddWithValue("@matriculeMembre", cboChef.SelectedValue.ToString());
                     cmd.ExecuteNonQuery();
                 }
                 catch (SQLiteException err)
@@ -564,9 +564,9 @@ namespace Formulaire_principal
 
 
                         SQLiteCommand cmd = new SQLiteCommand(sql, co);
-                        cmd.Parameters.AddWithValue("nomPlanete", cboPlanete.Text);
-                        cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
-                        cmd.Parameters.AddWithValue("matriculeMembre", ((ListItemMembre)lstbMembres.Items[i]).Value);
+                        cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
+                        cmd.Parameters.AddWithValue("@numeroMission", lblNum.Text);
+                        cmd.Parameters.AddWithValue("@matriculeMembre", ((ListItemMembre)lstbMembres.Items[i]).Value);
                         cmd.ExecuteNonQuery();
                     }
                     catch (SQLiteException err)
@@ -743,7 +743,7 @@ namespace Formulaire_principal
                     SQLiteCommand cmd = new SQLiteCommand(sql, co);
 
                     cmd.Parameters.AddWithValue("@nomPlanete", cboPlanete.Text);
-                    cmd.Parameters.AddWithValue("numeroMission", lblNum.Text);
+                    cmd.Parameters.AddWithValue("@numeroMission", lblNum.Text);
                     cmd.Parameters.AddWithValue("@idEspeceEnnemi", id);
                     cmd.Parameters.AddWithValue("@objectif", quant);
 
@@ -820,7 +820,7 @@ namespace Formulaire_principal
                             me.matricule = mi.matriculeMembre
                             WHERE me.matricule LIKE 'M%' AND me.matricule NOT IN 
                             (SELECT matriculeChef FROM Mission 
-                                WHERE dateDepart <= {dtpDepart.Value.ToString("yyyy-MM-dd")} AND dateRetour >= {dtpDepart.Value.ToString("yyyy-MM-dd")})
+                                WHERE dateDepart <= '{dtpDepart.Value.ToString("yyyy-MM-dd")}' AND dateRetour >= '{dtpDepart.Value.ToString("yyyy-MM-dd")}')
                                 ORDER BY me.nom ASC;";
                 //Pour n'avoir que les chefs qui sont disponibles quand ma mission commence.
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);

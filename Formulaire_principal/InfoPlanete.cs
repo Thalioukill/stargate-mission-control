@@ -13,7 +13,8 @@ namespace Formulaire_principal
 {
     public partial class InfoPlanete : UserControl
     {
-        string pourcentages;
+        private Dictionary<string, (string pct, string couleur)> especesPourcentages;
+        private String nomPlanete;
 
         public InfoPlanete()
         {
@@ -21,9 +22,10 @@ namespace Formulaire_principal
             InitialiserEvenementsHover();
         }
 
-        public InfoPlanete(string nom, string temperature, string gravite, string dataBazON, string especes, string pourcentages, string missions)
+        public InfoPlanete(string nom, string temperature, string gravite, string dataBazON, Dictionary<string, (string pct, string couleur)> especesPourcentages, string missions)
         {
             InitializeComponent();
+            this.nomPlanete = nom;
 
             lblNom.Text = "Nom : " + nom;
             lblTemperature.Text = "Température : " + temperature + " °C";
@@ -41,8 +43,19 @@ namespace Formulaire_principal
             }
 
             lblDataBaz.Text = "DataBAZ : " + dataBazON;
-            lblEspeces.Text = "Espèces : " + especes;
-            this.pourcentages = pourcentages;
+
+            if (especesPourcentages.Count == 0)
+            {
+                lblEspeces.Text = "Espèces : inconnues";
+            }
+            else
+            {
+                lblEspeces.Text = "Espèces : " + string.Join(", ", especesPourcentages.Keys);
+            }
+
+            // On stocke le dictionnaire pour FrmDetailPlanete
+            this.especesPourcentages = especesPourcentages;
+
             lblMission.Text = "Nombres de missions effectuées : " + missions;
 
             if (nom != string.Empty)
@@ -68,7 +81,7 @@ namespace Formulaire_principal
 
         private void InfoPlanete_Click(object sender, EventArgs e)
         {
-            FrmDetailPlanete fdp = new FrmDetailPlanete(this.pourcentages);
+            FrmDetailPlanete fdp = new FrmDetailPlanete(this.nomPlanete, this.especesPourcentages);
             DialogResult dr = fdp.ShowDialog();
         }
 

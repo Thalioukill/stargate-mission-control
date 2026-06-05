@@ -89,6 +89,7 @@
             // 
             // picAlliees
             // 
+            this.picAlliees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picAlliees.Location = new System.Drawing.Point(14, 9);
             this.picAlliees.Name = "picAlliees";
             this.picAlliees.Size = new System.Drawing.Size(150, 184);

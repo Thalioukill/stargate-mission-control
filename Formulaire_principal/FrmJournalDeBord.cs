@@ -316,7 +316,7 @@ namespace Formulaire_principal
             }
 
             // Affichage dans labels
-            lblTotSommes.Text += $" {totalC}$";
+            lblTotSommes.Text = $"Total des sommes versées : {totalC}$";
             this.sommeVersee = Convert.ToInt32(totalC); // Stockage pour le PDF
         }
 
@@ -365,7 +365,10 @@ namespace Formulaire_principal
                 {
                     nomEspece = rowEspece["nom"].ToString();
                 }
-                nomEspece = "Inconnue";
+                else
+                {
+                    nomEspece = "Inconnue";
+                }
 
                 // On cherche le nombre de captures réalisées (table Capturer)
                 string filtreCaptures = filtreMission + $" AND idEspeceEnnemi = {idEnnemi}";

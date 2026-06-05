@@ -369,7 +369,6 @@ namespace Formulaire_principal
             cboCaptures.ValueMember = "id";
             cboCaptures.SelectedIndex = -1;
         }
-
         private void ChargerCboNego()
         {
             if (ds.Tables.Contains("NegocierCombo"))
@@ -377,14 +376,14 @@ namespace Formulaire_principal
                 ds.Tables["NegocierCombo"].Clear();
             }
             string sql = @"SELECT (e.nom || ' - ' || e.couleur) AS nomComplet, e.id 
-                            FROM Espece e
-                            JOIN Allie a ON e.id = a.idEspece";
+                    FROM Espece e
+                    JOIN Allie a ON e.id = a.idEspece";
             SQLiteDataAdapter da = new SQLiteDataAdapter(sql, co);
             da.Fill(ds, "NegocierCombo");
-            cboCaptures.DataSource = ds.Tables["NegocierCombo"];
-            cboCaptures.DisplayMember = "nomComplet";
-            cboCaptures.ValueMember = "id";
-            cboCaptures.SelectedIndex = -1;
+            cboNego.DataSource = ds.Tables["NegocierCombo"];  
+            cboNego.DisplayMember = "nomComplet";            
+            cboNego.ValueMember = "id";                      
+            cboNego.SelectedIndex = -1;                       
         }
 
         private void btnValidNouvC_Click(object sender, EventArgs e)
@@ -662,7 +661,7 @@ namespace Formulaire_principal
                     SQLiteCommand cmd = new SQLiteCommand(sql, co);
 
                     cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmd.Parameters.AddWithValue("numeroMission", idNumero);
+                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
                     cmd.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
                     cmd.Parameters.AddWithValue("@nombre", nudCapture.Value);
 
@@ -711,24 +710,24 @@ namespace Formulaire_principal
                 {
                     //Ajout à la base en mode connecté
                     string sql = @"INSERT INTO Negocier (nomPlanete,numeroMission,idEspeceAllie,qteDataBaz)
-                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@qteDataBaz)";
+                            VALUES (@nomPlanete,@numeroMission,@idEspeceAllie,@qteDataBaz)";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql, co);
 
                     cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmd.Parameters.AddWithValue("numeroMission", idNumero);
-                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
+                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                    cmd.Parameters.AddWithValue("@idEspeceAllie", cboNego.SelectedValue);
                     cmd.Parameters.AddWithValue("@qteDataBaz", int.Parse(txtDataBaz.Text));
 
                     cmd.ExecuteNonQuery();
 
-                    //Mise à jour du data set en mode déconnecté
+                    // Mise à jour du DataSet en mode déconnecté
                     DataRow maRow = ds.Tables["Negocier"].NewRow();
                     maRow["nomPlanete"] = idPlanete;
-                    maRow["numero"] = idNumero;
-                    maRow["idEspeceEnnemi"] = cboCaptures.SelectedValue;
-                    maRow["idEspeceAllie"] = nudCapture.Value;
-                    ds.Tables["qteDataBaz"].Rows.Add(maRow);
+                    maRow["numeroMission"] = idNumero;   
+                    maRow["idEspeceAllie"] = cboNego.SelectedValue; 
+                    maRow["qteDataBaz"] = int.Parse(txtDataBaz.Text); 
+                    ds.Tables["Negocier"].Rows.Add(maRow);
 
                     MessageBox.Show("Nouvelle négociation ajoutée !");
                     RAZNego();

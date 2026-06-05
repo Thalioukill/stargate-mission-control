@@ -28,34 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblPourcentage = new System.Windows.Forms.Label();
+            this.flpPourcentageEspeces = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblAucuneInfo = new System.Windows.Forms.Label();
+            this.flpPourcentageEspeces.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblPourcentage
+            // flpPourcentageEspeces
             // 
-            this.lblPourcentage.AutoSize = true;
-            this.lblPourcentage.Location = new System.Drawing.Point(215, 184);
-            this.lblPourcentage.Name = "lblPourcentage";
-            this.lblPourcentage.Size = new System.Drawing.Size(41, 15);
-            this.lblPourcentage.TabIndex = 0;
-            this.lblPourcentage.Text = "label1";
+            this.flpPourcentageEspeces.Controls.Add(this.lblAucuneInfo);
+            this.flpPourcentageEspeces.Location = new System.Drawing.Point(12, 12);
+            this.flpPourcentageEspeces.Name = "flpPourcentageEspeces";
+            this.flpPourcentageEspeces.Size = new System.Drawing.Size(498, 474);
+            this.flpPourcentageEspeces.TabIndex = 0;
+            // 
+            // lblAucuneInfo
+            // 
+            this.lblAucuneInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblAucuneInfo.AutoSize = true;
+            this.lblAucuneInfo.Location = new System.Drawing.Point(3, 0);
+            this.lblAucuneInfo.Name = "lblAucuneInfo";
+            this.lblAucuneInfo.Size = new System.Drawing.Size(79, 16);
+            this.lblAucuneInfo.TabIndex = 0;
+            this.lblAucuneInfo.Text = "Aucune info.";
             // 
             // FrmDetailPlanete
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblPourcentage);
+            this.ClientSize = new System.Drawing.Size(522, 498);
+            this.Controls.Add(this.flpPourcentageEspeces);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmDetailPlanete";
             this.Text = "FrmDetailPlanete";
             this.Load += new System.EventHandler(this.FrmDetailPlanete_Load);
+            this.flpPourcentageEspeces.ResumeLayout(false);
+            this.flpPourcentageEspeces.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblPourcentage;
+        private System.Windows.Forms.FlowLayoutPanel flpPourcentageEspeces;
+        private System.Windows.Forms.Label lblAucuneInfo;
     }
 }

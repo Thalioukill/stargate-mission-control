@@ -26,6 +26,9 @@ namespace Formulaire_principal
         public FrmAccueil()
         {
             InitializeComponent();
+
+            // pour ne pas que la barre de chargement ne lag...
+            this.DoubleBuffered = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,25 +40,9 @@ namespace Formulaire_principal
             RemplirDataSet();
             CreerClesPrim();
             CreerRelations();
-            ChargerComboBox();
-            AfficherBudgetMax();
-            chargerAliens();
-            chargerEspeces();
-            charger_planetes();
 
             msMenu.Renderer = new MyRenderer();
             pnlProgressBar.Visible = false;
-
-            /* Vérification de la connection : 
-             
-            String requete = $@"SELECT COUNT(*) from Mission";
-
-            SQLiteCommand cmd = new SQLiteCommand(requete, this.co);
-
-            int nbMission = Convert.ToInt32(cmd.ExecuteScalar());
-            MessageBox.Show("il y a " + nbMission.ToString() + "clients");
-
-            */
         }
 
         private void CreerRelations()
@@ -129,6 +116,224 @@ namespace Formulaire_principal
             }
         }
 
+        private void CreerClesPrim()
+        {
+            // CléS primaireS de la table Mission
+            //On récupère la table Mission dans le DataSet
+            DataTable dtMission = MesDatas.DsGlobal.Tables["Mission"];
+
+            // On crée un tableau de DataColumn contenant les deux colonnes de la clé primaire
+            DataColumn[] cles = new DataColumn[2];
+            cles[0] = dtMission.Columns["nomPlanete"];
+            cles[1] = dtMission.Columns["numero"];
+
+            //on affecte ce tableau à la propriété PrimaryKey de la table
+            dtMission.PrimaryKey = cles;
+
+
+            //clé primaire de Membre 
+            DataColumn clePrimMembre = ds.Tables["Membre"].Columns["matricule"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Membre"].PrimaryKey = new DataColumn[] { clePrimMembre };
+
+
+            //Clé primaire de Militaire
+            DataColumn clePrimMilitaire = ds.Tables["Militaire"].Columns["matriculeMembre"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Militaire"].PrimaryKey = new DataColumn[] { clePrimMilitaire };
+
+
+
+            //Clé primaire de Civil
+            DataColumn clePrimCivil = ds.Tables["Civil"].Columns["matriculeMembre"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Civil"].PrimaryKey = new DataColumn[] { clePrimCivil };
+
+            // Clé prim de Espece 
+            DataColumn clePrimEspece = ds.Tables["Espece"].Columns["id"];
+
+            // mise en place de la clé primaire 
+            ds.Tables["Espece"].PrimaryKey = new DataColumn[] { clePrimEspece };
+
+            // Clé prim de Capturer
+            DataTable dtCapturer = ds.Tables["Capturer"];
+
+            // On crée un tableau de DataColumn contenant les trois colonnes de la clé primaire
+            DataColumn[] clesCapturer = new DataColumn[3];
+            clesCapturer[0] = dtCapturer.Columns["nomPlanete"];
+            clesCapturer[1] = dtCapturer.Columns["numeroMission"];
+            clesCapturer[2] = dtCapturer.Columns["idEspeceEnnemi"];
+
+            //on affecte ce tableau à la propriété PrimaryKey de la table
+            dtCapturer.PrimaryKey = clesCapturer;
+
+            // Clé prim de Composer ? 
+
+        }
+
+        private void RemplirDataSet()
+        {
+            // On rempli le DataSet ds avec toutes les Tables de la base Stargate.ds
+            // ATTENTION POUR L'AJOUT DES MISSIONS IL FAUT BIEN RECREER LES CLE ETRANGERES ET PRIMAIRES
+            string sql;
+
+            // méthode GetSchema => pour avoir des méta-données (table qui contient la structure de la Base de données...)
+            DataTable schemaTable = co.GetSchema("Tables");
+
+            string liste = "";
+
+            // on parcoure chaque ligne
+            for (int i = 0; i < schemaTable.Rows.Count; i++)
+            {
+                // la troisième colonne (num 2) contient tous les noms des tables 
+                string nomTable = schemaTable.Rows[i][2].ToString();
+                sql = "SELECT * FROM " + nomTable;
+
+                // le seul objet qui existe dans le monde connecté et deconnecté 
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, this.co);
+                da.Fill(ds, nomTable);
+                liste = liste + nomTable + "\n";
+            }
+            //MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
+
+            string sqlAllies = @"SELECT e.nom, a.degreBienveillance, e.couleur, a.instrumentMusique, e.id as idEspece,
+                            GROUP_CONCAT(h.nomPlanete, ' / ') as Planetes
+                            FROM Allie a
+                            JOIN Espece e ON e.id = a.idEspece
+                            LEFT JOIN Habiter h ON h.idEspece = e.id
+                            GROUP BY e.nom";
+
+            string sqlEnnemis = @"SELECT e.nom, en.degreAgressivite, e.couleur, en.typeArme, e.id as idEspece,
+                             GROUP_CONCAT(h.nomPlanete, ' / ') as Planetes
+                             FROM Ennemi en
+                             JOIN Espece e ON e.id = en.idEspece
+                             LEFT JOIN Habiter h ON h.idEspece = e.id
+                             GROUP BY e.nom";
+
+            SQLiteDataAdapter daAllies = new SQLiteDataAdapter(sqlAllies, co);
+            if (ds.Tables.Contains("TableAllies")) ds.Tables["TableAllies"].Clear();
+            daAllies.Fill(ds, "TableAllies");
+
+            SQLiteDataAdapter daEnnemis = new SQLiteDataAdapter(sqlEnnemis, co);
+            if (ds.Tables.Contains("TableEnnemis")) ds.Tables["TableEnnemis"].Clear();
+            daEnnemis.Fill(ds, "TableEnnemis");
+
+            string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, 
+                    GROUP_CONCAT(e.nom, ' / ') as Especes, 
+                    GROUP_CONCAT(h.pourcentage, '% / ') as Pourcentages,
+                    GROUP_CONCAT(e.couleur, ' / ') as Couleurs,
+                    stats_m.nbMissions
+                    FROM Planete p
+                    LEFT JOIN Habiter h ON h.nomPlanete = p.nom
+                    LEFT JOIN Espece e ON e.id = h.idEspece
+                    LEFT JOIN(SELECT nomPlanete, COUNT(*) AS nbMissions
+                        FROM Mission
+                        GROUP BY nomPlanete) AS stats_m ON stats_m.nomPlanete = p.nom
+                    GROUP BY p.nom";
+
+            SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
+
+            if (ds.Tables.Contains("TablePlanetesRecherche"))
+                ds.Tables["TablePlanetesRecherche"].Clear();
+
+            da2.Fill(ds, "TablePlanetesRecherche");
+        }
+
+
+        public void ActualiserPanel(Panel panelAAfficher)
+        {
+            this.SuspendLayout();
+            pnlProgressBar.Visible = true;
+            // On parcourt tous les contrôles du formulaire pour masquer les panels
+            foreach (Panel p in this.Controls.OfType<Panel>())
+            {
+                // On évite de masquer un éventuel panel de menu permanent
+                if (p == plMissions || p == plAliens || p == plPlanetes)
+                {
+                    p.Visible = false;
+                }
+            }
+
+            // prep de la jauge
+            this.prochainPanel = panelAAfficher;
+            this.progressionInterne = 0; // RESET impératif
+            plChargement.Width = 0;   // On remet la barre à gauche
+
+            // affichage du cadre de chargement
+            plBoiteChargement.Visible = true;
+            lblPourcentage.Visible = true;
+            lblCharge.Visible = true;
+            lblCharge.Text = "Synchronisation de la porte des étoiles...";
+
+            this.ResumeLayout();
+            //lance le Timer au lieu d'afficher le panel de suite
+            timer.Start();
+        }
+
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (progressionInterne < 100)
+            {
+                // Remplissage progressif
+                progressionInterne += 5;
+
+                // Calcul de la largeur en pixels
+                int nouvelleLargeur = (progressionInterne * plBoiteChargement.Width) / 100;
+                plChargement.Width = nouvelleLargeur;
+
+                lblPourcentage.Text = progressionInterne.ToString() + " %";
+
+                plChargement.Update();
+            }
+            else
+            {
+                // LE CHARGEMENT EST FINI
+                timer.Stop();
+
+                // cache TOUT ce qui concerne le chargement
+                pnlProgressBar.Visible = false;
+                lblPourcentage.Visible = false;
+                lblCharge.Visible = false;
+
+                // apres l'affichage de la progress bar ...
+
+                if (prochainPanel == plMissions)
+                {
+                    this.ChargerComboBox();
+                    this.AfficherBudgetMax();
+                    this.ActualiserAffichage();
+                }
+                else if (prochainPanel == plAliens)
+                {
+                    this.chargerAliens();
+                    this.chargerEspeces();
+                }
+                else if (prochainPanel == plPlanetes)
+                {
+                    this.charger_planetes();
+                }
+
+                // affiche le panel de destination
+                if (prochainPanel != null)
+                {
+                    prochainPanel.Visible = true;
+                    prochainPanel.BringToFront();
+                }
+            }
+        }
+
+
+        // =======> Code TABLEAU DE BORD
+
+        private void tsmiTableauDeBord_Click(object sender, EventArgs e)
+        {
+            ActualiserPanel(plMissions);
+        }
+
         private void ChargerComboBox()
         {
             // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant)
@@ -195,210 +400,12 @@ namespace Formulaire_principal
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(remplirBudgetMax, this.co);
-                lblBd.Text += cmd.ExecuteScalar().ToString()+" $";
+                lblBd.Text += "Budget maximum : "+cmd.ExecuteScalar().ToString() + " $";
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
-        }
-
-        private void CreerClesPrim()
-        {
-            // CléS primaireS de la table Mission
-            //On récupère la table Mission dans le DataSet
-            DataTable dtMission = MesDatas.DsGlobal.Tables["Mission"];
-
-            // On crée un tableau de DataColumn contenant les deux colonnes de la clé primaire
-            DataColumn[] cles = new DataColumn[2];
-            cles[0] = dtMission.Columns["nomPlanete"];
-            cles[1] = dtMission.Columns["numero"];
-
-            //on affecte ce tableau à la propriété PrimaryKey de la table
-            dtMission.PrimaryKey = cles;
-
-
-            //clé primaire de Membre 
-            DataColumn clePrimMembre = ds.Tables["Membre"].Columns["matricule"];
-
-            // mise en place de la clé primaire 
-            ds.Tables["Membre"].PrimaryKey = new DataColumn[] { clePrimMembre };
-
-
-            //Clé primaire de Militaire
-            DataColumn clePrimMilitaire = ds.Tables["Militaire"].Columns["matriculeMembre"];
-
-            // mise en place de la clé primaire 
-            ds.Tables["Militaire"].PrimaryKey = new DataColumn[] { clePrimMilitaire };
-
-
-
-            //Clé primaire de Civil
-            DataColumn clePrimCivil = ds.Tables["Civil"].Columns["matriculeMembre"];
-
-            // mise en place de la clé primaire 
-            ds.Tables["Civil"].PrimaryKey = new DataColumn[] { clePrimCivil };
-
-            // Clé prim de Espece 
-            DataColumn clePrimEspece = ds.Tables["Espece"].Columns["id"];
-
-            // mise en place de la clé primaire 
-            ds.Tables["Espece"].PrimaryKey = new DataColumn[] { clePrimEspece };
-
-            // Clé prim de Capturer
-            DataTable dtCapturer = ds.Tables["Capturer"];
-
-            // On crée un tableau de DataColumn contenant les trois colonnes de la clé primaire
-            DataColumn[] clesCapturer = new DataColumn[3];
-            clesCapturer[0] = dtCapturer.Columns["nomPlanete"];
-            clesCapturer[1] = dtCapturer.Columns["numeroMission"];
-            clesCapturer[2] = dtCapturer.Columns["idEspeceEnnemi"];
-
-            //on affecte ce tableau à la propriété PrimaryKey de la table
-            dtCapturer.PrimaryKey = clesCapturer;
-
-            // Clé prim de Composer
-
-        }
-
-        private void RemplirDataSet()
-        {
-            // On rempli le DataSet ds avec toutes les Tables de la base Stargate.ds
-            // ATTENTION POUR L'AJOUT DES MISSIONS IL FAUT BIEN RECREER LES CLE ETRANGERES ET PRIMAIRES
-            string sql;
-
-            // méthode GetSchema => pour avoir des méta-données (table qui contient la structure de la Base de données...)
-            DataTable schemaTable = co.GetSchema("Tables");
-
-            string liste = "";
-
-            // on parcoure chaque ligne
-            for (int i = 0; i < schemaTable.Rows.Count; i++)
-            {
-                // la troisième colonne (num 2) contient tous les noms des tables 
-                string nomTable = schemaTable.Rows[i][2].ToString();
-                sql = "SELECT * FROM " + nomTable;
-
-                // le seul objet qui existe dans le monde connecté et deconnecté 
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, this.co);
-                da.Fill(ds, nomTable);
-                liste = liste + nomTable + "\n";
-            }
-            //MessageBox.Show(liste + "\n" + ds.Tables.Count.ToString() + "tables");
-
-            string sqlAllies = @"SELECT e.nom, a.degreBienveillance, e.couleur, a.instrumentMusique, e.id as idEspece,
-                            GROUP_CONCAT(h.nomPlanete, ' / ') as Planetes
-                            FROM Allie a
-                            JOIN Espece e ON e.id = a.idEspece
-                            LEFT JOIN Habiter h ON h.idEspece = e.id
-                            GROUP BY e.nom";
-
-            string sqlEnnemis = @"SELECT e.nom, en.degreAgressivite, e.couleur, en.typeArme, e.id as idEspece,
-                             GROUP_CONCAT(h.nomPlanete, ' / ') as Planetes
-                             FROM Ennemi en
-                             JOIN Espece e ON e.id = en.idEspece
-                             LEFT JOIN Habiter h ON h.idEspece = e.id
-                             GROUP BY e.nom";
-
-            SQLiteDataAdapter daAllies = new SQLiteDataAdapter(sqlAllies, co);
-            if (ds.Tables.Contains("TableAllies")) ds.Tables["TableAllies"].Clear();
-            daAllies.Fill(ds, "TableAllies");
-
-            SQLiteDataAdapter daEnnemis = new SQLiteDataAdapter(sqlEnnemis, co);
-            if (ds.Tables.Contains("TableEnnemis")) ds.Tables["TableEnnemis"].Clear();
-            daEnnemis.Fill(ds, "TableEnnemis");
-
-            string sql2 = $@"SELECT p.nom, p.temperature, p.gravite, p.dataBazON, 
-                    GROUP_CONCAT(e.nom, ' / ') as Especes, 
-                    GROUP_CONCAT(h.pourcentage, '% / ') as Pourcentages, 
-                    stats_m.nbMissions
-                    FROM Planete p
-                    LEFT JOIN Habiter h ON h.nomPlanete = p.nom
-                    LEFT JOIN Espece e ON e.id = h.idEspece
-                    LEFT JOIN(
-                        SELECT nomPlanete, COUNT(*) AS nbMissions
-                        FROM Mission
-                        GROUP BY nomPlanete
-                    ) AS stats_m ON stats_m.nomPlanete = p.nom
-                    GROUP BY p.nom";
-
-            SQLiteDataAdapter da2 = new SQLiteDataAdapter(sql2, co);
-
-            if (ds.Tables.Contains("TablePlanetesRecherche"))
-                ds.Tables["TablePlanetesRecherche"].Clear();
-
-            da2.Fill(ds, "TablePlanetesRecherche");
-        }
-        public void ActualiserPanel(Panel panelAAfficher)
-        {
-            this.SuspendLayout();
-            pnlProgressBar.Visible = true;
-            // On parcourt tous les contrôles du formulaire pour masquer les panels
-            foreach (Panel p in this.Controls.OfType<Panel>())
-            {
-                // On évite de masquer un éventuel panel de menu permanent
-                if (p == plMissions || p == plAliens || p == plPlanetes)
-                {
-                    p.Visible = false;
-                }
-            }
-
-            // prep de la jauge
-            this.prochainPanel = panelAAfficher;
-            this.progressionInterne = 0; // RESET impératif
-            plChargement.Width = 0;   // On remet la barre à gauche
-
-            // affichage du cadre de chargement
-            plBoiteChargement.Visible = true;
-            lblPourcentage.Visible = true;
-            lblCharge.Visible = true;
-            lblCharge.Text = "Synchronisation de la porte des étoiles...";
-
-            this.ResumeLayout();
-            //lance le Timer au lieu d'afficher le panel de suite
-            timer.Start();
-        }
-
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            if (progressionInterne < 100)
-            {
-                // Remplissage progressif
-                progressionInterne += 5;
-
-                // Calcul de la largeur en pixels
-                int nouvelleLargeur = (progressionInterne * plBoiteChargement.Width) / 100;
-                plChargement.Width = nouvelleLargeur;
-
-                lblPourcentage.Text = progressionInterne.ToString() + " %";
-            }
-            else
-            {
-                // LE CHARGEMENT EST FINI
-                timer.Stop();
-
-                // cache TOUT ce qui concerne le chargement
-                pnlProgressBar.Visible = false;
-                lblPourcentage.Visible = false;
-                lblCharge.Visible = false;
-
-                // affiche le panel de destination
-                if (prochainPanel != null)
-                {
-                    prochainPanel.Visible = true;
-                    prochainPanel.BringToFront();
-                }
-            }
-        }
-
-
-        // =======> Code TABLEAU DE BORD
-
-        private void tsmiTableauDeBord_Click(object sender, EventArgs e)
-        {
-            ActualiserPanel(plMissions);
-            ActualiserAffichage();
         }
 
         private class MyRenderer : ToolStripProfessionalRenderer
@@ -474,10 +481,13 @@ namespace Formulaire_principal
             DialogResult dr = fdm.ShowDialog();
         }
 
+
+
+
+
         public void ActualiserAffichage()
         {
-            flp1.SuspendLayout();
-            // On vide systématiquement avant de recalculer
+            flpMissions.SuspendLayout();
             flpMissions.Controls.Clear();
 
             // pour compter le nombre de missions
@@ -489,99 +499,112 @@ namespace Formulaire_principal
             grpNbMissionsTrouvees.Font = new Font(grpNbMissionsTrouvees.Font, FontStyle.Regular);
 
             // si le rdbRAZ est coché on ne change rien, on ajoute aucun filtre...
-            string condition = " WHERE 1=1"; // astuce pour ajouter des AND facilement
+            string filtre = "";
 
             // filtre status de la mission dans la groupBox
-            // on utilise localtime parce que sinon ca ne prends pas en compte les heures... (test à 0h45 et ca créer des soucis..)
-            if (rdbPasse.Checked) { 
-                condition += " AND date(dateRetour) < date('now', 'localtime')"; 
+            DateTime aujourdhui = DateTime.Today;
+
+            if (rdbPasse.Checked)
+            {
+                filtre += $"dateRetour < #{aujourdhui:yyyy-MM-dd}#";
             }
-            else if (rdbEnCours.Checked) { 
-                condition += " AND date(dateDepart) <= date('now', 'localtime') AND date(dateRetour) >= date('now', 'localtime')"; 
+            else if (rdbEnCours.Checked)
+            {
+                filtre += $"dateDepart <= #{aujourdhui:yyyy-MM-dd}# AND dateRetour >= #{aujourdhui:yyyy-MM-dd}#";
             }
-            else if (rdbAVenir.Checked) { 
-                condition += " AND date(dateDepart) > date('now','localtime')"; 
+            else if (rdbAVenir.Checked)
+            {
+                filtre += $"dateDepart > #{aujourdhui:yyyy-MM-dd}#";
             }
 
             // Filtre chef
             if (cboChefMission.SelectedIndex > 0)
             {
-                condition += " AND matriculeChef = '" + cboChefMission.SelectedValue + "'"; // On utilise le champ mémorisé
+                if (filtre != "") { 
+                    filtre += " AND "; 
+                }
+                filtre += $"matriculeChef = '{cboChefMission.SelectedValue}'";
             }
 
-            // Filtre Planète 
+            // Filtre planète
             if (cboPlanete.SelectedIndex > 0)
             {
-                condition += " AND nomPlanete = '" + cboPlanete.Text + "'";
+                if (filtre != "")
+                {
+                    filtre += " AND ";
+                }
+                filtre += $"nomPlanete = '{cboPlanete.Text}'";
             }
 
-            // filtre budget
+            // Filtre budget
             if (!string.IsNullOrEmpty(txtBudgetMin.Text))
             {
-                condition += " AND budget >= '"+txtBudgetMin.Text+"'";
+                if (filtre != "")
+                {
+                    filtre += " AND ";
+                }
+                filtre += $"CONVERT(budget, System.Int32) >= {txtBudgetMin.Text}";
             }
 
-            // filtre durée avec le NumericUpDown
+            // Filtre durée avec le NumericUpDown
             if (nupNbMissions.Value > 0)
             {
-                condition += " AND (julianday(dateRetour) - julianday(dateDepart)) >= " + nupNbMissions.Value;
+                if (filtre != "")
+                {
+                    filtre += " AND ";
+                }
+                // on regarde la duréee d'une mission
+                filtre += $"dateRetour >= dateDepart + {(int)nupNbMissions.Value}";
             }
 
-            // inner join entre Mission et membre pour ne pas avoir plusieurs fois le meme nom et prénom de chef de mission
-            string requeteFinale = "SELECT Mission.*, Membre.nom, Membre.prenom FROM Mission INNER JOIN Membre ON Mission.matriculeChef = Membre.matricule " + condition + " ORDER BY Mission.dateDepart DESC";
-            
             try
             {
-                SQLiteCommand cmdRechercheMissions = new SQLiteCommand(requeteFinale, this.co);
-                SQLiteDataReader dr = cmdRechercheMissions.ExecuteReader();
+                // Tri par dateDepart DESC (comme un OrderBy)
+                DataRow[] missions = ds.Tables["Mission"].Select(filtre, "dateDepart DESC");
 
-                if (dr.HasRows)
+                if (missions.Length > 0)
                 {
-                    while (dr.Read()) // Parcours de toutes les missions
+                    foreach (DataRow dr in missions)
                     {
-                        // Récupération des données
                         string nom = dr["nomPlanete"].ToString();
                         string numero = dr["numero"].ToString();
-                        // on doit d'abord convertir le tout en DateTime et ensuite formater la sortie.
-                        string date = Convert.ToDateTime(dr["dateDepart"]).ToString("dd/MM/yyyy") + " - "+ Convert.ToDateTime(dr["dateRetour"]).ToString("dd/MM/yyyy");
-                        string chef = dr["prenom"]+ " " + dr["nom"];
                         DateTime dateDepart = DateTime.Parse(dr["dateDepart"].ToString());
                         DateTime dateRetour = DateTime.Parse(dr["dateRetour"].ToString());
+                        string date = dateDepart.ToString("dd/MM/yyyy") + " - " + dateRetour.ToString("dd/MM/yyyy");
                         TimeSpan diff = dateRetour.Subtract(dateDepart);
-                        string nbJours = diff.Days.ToString()+ " jours";
+                        string nbJours = diff.Days.ToString() + " jours";
                         string matriculeChef = dr["matriculeChef"].ToString();
                         string budget = dr["budget"].ToString();
-                        string image = dr["nomPlanete"] + ".jpg";
-                        DateTime aujourdhui = DateTime.Now;
-                        
+                        string image = nom + ".jpg";
 
-                        // Instanciation du User Control
+                        // Récupération du nom du chef depuis la table Membre du DataSet
+                        DataRow membre = ds.Tables["Membre"].Rows.Find(matriculeChef);
+                        string chef = "";
+                        if (membre != null)
+                        {
+                            chef = membre["prenom"] + " " + membre["nom"];
+                        }
+                        else
+                        {
+                            chef = "Inconnu";
+                        }
+
                         UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
-                        // DATES (pour la couleur du cadre)
                         uc.DateDepart = dateDepart;
                         uc.DateRetour = dateRetour;
-
-                        // délégué 
                         uc.details = OuvrirDetailMission;
                         uc.stats = OuvrirStatMission;
 
-                        // ajout au conteneur (FlowLayoutPanel)
                         flpMissions.Controls.Add(uc);
                         nbMissions++;
                     }
-                    if(nbMissions > 0)
-                    {
-                        grpNbMissionsTrouvees.Text = "Nombre de missions trouvées : "+nbMissions.ToString();
-                    }
+                    grpNbMissionsTrouvees.Text = "Nombre de missions trouvées : " + nbMissions;
                 }
                 else
                 {
                     MessageBox.Show("Erreur : Aucune mission ne correspond à vos critères.", "Filtre invalide", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     grpNbMissionsTrouvees.Text = "Aucune mission trouvée...";
-                    // Changer la couleur en rouge
                     grpNbMissionsTrouvees.ForeColor = Color.FromArgb(255, 50, 50);
-
-                    // Mettre en gras
                     grpNbMissionsTrouvees.Font = new Font(grpNbMissionsTrouvees.Font, FontStyle.Bold);
                 }
             }
@@ -589,7 +612,8 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(ex.Message);
             }
-            flp1.ResumeLayout();
+
+            flpMissions.ResumeLayout();
         }
 
         private void btnRAZ_Click(object sender, EventArgs e)
@@ -600,7 +624,6 @@ namespace Formulaire_principal
             cboChefMission.SelectedIndex = 0;
             cboPlanete.SelectedIndex = 0;
             txtBudgetMin.Text = string.Empty;
-            lblBd.Text = "Budget maximum : ";
             nupNbMissions.Value = 1;
             rdbRAZ.Checked = true;
 
@@ -838,21 +861,32 @@ namespace Formulaire_principal
                 listeArmes.Sort();
                 listeAgressivite.Sort();
                 listeBienveillance.Sort();
+
+                // CLEAR avant d'ajouter pour éviter les doublons
+                cboCouleurAlliees.Items.Clear();
+                cboCouleurEnnemis.Items.Clear();
+                cboTypeArme.Items.Clear();
+                cboAgressivite.Items.Clear();
+                cboBienveillance.Items.Clear();
+
                 cboCouleurAlliees.Items.Add("Toutes");
                 cboCouleurEnnemis.Items.Add("Toutes");
                 cboTypeArme.Items.Add("Toutes");
                 cboAgressivite.Items.Add("Toutes");
                 cboBienveillance.Items.Add("Toutes");
+
                 cboCouleurAlliees.Items.AddRange(listeCouleurs.ToArray());
                 cboCouleurEnnemis.Items.AddRange(listeCouleurs.ToArray());
                 cboTypeArme.Items.AddRange(listeArmes.ToArray());
                 cboAgressivite.Items.AddRange(listeAgressivite.ToArray());
                 cboBienveillance.Items.AddRange(listeBienveillance.ToArray());
+
                 cboCouleurAlliees.SelectedIndex = 0;
                 cboCouleurEnnemis.SelectedIndex = 0;
                 cboTypeArme.SelectedIndex = 0;
                 cboAgressivite.SelectedIndex = 0;
                 cboBienveillance.SelectedIndex = 0;
+
                 chargerAliensAlliees();
                 chargerAliensEnnemis();
             }
@@ -1077,6 +1111,21 @@ namespace Formulaire_principal
                     string dbz = dr["dataBazON"] == DBNull.Value ? "Aucune information" : dr["dataBazON"].ToString();
                     string esp = dr["Especes"] == DBNull.Value ? "inconnues" : dr["Especes"].ToString();
                     string pct = dr["Pourcentages"] == DBNull.Value ? "inconnue" : dr["Pourcentages"].ToString();
+                    string couleurs = dr["Couleurs"] == DBNull.Value ? "" : dr["Couleurs"].ToString();
+                    string[] tabCouleurs = couleurs.Split(new string[] { " / " }, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Dictionnaire reliant espèce et pourcentage pour l'affichage des charts par espèces.
+                    Dictionary<string, (string pct, string couleur)> especesPourcentages = new Dictionary<string, (string, string)>(); ;
+
+                    string[] tabEspeces = esp.Split(new string[] { " / " }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] tabPourcentages = pct.Split(new string[] { "% / " }, StringSplitOptions.RemoveEmptyEntries);
+
+                    for (int i = 0; i < tabEspeces.Length; i++)
+                    {
+                        string pourcentage = (i < tabPourcentages.Length) ? tabPourcentages[i].Trim() + "%" : "inconnu";
+                        string coul = (i < tabCouleurs.Length) ? tabCouleurs[i].Trim() : "";
+                        especesPourcentages[tabEspeces[i].Trim()] = (pourcentage, coul);
+                    }
 
                     int nbMissions = 0;
                     if (dr["nbMissions"] != DBNull.Value)
@@ -1088,8 +1137,12 @@ namespace Formulaire_principal
 
                     if (nbMissions >= fMin && nbMissions <= fMax)
                     {
+                        InfoPlanete info = new InfoPlanete(nom, temp, grav, dbz, especesPourcentages, nbMissions.ToString());
+                        flpPlanete.Controls.Add(info);
+                        /*
                         InfoPlanete info = new InfoPlanete(nom, temp, grav, dbz, esp, pct, nbMissions.ToString());
                         flpPlanete.Controls.Add(info);
+                        */
                     }
                 }
                 if(flpPlanete.Controls.Count == 0)
