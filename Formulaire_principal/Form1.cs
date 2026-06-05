@@ -310,11 +310,11 @@ namespace Formulaire_principal
                 else if (prochainPanel == plAliens)
                 {
                     this.chargerAliens();
-                    this.chargerEspeces();
                 }
                 else if (prochainPanel == plPlanetes)
                 {
                     this.charger_planetes();
+                    this.chargerEspeces();
                 }
 
                 // affiche le panel de destination
@@ -467,20 +467,6 @@ namespace Formulaire_principal
             DialogResult dr = fdm.ShowDialog();
         }
 
-        private void OuvrirStatMission(object sender, EventArgs e)
-        {
-            // On cast le sender générique en votre type d'UC
-            UserControl_Missions ucClique = (UserControl_Missions)sender;
-
-            //on récupère la planète et le numéro directement depuis l'UC cliqué
-            string planete = ucClique.Planete;
-            string numero = ucClique.Numero;
-
-            // ouverture d'un formulaire enfant avec constructeur surchargé pour les détails de la mission
-            FrmStatistiquesMission fdm = new FrmStatistiquesMission(planete, numero);
-            DialogResult dr = fdm.ShowDialog();
-        }
-
 
 
 
@@ -593,7 +579,6 @@ namespace Formulaire_principal
                         uc.DateDepart = dateDepart;
                         uc.DateRetour = dateRetour;
                         uc.details = OuvrirDetailMission;
-                        uc.stats = OuvrirStatMission;
 
                         flpMissions.Controls.Add(uc);
                         nbMissions++;
@@ -1081,7 +1066,7 @@ namespace Formulaire_principal
                     filtre += " AND dataBazON = 1";
                 }
                 string filtreEspece = "";
-                for (int i = 0; i < flp2.Controls.Count; i++)
+                for (int i = 0; i < flpEspece.Controls.Count; i++)
                 {
                     if (flpEspece.Controls[i] is CheckboxEspeces userCtrl)
                     {
@@ -1109,7 +1094,7 @@ namespace Formulaire_principal
                     string temp = dr["temperature"] == DBNull.Value ? "inconnue" : dr["temperature"].ToString();
                     string grav = dr["gravite"] == DBNull.Value ? "inconnue" : dr["gravite"].ToString();
                     string dbz = dr["dataBazON"] == DBNull.Value ? "Aucune information" : dr["dataBazON"].ToString();
-                    string esp = dr["Especes"] == DBNull.Value ? "inconnues" : dr["Especes"].ToString();
+                    string esp = dr["Especes"] == DBNull.Value ? "" : dr["Especes"].ToString();
                     string pct = dr["Pourcentages"] == DBNull.Value ? "inconnue" : dr["Pourcentages"].ToString();
                     string couleurs = dr["Couleurs"] == DBNull.Value ? "" : dr["Couleurs"].ToString();
                     string[] tabCouleurs = couleurs.Split(new string[] { " / " }, StringSplitOptions.RemoveEmptyEntries);
@@ -1276,7 +1261,8 @@ namespace Formulaire_principal
 
         private void btnReinitialiserEspeces_Click(object sender, EventArgs e)
         {
-            flp2.Controls.Clear();
+            //flp2.Controls.Clear();
+            flpEspece.Controls.Clear();
             chargerEspeces();
             charger_planetes();
         }

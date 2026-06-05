@@ -30,39 +30,40 @@
         {
             this.flpPourcentageEspeces = new System.Windows.Forms.FlowLayoutPanel();
             this.lblAucuneInfo = new System.Windows.Forms.Label();
-            this.flpPourcentageEspeces.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpPourcentageEspeces
             // 
-            this.flpPourcentageEspeces.Controls.Add(this.lblAucuneInfo);
-            this.flpPourcentageEspeces.Location = new System.Drawing.Point(12, 12);
+            this.flpPourcentageEspeces.AutoScroll = true;
+            this.flpPourcentageEspeces.BackColor = System.Drawing.Color.Transparent;
+            this.flpPourcentageEspeces.Location = new System.Drawing.Point(12, 30);
             this.flpPourcentageEspeces.Name = "flpPourcentageEspeces";
-            this.flpPourcentageEspeces.Size = new System.Drawing.Size(498, 474);
+            this.flpPourcentageEspeces.Size = new System.Drawing.Size(566, 296);
             this.flpPourcentageEspeces.TabIndex = 0;
             // 
             // lblAucuneInfo
             // 
-            this.lblAucuneInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblAucuneInfo.AutoSize = true;
-            this.lblAucuneInfo.Location = new System.Drawing.Point(3, 0);
+            this.lblAucuneInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblAucuneInfo.Font = new System.Drawing.Font("Kristen ITC", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAucuneInfo.ForeColor = System.Drawing.Color.Purple;
+            this.lblAucuneInfo.Location = new System.Drawing.Point(56, 104);
             this.lblAucuneInfo.Name = "lblAucuneInfo";
-            this.lblAucuneInfo.Size = new System.Drawing.Size(79, 16);
+            this.lblAucuneInfo.Size = new System.Drawing.Size(475, 190);
             this.lblAucuneInfo.TabIndex = 0;
             this.lblAucuneInfo.Text = "Aucune info.";
+            this.lblAucuneInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FrmDetailPlanete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 498);
+            this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_mission;
+            this.ClientSize = new System.Drawing.Size(590, 333);
+            this.Controls.Add(this.lblAucuneInfo);
             this.Controls.Add(this.flpPourcentageEspeces);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmDetailPlanete";
-            this.Text = "FrmDetailPlanete";
             this.Load += new System.EventHandler(this.FrmDetailPlanete_Load);
-            this.flpPourcentageEspeces.ResumeLayout(false);
-            this.flpPourcentageEspeces.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -145,12 +145,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAliens.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAliens.Designer.cs">
-      <DependentUpon>FrmAliens.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmDetailPlanete.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,23 +175,11 @@
     <Compile Include="FrmPDF.Designer.cs">
       <DependentUpon>FrmPDF.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPlanetes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPlanetes.Designer.cs">
-      <DependentUpon>FrmPlanetes.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmDetailMission.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmDetailMission.Designer.cs">
       <DependentUpon>FrmDetailMission.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmStatistiquesMission.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmStatistiquesMission.Designer.cs">
-      <DependentUpon>FrmStatistiquesMission.cs</DependentUpon>
     </Compile>
     <Compile Include="InfoAlien.cs">
       <SubType>UserControl</SubType>
@@ -256,17 +238,8 @@
     <EmbeddedResource Include="FrmPDF.resx">
       <DependentUpon>FrmPDF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStatistiquesMission.resx">
-      <DependentUpon>FrmStatistiquesMission.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CheckboxEspeces.resx">
       <DependentUpon>CheckboxEspeces.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmAliens.resx">
-      <DependentUpon>FrmAliens.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmPlanetes.resx">
-      <DependentUpon>FrmPlanetes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InfoAlien.resx">
       <DependentUpon>InfoAlien.cs</DependentUpon>

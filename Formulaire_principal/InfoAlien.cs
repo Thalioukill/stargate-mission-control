@@ -37,42 +37,43 @@ namespace Formulaire_principal
                     picAlliees.Image = Image.FromFile(path);
                 }
             }
+
             switch (couleur)
             {
                 case "Pourpre":
-                    couleurCadre = Color.Red;
-                    lblCouleurAlliees.ForeColor = Color.Red;
+                    couleurCadre = Color.FromArgb(162, 94, 214);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(162, 94, 214);
                     break;
                 case "Vert":
-                    couleurCadre = Color.Green;
-                    lblCouleurAlliees.ForeColor = Color.Green;
+                    couleurCadre = Color.FromArgb(98, 182, 74); ;
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(98, 182, 74); ;
                     break;
                 case "Bleu":
-                    couleurCadre = Color.Blue;
-                    lblCouleurAlliees.ForeColor = Color.Blue;
+                    couleurCadre = Color.FromArgb(74, 146, 182);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(74, 146, 182);
                     break;
                 case "Orange":
-                    couleurCadre = Color.Orange;
-                    lblCouleurAlliees.ForeColor = Color.Orange;
+                    couleurCadre = Color.FromArgb(214, 128, 74);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(214, 128, 74);
                     break;
                 case "Gris":
-                    couleurCadre = Color.Gray;
-                    lblCouleurAlliees.ForeColor = Color.Gray;
+                    couleurCadre = Color.FromArgb(124, 126, 132);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(124, 126, 132);
                     break;
                 case "Marron":
-                    couleurCadre = Color.Brown;
-                    lblCouleurAlliees.ForeColor = Color.Brown;
+                    couleurCadre = Color.FromArgb(114, 75, 55);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(114, 75, 55);
                     break;
                 case "Violet":
-                    couleurCadre = Color.Purple;
-                    lblCouleurAlliees.ForeColor = Color.Purple;
+                    couleurCadre = Color.FromArgb(99, 48, 166);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(99, 48, 166);
                     break;
                 case "Rose":
-                    couleurCadre = Color.Pink;
-                    lblCouleurAlliees.ForeColor = Color.Pink;
+                    couleurCadre = Color.FromArgb(214, 101, 195);
+                    lblCouleurAlliees.ForeColor = Color.FromArgb(214, 101, 195);
                     break;
                 default:
-                    couleurCadre = Color.Black;
+                    couleurCadre = Color.FromArgb(182, 74, 74);
                     break;
             }
 

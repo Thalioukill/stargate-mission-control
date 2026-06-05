@@ -14,13 +14,15 @@ namespace Formulaire_principal
     {
         public FrmDetailPlanete(String nom, Dictionary<string, (string pct, string couleur)> especesPourcentages)
         {
-            this.Text = $"Détail sur les espèces peuplant la planète {nom}";
-
             InitializeComponent();
+
+            this.Text = $"Détail sur les espèces peuplant la planète {nom}";
 
             if (especesPourcentages == null || especesPourcentages.Count == 0)
             {
-                lblAucuneInfo.Text = "Aucune espèce répertoriée sur cette planète.";
+                lblAucuneInfo.Text = "Aucune espèce répertoriée sur cette planète... Elle semble dangereuse...";
+                lblAucuneInfo.Left = (this.ClientSize.Width - lblAucuneInfo.Width) / 2;
+                lblAucuneInfo.Top = (this.ClientSize.Height - lblAucuneInfo.Height) / 2;
                 lblAucuneInfo.Visible = true;
             }
             else
@@ -33,9 +35,9 @@ namespace Formulaire_principal
                     // kvp.Value.pct   = pourcentage (ex: "30%")
                     // kvp.Value.couleur = couleur   (ex: "Violet")
 
-                    InfoEspecePlanete uc = new InfoEspecePlanete(kvp.Key, kvp.Value.pct, kvp.Value.couleur);
+                    EspecesPourcentage uc = new EspecesPourcentage(nom, kvp.Key, kvp.Value.pct, kvp.Value.couleur);
                     uc.Margin = new Padding(5);
-                    flpEspeces.Controls.Add(uc);
+                    flpPourcentageEspeces.Controls.Add(uc);
                 }
             }
         }

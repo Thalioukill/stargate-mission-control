@@ -88,23 +88,24 @@
             // 
             // lblEspeces
             // 
-            this.lblEspeces.AutoSize = true;
+            this.lblEspeces.AutoEllipsis = true;
             this.lblEspeces.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEspeces.Location = new System.Drawing.Point(497, 65);
             this.lblEspeces.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEspeces.Name = "lblEspeces";
-            this.lblEspeces.Size = new System.Drawing.Size(57, 24);
+            this.lblEspeces.Size = new System.Drawing.Size(274, 59);
             this.lblEspeces.TabIndex = 5;
             this.lblEspeces.Text = "label5";
             this.lblEspeces.Click += new System.EventHandler(this.InfoPlanete_Click);
             // 
             // lblMission
             // 
+            this.lblMission.AutoEllipsis = true;
             this.lblMission.Font = new System.Drawing.Font("Kristen ITC", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMission.Location = new System.Drawing.Point(497, 105);
+            this.lblMission.Location = new System.Drawing.Point(497, 124);
             this.lblMission.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMission.Name = "lblMission";
-            this.lblMission.Size = new System.Drawing.Size(262, 68);
+            this.lblMission.Size = new System.Drawing.Size(274, 68);
             this.lblMission.TabIndex = 7;
             this.lblMission.Text = "label7";
             this.lblMission.Click += new System.EventHandler(this.InfoPlanete_Click);
@@ -125,6 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lblMission);
             this.Controls.Add(this.lblEspeces);
             this.Controls.Add(this.lblDataBaz);
@@ -135,7 +137,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InfoPlanete";
-            this.Size = new System.Drawing.Size(795, 220);
+            this.Size = new System.Drawing.Size(793, 218);
             this.Load += new System.EventHandler(this.InfoPlanete_Load);
             this.Click += new System.EventHandler(this.InfoPlanete_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.InfoPlanete_Paint);

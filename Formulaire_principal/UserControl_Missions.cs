@@ -150,14 +150,5 @@ namespace Formulaire_principal
                 this.details(this, e); // on déclenche la fonction avec le UserControl lui-meme
             }
         }
-
-        private void btnStats_Click(object sender, EventArgs e)
-        {
-            // Si le formulaire parent a bien défini une méthode à exécuter
-            if (this.stats != null)
-            {
-                this.stats(this, e); // on déclenche la fonction avec le UserControl lui-meme
-            }
-        }
     }
 }

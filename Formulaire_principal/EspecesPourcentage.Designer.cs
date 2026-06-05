@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.picEspece = new System.Windows.Forms.PictureBox();
             this.lblNomEspece = new System.Windows.Forms.Label();
             this.lblPourcentage = new System.Windows.Forms.Label();
-            this.chartJaug = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartJauge = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.picEspece)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartJaug)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartJauge)).BeginInit();
             this.SuspendLayout();
             // 
             // picEspece
             // 
             this.picEspece.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picEspece.Location = new System.Drawing.Point(33, 38);
+            this.picEspece.Location = new System.Drawing.Point(18, 33);
             this.picEspece.Name = "picEspece";
-            this.picEspece.Size = new System.Drawing.Size(182, 155);
+            this.picEspece.Size = new System.Drawing.Size(143, 121);
+            this.picEspece.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picEspece.TabIndex = 0;
             this.picEspece.TabStop = false;
             // 
@@ -52,51 +53,52 @@
             // 
             this.lblNomEspece.AutoSize = true;
             this.lblNomEspece.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomEspece.Location = new System.Drawing.Point(254, 38);
+            this.lblNomEspece.Location = new System.Drawing.Point(177, 33);
             this.lblNomEspece.Name = "lblNomEspece";
-            this.lblNomEspece.Size = new System.Drawing.Size(65, 28);
+            this.lblNomEspece.Size = new System.Drawing.Size(99, 28);
             this.lblNomEspece.TabIndex = 1;
-            this.lblNomEspece.Text = "label1";
+            this.lblNomEspece.Text = "Espèce : ";
             // 
             // lblPourcentage
             // 
             this.lblPourcentage.AutoSize = true;
             this.lblPourcentage.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPourcentage.Location = new System.Drawing.Point(254, 165);
+            this.lblPourcentage.Location = new System.Drawing.Point(13, 175);
             this.lblPourcentage.Name = "lblPourcentage";
             this.lblPourcentage.Size = new System.Drawing.Size(66, 28);
             this.lblPourcentage.TabIndex = 2;
             this.lblPourcentage.Text = "label2";
             // 
-            // chartJaug
+            // chartJauge
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartJaug.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartJaug.Legends.Add(legend1);
-            this.chartJaug.Location = new System.Drawing.Point(259, 78);
-            this.chartJaug.Name = "chartJaug";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartJaug.Series.Add(series1);
-            this.chartJaug.Size = new System.Drawing.Size(325, 72);
-            this.chartJaug.TabIndex = 3;
-            this.chartJaug.Text = "chart1";
+            chartArea2.Name = "ChartArea1";
+            this.chartJauge.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartJauge.Legends.Add(legend2);
+            this.chartJauge.Location = new System.Drawing.Point(182, 44);
+            this.chartJauge.Name = "chartJauge";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartJauge.Series.Add(series2);
+            this.chartJauge.Size = new System.Drawing.Size(341, 121);
+            this.chartJauge.TabIndex = 3;
+            this.chartJauge.Text = "chart1";
             // 
             // EspecesPourcentage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chartJaug);
-            this.Controls.Add(this.lblPourcentage);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.lblNomEspece);
+            this.Controls.Add(this.chartJauge);
+            this.Controls.Add(this.lblPourcentage);
             this.Controls.Add(this.picEspece);
             this.Name = "EspecesPourcentage";
-            this.Size = new System.Drawing.Size(635, 236);
+            this.Size = new System.Drawing.Size(526, 253);
             this.Load += new System.EventHandler(this.EspecesPourcentage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picEspece)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartJaug)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartJauge)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,6 +109,6 @@
         private System.Windows.Forms.PictureBox picEspece;
         private System.Windows.Forms.Label lblNomEspece;
         private System.Windows.Forms.Label lblPourcentage;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartJaug;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartJauge;
     }
 }

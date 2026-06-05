@@ -56,41 +56,6 @@ namespace Formulaire_principal
             ColorerMotCle(rtbFeuilleDeRoute, "Informateur", Color.ForestGreen);
             ColorerMotCle(rtbFeuilleDeRoute, "Dépenses", Color.IndianRed);
 
-
-
-            /*
-            // Création d'une vue sur la table "Composer" (qui lie membres et missions)
-            DataView dvEquipage = new DataView(mesDatas.dsStargate.Tables["Composer"]);
-
-            // Application du filtre local
-            dvEquipage.RowFilter = $"nomPlanete = '{laPlanete}' AND numeroMission = {leNumero}";
-
-            //parcours de la vue filtrée pour afficher les User Controls
-            foreach (DataRowView ligne in dvEquipage)
-            {
-                // On récupère le matricule du membre de la mission en cours dans la ligne de la vue
-                string matricule = ligne["matricule"].ToString();
-
-                // On va chercher les détails du membre (nom, grade...) dans la table Membre du DataSet
-                DataRow rMembre = mesDatas.dsStargate.Tables["Membre"].Rows.Find(matricule);
-
-                if (rMembre != null)
-                {
-                    string nomComplet = rMembre["prenom"] + " " + rMembre["nom"];
-
-                    // Grade OU Spécialité 
-                    string grade_specialite = rMembre["grade"].ToString();
-
-                    if (string.IsNullOrEmpty(grade_specialite)) {
-                        grade_specialite = rMembre["Specialite"].ToString();
-                    }
-                    // Création de l'UC avec la couleur si chef
-                    UserControl_MembresMission uc = new UserControl_MembresMission(nomComplet, infoSup, rMembre["photo"].ToString(), estChef);
-
-                    flpEquipage.Controls.Add(uc);
-                }
-            }
-            */
         }
 
         private void AfficherDetailsMission()
@@ -306,18 +271,26 @@ namespace Formulaire_principal
         // Méthode pour mapper les couleurs du projet Stargate
         private Color ConvertirNomCouleur(string couleurFr)
         {
-            // On utilise un switch pour faire correspondre le texte DB et la couleur C#
-            switch (couleurFr.ToLower())
+
+            if (string.IsNullOrEmpty(couleurFr))
             {
-                case "gris": return Color.Gray;
-                case "pourpre": return Color.Purple;
-                case "orange": return Color.Orange;
-                case "rose": return Color.Pink;
-                case "violet": return Color.Violet;
-                case "marron": return Color.SaddleBrown;
-                case "vert": return Color.Green;
-                case "bleu": return Color.Blue;
-                default: return Color.Black; // Couleur par défaut si non trouvé
+                return Color.DodgerBlue;
+            }
+            else
+            {
+                // On utilise un switch pour faire correspondre le texte DB et la couleur C#
+                switch (couleurFr.ToLower())
+                {
+                    case "gris": return Color.FromArgb(124, 126, 132);
+                    case "pourpre": return Color.FromArgb(162, 94, 214);
+                    case "orange": return Color.FromArgb(214, 128, 74);
+                    case "rose": return Color.FromArgb(214, 101, 195);
+                    case "violet": return Color.FromArgb(99, 48, 166);
+                    case "marron": return Color.FromArgb(114, 75, 55);
+                    case "vert": return Color.FromArgb(98, 182, 74);
+                    case "bleu": return Color.FromArgb(74, 146, 182);
+                    default: return Color.FromArgb(182, 74, 74);
+                }
             }
         }
 
