@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJournalDeBord));
             this.grpEvenements = new System.Windows.Forms.GroupBox();
             this.lblApres = new System.Windows.Forms.Label();
             this.lblAvant = new System.Windows.Forms.Label();
@@ -72,6 +73,7 @@
             this.rdbInf = new System.Windows.Forms.RadioButton();
             this.lblPasDinformateurs = new System.Windows.Forms.Label();
             this.errorProviderMembresMissions = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblPasCaptures = new System.Windows.Forms.Label();
             this.grpEvenements.SuspendLayout();
             this.flpAffichage.SuspendLayout();
             this.grpDepensesEffectues.SuspendLayout();
@@ -275,9 +277,9 @@
             this.dgvDepenses.AllowUserToDeleteRows = false;
             this.dgvDepenses.AllowUserToResizeColumns = false;
             this.dgvDepenses.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvDepenses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -328,8 +330,8 @@
             this.dgvBilan.AllowUserToDeleteRows = false;
             this.dgvBilan.AllowUserToResizeColumns = false;
             this.dgvBilan.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvBilan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvBilan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvBilan.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvBilan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -350,6 +352,7 @@
             this.grpBilan.Controls.Add(this.dgvBilan);
             this.grpBilan.Controls.Add(this.flpGraphiques);
             this.grpBilan.Controls.Add(this.lblPasInfosCaptures_renta);
+            this.grpBilan.Controls.Add(this.lblPasCaptures);
             this.grpBilan.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBilan.Location = new System.Drawing.Point(11, 817);
             this.grpBilan.Name = "grpBilan";
@@ -407,7 +410,7 @@
             // flpGraphiques
             // 
             this.flpGraphiques.AutoScroll = true;
-            this.flpGraphiques.Location = new System.Drawing.Point(8, 466);
+            this.flpGraphiques.Location = new System.Drawing.Point(10, 475);
             this.flpGraphiques.Name = "flpGraphiques";
             this.flpGraphiques.Size = new System.Drawing.Size(843, 291);
             this.flpGraphiques.TabIndex = 10;
@@ -424,20 +427,20 @@
             // 
             // chartBudget
             // 
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 100F;
-            chartArea2.InnerPlotPosition.Width = 100F;
-            chartArea2.Name = "ChartArea1";
-            this.chartBudget.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartBudget.Legends.Add(legend2);
+            chartArea3.InnerPlotPosition.Auto = false;
+            chartArea3.InnerPlotPosition.Height = 100F;
+            chartArea3.InnerPlotPosition.Width = 100F;
+            chartArea3.Name = "ChartArea1";
+            this.chartBudget.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartBudget.Legends.Add(legend3);
             this.chartBudget.Location = new System.Drawing.Point(22, 24);
             this.chartBudget.Name = "chartBudget";
             this.chartBudget.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartBudget.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartBudget.Series.Add(series3);
             this.chartBudget.Size = new System.Drawing.Size(351, 376);
             this.chartBudget.TabIndex = 11;
             this.chartBudget.Text = "chart1";
@@ -535,6 +538,16 @@
             // 
             this.errorProviderMembresMissions.ContainerControl = this;
             // 
+            // lblPasCaptures
+            // 
+            this.lblPasCaptures.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPasCaptures.Location = new System.Drawing.Point(114, 518);
+            this.lblPasCaptures.Name = "lblPasCaptures";
+            this.lblPasCaptures.Size = new System.Drawing.Size(615, 105);
+            this.lblPasCaptures.TabIndex = 0;
+            this.lblPasCaptures.Text = "Pas d\'informations sur les captures disponibles pour cette mission !";
+            this.lblPasCaptures.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmJournalDeBord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -549,6 +562,7 @@
             this.Controls.Add(this.btnEditerPDF);
             this.Controls.Add(this.grpEvenements);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(670, 25);
             this.MaximumSize = new System.Drawing.Size(966, 988);
             this.MinimumSize = new System.Drawing.Size(966, 745);
@@ -617,5 +631,6 @@
         private System.Windows.Forms.Label lblPasDinformateurs;
         private System.Windows.Forms.Label lblPasInfosCaptures_renta;
         private System.Windows.Forms.RadioButton rdbReussiteObjectifs;
+        private System.Windows.Forms.Label lblPasCaptures;
     }
 }

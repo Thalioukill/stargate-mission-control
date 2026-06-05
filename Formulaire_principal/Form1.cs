@@ -336,75 +336,112 @@ namespace Formulaire_principal
 
         private void ChargerComboBox()
         {
-            // On charge les ComboBox des filtres du tableau de bord (invisible pour l'instant)
+            ChargerCboChefMissions();
+            ChargerCboPlanete();
 
-            // ComboBox pour les chefs de mission
-            string remplirCboChef = $"SELECT DISTINCT Membre.matricule, Membre.nom || ' ' || Membre.prenom AS nomComplet FROM Mission INNER JOIN Membre ON Mission.matriculeChef = Membre.matricule ORDER BY Membre.nom ASC";
+        }
 
-            try
+        private void ChargerCboChefMissions()
+        {
+            DataTable dtChefs = new DataTable();
+            dtChefs.Columns.Add("matricule", typeof(string));
+            dtChefs.Columns.Add("nomComplet", typeof(string));
+
+            // On parcourt toutes les missions du DataSet
+            foreach (DataRow drMission in ds.Tables["Mission"].Rows)
             {
-                SQLiteCommand cmd = new SQLiteCommand(remplirCboChef, this.co);
+                string matricule = drMission["matriculeChef"].ToString();
 
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
+                // On cherche le membre correspondant dans le DataSet
+                DataRow membre = ds.Tables["Membre"].Rows.Find(matricule);
 
-                // On crée une nouvelle ligne manuellement pour l'option "Tous"
-                DataRow ligneTous = dt.NewRow();
-                ligneTous["matricule"] = "TOUS"; // Valeur mémorisée neutre
-                ligneTous["nomComplet"] = "Tous les chefs"; // Texte affiché
-                dt.Rows.InsertAt(ligneTous, 0); // On l'insère à l'index 0 (le début)
+                if (membre != null)
+                {
+                    // On vérifie que le chef n'est pas déjà dans la liste
+                    bool dejaPresent = false;
+                    foreach (DataRow drChef in dtChefs.Rows)
+                    {
+                        if (drChef["matricule"].ToString() == matricule)
+                        {
+                            dejaPresent = true;
+                            break;
+                        }
+                    }
 
-                cboChefMission.DataSource = dt;
-                cboChefMission.ValueMember = "matricule";
-                cboChefMission.DisplayMember = "nomComplet";
-
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
-            }
-            cboChefMission.SelectedIndex = 0; // On sélectionne tous les chefs par défaut
-
-            // ComboBox pour les noms de planetes
-            string remplirCboPlanete = $"SELECT nomPlanete FROM Mission ORDER BY nomPlanete";
-
-            try
-            {
-                SQLiteCommand cmd = new SQLiteCommand(remplirCboPlanete, this.co);
-
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-
-                DataRow ligneToutesP = dt.NewRow();
-                ligneToutesP["nomPlanete"] = "Toutes les planètes";
-                dt.Rows.InsertAt(ligneToutesP, 0);
-
-                cboPlanete.DataSource = dt;
-                cboPlanete.ValueMember = "nomPlanete";
-                cboPlanete.DisplayMember = "nomPlanete";
-
-            }
-            catch (SQLiteException err)
-            {
-                MessageBox.Show(err.Message);
+                    // Si pas encore présent on l'ajoute
+                    if (!dejaPresent)
+                    {
+                        DataRow ligne = dtChefs.NewRow();
+                        ligne["matricule"] = matricule;
+                        ligne["nomComplet"] = membre["nom"] + " " + membre["prenom"];
+                        dtChefs.Rows.Add(ligne);
+                    }
+                }
             }
 
+            // Ligne "Tous les chefs" en première position
+            DataRow ligneTous = dtChefs.NewRow();
+            ligneTous["matricule"] = "TOUS";
+            ligneTous["nomComplet"] = "Tous les chefs";
+            dtChefs.Rows.InsertAt(ligneTous, 0);
+
+            cboChefMission.DataSource = dtChefs;
+            cboChefMission.ValueMember = "matricule";
+            cboChefMission.DisplayMember = "nomComplet";
+            cboChefMission.SelectedIndex = 0;
+        }
+
+
+        private void ChargerCboPlanete()
+        {
+            DataTable dtPlanetes = new DataTable();
+            dtPlanetes.Columns.Add("nomPlanete", typeof(string));
+
+            foreach (DataRow drMission in ds.Tables["Mission"].Rows)
+            {
+                string nomPlanete = drMission["nomPlanete"].ToString();
+
+                bool dejaPresente = false;
+                foreach (DataRow drPlanete in dtPlanetes.Rows)
+                {
+                    if (drPlanete["nomPlanete"].ToString() == nomPlanete)
+                    {
+                        dejaPresente = true;
+                        break;
+                    }
+                }
+
+                if (!dejaPresente)
+                {
+                    DataRow ligne = dtPlanetes.NewRow();
+                    ligne["nomPlanete"] = nomPlanete;
+                    dtPlanetes.Rows.Add(ligne);
+                }
+            }
+
+            DataRow ligneToutesP = dtPlanetes.NewRow();
+            ligneToutesP["nomPlanete"] = "Toutes les planètes";
+            dtPlanetes.Rows.InsertAt(ligneToutesP, 0);
+
+            cboPlanete.DataSource = dtPlanetes;
+            cboPlanete.ValueMember = "nomPlanete";
+            cboPlanete.DisplayMember = "nomPlanete";
             cboPlanete.SelectedIndex = 0;
         }
 
-        private void AfficherBudgetMax()
-        {
-            //on affiche le budget maximum 
-            string remplirBudgetMax = $@"SELECT MAX(CAST (budget as integer)) FROM Mission";
 
-            try
+        private void AfficherBudgetMax()
+        {            
+            // Compute("MAX(budget)", "") = équivalent de SELECT MAX(budget) FROM Mission
+            object result = ds.Tables["Mission"].Compute("MAX(budget)", "");
+
+            if (result != null && result != DBNull.Value)
             {
-                SQLiteCommand cmd = new SQLiteCommand(remplirBudgetMax, this.co);
-                lblBd.Text += "Budget maximum : "+cmd.ExecuteScalar().ToString() + " $";
+                lblBd.Text = "Budget maximum : " + Convert.ToInt32(result).ToString() + " $";
             }
-            catch (Exception err)
+            else
             {
-                MessageBox.Show(err.Message);
+                lblBd.Text = "Budget maximum : N/C";
             }
         }
 

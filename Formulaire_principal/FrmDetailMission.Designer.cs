@@ -684,6 +684,7 @@
             this.txtDataBaz.Location = new System.Drawing.Point(60, 370);
             this.txtDataBaz.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDataBaz.Name = "txtDataBaz";
+            this.txtDataBaz.ShortcutsEnabled = false;
             this.txtDataBaz.Size = new System.Drawing.Size(77, 35);
             this.txtDataBaz.TabIndex = 23;
             this.txtDataBaz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataBaz_KeyPress);
@@ -806,6 +807,7 @@
             this.Controls.Add(this.picMission);
             this.Controls.Add(this.lblNomMission);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDetailMission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fiche Mission : ";

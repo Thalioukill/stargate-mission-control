@@ -75,7 +75,6 @@ namespace Formulaire_principal
             AfficherBilan();
             InitBinding();
             InitContacts();
-            //InitDepenses();
             ChercherDepenses(idPlanete, Convert.ToInt32(idNumero));
             CalculerTotaux();
             GenererGraphiqueBudget();
@@ -396,90 +395,102 @@ namespace Formulaire_principal
         private void AfficherBilan()
         {
             lblPasInfosCaptures_renta.Visible = false;
-            if (ds.Tables[nomTableBilan].Rows.Count > 0)
-            {
-                dgvBilan.Visible = true;
-                dgvBilan.DataSource = ds.Tables[nomTableBilan];
-            }
-            else
-            {
-                dgvBilan.Visible = false;
-                lblPasInfosCaptures_renta.Text = "Aucune capture n'a été enregistrée pour cette mission.";
-                lblPasInfosCaptures_renta.Visible = true;
-                lblPasInfosCaptures_renta.ForeColor = Color.FromArgb(255, 21, 64);
-            }
-
-            // AJOUT POUR LE GRAPHIQUE
-
-            // On vide le conteneur pour éviter les doublons lors d'un rafraîchissement
+            lblPasCaptures.Visible = false;
             flpGraphiques.Controls.Clear();
 
             DataTable dtBilan = ds.Tables[nomTableBilan];
 
-            //On boucle sur chaque espèce présente dans le bilan de mission
-            foreach (DataRow row in dtBilan.Rows)
+            // AJOUT POUR LE GRAPHIQUE && dgv
+
+            if (dtBilan.Rows.Count == 0)
             {
-                string nomEspece = row["Nom de l'espèce"].ToString();
+                // On cache le tableau et les charts
+                dgvBilan.Visible = false;
+                flpGraphiques.Visible = false;
 
-                string filtre = "nom = '" + nomEspece.Replace("'", "''") + "'";
-                DataRow[] tabRows = ds.Tables["Espece"].Select(filtre);
+                // On affiche les messages d'information
+                lblPasInfosCaptures_renta.Text = "Aucune capture n'a été enregistrée pour cette mission.";
+                lblPasInfosCaptures_renta.Visible = true;
+                lblPasCaptures.Visible = true;
+                lblPasCaptures.BringToFront();
+            }
+            else
+            {
+                // On cache les messages d'information
+                lblPasInfosCaptures_renta.Visible = false;
+                lblPasCaptures.Visible = false;
 
+                // On affiche le tableau et les charts
+                dgvBilan.Visible = true;
+                dgvBilan.DataSource = dtBilan;
+                flpGraphiques.Visible = true;
+                flpGraphiques.BringToFront();
 
-                // A REMPLACER 
-                string couleurEspece = "Inconnue";
-                if (tabRows.Length > 0)
+                //On boucle sur chaque espèce présente dans le bilan de mission
+                foreach (DataRow row in dtBilan.Rows)
                 {
-                    couleurEspece = tabRows[0]["couleur"].ToString();
+                    string nomEspece = row["Nom de l'espèce"].ToString();
+
+                    string filtre = "nom = '" + nomEspece.Replace("'", "''") + "'";
+                    DataRow[] tabRows = ds.Tables["Espece"].Select(filtre);
+
+
+                    // A REMPLACER 
+                    string couleurEspece = "Inconnue";
+                    if (tabRows.Length > 0)
+                    {
+                        couleurEspece = tabRows[0]["couleur"].ToString();
+                    }
+
+                    int captures = Convert.ToInt32(row["Nombre de captures réalisées"]);
+                    int objectif = Convert.ToInt32(row["Objectif initial"]);
+
+                    // Calcul du reste à capturer (pour la part vide du camembert)
+                    int reste = Math.Max(0, objectif - captures);
+
+                    //Création dynamique d'un composant Chart 
+                    Chart chartIndiv = new Chart();
+                    chartIndiv.Size = new Size(180, 180);
+
+                    // Zone de graphique
+                    ChartArea area = new ChartArea();
+                    chartIndiv.ChartAreas.Add(area);
+
+                    // Titre : Nom de l'espèce + le taux calculé 
+                    var titrePrincipal = chartIndiv.Titles.Add($"Taux de capture : {nomEspece} ({row["Taux de réussite (%)"]}%)");
+                    titrePrincipal.Font = new Font("Kristen ITC", 12, FontStyle.Underline);
+
+                    // Configuration de la série en type "Doughnut" (Anneau) ou Pie
+                    Series s = new Series("Taux");
+                    s.ChartType = SeriesChartType.Doughnut;
+                    s.Font = new Font("Kristen ITC", 9);
+
+                    if (reste <= 0)
+                    {
+                        // CAS 100% CAPTURÉS : Une seule part verte
+                        s.Points.AddXY("Capturés", captures);
+                        s.Points[0].Color = ConvertirNomCouleur(couleurEspece);
+                    }
+                    else if (captures <= 0)
+                    {
+                        // CAS 0% CAPTURÉS : Une seule part grise
+                        s.Points.AddXY("Reste", reste);
+                        s.Points[0].Color = Color.FromArgb(220, 220, 220);
+                    }
+                    else
+                    {
+                        // CAS INTERMÉDIAIRE : On affiche les deux parts
+                        s.Points.AddXY("Capturés", captures);
+                        s.Points.AddXY("Reste", reste);
+
+                        s.Points[0].Color = ConvertirNomCouleur(couleurEspece);
+                        s.Points[1].Color = Color.FromArgb(220, 220, 220);
+                    }
+
+                    chartIndiv.Series.Add(s);
+                    flpGraphiques.Controls.Add(chartIndiv);
+                    this.captures.Add($"Nom de l'espèce : {nomEspece}\nObjectif de capture : {objectif}\nCapturés : {captures}\nTaux de réussite de capture : {row["Taux de réussite (%)"]}%");
                 }
-
-                int captures = Convert.ToInt32(row["Nombre de captures réalisées"]);
-                int objectif = Convert.ToInt32(row["Objectif initial"]);
-
-                // Calcul du reste à capturer (pour la part vide du camembert)
-                int reste = Math.Max(0, objectif - captures);
-
-                //Création dynamique d'un composant Chart 
-                Chart chartIndiv = new Chart();
-                chartIndiv.Size = new Size(180, 180);
-
-                // Zone de graphique
-                ChartArea area = new ChartArea();
-                chartIndiv.ChartAreas.Add(area);
-
-                // Titre : Nom de l'espèce + le taux calculé 
-                var titrePrincipal = chartIndiv.Titles.Add($"Taux de capture : {nomEspece} ({row["Taux de réussite (%)"]}%)");
-                titrePrincipal.Font = new Font("Kristen ITC", 12, FontStyle.Underline);
-
-                // Configuration de la série en type "Doughnut" (Anneau) ou Pie
-                Series s = new Series("Taux");
-                s.ChartType = SeriesChartType.Doughnut;
-                s.Font = new Font("Kristen ITC", 9);
-
-                if (reste <= 0)
-                {
-                    // CAS 100% CAPTURÉS : Une seule part verte
-                    s.Points.AddXY("Capturés", captures);
-                    s.Points[0].Color = ConvertirNomCouleur(couleurEspece);
-                }
-                else if (captures <= 0)
-                {
-                    // CAS 0% CAPTURÉS : Une seule part grise
-                    s.Points.AddXY("Reste", reste);
-                    s.Points[0].Color = Color.FromArgb(220, 220, 220);
-                }
-                else
-                {
-                    // CAS INTERMÉDIAIRE : On affiche les deux parts
-                    s.Points.AddXY("Capturés", captures);
-                    s.Points.AddXY("Reste", reste);    
-
-                    s.Points[0].Color = ConvertirNomCouleur(couleurEspece);
-                    s.Points[1].Color = Color.FromArgb(220, 220, 220);
-                }
-
-                chartIndiv.Series.Add(s);
-                flpGraphiques.Controls.Add(chartIndiv);
-                this.captures.Add($"Nom de l'espèce : {nomEspece}\nObjectif de capture : {objectif}\nCapturés : {captures}\nTaux de réussite de capture : {row["Taux de réussite (%)"]}%");
             }
         }
 
@@ -489,15 +500,15 @@ namespace Formulaire_principal
             // On utilise un switch pour faire correspondre le texte DB et la couleur C#
             switch (couleurFr.ToLower())
             {
-                case "gris": return Color.Gray;
-                case "pourpre": return Color.Purple;
-                case "orange": return Color.Orange;
-                case "rose": return Color.Pink;
-                case "violet": return Color.Violet;
-                case "marron": return Color.SaddleBrown;
-                case "vert": return Color.Green;
-                case "bleu": return Color.Blue;
-                default: return Color.Aquamarine; // Couleur par défaut si non trouvé
+                case "gris": return Color.FromArgb(124, 126, 132);
+                case "pourpre": return Color.FromArgb(162, 94, 214);
+                case "orange": return Color.FromArgb(214, 128, 74);
+                case "rose": return Color.FromArgb(214, 101, 195);
+                case "violet": return Color.FromArgb(99, 48, 166);
+                case "marron": return Color.FromArgb(114, 75, 55);
+                case "vert": return Color.FromArgb(98, 182, 74);
+                case "bleu": return Color.FromArgb(74, 146, 182);
+                default: return Color.MediumAquamarine;
             }
         }
 
@@ -545,23 +556,6 @@ namespace Formulaire_principal
             lg.Docking = Docking.Right;
             chartBudget.Legends.Add(lg);
 
-            /*chartBudget.ChartAreas.InnerPlotPosition.Auto = false;
-            chartBudget.ChartAreas.InnerPlotPosition.Height = 85; // Ajustez selon vos besoins
-            chartBudget.ChartAreas.InnerPlotPosition.Width = 85;
-            chartBudget.ChartAreas.InnerPlotPosition.X = 7;
-            chartBudget.ChartAreas.InnerPlotPosition.Y = 7;
-
-            // On cible la PREMIÈRE zone de la collection 
-            var area = chartBudget.ChartAreas;
-
-            // On désactive le positionnement automatique
-            area.InnerPlotPosition.Auto = false;
-
-            // On définit la taille (ex: 85% de l'espace disponible)
-            area.InnerPlotPosition.Height = 85;
-            area.InnerPlotPosition.Width = 85;*/
-
-
             var titrePrincipal = chartBudget.Titles.Add("Analyse budgétaire de la mission : " + idPlanete + "-" + idNumero);
             titrePrincipal.Font = new Font("Kristen ITC", 13, FontStyle.Underline);
 
@@ -575,8 +569,9 @@ namespace Formulaire_principal
             // Remplissage intelligent des points
             void AjouterPoint(string label, double valeur)
             {
-                if (valeur > 0) { 
-                    s.Points.AddXY(label, valeur); 
+                if (valeur > 0)
+                {
+                    s.Points.AddXY(label, valeur);
                 }
             }
 

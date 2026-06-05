@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetailPlanete));
             this.flpPourcentageEspeces = new System.Windows.Forms.FlowLayoutPanel();
             this.lblAucuneInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -61,6 +62,7 @@
             this.ClientSize = new System.Drawing.Size(590, 333);
             this.Controls.Add(this.lblAucuneInfo);
             this.Controls.Add(this.flpPourcentageEspeces);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmDetailPlanete";
             this.Load += new System.EventHandler(this.FrmDetailPlanete_Load);

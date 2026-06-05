@@ -289,7 +289,7 @@ namespace Formulaire_principal
                     case "marron": return Color.FromArgb(114, 75, 55);
                     case "vert": return Color.FromArgb(98, 182, 74);
                     case "bleu": return Color.FromArgb(74, 146, 182);
-                    default: return Color.FromArgb(182, 74, 74);
+                    default: return Color.MediumAquamarine;
                 }
             }
         }

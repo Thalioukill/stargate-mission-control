@@ -148,7 +148,7 @@
             // 
             this.flpMissions.AutoScroll = true;
             this.flpMissions.Location = new System.Drawing.Point(13, 40);
-            this.flpMissions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpMissions.Margin = new System.Windows.Forms.Padding(4);
             this.flpMissions.Name = "flpMissions";
             this.flpMissions.Size = new System.Drawing.Size(1427, 493);
             this.flpMissions.TabIndex = 4;
@@ -161,7 +161,7 @@
             this.plMissions.Controls.Add(this.grpFiltres);
             this.plMissions.Controls.Add(this.lblTableauDeBord);
             this.plMissions.Location = new System.Drawing.Point(376, 27);
-            this.plMissions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plMissions.Margin = new System.Windows.Forms.Padding(4);
             this.plMissions.Name = "plMissions";
             this.plMissions.Size = new System.Drawing.Size(1521, 975);
             this.plMissions.TabIndex = 0;
@@ -199,9 +199,9 @@
             this.grpFiltres.Controls.Add(this.label1);
             this.grpFiltres.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpFiltres.Location = new System.Drawing.Point(27, 104);
-            this.grpFiltres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpFiltres.Margin = new System.Windows.Forms.Padding(4);
             this.grpFiltres.Name = "grpFiltres";
-            this.grpFiltres.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpFiltres.Padding = new System.Windows.Forms.Padding(4);
             this.grpFiltres.Size = new System.Drawing.Size(1448, 267);
             this.grpFiltres.TabIndex = 5;
             this.grpFiltres.TabStop = false;
@@ -213,7 +213,7 @@
             this.btnValiderNbJoursMission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnValiderNbJoursMission.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnValiderNbJoursMission.Location = new System.Drawing.Point(1243, 164);
-            this.btnValiderNbJoursMission.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnValiderNbJoursMission.Margin = new System.Windows.Forms.Padding(5);
             this.btnValiderNbJoursMission.Name = "btnValiderNbJoursMission";
             this.btnValiderNbJoursMission.Size = new System.Drawing.Size(41, 40);
             this.btnValiderNbJoursMission.TabIndex = 17;
@@ -226,7 +226,7 @@
             this.btnValiderNbJoursMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnValiderNbJoursMin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnValiderNbJoursMin.Location = new System.Drawing.Point(1619, 200);
-            this.btnValiderNbJoursMin.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnValiderNbJoursMin.Margin = new System.Windows.Forms.Padding(5);
             this.btnValiderNbJoursMin.Name = "btnValiderNbJoursMin";
             this.btnValiderNbJoursMin.Size = new System.Drawing.Size(55, 51);
             this.btnValiderNbJoursMin.TabIndex = 16;
@@ -277,7 +277,7 @@
             this.btnRecherche.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecherche.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecherche.Location = new System.Drawing.Point(979, 163);
-            this.btnRecherche.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRecherche.Margin = new System.Windows.Forms.Padding(5);
             this.btnRecherche.Name = "btnRecherche";
             this.btnRecherche.Size = new System.Drawing.Size(41, 40);
             this.btnRecherche.TabIndex = 12;
@@ -292,14 +292,13 @@
             this.lblBd.Name = "lblBd";
             this.lblBd.Size = new System.Drawing.Size(319, 28);
             this.lblBd.TabIndex = 11;
-            this.lblBd.Text = "Budget maximum : ";
             // 
             // txtBudgetMin
             // 
             this.txtBudgetMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBudgetMin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtBudgetMin.Location = new System.Drawing.Point(733, 164);
-            this.txtBudgetMin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBudgetMin.Margin = new System.Windows.Forms.Padding(4);
             this.txtBudgetMin.Name = "txtBudgetMin";
             this.txtBudgetMin.ShortcutsEnabled = false;
             this.txtBudgetMin.Size = new System.Drawing.Size(237, 35);
@@ -324,7 +323,7 @@
             this.cboPlanete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlanete.FormattingEnabled = true;
             this.cboPlanete.Location = new System.Drawing.Point(355, 211);
-            this.cboPlanete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlanete.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlanete.Name = "cboPlanete";
             this.cboPlanete.Size = new System.Drawing.Size(291, 36);
             this.cboPlanete.TabIndex = 7;
@@ -336,7 +335,7 @@
             this.btnRAZ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRAZ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRAZ.Location = new System.Drawing.Point(1368, 197);
-            this.btnRAZ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRAZ.Margin = new System.Windows.Forms.Padding(4);
             this.btnRAZ.Name = "btnRAZ";
             this.btnRAZ.Size = new System.Drawing.Size(57, 52);
             this.btnRAZ.TabIndex = 6;
@@ -352,7 +351,7 @@
             this.cboChefMission.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChefMission.FormattingEnabled = true;
             this.cboChefMission.Location = new System.Drawing.Point(355, 122);
-            this.cboChefMission.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboChefMission.Margin = new System.Windows.Forms.Padding(4);
             this.cboChefMission.Name = "cboChefMission";
             this.cboChefMission.Size = new System.Drawing.Size(291, 36);
             this.cboChefMission.TabIndex = 5;
@@ -373,7 +372,7 @@
             this.rdbAVenir.AutoSize = true;
             this.rdbAVenir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbAVenir.Location = new System.Drawing.Point(63, 216);
-            this.rdbAVenir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbAVenir.Margin = new System.Windows.Forms.Padding(4);
             this.rdbAVenir.Name = "rdbAVenir";
             this.rdbAVenir.Size = new System.Drawing.Size(106, 32);
             this.rdbAVenir.TabIndex = 3;
@@ -386,7 +385,7 @@
             this.rdbEnCours.AutoSize = true;
             this.rdbEnCours.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbEnCours.Location = new System.Drawing.Point(63, 168);
-            this.rdbEnCours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbEnCours.Margin = new System.Windows.Forms.Padding(4);
             this.rdbEnCours.Name = "rdbEnCours";
             this.rdbEnCours.Size = new System.Drawing.Size(120, 32);
             this.rdbEnCours.TabIndex = 2;
@@ -399,7 +398,7 @@
             this.rdbPasse.AutoSize = true;
             this.rdbPasse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbPasse.Location = new System.Drawing.Point(63, 123);
-            this.rdbPasse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbPasse.Margin = new System.Windows.Forms.Padding(4);
             this.rdbPasse.Name = "rdbPasse";
             this.rdbPasse.Size = new System.Drawing.Size(107, 32);
             this.rdbPasse.TabIndex = 1;
@@ -502,7 +501,7 @@
             this.plPlanetes.Controls.Add(this.lblPlanetes);
             this.plPlanetes.Controls.Add(this.grpFiltre);
             this.plPlanetes.Location = new System.Drawing.Point(376, 27);
-            this.plPlanetes.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.plPlanetes.Margin = new System.Windows.Forms.Padding(5);
             this.plPlanetes.Name = "plPlanetes";
             this.plPlanetes.Size = new System.Drawing.Size(1521, 975);
             this.plPlanetes.TabIndex = 2;
@@ -537,7 +536,7 @@
             this.flpPlanete.AutoScroll = true;
             this.flpPlanete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flpPlanete.Location = new System.Drawing.Point(8, 37);
-            this.flpPlanete.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flpPlanete.Margin = new System.Windows.Forms.Padding(5);
             this.flpPlanete.Name = "flpPlanete";
             this.flpPlanete.Size = new System.Drawing.Size(881, 824);
             this.flpPlanete.TabIndex = 2;
@@ -583,9 +582,9 @@
             this.grpFiltre.Controls.Add(this.label20);
             this.grpFiltre.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpFiltre.Location = new System.Drawing.Point(32, 79);
-            this.grpFiltre.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpFiltre.Margin = new System.Windows.Forms.Padding(5);
             this.grpFiltre.Name = "grpFiltre";
-            this.grpFiltre.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpFiltre.Padding = new System.Windows.Forms.Padding(5);
             this.grpFiltre.Size = new System.Drawing.Size(553, 874);
             this.grpFiltre.TabIndex = 3;
             this.grpFiltre.TabStop = false;
@@ -605,7 +604,7 @@
             // 
             this.flpEspece.AutoScroll = true;
             this.flpEspece.Location = new System.Drawing.Point(8, 35);
-            this.flpEspece.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flpEspece.Margin = new System.Windows.Forms.Padding(5);
             this.flpEspece.Name = "flpEspece";
             this.flpEspece.Size = new System.Drawing.Size(387, 134);
             this.flpEspece.TabIndex = 22;
@@ -616,7 +615,7 @@
             this.btnRechercher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercher.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercher.Location = new System.Drawing.Point(461, 799);
-            this.btnRechercher.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRechercher.Margin = new System.Windows.Forms.Padding(5);
             this.btnRechercher.Name = "btnRechercher";
             this.btnRechercher.Size = new System.Drawing.Size(71, 61);
             this.btnRechercher.TabIndex = 23;
@@ -639,7 +638,7 @@
             this.btnReinitialiserEspeces.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserEspeces.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserEspeces.Location = new System.Drawing.Point(455, 579);
-            this.btnReinitialiserEspeces.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnReinitialiserEspeces.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiserEspeces.Name = "btnReinitialiserEspeces";
             this.btnReinitialiserEspeces.Size = new System.Drawing.Size(57, 51);
             this.btnReinitialiserEspeces.TabIndex = 26;
@@ -652,7 +651,7 @@
             this.btnReinitialiserDataBaz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserDataBaz.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserDataBaz.Location = new System.Drawing.Point(403, 378);
-            this.btnReinitialiserDataBaz.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnReinitialiserDataBaz.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiserDataBaz.Name = "btnReinitialiserDataBaz";
             this.btnReinitialiserDataBaz.Size = new System.Drawing.Size(57, 51);
             this.btnReinitialiserDataBaz.TabIndex = 25;
@@ -666,7 +665,7 @@
             this.btnReinitialiser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiser.Location = new System.Drawing.Point(371, 800);
-            this.btnReinitialiser.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnReinitialiser.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiser.Name = "btnReinitialiser";
             this.btnReinitialiser.Size = new System.Drawing.Size(71, 61);
             this.btnReinitialiser.TabIndex = 24;
@@ -676,7 +675,7 @@
             // txtMaxMission
             // 
             this.txtMaxMission.Location = new System.Drawing.Point(225, 752);
-            this.txtMaxMission.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMaxMission.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaxMission.Name = "txtMaxMission";
             this.txtMaxMission.ShortcutsEnabled = false;
             this.txtMaxMission.Size = new System.Drawing.Size(111, 35);
@@ -687,7 +686,7 @@
             // txtMinMission
             // 
             this.txtMinMission.Location = new System.Drawing.Point(225, 701);
-            this.txtMinMission.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMinMission.Margin = new System.Windows.Forms.Padding(5);
             this.txtMinMission.Name = "txtMinMission";
             this.txtMinMission.ShortcutsEnabled = false;
             this.txtMinMission.Size = new System.Drawing.Size(111, 35);
@@ -720,7 +719,7 @@
             this.rdbSans.AutoSize = true;
             this.rdbSans.ForeColor = System.Drawing.Color.Red;
             this.rdbSans.Location = new System.Drawing.Point(309, 387);
-            this.rdbSans.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdbSans.Margin = new System.Windows.Forms.Padding(5);
             this.rdbSans.Name = "rdbSans";
             this.rdbSans.Size = new System.Drawing.Size(77, 32);
             this.rdbSans.TabIndex = 17;
@@ -734,7 +733,7 @@
             this.rdbAvec.AutoSize = true;
             this.rdbAvec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.rdbAvec.Location = new System.Drawing.Point(199, 387);
-            this.rdbAvec.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdbAvec.Margin = new System.Windows.Forms.Padding(5);
             this.rdbAvec.Name = "rdbAvec";
             this.rdbAvec.Size = new System.Drawing.Size(85, 32);
             this.rdbAvec.TabIndex = 16;
@@ -746,7 +745,7 @@
             // txtMaxGrav
             // 
             this.txtMaxGrav.Location = new System.Drawing.Point(280, 293);
-            this.txtMaxGrav.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMaxGrav.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaxGrav.Name = "txtMaxGrav";
             this.txtMaxGrav.ShortcutsEnabled = false;
             this.txtMaxGrav.Size = new System.Drawing.Size(100, 35);
@@ -757,7 +756,7 @@
             // txtMinGrav
             // 
             this.txtMinGrav.Location = new System.Drawing.Point(280, 243);
-            this.txtMinGrav.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMinGrav.Margin = new System.Windows.Forms.Padding(5);
             this.txtMinGrav.Name = "txtMinGrav";
             this.txtMinGrav.ShortcutsEnabled = false;
             this.txtMinGrav.Size = new System.Drawing.Size(100, 35);
@@ -778,7 +777,7 @@
             // txtMaxTemp
             // 
             this.txtMaxTemp.Location = new System.Drawing.Point(280, 157);
-            this.txtMaxTemp.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMaxTemp.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaxTemp.Name = "txtMaxTemp";
             this.txtMaxTemp.ShortcutsEnabled = false;
             this.txtMaxTemp.Size = new System.Drawing.Size(100, 35);
@@ -789,7 +788,7 @@
             // txtMinTemp
             // 
             this.txtMinTemp.Location = new System.Drawing.Point(280, 109);
-            this.txtMinTemp.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMinTemp.Margin = new System.Windows.Forms.Padding(5);
             this.txtMinTemp.Name = "txtMinTemp";
             this.txtMinTemp.ShortcutsEnabled = false;
             this.txtMinTemp.Size = new System.Drawing.Size(100, 35);
@@ -820,7 +819,7 @@
             // txtNom
             // 
             this.txtNom.Location = new System.Drawing.Point(141, 48);
-            this.txtNom.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtNom.Margin = new System.Windows.Forms.Padding(5);
             this.txtNom.Name = "txtNom";
             this.txtNom.ShortcutsEnabled = false;
             this.txtNom.Size = new System.Drawing.Size(276, 35);
@@ -888,7 +887,7 @@
             this.plAliens.Controls.Add(this.grpAlliees);
             this.plAliens.Controls.Add(this.grpFiltresEnnemis);
             this.plAliens.Location = new System.Drawing.Point(376, 27);
-            this.plAliens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plAliens.Margin = new System.Windows.Forms.Padding(4);
             this.plAliens.Name = "plAliens";
             this.plAliens.Size = new System.Drawing.Size(1520, 976);
             this.plAliens.TabIndex = 1;
@@ -917,9 +916,9 @@
             this.grpFiltresAlliees.Controls.Add(this.txtNomAlliees);
             this.grpFiltresAlliees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpFiltresAlliees.Location = new System.Drawing.Point(5, 79);
-            this.grpFiltresAlliees.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpFiltresAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.grpFiltresAlliees.Name = "grpFiltresAlliees";
-            this.grpFiltresAlliees.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpFiltresAlliees.Padding = new System.Windows.Forms.Padding(5);
             this.grpFiltresAlliees.Size = new System.Drawing.Size(747, 321);
             this.grpFiltresAlliees.TabIndex = 4;
             this.grpFiltresAlliees.TabStop = false;
@@ -931,7 +930,7 @@
             this.btnReinitialiserAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReinitialiserAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserAlliees.Location = new System.Drawing.Point(589, 260);
-            this.btnReinitialiserAlliees.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnReinitialiserAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiserAlliees.Name = "btnReinitialiserAlliees";
             this.btnReinitialiserAlliees.Size = new System.Drawing.Size(57, 52);
             this.btnReinitialiserAlliees.TabIndex = 11;
@@ -944,7 +943,7 @@
             this.cboBienveillance.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBienveillance.FormattingEnabled = true;
             this.cboBienveillance.Location = new System.Drawing.Point(371, 168);
-            this.cboBienveillance.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cboBienveillance.Margin = new System.Windows.Forms.Padding(5);
             this.cboBienveillance.Name = "cboBienveillance";
             this.cboBienveillance.Size = new System.Drawing.Size(297, 36);
             this.cboBienveillance.TabIndex = 9;
@@ -957,7 +956,7 @@
             this.btnRechercherAlliees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRechercherAlliees.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercherAlliees.Location = new System.Drawing.Point(677, 260);
-            this.btnRechercherAlliees.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRechercherAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.btnRechercherAlliees.Name = "btnRechercherAlliees";
             this.btnRechercherAlliees.Size = new System.Drawing.Size(57, 52);
             this.btnRechercherAlliees.TabIndex = 2;
@@ -1000,7 +999,7 @@
             this.cboCouleurAlliees.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCouleurAlliees.FormattingEnabled = true;
             this.cboCouleurAlliees.Location = new System.Drawing.Point(12, 168);
-            this.cboCouleurAlliees.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cboCouleurAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.cboCouleurAlliees.Name = "cboCouleurAlliees";
             this.cboCouleurAlliees.Size = new System.Drawing.Size(297, 36);
             this.cboCouleurAlliees.TabIndex = 1;
@@ -1010,7 +1009,7 @@
             // txtNomAlliees
             // 
             this.txtNomAlliees.Location = new System.Drawing.Point(12, 72);
-            this.txtNomAlliees.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtNomAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.txtNomAlliees.Name = "txtNomAlliees";
             this.txtNomAlliees.ShortcutsEnabled = false;
             this.txtNomAlliees.Size = new System.Drawing.Size(297, 35);
@@ -1023,9 +1022,9 @@
             this.groupBox3.Controls.Add(this.flp2);
             this.groupBox3.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(763, 411);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox3.Size = new System.Drawing.Size(752, 556);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
@@ -1048,7 +1047,7 @@
             this.flp2.AutoScroll = true;
             this.flp2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp2.Location = new System.Drawing.Point(5, 33);
-            this.flp2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flp2.Margin = new System.Windows.Forms.Padding(5);
             this.flp2.Name = "flp2";
             this.flp2.Size = new System.Drawing.Size(742, 518);
             this.flp2.TabIndex = 0;
@@ -1059,9 +1058,9 @@
             this.grpAlliees.Controls.Add(this.flp1);
             this.grpAlliees.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAlliees.Location = new System.Drawing.Point(5, 411);
-            this.grpAlliees.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpAlliees.Margin = new System.Windows.Forms.Padding(5);
             this.grpAlliees.Name = "grpAlliees";
-            this.grpAlliees.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpAlliees.Padding = new System.Windows.Forms.Padding(5);
             this.grpAlliees.Size = new System.Drawing.Size(747, 556);
             this.grpAlliees.TabIndex = 5;
             this.grpAlliees.TabStop = false;
@@ -1084,7 +1083,7 @@
             this.flp1.AutoScroll = true;
             this.flp1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flp1.Location = new System.Drawing.Point(5, 33);
-            this.flp1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flp1.Margin = new System.Windows.Forms.Padding(5);
             this.flp1.Name = "flp1";
             this.flp1.Size = new System.Drawing.Size(737, 518);
             this.flp1.TabIndex = 0;
@@ -1104,9 +1103,9 @@
             this.grpFiltresEnnemis.Controls.Add(this.txtNomEnnemis);
             this.grpFiltresEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpFiltresEnnemis.Location = new System.Drawing.Point(763, 81);
-            this.grpFiltresEnnemis.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpFiltresEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.grpFiltresEnnemis.Name = "grpFiltresEnnemis";
-            this.grpFiltresEnnemis.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grpFiltresEnnemis.Padding = new System.Windows.Forms.Padding(5);
             this.grpFiltresEnnemis.Size = new System.Drawing.Size(752, 319);
             this.grpFiltresEnnemis.TabIndex = 6;
             this.grpFiltresEnnemis.TabStop = false;
@@ -1119,7 +1118,7 @@
             this.btnReinitialiserEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReinitialiserEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReinitialiserEnnemis.Location = new System.Drawing.Point(607, 257);
-            this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnReinitialiserEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.btnReinitialiserEnnemis.Name = "btnReinitialiserEnnemis";
             this.btnReinitialiserEnnemis.Size = new System.Drawing.Size(57, 52);
             this.btnReinitialiserEnnemis.TabIndex = 12;
@@ -1133,7 +1132,7 @@
             this.cboAgressivite.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAgressivite.FormattingEnabled = true;
             this.cboAgressivite.Location = new System.Drawing.Point(17, 267);
-            this.cboAgressivite.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cboAgressivite.Margin = new System.Windows.Forms.Padding(5);
             this.cboAgressivite.Name = "cboAgressivite";
             this.cboAgressivite.Size = new System.Drawing.Size(297, 36);
             this.cboAgressivite.TabIndex = 10;
@@ -1169,7 +1168,7 @@
             this.cboTypeArme.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTypeArme.FormattingEnabled = true;
             this.cboTypeArme.Location = new System.Drawing.Point(364, 175);
-            this.cboTypeArme.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cboTypeArme.Margin = new System.Windows.Forms.Padding(5);
             this.cboTypeArme.Name = "cboTypeArme";
             this.cboTypeArme.Size = new System.Drawing.Size(297, 36);
             this.cboTypeArme.TabIndex = 5;
@@ -1205,7 +1204,7 @@
             this.btnRechercherEnnemis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRechercherEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRechercherEnnemis.Location = new System.Drawing.Point(685, 259);
-            this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRechercherEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.btnRechercherEnnemis.Name = "btnRechercherEnnemis";
             this.btnRechercherEnnemis.Size = new System.Drawing.Size(57, 52);
             this.btnRechercherEnnemis.TabIndex = 2;
@@ -1219,7 +1218,7 @@
             this.cboCouleurEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCouleurEnnemis.FormattingEnabled = true;
             this.cboCouleurEnnemis.Location = new System.Drawing.Point(15, 175);
-            this.cboCouleurEnnemis.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cboCouleurEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.cboCouleurEnnemis.Name = "cboCouleurEnnemis";
             this.cboCouleurEnnemis.Size = new System.Drawing.Size(297, 36);
             this.cboCouleurEnnemis.TabIndex = 1;
@@ -1230,7 +1229,7 @@
             // 
             this.txtNomEnnemis.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomEnnemis.Location = new System.Drawing.Point(17, 88);
-            this.txtNomEnnemis.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtNomEnnemis.Margin = new System.Windows.Forms.Padding(5);
             this.txtNomEnnemis.Name = "txtNomEnnemis";
             this.txtNomEnnemis.ShortcutsEnabled = false;
             this.txtNomEnnemis.Size = new System.Drawing.Size(297, 35);
@@ -1244,13 +1243,16 @@
             // pnlProgressBar
             // 
             this.pnlProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(255)))));
+            this.pnlProgressBar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlProgressBar.BackgroundImage")));
+            this.pnlProgressBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlProgressBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlProgressBar.Controls.Add(this.plBoiteChargement);
             this.pnlProgressBar.Controls.Add(this.lblCharge);
             this.pnlProgressBar.Controls.Add(this.lblPourcentage);
-            this.pnlProgressBar.Location = new System.Drawing.Point(376, 26);
-            this.pnlProgressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlProgressBar.Location = new System.Drawing.Point(376, 27);
+            this.pnlProgressBar.Margin = new System.Windows.Forms.Padding(2);
             this.pnlProgressBar.Name = "pnlProgressBar";
-            this.pnlProgressBar.Size = new System.Drawing.Size(1520, 976);
+            this.pnlProgressBar.Size = new System.Drawing.Size(1520, 975);
             this.pnlProgressBar.TabIndex = 3;
             this.pnlProgressBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlProgressBar_Paint);
             // 
@@ -1260,7 +1262,7 @@
             this.plBoiteChargement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.plBoiteChargement.Controls.Add(this.plChargement);
             this.plBoiteChargement.Location = new System.Drawing.Point(467, 490);
-            this.plBoiteChargement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.plBoiteChargement.Margin = new System.Windows.Forms.Padding(2);
             this.plBoiteChargement.Name = "plBoiteChargement";
             this.plBoiteChargement.Size = new System.Drawing.Size(595, 65);
             this.plBoiteChargement.TabIndex = 3;
@@ -1269,7 +1271,7 @@
             // 
             this.plChargement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(85)))), ((int)(((byte)(212)))));
             this.plChargement.Location = new System.Drawing.Point(1, -1);
-            this.plChargement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.plChargement.Margin = new System.Windows.Forms.Padding(2);
             this.plChargement.Name = "plChargement";
             this.plChargement.Size = new System.Drawing.Size(0, 64);
             this.plChargement.TabIndex = 4;
@@ -1313,6 +1315,7 @@
             this.Controls.Add(this.plPlanetes);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmAccueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
