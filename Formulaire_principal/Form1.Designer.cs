@@ -119,6 +119,12 @@
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.ttRAZ = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pnlProgressBar = new System.Windows.Forms.Panel();
+            this.plChargement = new System.Windows.Forms.Panel();
+            this.plBoiteChargement = new System.Windows.Forms.Panel();
+            this.lblCharge = new System.Windows.Forms.Label();
+            this.lblPourcentage = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.plMissions.SuspendLayout();
             this.grpNbMissionsTrouvees.SuspendLayout();
             this.grpFiltres.SuspendLayout();
@@ -134,6 +140,7 @@
             this.grpAlliees.SuspendLayout();
             this.grpFiltresEnnemis.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.pnlProgressBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpMissions
@@ -1230,6 +1237,59 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // pnlProgressBar
+            // 
+            this.pnlProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(255)))));
+            this.pnlProgressBar.Controls.Add(this.plChargement);
+            this.pnlProgressBar.Controls.Add(this.plBoiteChargement);
+            this.pnlProgressBar.Controls.Add(this.lblCharge);
+            this.pnlProgressBar.Controls.Add(this.lblPourcentage);
+            this.pnlProgressBar.Location = new System.Drawing.Point(376, 27);
+            this.pnlProgressBar.Name = "pnlProgressBar";
+            this.pnlProgressBar.Size = new System.Drawing.Size(1521, 976);
+            this.pnlProgressBar.TabIndex = 3;
+            this.pnlProgressBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlProgressBar_Paint);
+            // 
+            // plChargement
+            // 
+            this.plChargement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(85)))), ((int)(((byte)(212)))));
+            this.plChargement.Location = new System.Drawing.Point(494, 448);
+            this.plChargement.Name = "plChargement";
+            this.plChargement.Size = new System.Drawing.Size(0, 100);
+            this.plChargement.TabIndex = 4;
+            // 
+            // plBoiteChargement
+            // 
+            this.plBoiteChargement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.plBoiteChargement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.plBoiteChargement.Location = new System.Drawing.Point(494, 448);
+            this.plBoiteChargement.Name = "plBoiteChargement";
+            this.plBoiteChargement.Size = new System.Drawing.Size(600, 100);
+            this.plBoiteChargement.TabIndex = 3;
+            // 
+            // lblCharge
+            // 
+            this.lblCharge.AutoSize = true;
+            this.lblCharge.Font = new System.Drawing.Font("Kristen ITC", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCharge.Location = new System.Drawing.Point(487, 378);
+            this.lblCharge.Name = "lblCharge";
+            this.lblCharge.Size = new System.Drawing.Size(224, 39);
+            this.lblCharge.TabIndex = 2;
+            this.lblCharge.Text = "Chargement...";
+            // 
+            // lblPourcentage
+            // 
+            this.lblPourcentage.AutoSize = true;
+            this.lblPourcentage.Font = new System.Drawing.Font("Kristen ITC", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPourcentage.Location = new System.Drawing.Point(473, 597);
+            this.lblPourcentage.Name = "lblPourcentage";
+            this.lblPourcentage.Size = new System.Drawing.Size(0, 30);
+            this.lblPourcentage.TabIndex = 1;
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1237,6 +1297,7 @@
             this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_acceuil1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1923, 1017);
+            this.Controls.Add(this.pnlProgressBar);
             this.Controls.Add(this.plAliens);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.plMissions);
@@ -1274,6 +1335,8 @@
             this.grpFiltresEnnemis.ResumeLayout(false);
             this.grpFiltresEnnemis.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.pnlProgressBar.ResumeLayout(false);
+            this.pnlProgressBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1369,6 +1432,12 @@
         private System.Windows.Forms.Button btnValiderNbJoursMission;
         private System.Windows.Forms.GroupBox grpEspeces;
         private System.Windows.Forms.Label lblErreur3;
+        private System.Windows.Forms.Panel pnlProgressBar;
+        private System.Windows.Forms.Label lblPourcentage;
+        private System.Windows.Forms.Label lblCharge;
+        private System.Windows.Forms.Panel plChargement;
+        private System.Windows.Forms.Panel plBoiteChargement;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

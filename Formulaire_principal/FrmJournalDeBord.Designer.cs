@@ -97,9 +97,9 @@
             this.grpEvenements.Controls.Add(this.btnBefore);
             this.grpEvenements.Controls.Add(this.btnDepart);
             this.grpEvenements.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpEvenements.Location = new System.Drawing.Point(409, 24);
+            this.grpEvenements.Location = new System.Drawing.Point(394, 24);
             this.grpEvenements.Name = "grpEvenements";
-            this.grpEvenements.Size = new System.Drawing.Size(507, 259);
+            this.grpEvenements.Size = new System.Drawing.Size(522, 259);
             this.grpEvenements.TabIndex = 0;
             this.grpEvenements.TabStop = false;
             this.grpEvenements.Text = "Evénements du journal :";
@@ -315,7 +315,7 @@
             // btnEditerPDF
             // 
             this.btnEditerPDF.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditerPDF.Location = new System.Drawing.Point(409, 301);
+            this.btnEditerPDF.Location = new System.Drawing.Point(394, 300);
             this.btnEditerPDF.Name = "btnEditerPDF";
             this.btnEditerPDF.Size = new System.Drawing.Size(179, 36);
             this.btnEditerPDF.TabIndex = 5;
@@ -425,17 +425,21 @@
             // 
             // chartBudget
             // 
+            chartArea1.InnerPlotPosition.Auto = false;
+            chartArea1.InnerPlotPosition.Height = 100F;
+            chartArea1.InnerPlotPosition.Width = 100F;
             chartArea1.Name = "ChartArea1";
             this.chartBudget.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartBudget.Legends.Add(legend1);
             this.chartBudget.Location = new System.Drawing.Point(22, 24);
             this.chartBudget.Name = "chartBudget";
+            this.chartBudget.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartBudget.Series.Add(series1);
-            this.chartBudget.Size = new System.Drawing.Size(353, 313);
+            this.chartBudget.Size = new System.Drawing.Size(351, 376);
             this.chartBudget.TabIndex = 11;
             this.chartBudget.Text = "chart1";
             // 
@@ -443,10 +447,12 @@
             // 
             this.lblEtatBudget.AutoSize = true;
             this.lblEtatBudget.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblEtatBudget.Location = new System.Drawing.Point(231, 273);
+            this.lblEtatBudget.Font = new System.Drawing.Font("Kristen ITC", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEtatBudget.Location = new System.Drawing.Point(40, 357);
             this.lblEtatBudget.Name = "lblEtatBudget";
-            this.lblEtatBudget.Size = new System.Drawing.Size(0, 16);
+            this.lblEtatBudget.Size = new System.Drawing.Size(45, 18);
             this.lblEtatBudget.TabIndex = 12;
+            this.lblEtatBudget.Text = "TEST";
             // 
             // panel1
             // 
@@ -455,7 +461,7 @@
             this.panel1.Controls.Add(this.lblFIN);
             this.panel1.Controls.Add(this.grpDepensesEffectues);
             this.panel1.Controls.Add(this.grpBilan);
-            this.panel1.Location = new System.Drawing.Point(22, 354);
+            this.panel1.Location = new System.Drawing.Point(22, 426);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(894, 1074);
             this.panel1.TabIndex = 15;

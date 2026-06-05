@@ -359,7 +359,13 @@ namespace Formulaire_principal
 
                 // On cherche le nom de l'espèce (via la table Espece)
                 DataRow rowEspece = ds.Tables["Espece"].Rows.Find(idEnnemi);
-                string nomEspece = rowEspece != null ? rowEspece["nom"].ToString() : "Inconnue";
+                string nomEspece = "";
+
+                if(rowEspece != null)
+                {
+                    nomEspece = rowEspece["nom"].ToString();
+                }
+                nomEspece = "Inconnue";
 
                 // On cherche le nombre de captures réalisées (table Capturer)
                 string filtreCaptures = filtreMission + $" AND idEspeceEnnemi = {idEnnemi}";
@@ -431,8 +437,7 @@ namespace Formulaire_principal
 
                 //Création dynamique d'un composant Chart 
                 Chart chartIndiv = new Chart();
-                chartIndiv.Size = new Size(200, 200);
-                chartIndiv.BackColor = Color.Transparent;
+                chartIndiv.Size = new Size(180, 180);
 
                 // Zone de graphique
                 ChartArea area = new ChartArea();
@@ -445,6 +450,7 @@ namespace Formulaire_principal
                 // Configuration de la série en type "Doughnut" (Anneau) ou Pie
                 Series s = new Series("Taux");
                 s.ChartType = SeriesChartType.Doughnut;
+                s.Font = new Font("Kristen ITC", 9);
 
                 if (reste <= 0)
                 {
@@ -488,90 +494,114 @@ namespace Formulaire_principal
                 case "marron": return Color.SaddleBrown;
                 case "vert": return Color.Green;
                 case "bleu": return Color.Blue;
-                default: return Color.Black; // Couleur par défaut si non trouvé
+                default: return Color.Aquamarine; // Couleur par défaut si non trouvé
             }
         }
 
         private void GenererGraphiqueBudget()
         {
-            //Récupération des données via le DataSet
+            // récup des données dans le DataSet
+            string filtreBase = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
             string filtreMission = $"nomPlanete = '{idPlanete}' AND numero = {idNumero}";
-            string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}";
 
-            // Budget initial
+            // Budget initial (Table Mission)
             DataRow[] mission = ds.Tables["Mission"].Select(filtreMission);
-            double budgetInitial = Convert.ToDouble(mission[0]["budget"]);
-            this.budgetInitial = budgetInitial.ToString(); // Stockage pour le PDF
+            double budgetInitial = (mission.Length > 0) ? Convert.ToDouble(mission[0]["budget"]) : 0;
+            this.budgetInitial = budgetInitial.ToString(); // Stockage pour le rapport PDF
 
-            // Somme des dépenses
-            object resDep = ds.Tables["Depense"].Compute("SUM(montant)", filtre);
-            double totalDepenses = (resDep == DBNull.Value) ? 0 : Convert.ToDouble(resDep);
+            // Extraction des 4 categ de TypeDepenses
+            // On utilise .Compute sur le DataSet local pour chaque type
 
-            // Somme des informateurs (table Contact)
-            object resInf = ds.Tables["Contact"].Compute("SUM(sommeVersee)", filtre);
+            // DataBaz (Type 1)
+            object resDataBaz = ds.Tables["Depense"].Compute("SUM(montant)", filtreBase + " AND idTypeDepense = 1");
+            double totalDataBaz = (resDataBaz == DBNull.Value) ? 0 : Convert.ToDouble(resDataBaz);
+
+            // Réparation (Type 3)
+            object resReparation = ds.Tables["Depense"].Compute("SUM(montant)", filtreBase + " AND idTypeDepense = 3");
+            double totalReparation = (resReparation == DBNull.Value) ? 0 : Convert.ToDouble(resReparation);
+
+            // Droit de passage (Type 4)
+            object resPassage = ds.Tables["Depense"].Compute("SUM(montant)", filtreBase + " AND idTypeDepense = 4");
+            double totalPassage = (resPassage == DBNull.Value) ? 0 : Convert.ToDouble(resPassage);
+
+            // Informateurs (Table Contact - Somme versée)
+            object resInf = ds.Tables["Contact"].Compute("SUM(sommeVersee)", filtreBase);
             double totalInformateurs = (resInf == DBNull.Value) ? 0 : Convert.ToDouble(resInf);
 
-            double totalConsomme = totalDepenses + totalInformateurs;
+            // Calculs globaux
+            double totalConsomme = totalDataBaz + totalReparation + totalPassage + totalInformateurs;
             double reste = budgetInitial - totalConsomme;
 
-            // Configuration du graphique
+            //config du graphique
             chartBudget.Series.Clear();
             chartBudget.Titles.Clear();
-            var titrePrincipal = chartBudget.Titles.Add("Utilisation du budget de la mission : "+this.idPlanete+"-"+this.idNumero);
+            chartBudget.Legends.Clear();
+
+            Legend lg = new Legend("Default");
+            lg.Font = new Font("Kristen ITC", 8);
+            lg.Docking = Docking.Right;
+            chartBudget.Legends.Add(lg);
+
+            /*chartBudget.ChartAreas.InnerPlotPosition.Auto = false;
+            chartBudget.ChartAreas.InnerPlotPosition.Height = 85; // Ajustez selon vos besoins
+            chartBudget.ChartAreas.InnerPlotPosition.Width = 85;
+            chartBudget.ChartAreas.InnerPlotPosition.X = 7;
+            chartBudget.ChartAreas.InnerPlotPosition.Y = 7;
+
+            // On cible la PREMIÈRE zone de la collection 
+            var area = chartBudget.ChartAreas;
+
+            // On désactive le positionnement automatique
+            area.InnerPlotPosition.Auto = false;
+
+            // On définit la taille (ex: 85% de l'espace disponible)
+            area.InnerPlotPosition.Height = 85;
+            area.InnerPlotPosition.Width = 85;*/
+
+
+            var titrePrincipal = chartBudget.Titles.Add("Analyse budgétaire de la mission : " + idPlanete + "-" + idNumero);
             titrePrincipal.Font = new Font("Kristen ITC", 13, FontStyle.Underline);
 
-            Series s = new Series("Budget");
-            s.Font = new Font("Kristen ITC", 12);
-            s.ChartType = SeriesChartType.Doughnut; // Forme d'anneau pour le design
+            Series s = new Series("Répartition");
+            s.ChartType = SeriesChartType.Doughnut;
+            s.Font = new Font("Kristen ITC", 8);
             s.IsValueShownAsLabel = true;
-            s.LabelFormat = "{0} €";
+            s.LabelFormat = "{0}$";
+            s["DoughnutRadius"] = "76";
 
-            lblEtatBudget.Font = new Font("Kristen ITC", 10, FontStyle.Bold);
+            // Remplissage intelligent des points
+            void AjouterPoint(string label, double valeur)
+            {
+                if (valeur > 0) { 
+                    s.Points.AddXY(label, valeur); 
+                }
+            }
 
-            //Gestion du dépassement
+            AjouterPoint("DataBaz", totalDataBaz);
+            AjouterPoint("Réparations", totalReparation);
+            AjouterPoint("Droits passage", totalPassage);
+            AjouterPoint("Informateurs", totalInformateurs);
+
+            // Gestion du dépassement ou du disponible
             if (reste < 0)
             {
-                // CAS => DÉPASSEMENT DE BUDGET
+                // CAS => DÉPASSEMENT
                 double depassement = Math.Abs(reste);
+                int idx = s.Points.AddXY("DÉPASSEMENT !", depassement);
+                s.Points[idx].Color = Color.Red; // alerteeeee
+                s.Points[idx].Font = new Font("Kristen ITC", 12, FontStyle.Bold);
 
-                // On affiche la part des dépenses et informateurs
-                s.Points.AddXY("Dépenses", totalDepenses);
-                s.Points.AddXY("Informateurs", totalInformateurs);
-                s.Points.AddXY("DÉPASSEMENT !", depassement);
-
-                // Couleur rouge pour la part en trop
-                s.Points[s.Points.Count - 1].Color = Color.Red;
-
-                // Alerte visuelle sur le côté
                 lblEtatBudget.Text = "ATTENTION : Budget dépassé !";
                 lblEtatBudget.ForeColor = Color.Red;
             }
-            else
+            else if (reste > 0)
             {
-                // CAS => BUDGET Ok
-                if (totalDepenses > 0)
-                {
-                    s.Points.AddXY("Dépenses", totalDepenses);
-                }
-                if (totalInformateurs > 0)
-                {
-                    s.Points.AddXY("Informateurs", totalInformateurs);
-                }
-                if (reste > 0)
-                {
-                    s.Points.AddXY("Disponible", reste);
-                }
+                // CAS => BUDGET OK
+                int idxDispo = s.Points.AddXY("Disponible", reste);
+                s.Points[idxDispo].Color = Color.LightGreen; // Vert pour la sécurité
 
-                // Couleurs normales
                 lblEtatBudget.Text = "Budget sous contrôle";
                 lblEtatBudget.ForeColor = Color.Green;
-
-                // On colore la part "Disponible" en vert clair
-                int idxDispo = s.Points.IndexOf(s.Points.FirstOrDefault(p => p.AxisLabel == "Disponible"));
-                if (idxDispo != -1)
-                {
-                    s.Points[idxDispo].Color = Color.LightGreen;
-                }
             }
 
             chartBudget.Series.Add(s);
