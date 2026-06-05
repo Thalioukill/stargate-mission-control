@@ -120,8 +120,8 @@
             this.ttRAZ = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlProgressBar = new System.Windows.Forms.Panel();
-            this.plChargement = new System.Windows.Forms.Panel();
             this.plBoiteChargement = new System.Windows.Forms.Panel();
+            this.plChargement = new System.Windows.Forms.Panel();
             this.lblCharge = new System.Windows.Forms.Label();
             this.lblPourcentage = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
@@ -1255,14 +1255,6 @@
             this.pnlProgressBar.TabIndex = 3;
             this.pnlProgressBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlProgressBar_Paint);
             // 
-            // plChargement
-            // 
-            this.plChargement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(85)))), ((int)(((byte)(212)))));
-            this.plChargement.Location = new System.Drawing.Point(1, -1);
-            this.plChargement.Name = "plChargement";
-            this.plChargement.Size = new System.Drawing.Size(0, 100);
-            this.plChargement.TabIndex = 4;
-            // 
             // plBoiteChargement
             // 
             this.plBoiteChargement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1272,6 +1264,14 @@
             this.plBoiteChargement.Name = "plBoiteChargement";
             this.plBoiteChargement.Size = new System.Drawing.Size(798, 100);
             this.plBoiteChargement.TabIndex = 3;
+            // 
+            // plChargement
+            // 
+            this.plChargement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(85)))), ((int)(((byte)(212)))));
+            this.plChargement.Location = new System.Drawing.Point(1, -1);
+            this.plChargement.Name = "plChargement";
+            this.plChargement.Size = new System.Drawing.Size(0, 100);
+            this.plChargement.TabIndex = 4;
             // 
             // lblCharge
             // 
@@ -1309,6 +1309,7 @@
             this.Controls.Add(this.plMissions);
             this.Controls.Add(this.plPlanetes);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "FrmAccueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

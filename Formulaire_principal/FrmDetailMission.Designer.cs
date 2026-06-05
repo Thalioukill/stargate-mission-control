@@ -70,23 +70,23 @@
             this.btnAnnulNouvE = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.tpCapture = new System.Windows.Forms.TabPage();
+            this.lblCapture2 = new System.Windows.Forms.Label();
+            this.btnRAZCaptures = new System.Windows.Forms.Button();
+            this.lblCaptures = new System.Windows.Forms.Label();
+            this.nudCapture = new System.Windows.Forms.NumericUpDown();
+            this.cboCaptures = new System.Windows.Forms.ComboBox();
+            this.btnValidCapture = new System.Windows.Forms.Button();
+            this.tbcNego = new System.Windows.Forms.TabPage();
+            this.lblNego2 = new System.Windows.Forms.Label();
+            this.txtDataBaz = new System.Windows.Forms.TextBox();
+            this.btnRazNego = new System.Windows.Forms.Button();
+            this.btnValidNego = new System.Windows.Forms.Button();
+            this.lblNego = new System.Windows.Forms.Label();
+            this.cboNego = new System.Windows.Forms.ComboBox();
             this.grpCommentaires = new System.Windows.Forms.GroupBox();
             this.grpMembresEquipage = new System.Windows.Forms.GroupBox();
             this.grpObjectifCaptures = new System.Windows.Forms.GroupBox();
-            this.tpCapture = new System.Windows.Forms.TabPage();
-            this.btnValidCapture = new System.Windows.Forms.Button();
-            this.cboCaptures = new System.Windows.Forms.ComboBox();
-            this.nudCapture = new System.Windows.Forms.NumericUpDown();
-            this.lblCaptures = new System.Windows.Forms.Label();
-            this.btnRAZCaptures = new System.Windows.Forms.Button();
-            this.tbcNego = new System.Windows.Forms.TabPage();
-            this.lblNego = new System.Windows.Forms.Label();
-            this.cboNego = new System.Windows.Forms.ComboBox();
-            this.btnRazNego = new System.Windows.Forms.Button();
-            this.btnValidNego = new System.Windows.Forms.Button();
-            this.txtDataBaz = new System.Windows.Forms.TextBox();
-            this.lblNego2 = new System.Windows.Forms.Label();
-            this.lblCapture2 = new System.Windows.Forms.Label();
             this.btnRetourTDB = new System.Windows.Forms.Button();
             this.ttTabDeBord = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picMission)).BeginInit();
@@ -94,12 +94,12 @@
             this.tpNouvContact.SuspendLayout();
             this.tbcNouvDepense.SuspendLayout();
             this.tbcEvnmt.SuspendLayout();
-            this.grpCommentaires.SuspendLayout();
-            this.grpMembresEquipage.SuspendLayout();
-            this.grpObjectifCaptures.SuspendLayout();
             this.tpCapture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapture)).BeginInit();
             this.tbcNego.SuspendLayout();
+            this.grpCommentaires.SuspendLayout();
+            this.grpMembresEquipage.SuspendLayout();
+            this.grpObjectifCaptures.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblNomMission
@@ -210,6 +210,7 @@
             // 
             // btnJournal
             // 
+            this.btnJournal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnJournal.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJournal.Location = new System.Drawing.Point(1116, 1119);
             this.btnJournal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -249,7 +250,7 @@
             this.tpNouvContact.Controls.Add(this.label2);
             this.tpNouvContact.Location = new System.Drawing.Point(8, 58);
             this.tpNouvContact.Name = "tpNouvContact";
-            this.tpNouvContact.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpNouvContact.Padding = new System.Windows.Forms.Padding(3);
             this.tpNouvContact.Size = new System.Drawing.Size(1096, 995);
             this.tpNouvContact.TabIndex = 0;
             this.tpNouvContact.Text = "+ Contact";
@@ -277,7 +278,7 @@
             // txtAppreciation
             // 
             this.txtAppreciation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.txtAppreciation.Location = new System.Drawing.Point(284, 356);
+            this.txtAppreciation.Location = new System.Drawing.Point(321, 356);
             this.txtAppreciation.Multiline = true;
             this.txtAppreciation.Name = "txtAppreciation";
             this.txtAppreciation.Size = new System.Drawing.Size(727, 229);
@@ -287,6 +288,7 @@
             // 
             this.btnValidNouvC.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnValidNouvC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidNouvC.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnValidNouvC.Location = new System.Drawing.Point(927, 873);
             this.btnValidNouvC.Name = "btnValidNouvC";
             this.btnValidNouvC.Size = new System.Drawing.Size(86, 81);
@@ -298,6 +300,7 @@
             // 
             this.btnAnnulNouvC.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
             this.btnAnnulNouvC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnnulNouvC.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAnnulNouvC.Location = new System.Drawing.Point(771, 873);
             this.btnAnnulNouvC.Name = "btnAnnulNouvC";
             this.btnAnnulNouvC.Size = new System.Drawing.Size(86, 81);
@@ -367,7 +370,7 @@
             this.tbcNouvDepense.Controls.Add(this.label9);
             this.tbcNouvDepense.Location = new System.Drawing.Point(8, 58);
             this.tbcNouvDepense.Name = "tbcNouvDepense";
-            this.tbcNouvDepense.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbcNouvDepense.Padding = new System.Windows.Forms.Padding(3);
             this.tbcNouvDepense.Size = new System.Drawing.Size(1096, 995);
             this.tbcNouvDepense.TabIndex = 1;
             this.tbcNouvDepense.Text = "+ Dépense";
@@ -402,6 +405,7 @@
             // 
             this.btnValidDepense.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnValidDepense.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidDepense.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnValidDepense.Location = new System.Drawing.Point(927, 873);
             this.btnValidDepense.Name = "btnValidDepense";
             this.btnValidDepense.Size = new System.Drawing.Size(86, 81);
@@ -413,6 +417,7 @@
             // 
             this.btnAnnulNouvD.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
             this.btnAnnulNouvD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnnulNouvD.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAnnulNouvD.Location = new System.Drawing.Point(771, 873);
             this.btnAnnulNouvD.Name = "btnAnnulNouvD";
             this.btnAnnulNouvD.Size = new System.Drawing.Size(86, 81);
@@ -478,7 +483,7 @@
             this.tbcEvnmt.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tbcEvnmt.Location = new System.Drawing.Point(8, 58);
             this.tbcEvnmt.Name = "tbcEvnmt";
-            this.tbcEvnmt.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbcEvnmt.Padding = new System.Windows.Forms.Padding(3);
             this.tbcEvnmt.Size = new System.Drawing.Size(1096, 995);
             this.tbcEvnmt.TabIndex = 2;
             this.tbcEvnmt.Text = "+ Évènement";
@@ -502,6 +507,7 @@
             // 
             this.btnValidEvnmt.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnValidEvnmt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidEvnmt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnValidEvnmt.Location = new System.Drawing.Point(927, 873);
             this.btnValidEvnmt.Name = "btnValidEvnmt";
             this.btnValidEvnmt.Size = new System.Drawing.Size(86, 81);
@@ -513,6 +519,7 @@
             // 
             this.btnAnnulNouvE.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
             this.btnAnnulNouvE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnnulNouvE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAnnulNouvE.Location = new System.Drawing.Point(771, 873);
             this.btnAnnulNouvE.Name = "btnAnnulNouvE";
             this.btnAnnulNouvE.Size = new System.Drawing.Size(86, 81);
@@ -537,6 +544,156 @@
             this.label13.Size = new System.Drawing.Size(119, 44);
             this.label13.TabIndex = 10;
             this.label13.Text = "Date :";
+            // 
+            // tpCapture
+            // 
+            this.tpCapture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(154)))), ((int)(((byte)(255)))));
+            this.tpCapture.Controls.Add(this.lblCapture2);
+            this.tpCapture.Controls.Add(this.btnRAZCaptures);
+            this.tpCapture.Controls.Add(this.lblCaptures);
+            this.tpCapture.Controls.Add(this.nudCapture);
+            this.tpCapture.Controls.Add(this.cboCaptures);
+            this.tpCapture.Controls.Add(this.btnValidCapture);
+            this.tpCapture.Location = new System.Drawing.Point(8, 58);
+            this.tpCapture.Name = "tpCapture";
+            this.tpCapture.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCapture.Size = new System.Drawing.Size(1096, 995);
+            this.tpCapture.TabIndex = 3;
+            this.tpCapture.Text = "+ Capture";
+            // 
+            // lblCapture2
+            // 
+            this.lblCapture2.AutoSize = true;
+            this.lblCapture2.Location = new System.Drawing.Point(82, 487);
+            this.lblCapture2.Name = "lblCapture2";
+            this.lblCapture2.Size = new System.Drawing.Size(180, 44);
+            this.lblCapture2.TabIndex = 19;
+            this.lblCapture2.Text = "Quantitée";
+            // 
+            // btnRAZCaptures
+            // 
+            this.btnRAZCaptures.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
+            this.btnRAZCaptures.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRAZCaptures.Location = new System.Drawing.Point(771, 873);
+            this.btnRAZCaptures.Name = "btnRAZCaptures";
+            this.btnRAZCaptures.Size = new System.Drawing.Size(86, 81);
+            this.btnRAZCaptures.TabIndex = 18;
+            this.btnRAZCaptures.UseVisualStyleBackColor = true;
+            this.btnRAZCaptures.Click += new System.EventHandler(this.btnRAZCaptures_Click);
+            // 
+            // lblCaptures
+            // 
+            this.lblCaptures.AutoSize = true;
+            this.lblCaptures.Location = new System.Drawing.Point(82, 188);
+            this.lblCaptures.Name = "lblCaptures";
+            this.lblCaptures.Size = new System.Drawing.Size(283, 44);
+            this.lblCaptures.TabIndex = 17;
+            this.lblCaptures.Text = "Espèce capturée";
+            // 
+            // nudCapture
+            // 
+            this.nudCapture.Location = new System.Drawing.Point(90, 578);
+            this.nudCapture.Name = "nudCapture";
+            this.nudCapture.Size = new System.Drawing.Size(105, 51);
+            this.nudCapture.TabIndex = 16;
+            // 
+            // cboCaptures
+            // 
+            this.cboCaptures.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCaptures.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCaptures.FormattingEnabled = true;
+            this.cboCaptures.Location = new System.Drawing.Point(90, 272);
+            this.cboCaptures.Name = "cboCaptures";
+            this.cboCaptures.Size = new System.Drawing.Size(825, 52);
+            this.cboCaptures.TabIndex = 15;
+            // 
+            // btnValidCapture
+            // 
+            this.btnValidCapture.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValidCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidCapture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidCapture.Location = new System.Drawing.Point(927, 873);
+            this.btnValidCapture.Name = "btnValidCapture";
+            this.btnValidCapture.Size = new System.Drawing.Size(86, 81);
+            this.btnValidCapture.TabIndex = 14;
+            this.btnValidCapture.UseVisualStyleBackColor = true;
+            this.btnValidCapture.Click += new System.EventHandler(this.btnValidCapture_Click);
+            // 
+            // tbcNego
+            // 
+            this.tbcNego.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(154)))), ((int)(((byte)(255)))));
+            this.tbcNego.Controls.Add(this.lblNego2);
+            this.tbcNego.Controls.Add(this.txtDataBaz);
+            this.tbcNego.Controls.Add(this.btnRazNego);
+            this.tbcNego.Controls.Add(this.btnValidNego);
+            this.tbcNego.Controls.Add(this.lblNego);
+            this.tbcNego.Controls.Add(this.cboNego);
+            this.tbcNego.Location = new System.Drawing.Point(8, 58);
+            this.tbcNego.Name = "tbcNego";
+            this.tbcNego.Padding = new System.Windows.Forms.Padding(3);
+            this.tbcNego.Size = new System.Drawing.Size(1096, 995);
+            this.tbcNego.TabIndex = 4;
+            this.tbcNego.Text = "+ Négociation";
+            // 
+            // lblNego2
+            // 
+            this.lblNego2.AutoSize = true;
+            this.lblNego2.Location = new System.Drawing.Point(82, 487);
+            this.lblNego2.Name = "lblNego2";
+            this.lblNego2.Size = new System.Drawing.Size(688, 44);
+            this.lblNego2.TabIndex = 24;
+            this.lblNego2.Text = "Quantité de DataBaz négociée (en tonnes)";
+            // 
+            // txtDataBaz
+            // 
+            this.txtDataBaz.Location = new System.Drawing.Point(90, 578);
+            this.txtDataBaz.Name = "txtDataBaz";
+            this.txtDataBaz.Size = new System.Drawing.Size(114, 51);
+            this.txtDataBaz.TabIndex = 23;
+            this.txtDataBaz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataBaz_KeyPress);
+            // 
+            // btnRazNego
+            // 
+            this.btnRazNego.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
+            this.btnRazNego.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRazNego.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRazNego.Location = new System.Drawing.Point(771, 873);
+            this.btnRazNego.Name = "btnRazNego";
+            this.btnRazNego.Size = new System.Drawing.Size(86, 81);
+            this.btnRazNego.TabIndex = 22;
+            this.btnRazNego.UseVisualStyleBackColor = true;
+            this.btnRazNego.Click += new System.EventHandler(this.btnRazNego_Click);
+            // 
+            // btnValidNego
+            // 
+            this.btnValidNego.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
+            this.btnValidNego.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnValidNego.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidNego.Location = new System.Drawing.Point(927, 873);
+            this.btnValidNego.Name = "btnValidNego";
+            this.btnValidNego.Size = new System.Drawing.Size(86, 81);
+            this.btnValidNego.TabIndex = 21;
+            this.btnValidNego.UseVisualStyleBackColor = true;
+            this.btnValidNego.Click += new System.EventHandler(this.btnValidNego_Click);
+            // 
+            // lblNego
+            // 
+            this.lblNego.AutoSize = true;
+            this.lblNego.Location = new System.Drawing.Point(82, 188);
+            this.lblNego.Name = "lblNego";
+            this.lblNego.Size = new System.Drawing.Size(216, 44);
+            this.lblNego.TabIndex = 20;
+            this.lblNego.Text = "Négociateur";
+            // 
+            // cboNego
+            // 
+            this.cboNego.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNego.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboNego.FormattingEnabled = true;
+            this.cboNego.Location = new System.Drawing.Point(90, 272);
+            this.cboNego.Name = "cboNego";
+            this.cboNego.Size = new System.Drawing.Size(824, 52);
+            this.cboNego.TabIndex = 18;
             // 
             // grpCommentaires
             // 
@@ -580,160 +737,11 @@
             this.grpObjectifCaptures.TabStop = false;
             this.grpObjectifCaptures.Text = "Objectifs de capture : ";
             // 
-            // tpCapture
-            // 
-            this.tpCapture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(154)))), ((int)(((byte)(255)))));
-            this.tpCapture.Controls.Add(this.lblCapture2);
-            this.tpCapture.Controls.Add(this.btnRAZCaptures);
-            this.tpCapture.Controls.Add(this.lblCaptures);
-            this.tpCapture.Controls.Add(this.nudCapture);
-            this.tpCapture.Controls.Add(this.cboCaptures);
-            this.tpCapture.Controls.Add(this.btnValidCapture);
-            this.tpCapture.Location = new System.Drawing.Point(8, 58);
-            this.tpCapture.Name = "tpCapture";
-            this.tpCapture.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCapture.Size = new System.Drawing.Size(1096, 995);
-            this.tpCapture.TabIndex = 3;
-            this.tpCapture.Text = "+ Capture";
-            // 
-            // btnValidCapture
-            // 
-            this.btnValidCapture.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
-            this.btnValidCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnValidCapture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidCapture.Location = new System.Drawing.Point(928, 855);
-            this.btnValidCapture.Name = "btnValidCapture";
-            this.btnValidCapture.Size = new System.Drawing.Size(86, 81);
-            this.btnValidCapture.TabIndex = 14;
-            this.btnValidCapture.UseVisualStyleBackColor = true;
-            this.btnValidCapture.Click += new System.EventHandler(this.btnValidCapture_Click);
-            // 
-            // cboCaptures
-            // 
-            this.cboCaptures.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboCaptures.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCaptures.FormattingEnabled = true;
-            this.cboCaptures.Location = new System.Drawing.Point(90, 272);
-            this.cboCaptures.Name = "cboCaptures";
-            this.cboCaptures.Size = new System.Drawing.Size(825, 52);
-            this.cboCaptures.TabIndex = 15;
-            // 
-            // nudCapture
-            // 
-            this.nudCapture.Location = new System.Drawing.Point(90, 578);
-            this.nudCapture.Name = "nudCapture";
-            this.nudCapture.Size = new System.Drawing.Size(105, 51);
-            this.nudCapture.TabIndex = 16;
-            // 
-            // lblCaptures
-            // 
-            this.lblCaptures.AutoSize = true;
-            this.lblCaptures.Location = new System.Drawing.Point(82, 188);
-            this.lblCaptures.Name = "lblCaptures";
-            this.lblCaptures.Size = new System.Drawing.Size(283, 44);
-            this.lblCaptures.TabIndex = 17;
-            this.lblCaptures.Text = "Espèce capturée";
-            // 
-            // btnRAZCaptures
-            // 
-            this.btnRAZCaptures.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
-            this.btnRAZCaptures.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRAZCaptures.Location = new System.Drawing.Point(757, 855);
-            this.btnRAZCaptures.Name = "btnRAZCaptures";
-            this.btnRAZCaptures.Size = new System.Drawing.Size(86, 81);
-            this.btnRAZCaptures.TabIndex = 18;
-            this.btnRAZCaptures.UseVisualStyleBackColor = true;
-            this.btnRAZCaptures.Click += new System.EventHandler(this.btnRAZCaptures_Click);
-            // 
-            // tbcNego
-            // 
-            this.tbcNego.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(154)))), ((int)(((byte)(255)))));
-            this.tbcNego.Controls.Add(this.lblNego2);
-            this.tbcNego.Controls.Add(this.txtDataBaz);
-            this.tbcNego.Controls.Add(this.btnRazNego);
-            this.tbcNego.Controls.Add(this.btnValidNego);
-            this.tbcNego.Controls.Add(this.lblNego);
-            this.tbcNego.Controls.Add(this.cboNego);
-            this.tbcNego.Location = new System.Drawing.Point(8, 58);
-            this.tbcNego.Name = "tbcNego";
-            this.tbcNego.Padding = new System.Windows.Forms.Padding(3);
-            this.tbcNego.Size = new System.Drawing.Size(1096, 995);
-            this.tbcNego.TabIndex = 4;
-            this.tbcNego.Text = "+ Négociation";
-            // 
-            // lblNego
-            // 
-            this.lblNego.AutoSize = true;
-            this.lblNego.Location = new System.Drawing.Point(82, 188);
-            this.lblNego.Name = "lblNego";
-            this.lblNego.Size = new System.Drawing.Size(216, 44);
-            this.lblNego.TabIndex = 20;
-            this.lblNego.Text = "Négociateur";
-            // 
-            // cboNego
-            // 
-            this.cboNego.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboNego.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboNego.FormattingEnabled = true;
-            this.cboNego.Location = new System.Drawing.Point(90, 272);
-            this.cboNego.Name = "cboNego";
-            this.cboNego.Size = new System.Drawing.Size(824, 52);
-            this.cboNego.TabIndex = 18;
-            // 
-            // btnRazNego
-            // 
-            this.btnRazNego.BackgroundImage = global::Formulaire_principal.Properties.Resources.supprimer;
-            this.btnRazNego.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRazNego.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRazNego.Location = new System.Drawing.Point(757, 855);
-            this.btnRazNego.Name = "btnRazNego";
-            this.btnRazNego.Size = new System.Drawing.Size(86, 81);
-            this.btnRazNego.TabIndex = 22;
-            this.btnRazNego.UseVisualStyleBackColor = true;
-            this.btnRazNego.Click += new System.EventHandler(this.btnRazNego_Click);
-            // 
-            // btnValidNego
-            // 
-            this.btnValidNego.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
-            this.btnValidNego.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnValidNego.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidNego.Location = new System.Drawing.Point(928, 855);
-            this.btnValidNego.Name = "btnValidNego";
-            this.btnValidNego.Size = new System.Drawing.Size(86, 81);
-            this.btnValidNego.TabIndex = 21;
-            this.btnValidNego.UseVisualStyleBackColor = true;
-            this.btnValidNego.Click += new System.EventHandler(this.btnValidNego_Click);
-            // 
-            // txtDataBaz
-            // 
-            this.txtDataBaz.Location = new System.Drawing.Point(90, 578);
-            this.txtDataBaz.Name = "txtDataBaz";
-            this.txtDataBaz.Size = new System.Drawing.Size(114, 51);
-            this.txtDataBaz.TabIndex = 23;
-            this.txtDataBaz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDataBaz_KeyPress);
-            // 
-            // lblNego2
-            // 
-            this.lblNego2.AutoSize = true;
-            this.lblNego2.Location = new System.Drawing.Point(82, 487);
-            this.lblNego2.Name = "lblNego2";
-            this.lblNego2.Size = new System.Drawing.Size(688, 44);
-            this.lblNego2.TabIndex = 24;
-            this.lblNego2.Text = "Quantité de DataBaz négociée (en tonnes)";
-            // 
-            // lblCapture2
-            // 
-            this.lblCapture2.AutoSize = true;
-            this.lblCapture2.Location = new System.Drawing.Point(82, 487);
-            this.lblCapture2.Name = "lblCapture2";
-            this.lblCapture2.Size = new System.Drawing.Size(180, 44);
-            this.lblCapture2.TabIndex = 19;
-            this.lblCapture2.Text = "Quantitée";
-            // 
             // btnRetourTDB
             // 
             this.btnRetourTDB.BackgroundImage = global::Formulaire_principal.Properties.Resources.maison;
             this.btnRetourTDB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRetourTDB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRetourTDB.Location = new System.Drawing.Point(2466, 28);
             this.btnRetourTDB.Name = "btnRetourTDB";
             this.btnRetourTDB.Size = new System.Drawing.Size(86, 81);
@@ -762,6 +770,7 @@
             this.Controls.Add(this.lblDates);
             this.Controls.Add(this.picMission);
             this.Controls.Add(this.lblNomMission);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmDetailMission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -775,14 +784,14 @@
             this.tbcNouvDepense.PerformLayout();
             this.tbcEvnmt.ResumeLayout(false);
             this.tbcEvnmt.PerformLayout();
-            this.grpCommentaires.ResumeLayout(false);
-            this.grpMembresEquipage.ResumeLayout(false);
-            this.grpObjectifCaptures.ResumeLayout(false);
             this.tpCapture.ResumeLayout(false);
             this.tpCapture.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapture)).EndInit();
             this.tbcNego.ResumeLayout(false);
             this.tbcNego.PerformLayout();
+            this.grpCommentaires.ResumeLayout(false);
+            this.grpMembresEquipage.ResumeLayout(false);
+            this.grpObjectifCaptures.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
