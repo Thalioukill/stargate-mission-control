@@ -119,11 +119,6 @@
             this.txtNomEnnemis = new System.Windows.Forms.TextBox();
             this.ttRAZ = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.plChargement = new System.Windows.Forms.Panel();
-            this.plBoiteChargement = new System.Windows.Forms.Panel();
-            this.lblCharge = new System.Windows.Forms.Label();
-            this.lblPourcentage = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.plMissions.SuspendLayout();
             this.grpNbMissionsTrouvees.SuspendLayout();
             this.grpFiltres.SuspendLayout();
@@ -1240,34 +1235,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // plChargement
-            // 
-            this.plChargement.Location = new System.Drawing.Point(0, 0);
-            this.plChargement.Name = "plChargement";
-            this.plChargement.Size = new System.Drawing.Size(200, 100);
-            this.plChargement.TabIndex = 0;
-            // 
-            // plBoiteChargement
-            // 
-            this.plBoiteChargement.Location = new System.Drawing.Point(0, 0);
-            this.plBoiteChargement.Name = "plBoiteChargement";
-            this.plBoiteChargement.Size = new System.Drawing.Size(200, 100);
-            this.plBoiteChargement.TabIndex = 0;
-            // 
-            // lblCharge
-            // 
-            this.lblCharge.Location = new System.Drawing.Point(0, 0);
-            this.lblCharge.Name = "lblCharge";
-            this.lblCharge.Size = new System.Drawing.Size(100, 23);
-            this.lblCharge.TabIndex = 0;
-            // 
-            // lblPourcentage
-            // 
-            this.lblPourcentage.Location = new System.Drawing.Point(0, 0);
-            this.lblPourcentage.Name = "lblPourcentage";
-            this.lblPourcentage.Size = new System.Drawing.Size(100, 23);
-            this.lblPourcentage.TabIndex = 0;
-            // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1407,11 +1374,6 @@
         private System.Windows.Forms.Button btnValiderNbJoursMission;
         private System.Windows.Forms.GroupBox grpEspeces;
         private System.Windows.Forms.Label lblErreur3;
-        private System.Windows.Forms.Label lblPourcentage;
-        private System.Windows.Forms.Label lblCharge;
-        private System.Windows.Forms.Panel plChargement;
-        private System.Windows.Forms.Panel plBoiteChargement;
-        private System.Windows.Forms.Timer timer;
     }
 }
 
