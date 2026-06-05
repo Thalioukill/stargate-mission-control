@@ -467,7 +467,7 @@ namespace Formulaire_principal
                     cmdBudg.Parameters.AddWithValue("@nomPlanete", idPlanete);
                     cmdBudg.Parameters.AddWithValue("@numero", idNumero);
                     int budget = Convert.ToInt32(cmdBudg.ExecuteScalar());
-                    if(budget - int.Parse(txtMontant.Text) < 0)
+                    if (budget - int.Parse(txtMontant.Text) < 0)
                     {
                         MessageBox.Show("Impossible d'ajouter la dépense, vous allez être dans le rouge !");
                         RAZDepense();
@@ -512,12 +512,14 @@ namespace Formulaire_principal
 
                             MessageBox.Show("Nouvelle dépense ajoutée !");
                             RAZDepense();
+                            AfficherDetailsMission();
+
                         }
                         catch (SQLiteException err)
                         {
                             MessageBox.Show(err.Message);
                         }
-                    } 
+                    }
                 }
                 catch (SQLiteException err)
                 {

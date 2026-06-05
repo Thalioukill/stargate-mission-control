@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -19,6 +20,8 @@ namespace Formulaire_principal
 
         //instanciation du DataSet
         private DataSet ds = MesDatas.DsGlobal;
+        private Panel prochainPanel;
+        private int progressionInterne = 0;
 
         public FrmAccueil()
         {
@@ -31,7 +34,6 @@ namespace Formulaire_principal
             plPlanetes.Visible = false;
             plAliens.Visible = false;
 
-
             RemplirDataSet();
             CreerClesPrim();
             CreerRelations();
@@ -42,7 +44,7 @@ namespace Formulaire_principal
             charger_planetes();
 
             msMenu.Renderer = new MyRenderer();
-
+            pnlProgressBar.Visible = false;
 
             /* Vérification de la connection : 
              
@@ -329,6 +331,8 @@ namespace Formulaire_principal
         }
         public void ActualiserPanel(Panel panelAAfficher)
         {
+            this.SuspendLayout();
+            pnlProgressBar.Visible = true;
             // On parcourt tous les contrôles du formulaire pour masquer les panels
             foreach (Panel p in this.Controls.OfType<Panel>())
             {
@@ -339,13 +343,54 @@ namespace Formulaire_principal
                 }
             }
 
-            // On affiche uniquement celui passé en paramètre
-            if (panelAAfficher != null)
-            {
-                panelAAfficher.Visible = true;
-            }
+            // prep de la jauge
+            this.prochainPanel = panelAAfficher;
+            this.progressionInterne = 0; // RESET impératif
+            plChargement.Width = 0;   // On remet la barre à gauche
+
+            // affichage du cadre de chargement
+            plBoiteChargement.Visible = true;
+            lblPourcentage.Visible = true;
+            lblCharge.Visible = true;
+            lblCharge.Text = "Synchronisation de la porte des étoiles...";
+
+            this.ResumeLayout();
+            //lance le Timer au lieu d'afficher le panel de suite
+            timer.Start();
         }
 
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (progressionInterne < 100)
+            {
+                // Remplissage progressif
+                progressionInterne += 5;
+
+                // Calcul de la largeur en pixels
+                int nouvelleLargeur = (progressionInterne * plBoiteChargement.Width) / 100;
+                plChargement.Width = nouvelleLargeur;
+
+                lblPourcentage.Text = progressionInterne.ToString() + " %";
+            }
+            else
+            {
+                // LE CHARGEMENT EST FINI
+                timer.Stop();
+
+                // cache TOUT ce qui concerne le chargement
+                pnlProgressBar.Visible = false;
+                lblPourcentage.Visible = false;
+                lblCharge.Visible = false;
+
+                // affiche le panel de destination
+                if (prochainPanel != null)
+                {
+                    prochainPanel.Visible = true;
+                    prochainPanel.BringToFront();
+                }
+            }
+        }
 
 
         // =======> Code TABLEAU DE BORD
@@ -431,6 +476,7 @@ namespace Formulaire_principal
 
         public void ActualiserAffichage()
         {
+            flp1.SuspendLayout();
             // On vide systématiquement avant de recalculer
             flpMissions.Controls.Clear();
 
@@ -543,6 +589,7 @@ namespace Formulaire_principal
             {
                 MessageBox.Show(ex.Message);
             }
+            flp1.ResumeLayout();
         }
 
         private void btnRAZ_Click(object sender, EventArgs e)
@@ -1444,6 +1491,11 @@ namespace Formulaire_principal
                 e.SuppressKeyPress = true;
                 chargerAliensEnnemis();
             }
+        }
+
+        private void pnlProgressBar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
