@@ -52,10 +52,13 @@ namespace Formulaire_principal
 
         private DataSet ds = MesDatas.DsGlobal;
 
-        
+
         public FrmMission()
         {
             InitializeComponent();
+
+            //Cbo chef desactivée
+            cboChef.Enabled = false;
 
             //Désactivation des composants de la deuxième partie
 
@@ -96,7 +99,7 @@ namespace Formulaire_principal
                 object resultat = cmd.ExecuteScalar();
                 if (resultat != null && resultat != DBNull.Value)
                 {
-                    numMiss = (Convert.ToInt32(resultat.ToString()))+1;
+                    numMiss = (Convert.ToInt32(resultat.ToString())) + 1;
                 }
                 else
                 {
@@ -133,6 +136,7 @@ namespace Formulaire_principal
                 lblDateRetour.ForeColor = SystemColors.ControlDark;
                 btnValidDate.BackgroundImage = Image.FromFile("../../Images/Boutons/valider_desac.png");
                 RemplirCboChef();
+                CboChefUtilisable();
                 erpCboChef.Clear();
             }
 
@@ -141,7 +145,7 @@ namespace Formulaire_principal
 
         private void btnValidMission_Click(object sender, EventArgs e)
         {
-            if(cboPlanete.SelectedIndex == -1)
+            if (cboPlanete.SelectedIndex == -1)
             {
                 MessageBox.Show("Veuillez sélectionner une planète");
             }
@@ -149,15 +153,9 @@ namespace Formulaire_principal
             {
                 MessageBox.Show("Veuillez sélectionner un chef valide");
             }
-            //instance.CompareTo(object value)
-            //si < 0 alors instance précède value
-            //si = 0 alors instance à la même position que value en terme de trie
-            //si > 0 alors instance est après value
-            else if (dtpDepart.Value.Date.CompareTo(dtpRetour.Value.Date) >= 0)
+            else if (int.Parse(txtnbMembres.Text) >= 100)
             {
-
-                MessageBox.Show("La date de départ ne peut pas être après la date de retour, la date de retour ne peut pas être avant la date de départ, et les missions sur un jour n'existent pas !");
-
+                MessageBox.Show("Impossible de sélectionner plus de 100 membres !");
             }
             else if (txtBudget.Text == "" || txtobjDataBaz.Text == "" || txtnbMembres.Text == "" || txtfeuilleRoute.Text == "")
             {
@@ -187,7 +185,7 @@ namespace Formulaire_principal
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Mission ajoutée !");
 
-                    
+
 
                     //progressBar1.Visible = true;
                     //progressBar1.Style = ProgressBarStyle.Continuous;
@@ -233,9 +231,9 @@ namespace Formulaire_principal
             e.Handled = true;
 
             //On réouvre si chiffre ou contrôle uniquement
-            if(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
-                e.Handled=false;
+                e.Handled = false;
             }
             if (e.KeyChar == 13)
             {
@@ -258,7 +256,7 @@ namespace Formulaire_principal
             {
                 txtobjDataBaz.Focus();
             }
-            if(e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up)
             {
                 txtfeuilleRoute.Focus();
             }
@@ -270,7 +268,7 @@ namespace Formulaire_principal
             {
                 txtBudget.Focus();
             }
-            if(e.KeyCode== Keys.Up)
+            if (e.KeyCode == Keys.Up)
             {
                 txtnbMembres.Focus();
             }
@@ -318,7 +316,7 @@ namespace Formulaire_principal
 
         private void cboMembres_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboMembres.SelectedIndex == -1)
+            if (cboMembres.SelectedIndex == -1)
             {
                 lblNomMembre.Text = "Veuillez sélectionner un membre";
             }
@@ -405,7 +403,7 @@ namespace Formulaire_principal
                             }
                         }
                     }
-                    if(lstbPartis.Items.Count == 0)
+                    if (lstbPartis.Items.Count == 0)
                     {
                         erpPersonnePartis.SetError(lblNomMembre, "Aucun membre trouvé !");
                     }
@@ -420,13 +418,13 @@ namespace Formulaire_principal
                     MessageBox.Show(err.Message);
                 }
             }
-            
+
 
         }
 
         private void btnAddMembre_Click(object sender, EventArgs e)
         {
-            if(cboMembres.SelectedIndex == -1)
+            if (cboMembres.SelectedIndex == -1)
             {
                 MessageBox.Show("Veuillez entrer un membre valide");
             }
@@ -460,8 +458,8 @@ namespace Formulaire_principal
 
                 }
             }
-            
-            
+
+
         }
 
         private void btnRefaire_Click(object sender, EventArgs e)
@@ -499,7 +497,7 @@ namespace Formulaire_principal
                         }
                     }
 
-                    if(valide)
+                    if (valide)
                     {
                         //On retire tout de lstbMembres sauf le chef à l'index 0
                         while (lstbMembres.Items.Count > 1)
@@ -518,7 +516,7 @@ namespace Formulaire_principal
 
                         }
                     }
-                    
+
                 }
 
                 else
@@ -530,7 +528,7 @@ namespace Formulaire_principal
 
         private void btnvalidMembres_Click(object sender, EventArgs e)
         {
-            if(int.Parse(lblreste.Text) != 0)
+            if (int.Parse(lblreste.Text) != 0)
             {
                 MessageBox.Show("Il reste des membres à ajouter");
             }
@@ -577,15 +575,15 @@ namespace Formulaire_principal
                 MessageBox.Show("Membres ajoutés !");
                 PartieTroisUtilisable();
             }
-            
 
-            
+
+
         }
 
         private void btnAddSelect_Click(object sender, EventArgs e)
         {
             bool tousajoutes = false;
-            if(lstbPartis.Items.Count == 0)
+            if (lstbPartis.Items.Count == 0)
             {
                 MessageBox.Show("Aucune sélection possible !");
             }
@@ -602,7 +600,7 @@ namespace Formulaire_principal
                 {
                     values.Add(((ListItemMembre)lstbMembres.Items[i]).Value);
                 }
-                
+
                 //On peut comparer pour chaque valeur de lstbPartis si elle ne correspond pas à une valeur de notre liste
                 //Sinon, membre déjà présent
                 foreach (ListItemMembre li in lstbPartis.SelectedItems)
@@ -624,9 +622,9 @@ namespace Formulaire_principal
                     else
                     {
                         tousajoutes = true;
-                    } 
+                    }
                 }
-                if(tousajoutes)
+                if (tousajoutes)
                 {
                     MessageBox.Show("Tous les membres ont déjà été ajoutés !");
                 }
@@ -646,16 +644,16 @@ namespace Formulaire_principal
             {
                 foreach (ListItemMembre li in lstbMembres.SelectedItems)
                 {
-                    if(li.Value == cboChef.SelectedValue.ToString())
+                    if (li.Value == cboChef.SelectedValue.ToString())
                     {
                         MessageBox.Show("Impossible d'enlever le chef de mission de l'équipe ! \n (un peu de bon sens)");
                     }
                     else
                     {
                         remove.Add(li);
-                    }         
+                    }
                 }
-                foreach(ListItemMembre li2 in remove)
+                foreach (ListItemMembre li2 in remove)
                 {
                     int reste = int.Parse(lblreste.Text);
                     reste += 1;
@@ -663,12 +661,12 @@ namespace Formulaire_principal
                     lstbMembres.Items.Remove(li2);
                 }
             }
-            
+
         }
 
         private void btnAddCapture_Click(object sender, EventArgs e)
         {
-            if(cboCaptures.SelectedIndex == -1)
+            if (cboCaptures.SelectedIndex == -1)
             {
                 MessageBox.Show("Entrez une espèce valide !");
             }
@@ -718,11 +716,11 @@ namespace Formulaire_principal
                     }
                 }
             }
-            
-            
-            
+
+
+
         }
-                
+
 
         private void btnValidObj_Click(object sender, EventArgs e)
         {
@@ -748,14 +746,14 @@ namespace Formulaire_principal
                     cmd.Parameters.AddWithValue("@objectif", quant);
 
                     cmd.ExecuteNonQuery();
-                    
+
                 }
                 trans.Commit();
                 MessageBox.Show("Objectifs de capture enregistrés !");
 
                 //On a tout renseigné, on peut mettre à jour le data set
                 MettreaJourDS();
-                
+
             }
             catch (SQLiteException err)
             {
@@ -781,7 +779,7 @@ namespace Formulaire_principal
                 nud1.Value = 0;
                 foreach (ListItemCapture elt in lstbCaptures.SelectedItems)
                 {
-                     remove.Add(elt);
+                    remove.Add(elt);
                 }
                 foreach (ListItemCapture elt2 in remove)
                 {
@@ -903,6 +901,12 @@ namespace Formulaire_principal
             }
         }
 
+        private void CboChefUtilisable()
+        {
+            cboChef.Enabled = true;
+            lblChoixChef.ForeColor = SystemColors.ControlText;
+        }
+
         private void PartieDeuxUtilisable()
         {
             grpPrecisions.BackgroundImage = null;
@@ -958,13 +962,13 @@ namespace Formulaire_principal
             {
                 ds.Tables["Composer"].Clear();
             }
-            
+
 
             if (ds.Tables.Contains("Capturer"))
             {
                 ds.Tables["Capturer"].Clear();
             }
-          
+
 
             if (ds.Tables.Contains("Mission"))
             {

@@ -205,6 +205,7 @@
             this.txtBudget.Location = new System.Drawing.Point(359, 813);
             this.txtBudget.Margin = new System.Windows.Forms.Padding(2);
             this.txtBudget.Name = "txtBudget";
+            this.txtBudget.ShortcutsEnabled = false;
             this.txtBudget.Size = new System.Drawing.Size(63, 35);
             this.txtBudget.TabIndex = 58;
             this.txtBudget.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBudget_KeyDown);
@@ -239,6 +240,7 @@
             this.txtobjDataBaz.Location = new System.Drawing.Point(359, 751);
             this.txtobjDataBaz.Margin = new System.Windows.Forms.Padding(2);
             this.txtobjDataBaz.Name = "txtobjDataBaz";
+            this.txtobjDataBaz.ShortcutsEnabled = false;
             this.txtobjDataBaz.Size = new System.Drawing.Size(63, 35);
             this.txtobjDataBaz.TabIndex = 55;
             this.txtobjDataBaz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtobjDataBaz_KeyDown);
@@ -273,6 +275,7 @@
             this.txtnbMembres.Location = new System.Drawing.Point(359, 685);
             this.txtnbMembres.Margin = new System.Windows.Forms.Padding(2);
             this.txtnbMembres.Name = "txtnbMembres";
+            this.txtnbMembres.ShortcutsEnabled = false;
             this.txtnbMembres.Size = new System.Drawing.Size(63, 35);
             this.txtnbMembres.TabIndex = 52;
             this.txtnbMembres.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtnbMembres_KeyDown);
@@ -296,6 +299,7 @@
             this.txtfeuilleRoute.Margin = new System.Windows.Forms.Padding(2);
             this.txtfeuilleRoute.Multiline = true;
             this.txtfeuilleRoute.Name = "txtfeuilleRoute";
+            this.txtfeuilleRoute.ShortcutsEnabled = false;
             this.txtfeuilleRoute.Size = new System.Drawing.Size(441, 140);
             this.txtfeuilleRoute.TabIndex = 50;
             this.txtfeuilleRoute.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtfeuilleRoute_KeyDown);
@@ -753,7 +757,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImage = global::Formulaire_principal.Properties.Resources.fond_mission;
-            this.ClientSize = new System.Drawing.Size(1861, 807);
+            this.ClientSize = new System.Drawing.Size(1861, 946);
             this.Controls.Add(this.btnAccueil);
             this.Controls.Add(this.grpPrecisions);
             this.Controls.Add(this.grpNouvelleMission);
