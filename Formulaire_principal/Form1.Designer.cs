@@ -125,6 +125,8 @@
             this.lblCharge = new System.Windows.Forms.Label();
             this.lblPourcentage = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.ttBudgetMin = new System.Windows.Forms.ToolTip(this.components);
+            this.label15 = new System.Windows.Forms.Label();
             this.plMissions.SuspendLayout();
             this.grpNbMissionsTrouvees.SuspendLayout();
             this.grpFiltres.SuspendLayout();
@@ -180,6 +182,7 @@
             // grpFiltres
             // 
             this.grpFiltres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.grpFiltres.Controls.Add(this.label15);
             this.grpFiltres.Controls.Add(this.btnValiderNbJoursMission);
             this.grpFiltres.Controls.Add(this.btnValiderNbJoursMin);
             this.grpFiltres.Controls.Add(this.rdbRAZ);
@@ -212,7 +215,7 @@
             this.btnValiderNbJoursMission.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnValiderNbJoursMission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnValiderNbJoursMission.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValiderNbJoursMission.Location = new System.Drawing.Point(1243, 164);
+            this.btnValiderNbJoursMission.Location = new System.Drawing.Point(1204, 163);
             this.btnValiderNbJoursMission.Margin = new System.Windows.Forms.Padding(5);
             this.btnValiderNbJoursMission.Name = "btnValiderNbJoursMission";
             this.btnValiderNbJoursMission.Size = new System.Drawing.Size(41, 40);
@@ -256,14 +259,14 @@
             // 
             // nupNbMissions
             // 
-            this.nupNbMissions.Location = new System.Drawing.Point(1127, 166);
+            this.nupNbMissions.Location = new System.Drawing.Point(1128, 168);
             this.nupNbMissions.Maximum = new decimal(new int[] {
             365,
             0,
             0,
             0});
             this.nupNbMissions.Name = "nupNbMissions";
-            this.nupNbMissions.Size = new System.Drawing.Size(107, 35);
+            this.nupNbMissions.Size = new System.Drawing.Size(68, 35);
             this.nupNbMissions.TabIndex = 13;
             this.nupNbMissions.Value = new decimal(new int[] {
             1,
@@ -276,7 +279,7 @@
             this.btnRecherche.BackgroundImage = global::Formulaire_principal.Properties.Resources.valider;
             this.btnRecherche.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecherche.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecherche.Location = new System.Drawing.Point(979, 163);
+            this.btnRecherche.Location = new System.Drawing.Point(973, 148);
             this.btnRecherche.Margin = new System.Windows.Forms.Padding(5);
             this.btnRecherche.Name = "btnRecherche";
             this.btnRecherche.Size = new System.Drawing.Size(41, 40);
@@ -287,7 +290,7 @@
             // lblBd
             // 
             this.lblBd.Font = new System.Drawing.Font("Kristen ITC", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBd.Location = new System.Drawing.Point(729, 120);
+            this.lblBd.Location = new System.Drawing.Point(722, 214);
             this.lblBd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBd.Name = "lblBd";
             this.lblBd.Size = new System.Drawing.Size(319, 28);
@@ -297,12 +300,13 @@
             // 
             this.txtBudgetMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBudgetMin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtBudgetMin.Location = new System.Drawing.Point(733, 164);
+            this.txtBudgetMin.Location = new System.Drawing.Point(727, 152);
             this.txtBudgetMin.Margin = new System.Windows.Forms.Padding(4);
             this.txtBudgetMin.Name = "txtBudgetMin";
             this.txtBudgetMin.ShortcutsEnabled = false;
             this.txtBudgetMin.Size = new System.Drawing.Size(237, 35);
             this.txtBudgetMin.TabIndex = 9;
+            this.ttBudgetMin.SetToolTip(this.txtBudgetMin, "Filtre par budget MINIMUM");
             this.txtBudgetMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBudgetMax_KeyPress);
             // 
             // lblPlanete
@@ -1301,6 +1305,15 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // label15
+            // 
+            this.label15.Location = new System.Drawing.Point(722, 84);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(242, 64);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Budget minimum des missions : ";
+            // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1452,6 +1465,8 @@
         private System.Windows.Forms.Panel plChargement;
         private System.Windows.Forms.Panel plBoiteChargement;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ToolTip ttBudgetMin;
+        private System.Windows.Forms.Label label15;
     }
 }
 
