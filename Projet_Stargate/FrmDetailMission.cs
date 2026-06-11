@@ -51,10 +51,13 @@ namespace Projet_Stargate
             ChargerCboCapture();
             ChargerCboNego();
 
-            ColorerMotCle(rtbFeuilleDeRoute, "DataBaz", Color.BlueViolet);
-            ColorerMotCle(rtbFeuilleDeRoute, "Captures", Color.OrangeRed);
-            ColorerMotCle(rtbFeuilleDeRoute, "Informateur", Color.ForestGreen);
-            ColorerMotCle(rtbFeuilleDeRoute, "Dépenses", Color.IndianRed);
+            if (!string.IsNullOrEmpty(rtbFeuilleDeRoute.Text))
+            {
+                ColorerMotCle(rtbFeuilleDeRoute, "DataBaz", Color.BlueViolet);
+                ColorerMotCle(rtbFeuilleDeRoute, "Captures", Color.OrangeRed);
+                ColorerMotCle(rtbFeuilleDeRoute, "Informateur", Color.ForestGreen);
+                ColorerMotCle(rtbFeuilleDeRoute, "Dépenses", Color.IndianRed);
+            }
 
         }
 
@@ -145,6 +148,8 @@ namespace Projet_Stargate
 
         public void ColorerMotCle(RichTextBox rtb, string mot, Color couleur)
         {
+            if (string.IsNullOrEmpty(mot)) return;
+            
             int index = 0;
             // On cherche toutes les occurrences du mot dans le texte
             while ((index = rtb.Find(mot, index, RichTextBoxFinds.None)) != -1)
@@ -159,6 +164,8 @@ namespace Projet_Stargate
 
                 // On passe à la suite du texte pour trouver l'occurrence suivante
                 index += mot.Length;
+
+                if (index >= rtb.Text.Length) break;
             }
 
             // IMPORTANT : On remet le curseur à la fin et on réinitialise la couleur
