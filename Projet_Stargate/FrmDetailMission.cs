@@ -97,8 +97,8 @@ namespace Projet_Stargate
                     string nbJours = diff.Days.ToString() + " jours";
                     this.lblNbJours.Text = "Nombre de jours : "+ nbJours;
 
-                    this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString().Replace("'", "''");
-                    this.txtFeuilleRoute = rMission["feuilleDeRoute"].ToString().Replace("'", "''");
+                    this.rtbFeuilleDeRoute.Text = rMission["feuilleDeRoute"].ToString().Replace("'", "''").Replace("  ", " ");
+                    this.txtFeuilleRoute = rMission["feuilleDeRoute"].ToString().Replace("'", "''").Replace("  ", " ");
                     this.picMission.Image = Image.FromFile("../../Images/Missions/" + idPlanete + ".jpg");
 
                     // Calcul du budget (Budget initial - Somme des dépenses) 
