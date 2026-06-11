@@ -634,28 +634,74 @@ namespace Projet_Stargate
             {
                 try
                 {
-                    //Ajout à la base en mode connecté
-                    string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
-                            VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
+                    // Vérif si la capture existe déjà
+                    string sqlCheck = @"SELECT COUNT(*) FROM Capturer 
+                    WHERE nomPlanete = @nomPlanete 
+                    AND numeroMission = @numeroMission 
+                    AND idEspeceEnnemi = @idEspeceEnnemi";
 
-                    SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                    SQLiteCommand cmdCheck = new SQLiteCommand(sqlCheck, co);
+                    cmdCheck.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                    cmdCheck.Parameters.AddWithValue("@numeroMission", idNumero);
+                    cmdCheck.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
 
-                    cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
-                    cmd.Parameters.AddWithValue("@numeroMission", idNumero);
-                    cmd.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
-                    cmd.Parameters.AddWithValue("@nombre", nudCapture.Value);
+                    int existe = Convert.ToInt32(cmdCheck.ExecuteScalar());
 
-                    cmd.ExecuteNonQuery();
+                    if (existe > 0)
+                    {
+                        // UPDATE
+                        string sqlUpdate = @"UPDATE Capturer SET nombre = nombre + @nombre
+                         WHERE nomPlanete = @nomPlanete 
+                         AND numeroMission = @numeroMission 
+                         AND idEspeceEnnemi = @idEspeceEnnemi";
+                        SQLiteCommand cmdUpdate = new SQLiteCommand(sqlUpdate, co);
+                        cmdUpdate.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                        cmdUpdate.Parameters.AddWithValue("@numeroMission", idNumero);
+                        cmdUpdate.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
+                        cmdUpdate.Parameters.AddWithValue("@nombre", nudCapture.Value);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        // INSERT
+                        string sql = @"INSERT INTO Capturer (nomPlanete,numeroMission,idEspeceEnnemi,nombre)
+                        VALUES (@nomPlanete,@numeroMission,@idEspeceEnnemi,@nombre)";
+                        SQLiteCommand cmd = new SQLiteCommand(sql, co);
+                        cmd.Parameters.AddWithValue("@nomPlanete", idPlanete);
+                        cmd.Parameters.AddWithValue("@numeroMission", idNumero);
+                        cmd.Parameters.AddWithValue("@idEspeceEnnemi", cboCaptures.SelectedValue);
+                        cmd.Parameters.AddWithValue("@nombre", nudCapture.Value);
+                        cmd.ExecuteNonQuery();
+                    }
 
                     //Mise à jour du data set en mode déconnecté
-                    DataRow maRow = ds.Tables["Ennemi"].NewRow();
-                    maRow["nomPlanete"] = idPlanete;
-                    maRow["numero"] = idNumero;
-                    maRow["idEspeceEnnemi"] = cboCaptures.SelectedValue;
-                    maRow["nombre"] = nudCapture.Value;
-                    ds.Tables["Ennemi"].Rows.Add(maRow);
+                    //On cherche si la ligne existe déjà dans le DataSet
+                    string filtre = $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero} AND idEspeceEnnemi = {cboCaptures.SelectedValue}";
+                    DataRow[] lignesTrouvees = ds.Tables["Capturer"].Select(filtre);
 
-                    MessageBox.Show("Nouvelle capture ajoutée !");
+                    if (lignesTrouvees.Length > 0)
+                    {
+                        // UPDATE du DataSet
+                        DataRow maRowExistante = lignesTrouvees[0];
+
+                        maRowExistante["nombre"] = Convert.ToInt32(maRowExistante["nombre"]) + Convert.ToInt32(nudCapture.Value);
+
+                        MessageBox.Show("Capture mise à jour (Quantité cumulée) !");
+                    }
+                    else
+                    {
+                        // INSERT du DataSet : La ligne n'existe pas, on la crée
+                        DataRow maRowNouvelle = ds.Tables["Capturer"].NewRow();
+                        maRowNouvelle["nomPlanete"] = idPlanete;
+                        maRowNouvelle["numeroMission"] = idNumero;
+                        maRowNouvelle["idEspeceEnnemi"] = cboCaptures.SelectedValue;
+                        maRowNouvelle["nombre"] = nudCapture.Value;
+
+                        ds.Tables["Capturer"].Rows.Add(maRowNouvelle);
+                        MessageBox.Show("Nouvelle capture ajoutée !");
+                    }
+
+                    
                     RAZCapture();
 
                 }
