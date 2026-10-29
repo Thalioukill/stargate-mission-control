@@ -431,7 +431,7 @@ namespace Projet_Stargate
 
 
         private void AfficherBudgetMax()
-        {            
+        {
             // Compute("MAX(budget)", "") = équivalent de SELECT MAX(budget) FROM Mission
             object result = ds.Tables["Mission"].Compute("MAX(budget)", "");
 
@@ -474,7 +474,7 @@ namespace Projet_Stargate
             }
             public override Color MenuItemSelectedGradientBegin
             {
-                get { return Color.FromArgb(120, 114, 255); } 
+                get { return Color.FromArgb(120, 114, 255); }
             }
             public override Color MenuItemSelectedGradientEnd
             {
@@ -543,8 +543,9 @@ namespace Projet_Stargate
             // Filtre chef
             if (cboChefMission.SelectedIndex > 0)
             {
-                if (filtre != "") { 
-                    filtre += " AND "; 
+                if (filtre != "")
+                {
+                    filtre += " AND ";
                 }
                 filtre += $"matriculeChef = '{cboChefMission.SelectedValue}'";
             }
@@ -569,57 +570,56 @@ namespace Projet_Stargate
                 filtre += $"CONVERT(budget, System.Int32) >= {txtBudgetMin.Text}";
             }
 
-            // Filtre durée avec le NumericUpDown
-            if (nupNbMissions.Value > 0)
-            {
-                if (filtre != "")
-                {
-                    filtre += " AND ";
-                }
-                // on regarde la duréee d'une mission
-                filtre += $"dateRetour >= dateDepart + {(int)nupNbMissions.Value}";
-            }
+
 
             try
             {
                 // Tri par dateDepart DESC (comme un OrderBy)
                 DataRow[] missions = ds.Tables["Mission"].Select(filtre, "dateDepart DESC");
 
+                foreach (DataRow dr in missions)
+                {
+                    string nom = dr["nomPlanete"].ToString();
+                    string numero = dr["numero"].ToString();
+                    DateTime dateDepart = DateTime.Parse(dr["dateDepart"].ToString());
+                    DateTime dateRetour = DateTime.Parse(dr["dateRetour"].ToString());
+                    string date = dateDepart.ToString("dd/MM/yyyy") + " - " + dateRetour.ToString("dd/MM/yyyy");
+                    TimeSpan diff = dateRetour.Subtract(dateDepart);
+
+                    // Filtre durée : on ignore les missions plus courtes que le minimum choisi
+                    if (diff.Days < nupNbMissions.Value)
+                    {
+                        continue;
+                    }
+
+                    string nbJours = diff.Days.ToString() + " jours";
+                    string matriculeChef = dr["matriculeChef"].ToString();
+                    string budget = dr["budget"].ToString();
+                    string image = nom + ".jpg";
+
+                    // Récupération du nom du chef depuis la table Membre du DataSet
+                    DataRow membre = ds.Tables["Membre"].Rows.Find(matriculeChef);
+                    string chef = "";
+                    if (membre != null)
+                    {
+                        chef = membre["prenom"] + " " + membre["nom"];
+                    }
+                    else
+                    {
+                        chef = "Inconnu";
+                    }
+
+                    UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
+                    uc.DateDepart = dateDepart;
+                    uc.DateRetour = dateRetour;
+                    uc.details = OuvrirDetailMission;
+
+                    flpMissions.Controls.Add(uc);
+                    nbMissions++;
+                }
+
                 if (missions.Length > 0)
                 {
-                    foreach (DataRow dr in missions)
-                    {
-                        string nom = dr["nomPlanete"].ToString();
-                        string numero = dr["numero"].ToString();
-                        DateTime dateDepart = DateTime.Parse(dr["dateDepart"].ToString());
-                        DateTime dateRetour = DateTime.Parse(dr["dateRetour"].ToString());
-                        string date = dateDepart.ToString("dd/MM/yyyy") + " - " + dateRetour.ToString("dd/MM/yyyy");
-                        TimeSpan diff = dateRetour.Subtract(dateDepart);
-                        string nbJours = diff.Days.ToString() + " jours";
-                        string matriculeChef = dr["matriculeChef"].ToString();
-                        string budget = dr["budget"].ToString();
-                        string image = nom + ".jpg";
-
-                        // Récupération du nom du chef depuis la table Membre du DataSet
-                        DataRow membre = ds.Tables["Membre"].Rows.Find(matriculeChef);
-                        string chef = "";
-                        if (membre != null)
-                        {
-                            chef = membre["prenom"] + " " + membre["nom"];
-                        }
-                        else
-                        {
-                            chef = "Inconnu";
-                        }
-
-                        UserControl_Missions uc = new UserControl_Missions(nom, numero, date, nbJours, chef, matriculeChef, budget, image);
-                        uc.DateDepart = dateDepart;
-                        uc.DateRetour = dateRetour;
-                        uc.details = OuvrirDetailMission;
-
-                        flpMissions.Controls.Add(uc);
-                        nbMissions++;
-                    }
                     grpNbMissionsTrouvees.Text = "Nombre de missions trouvées : " + nbMissions;
                 }
                 else
@@ -723,18 +723,18 @@ namespace Projet_Stargate
             string filtre = $"nom LIKE '%{txtNomAlliees.Text}%'";
             if (cboBienveillance.Text != "Toutes")
             {
-                if (cboBienveillance.Items.Contains(cboBienveillance.Text)) 
+                if (cboBienveillance.Items.Contains(cboBienveillance.Text))
                 {
                     filtre += $" AND degreBienveillance = '{cboBienveillance.Text}'";
                 }
-                else 
+                else
                 {
                     filtre += $" AND 1=0";
                 }
             }
             if (cboCouleurAlliees.Text != "Toutes")
             {
-                if(cboCouleurAlliees.Items.Contains(cboCouleurAlliees.Text))
+                if (cboCouleurAlliees.Items.Contains(cboCouleurAlliees.Text))
                 {
                     filtre += $" AND couleur = '{cboCouleurAlliees.Text}'";
                 }
@@ -776,7 +776,7 @@ namespace Projet_Stargate
 
                 if (cboAgressivite.Text != "Toutes")
                 {
-                    if(cboAgressivite.Items.Contains(cboAgressivite.Text))
+                    if (cboAgressivite.Items.Contains(cboAgressivite.Text))
                     {
                         filtre += $" AND degreAgressivite = '{cboAgressivite.Text}'";
                     }
@@ -787,7 +787,7 @@ namespace Projet_Stargate
                 }
                 if (cboCouleurEnnemis.Text != "Toutes")
                 {
-                    if(cboCouleurEnnemis.Items.Contains(cboCouleurEnnemis.Text))
+                    if (cboCouleurEnnemis.Items.Contains(cboCouleurEnnemis.Text))
                     {
                         filtre += $" AND couleur = '{cboCouleurEnnemis.Text}'";
                     }
@@ -798,7 +798,7 @@ namespace Projet_Stargate
                 }
                 if (cboTypeArme.Text != "Toutes")
                 {
-                    if(cboTypeArme.Items.Contains(cboTypeArme.Text))
+                    if (cboTypeArme.Items.Contains(cboTypeArme.Text))
                     {
                         filtre += $" AND typeArme = '{cboTypeArme.Text}'";
                     }
@@ -826,7 +826,7 @@ namespace Projet_Stargate
                     InfoEnnemis info = new InfoEnnemis(nomAlien, agressivite, couleur, planete, arme, image);
                     flp2.Controls.Add(info);
                 }
-                if(flp2.Controls.Count == 0)
+                if (flp2.Controls.Count == 0)
                 {
                     lblErreur2.Visible = true;
                     errorProvider1.SetError(lblErreur2, "Veuillez réinitialiser les filtres.");
@@ -838,7 +838,7 @@ namespace Projet_Stargate
             }
         }
 
-        private void chargerAliens() 
+        private void chargerAliens()
         {
             try
             {
@@ -946,7 +946,7 @@ namespace Projet_Stargate
             {
                 MessageBox.Show("Veuillez sélectionner une couleur valide");
             }
-            else 
+            else
             {
                 chargerAliensAlliees();
             }
@@ -987,7 +987,7 @@ namespace Projet_Stargate
         private void btnReinitialiserCouleurEnnemis_Click(object sender, EventArgs e)
         {
             cboCouleurEnnemis.SelectedIndex = -1;
-            cboCouleurEnnemis.Text = ""; 
+            cboCouleurEnnemis.Text = "";
         }
 
         private void btnTypeArme_Click(object sender, EventArgs e)
@@ -1167,7 +1167,7 @@ namespace Projet_Stargate
                         */
                     }
                 }
-                if(flpPlanete.Controls.Count == 0)
+                if (flpPlanete.Controls.Count == 0)
                 {
                     lblErreur3.Visible = true;
                     errorProvider1.SetError(lblErreur3, "Veuillez réinitialiser les filtres.");
@@ -1498,15 +1498,15 @@ namespace Projet_Stargate
         private void txtNom_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
-            if(char.IsDigit(e.KeyChar) || char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            if (char.IsDigit(e.KeyChar) || char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = false;
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
-                    e.Handled = true;
-                    btnRechercher.PerformClick();
-                    charger_planetes();
+                e.Handled = true;
+                btnRechercher.PerformClick();
+                charger_planetes();
             }
         }
 
@@ -1550,7 +1550,7 @@ namespace Projet_Stargate
             charger_planetes();
         }
 
-        private void AliensAllies_KeyDown(object sender, KeyEventArgs e) 
+        private void AliensAllies_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
