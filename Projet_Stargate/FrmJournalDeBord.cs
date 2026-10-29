@@ -315,6 +315,9 @@ namespace Projet_Stargate
             // Affichage dans labels
             lblTotSommes.Text = $"Total des sommes versées : {totalC}$";
             this.sommeVersee = Convert.ToInt32(totalC); // Stockage pour le PDF
+            // Total des dépenses de la mission (pour le PDF)
+            object resDep = ds.Tables["Depense"].Compute("SUM(montant)", $"nomPlanete = '{idPlanete}' AND numeroMission = {idNumero}");
+            this.depenses = (resDep == DBNull.Value) ? 0 : Convert.ToInt32(resDep);
         }
 
         private void CreerTableBilanCapture()
